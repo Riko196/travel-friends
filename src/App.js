@@ -1,29 +1,15 @@
 import React, { Component } from "react";
-import GoogleButton from "./GoogleButton";
-import FacebookButton from "./FacebookButton";
-import logo from "./logo.svg";
+import LandingPage from "./components/landing/LandingPage";
+import { Route } from "react-router-dom";
+import { Switch } from "react-router";
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <FacebookButton />
-          <GoogleButton />
-        </header>
+      <div className="application-container">
+        <Route exact path="/" component={LandingPage} />
+        <Switch />
       </div>
     );
   }
