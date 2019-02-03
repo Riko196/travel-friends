@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    src: url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900');
+}
+
+.landingpage{
+    background: url("../../images/landing/landing-bg.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+}
+
+.main {
+    position: relative;
+}
+
+.title-text{
+    width: 40%;
+    padding: 2em;
+    font-family: 'Montserrat' sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 41px;
+}
+
+h2 {
+    font-weight: 700;
+}
+
+p {
+    font-weight: 400;
+}
+
+@keyframes upDown {
+    0% {top: 90vh;}
+    50% {top: 95vh;}
+    100% {top: 90vh}
+  }
+
+.arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    
+    border-top: 20px solid black;
+    position: absolute;
+    top: 90vh;
+    left: 48vw;
+    animation-name: upDown;
+    animation-iteration-count: infinite;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+}
+
+.sign-up{
+    margin: 1em;
+}
+
+.find-friend{
+    margin-bottom: 1em;
+}
+
+.landingpage-scroll{
+    background-color: #1f2c41;
+    align-content: center;
+    text-align: center;
+    padding-bottom: 2em;
+    position: absolute;
+    top: 100vh;
+    width: 100%;
+}
+
+footer {
+    display: inline;
+}
+
+.social-icons {
+    display: inline;
+    margin-right: 25%;
+}
+
+.terms-policy{
+    display: inline;
+}
+
+h1{
+    margin: 0px;
+}
+
+.main{
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    text-decoration: underline;
+}

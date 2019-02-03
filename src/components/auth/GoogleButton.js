@@ -9,7 +9,7 @@ class GoogleButton extends Component {
 
   render() {
     return (
-      <div className="facebook-login">
+      <div className="google-login">
         <GoogleLogin
           clientId="224446354451-1hb6ivlaalsa2jptlncsl1ur11us5v6u.apps.googleusercontent.com"
           buttonText="Login with Google"
