@@ -25,9 +25,9 @@ class LandingPage extends Component {
               <GoogleButton/>
             </div>
             <p>
-              BY CLICKING “CONTINUE WITH FACEBOOK” OR “CONTINUE WITH GOOGLE” YOU ACCEPT THE <span> </span>  
-              <NavLink to="/terms-conditions" className="terms-conditions">TERMS & CONDITIONS</NavLink> <span> </span> 
-              & <NavLink to="/privacy-policy" className="privacy-policy">PRIVACY POLICY</NavLink> OF THE WEBSITE.
+              BY CLICKING “CONTINUE WITH FACEBOOK” OR “CONTINUE WITH GOOGLE” YOU ACCEPT THE {" "}
+              <NavLink to="/terms-conditions" className="terms-conditions">TERMS & CONDITIONS</NavLink> {" "}
+              AND <NavLink to="/privacy-policy" className="privacy-policy">PRIVACY POLICY</NavLink> OF THE WEBSITE.
             </p>
           </div>
           <div className="arrow-down"></div>
@@ -60,9 +60,9 @@ class LandingPage extends Component {
               <GoogleButton/>
             </div>
             <p>
-              By clicking “continue with Facebook” or “continue with Google” you accept the <span> </span>
-              <NavLink to="/terms-conditions" className="terms-conditions">Terms & Conditions</NavLink> <span> </span>
-              and <NavLink to="/privacy-policy" className="privacy-policy">Privacy Policy</NavLink> of the website.  
+              By clicking “continue with Facebook” or “continue with Google” you accept the {" "}
+              <NavLink to="/terms-conditions" className="terms-conditions">Terms & Conditions</NavLink> {" "}
+              and <NavLink to="/privacy-policy" className="privacy-policy">Privacy Policy</NavLink> of the website.
             </p>
             <footer>
               <div className="social-icons">
@@ -72,13 +72,13 @@ class LandingPage extends Component {
                 <img className="youtube-icon" alt=""></img>
               </div>
               <div className="terms-policy">
-                <NavLink to="/terms-conditions" className="terms-conditions">Terms & conditions</NavLink> <span> </span>
+                <NavLink to="/terms-conditions" className="terms-conditions">Terms & conditions</NavLink> {" "}
                 <NavLink to="/privacy-policy" className="privacy-policy">Privacy policy</NavLink>
               </div>
             </footer>
           </div>
         </div>
-      </div>   
+      </div>
     );
   }
 }

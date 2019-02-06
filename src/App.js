@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import LandingPage from "./components/landing/LandingPage";
-import TermsConditions from "./components/terms/TermsConditions"
-import PrivacyPolicy from "./components/privacy/PrivacyPolicy"
+import TermsConditions from "./components/terms/TermsConditions";
+import PrivacyPolicy from "./components/privacy/PrivacyPolicy";
+import Profile from "./components/profile/Profile";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router";
 import "./App.css";
@@ -14,6 +15,7 @@ class App extends Component {
         <Switch>
           <Route path="/terms-conditions" component={TermsConditions} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/profile" component={Profile} />
         </Switch>
       </div>
     );

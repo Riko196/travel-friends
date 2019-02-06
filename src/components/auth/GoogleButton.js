@@ -1,9 +1,22 @@
 import React, { Component } from "react";
+import { compose } from "redux";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { googleLogin } from "../../actions/auth";
+import { authConfig } from "../../utils/config";
 import GoogleLogin from "react-google-login";
 
-//1R4SKAReIC2vOiq8YpnEdgCL
 class GoogleButton extends Component {
   responseGoogle = response => {
+    //console.log(response);
+    if (response.accessToken === undefined) {
+      return;
+    }
+    this.props.googleLogin(response);
+    this.props.history.replace("/profile");
+  };
+
+  loginFailed = response => {
     console.log(response);
   };
 
@@ -11,14 +24,20 @@ class GoogleButton extends Component {
     return (
       <div className="google-login">
         <GoogleLogin
-          clientId="224446354451-1hb6ivlaalsa2jptlncsl1ur11us5v6u.apps.googleusercontent.com"
+          clientId={authConfig.googleId}
           buttonText="Login with Google"
           onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
+          onFailure={this.loginFailed}
         />
       </div>
     );
   }
 }
 
-export default GoogleButton;
+export default compose(
+  withRouter,
+  connect(
+    null,
+    { googleLogin }
+  )
+)(GoogleButton);
