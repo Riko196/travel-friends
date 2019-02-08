@@ -1,50 +1,101 @@
-.profile-containter{
-    
+@font-face {
+    font-family: 'Roboto' sans-serif;
+    font-style: normal;
+    src: url('https://fonts.googleapis.com/css?family=Roboto');
 }
 
 .profile-photo{
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+}
+
+#photo{
+    text-align: center;
+    width: 19%;
+}
+
+.name-age-country-hidden{
+    display: none;
 }
 
 body{
-    background-color: lightblue;
+    background-color: burlywood;
 }
 
-.name-age-country{
-    display: block;
-    text-align: center;
+.profile-div{
+    padding-top: 3em;
+    font-family: 'Roboto' sans-serif;
 }
 
-.info-one{
-    display: inline-block;
-    margin: 1em;
+.column{
+    float: left;
+    width: 27%;
+    padding: 0px;
+    height: 300px;
 }
 
-.info-two{
-    display: inline-block;
-    margin: 1em;
+.row{
+    width: 100%;
 }
 
-.about-and-birth{
-    display: inline-block;
-    margin: 1em;
-}
-
-.profile-basic{
-    width: 16%;
-    text-align: center;
-    display: inline-block;
-}
-
-.personal-info{
-    position: relative;
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .profile-div{
     background-color: whitesmoke;
-    margin: 3em 10% 2em 10%;
-    border-radius: 7px;    
-    padding: 1em;
+    margin: 3em;
+    border-radius: 7px;
+}
+
+@media screen and (max-width: 1000px){
+    .column{
+        width: calc(50% - 1em);
+        height: calc(50vw - 24px);
+        padding: 0.5em;
+    }
+
+    .name-age-country{
+        display: none;
+    }
+
+    .name-age-country-hidden{
+        display: initial;
+        text-align: center;
+    }
+
+    #photo{
+        text-align: left;
+        padding: 0px;
+        width: 50%;
+    }
+
+    .profile-photo{
+        width: 100%;
+        height: auto;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 7px;
+    }
+
+    .profile-div{
+        padding-top: 0px;
+        margin: 10px;
+        border: 2px solid black;
+    }
+
+    .row{
+        padding-top: 0px;
+        padding-left: 0px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .column{
+        width: 100%;
+    }
 }

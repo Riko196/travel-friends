@@ -20,7 +20,7 @@ class ProfileTrips extends Component {
   
     render() {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form class="main-form" onSubmit={this.handleSubmit}>
           <label className="destination">
             Destination:
             <input type="text" value={this.state.value} onChange={this.handleChange} />

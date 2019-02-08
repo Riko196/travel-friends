@@ -3,21 +3,22 @@
     width: 90px;
     height: 90px;
     background-color: antiquewhite;
-    margin: 1em 1em;
+    margin: 1em;
 }
 
 .gallery-photo-middle{
     width: 120px;
     height: 120px;
     margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .gallery-container{
-    width: calc(100% - 2em);
+    width: 100%;
     text-align: center;
 }
 
-i {
+.i {
     border: solid black;
     border-width: 0 5px 5px 0;
     display: inline-block;

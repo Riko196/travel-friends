@@ -5,3 +5,9 @@
 .destination{
     display: block;
 }
+
+.main-form{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2em;
+}
