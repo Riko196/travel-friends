@@ -9,76 +9,147 @@ import mail from "../../images/landing/mail.png";
 import "./LandingPage.css";
 
 class LandingPage extends Component {
+
+componentDidMount() {
+
+   var y = document.querySelectorAll('.landing-page__reveal');
+   window.onscroll = function() {scroll()};
+
+   document.querySelector('.scrollTo').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo(0, window.innerHeight);
+    });
+
+   function scroll() {
+      var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
+      var thirdWindowHeight = window.innerHeight/3;
+         console.log('scrollT' + scrollT + ' windowHeight/2 ' + thirdWindowHeight);
+         if (scrollT > thirdWindowHeight){
+            var t = 0;
+            var j;
+            console.log(y.length);
+            for (j = 0; j < y.length; j++){
+               configureTimeout(y, j, t);
+               t++;
+            }
+         }
+   }
+
+   function configureTimeout(y, j, t) {
+      setTimeout(function() {
+         if (!y[j].classList.contains('landing-page__reveal--shown')){
+            y[j].classList.add('landing-page__reveal--shown');
+         }
+      }, t*150);
+   }
+}
+
   render() {
     return (
-      <div className="main">
-        <div className="landingpage">
-          <div className="title-text">
-            <h1>
-              YOU ARE ON A RIGHT PLACE FOR FINDING YOUR TRAVEL FRIENDS.
-            </h1>
-            <h2>
-              MEET NEW PEOPLE WITH SAME PASSION FOR TRAVELING AND SHARE YOUR EXPERIENCE AND COSTS!
-            </h2>
-            <div className="login-buttons">
-              <FacebookButton/>
-              <GoogleButton/>
-            </div>
-            <p>
-              BY CLICKING “CONTINUE WITH FACEBOOK” OR “CONTINUE WITH GOOGLE” YOU ACCEPT THE {" "}
-              <NavLink to="/terms-conditions" className="terms-conditions">TERMS & CONDITIONS</NavLink> {" "}
-              AND <NavLink to="/privacy-policy" className="privacy-policy">PRIVACY POLICY</NavLink> OF THE WEBSITE.
-            </p>
+      <div className="parent parent--landing">
+       <div className="landing-page">
+          <div className="landing-page__part landing-page__part--1">
+             <div className="container-fluid py-5">
+                <div className="row">
+                   <div className="col-md-6 text-center">
+                      <div className="landing-page__maxw">
+                         <div className="text-uppercase text-xlarge font-weight-black text-shadow--1 mb-4">
+                            You are on a right place
+                            for finding your travel friends.
+                         </div>
+                         <p className="text-uppercase font-weight-bold text-medium text-shadow--1 mb-4">
+                            Meet new people  with same passion for traveling
+                            and share your experience and costs!
+                         </p>
+                         <div className="mb-4 d-flex justify-content-center flex-wrap">
+                            {/* <a href="#" className="btn btn--social-login btn--rounded btn--blue m-3 login-facebook cursor-pointer"> */}
+                               <FacebookButton/>
+                            {/* </a> */}
+                            {/* <a href="#" className="btn btn--social-login btn--rounded btn--red m-3"> */}
+                                <GoogleButton/>
+                            {/* </a> */}
+                         </div>
+                         <p className="text-uppercase font-weight-bold text-shadow--1">
+                            By clicking “continue with facebook” or “continue with Google” you accept the {" "}
+                            <NavLink to="/terms-conditions" className="terms-conditions">Terms &amp; Conditions</NavLink> {" "}
+                            and <NavLink to="/privacy-policy" className="privacy-policy">Privacy Policy</NavLink> of the website.
+                         </p>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <a href="#how-it-works" className="landing-page__arrow scrollTo"><i className="fas fa-chevron-down"></i></a>
           </div>
-          <div className="arrow-down"></div>
-          <div className="landingpage-scroll">
-            <div>
-              <h1>HOW IT WORKS</h1>
-              <img src={arrowDown} alt=""></img>
-            </div>
-            <hr></hr>
-            <div className="sign-up">
-              <img src={taskList} alt=""></img>
-              <h2>SIGN UP</h2>
-              <p>Add your personal information, trips & photos.</p>
-            </div>
-            <div className="find-friends">
-              <img src={magnifier} alt=""></img>
-              <h2>FIND TRAVEL FRIENDS</h2>
-              <p>According your requirements find an ideal travel friend.</p>
-            </div>
-            <div className="contact">
-              <img src={mail} alt=""></img>
-              <h2>CONTACT</h2>
-              <p>Your last step.</p>
-            </div>
-            <hr></hr>
-            <h2>ARE YOU IN?</h2>
-            <img src={arrowDown} alt=""></img>
-            <div className="login-buttons">
-              <FacebookButton/>
-              <GoogleButton/>
-            </div>
-            <p>
-              By clicking “continue with Facebook” or “continue with Google” you accept the {" "}
-              <NavLink to="/terms-conditions" className="terms-conditions">Terms & Conditions</NavLink> {" "}
-              and <NavLink to="/privacy-policy" className="privacy-policy">Privacy Policy</NavLink> of the website.
-            </p>
-            <footer>
-              <div className="social-icons">
-                Follow us:
-                <img className="fb-icon" alt=""></img>
-                <img className="instagram-icon" alt=""></img>
-                <img className="youtube-icon" alt=""></img>
-              </div>
-              <div className="terms-policy">
-                <NavLink to="/terms-conditions" className="terms-conditions">Terms & conditions</NavLink> {" "}
-                <NavLink to="/privacy-policy" className="privacy-policy">Privacy policy</NavLink>
-              </div>
-            </footer>
+          <div id="how-it-works" className="landing-page__part landing-page__part--2 py-5">
+             <div className="container text-center mb-5">
+                <div className="row justify-content-center">
+                   <div className="col-md-7">
+                      <h1 className="font-primary font-weight-black mb-4 pt-4 landing-page__reveal">HOW IT WORKS</h1>
+                      <img src={arrowDown} alt="" className="mb-3 landing-page__reveal arrow-width"></img>
+                      <div className="landing-page__divider landing-page__reveal"></div>
+                      <div className="mb-5">
+                         <img src={taskList} alt="" className="mb-3 landing-page__reveal img-width"></img>
+                         <h2 className="font-primary font-weight-black mb-3 landing-page__reveal">SIGN UP</h2>
+                         <p className="landing-page__reveal">Add your personal information, trips &amp; photos.</p>
+                      </div>
+                      <div className="mb-5">
+                         <img src={magnifier} alt="" className="mb-3 landing-page__reveal img-width"></img> 
+                         <h2 className="font-primary font-weight-black mb-3 landing-page__reveal">FIND TRAVEL FRIENDS</h2>
+                         <p className="landing-page__reveal">
+                            According your requirements find an ideal
+                            travel friend.
+                         </p>
+                      </div>
+                      <div className="mb-5">
+                         <img src={mail} alt="" className="mb-3 landing-page__reveal img-width"></img>
+                         <h2 className="font-primary font-weight-black mb-3 landing-page__reveal">CONTACT</h2>
+                         <p className="landing-page__reveal">
+                            Your last step. :
+                         </p>
+                      </div>
+                      <div className="landing-page__divider landing-page__reveal"></div>
+                      <h2 className="font-primary font-weight-black mb-3">ARE YOU IN?</h2>
+                      <img src={arrowDown} alt="" className="mb-3 arrow-width-2"></img> 
+                      <div className="mb-4 d-flex justify-content-center flex-wrap">
+                         {/* <a className="btn btn--social-login btn--rounded btn--blue m-3 login-facebook">
+                            <div>
+                               <div className="font-weight-bold">Continue with facebook</div>
+                               <div className="small">*we will never post on your wall</div>
+                            </div>                       
+                         </a> */}
+                         <FacebookButton/>
+                         {/* <a className="btn btn--social-login btn--rounded btn--red m-3">
+                            <div>
+                               <div className="font-weight-bold">Continue with Google</div>
+                            </div>
+                         </a> */}
+                         <GoogleButton/>
+                      </div>
+                      <p>
+                        By clicking “continue with facebook” or “continue with Google” you accept the {" "}
+                        <NavLink to="/terms-conditions" className="terms-conditions">Terms &amp; Conditions</NavLink> {" "}
+                        and <NavLink to="/privacy-policy" className="privacy-policy">Privacy Policy</NavLink> of the website.
+                      </p>
+                   </div>
+                </div>
+             </div>
+             <div className="container">
+                <footer>
+                   <div className="d-flex justify-content-between flex-wrap">
+                      <div>
+                         Follow us:
+                         <i className="fab fa-facebook-f mx-1"></i> <i className="fab fa-instagram mx-1"></i> <i className="fab fa-youtube mx-1"></i>
+                      </div>
+                      <div>
+                        <NavLink to="/terms-conditions" className="terms-conditions">Terms &amp; conditions</NavLink> {" "}
+                        <NavLink to="/privacy-policy" className="privacy-policy">Privacy policy</NavLink>
+                      </div>
+                   </div>
+                </footer>
+             </div>
           </div>
-        </div>
-      </div>
+       </div>
+    </div>
     );
   }
 }

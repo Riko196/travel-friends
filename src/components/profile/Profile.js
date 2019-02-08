@@ -10,16 +10,17 @@ class Profile extends Component {
     return (
       <div className="profile-container">
         <div className="profile-div">
-          <div className="personal-info">
-            <div className="profile-basic">
-              <img className="profile-photo" src={profile} alt="Profile"/>
-              <p className="name-age-country">Ivan</p>
+          <div className="row">
+            <div className="column" id="photo">
+              <img className="profile-photo" src={this.props.user.profilePhoto} alt="Profile"/>
+              <p className="name-age-country">{this.props.user.name}</p>
             </div>
-            <div className="about-and-birth">
+            <div className="column">
+              <p className="name-age-country-hidden">Ivan</p>
               <p className="about-me">About Me: </p>
               <p className="birthday">day/month/year</p>
             </div>
-            <div className="info-one">
+            <div className="column">
               <p className="country">Country: </p>
               <p className="city">City: </p>
               <p className="occupation">Occupation: </p>
@@ -27,12 +28,12 @@ class Profile extends Component {
               <p className="gender">Gender: </p>
               <p className="relationship">Relationship: </p>
             </div>
-            <div className="info-two">  
+            <div className="column">  
               <p className="education">Education: </p>
               <p className="smoking">Smoking: </p>
               <p className="drinking">Drinking: </p>
               <p className="speaking">Speaking: </p>
-              <p>agarskyivan@gmail.com</p>
+              <p>{this.props.user.email}</p>
               <button className="edit-profile">
                 Edit profile
               </button>
