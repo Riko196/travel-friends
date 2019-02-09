@@ -2,18 +2,24 @@ import React, { Component } from "react";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { googleLogin } from "../../actions/auth";
+import { logIn } from "../../actions/auth";
 import { authConfig } from "../../utils/config";
 import GoogleLogin from "react-google-login";
-import "./LoginButton.css"
+import "./LoginButton.css";
 
 class GoogleButton extends Component {
   responseGoogle = response => {
-    //console.log(response);
     if (response.accessToken === undefined) {
       return;
     }
-    this.props.googleLogin(response);
+
+    this.props.logIn({
+      accessToken: response.accessToken,
+      name: response.profileObj.name,
+      email: response.profileObj.email,
+      profilePhoto: response.profileObj.imageUrl
+    });
+
     this.props.history.replace("/home");
   };
 
@@ -30,7 +36,9 @@ class GoogleButton extends Component {
           onSuccess={this.responseGoogle}
           onFailure={this.loginFailed}
           render={renderProps => (
-            <button className="g-button" onClick={renderProps.onClick}><i id="g-icon" className="fab fa-google"></i>Login with Google</button>
+            <button className="g-button" onClick={renderProps.onClick}>
+              <i id="g-icon" className="fab fa-google" />Login with Google
+            </button>
           )}
         />
       </div>
@@ -42,6 +50,6 @@ export default compose(
   withRouter,
   connect(
     null,
-    { googleLogin }
+    { logIn }
   )
 )(GoogleButton);

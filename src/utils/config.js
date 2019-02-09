@@ -4,3 +4,8 @@ export const authConfig = {
     "224446354451-1hb6ivlaalsa2jptlncsl1ur11us5v6u.apps.googleusercontent.com",
   googleSecurity: "1R4SKAReIC2vOiq8YpnEdgCL"
 };
+
+export const backendConfig = {
+  hostname: "localhost",
+  port: 8080
+};
