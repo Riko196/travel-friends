@@ -1,3 +1,6 @@
+import apiRequest from "./apiRequest";
+import { omit } from "lodash";
+
 export const setLoggedIn = loggedIn => ({
   type: "Set loggedIn value",
   payload: loggedIn,
@@ -14,25 +17,32 @@ export const setUser = user => ({
   }
 });
 
-export const facebookLogin = user => dispatch => {
-  console.log(user);
-  dispatch(
-    setUser({
-      name: user.name,
-      email: user.email,
-      profilePhoto: user.profilePhoto
-    })
-  );
-  dispatch(setLoggedIn(true));
+export const existsUser = email => {
+  return apiRequest(`getUser/${email}`, { method: "GET" });
 };
 
-export const googleLogin = user => dispatch => {
-  dispatch(
-    setUser({
-      name: user.profileObj.name,
-      email: user.profileObj.email,
-      profilePhoto: user.profileObj.imageUrl
+export const addNewUser = user => {
+  const data = JSON.stringify(omit(user, "profilePhoto"));
+  return apiRequest(`insertUser/${data}`, { method: "POST" });
+};
+
+export const logIn = user => dispatch => {
+  existsUser(user.email)
+    .then(data => {
+      console.log(data.exists);
+      if (!data.exists) {
+        addNewUser(user);
+      }
     })
-  );
-  dispatch(setLoggedIn(true));
+    .then(() => {
+      dispatch(
+        setUser({
+          name: user.name,
+          email: user.email,
+          profilePhoto: user.profilePhoto
+        })
+      );
+      dispatch(setLoggedIn(true));
+    })
+    .catch(() => {});
 };
