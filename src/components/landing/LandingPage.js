@@ -23,11 +23,9 @@ componentDidMount() {
    function scroll() {
       var scrollT = document.documentElement.scrollTop || document.body.scrollTop;
       var thirdWindowHeight = window.innerHeight/3;
-         console.log('scrollT' + scrollT + ' windowHeight/2 ' + thirdWindowHeight);
          if (scrollT > thirdWindowHeight){
             var t = 0;
             var j;
-            console.log(y.length);
             for (j = 0; j < y.length; j++){
                configureTimeout(y, j, t);
                t++;

@@ -37,6 +37,9 @@ div {
         flex: 0 0 50%;
         max-width: 50%;
     }
+    .fb-button{
+        margin-bottom: 1em;
+    }
 }
 
 .landing-page__part--1 {
@@ -194,6 +197,10 @@ p {
     opacity: .7;
 }
 
+.landing-page__arrow a {
+    color: white !important;
+}
+
 a {
     color: #007bff !important;
     text-decoration: none !important;
@@ -263,6 +270,13 @@ a:-webkit-any-link {
 @media (min-width: 576px){
     .container {
         max-width: 540px;
+    }
+}
+
+
+@media (max-width: 576px){
+    .fb-button{
+        margin-bottom: 1em;
     }
 }
 

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { googleLogin } from "../../actions/auth";
 import { authConfig } from "../../utils/config";
 import GoogleLogin from "react-google-login";
+import "./LoginButton.css"
 
 class GoogleButton extends Component {
   responseGoogle = response => {
@@ -13,7 +14,7 @@ class GoogleButton extends Component {
       return;
     }
     this.props.googleLogin(response);
-    this.props.history.replace("/profile");
+    this.props.history.replace("/home");
   };
 
   loginFailed = response => {
@@ -28,6 +29,9 @@ class GoogleButton extends Component {
           buttonText="Login with Google"
           onSuccess={this.responseGoogle}
           onFailure={this.loginFailed}
+          render={renderProps => (
+            <button className="g-button" onClick={renderProps.onClick}><i id="g-icon" className="fab fa-google"></i>Login with Google</button>
+          )}
         />
       </div>
     );
