@@ -4,7 +4,8 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { authConfig } from "../../utils/config";
 import { facebookLogin } from "../../actions/auth";
-import FacebookLogin from "react-facebook-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import "./LoginButton.css"
 
 class FacebookButton extends Component {
   responseFacebook = response => {
@@ -17,7 +18,7 @@ class FacebookButton extends Component {
       email: response.email,
       profilePhoto: response.picture.data.url
     });
-    this.props.history.replace("/profile");
+    this.props.history.replace("/home");
   };
 
   render() {
@@ -27,6 +28,9 @@ class FacebookButton extends Component {
           appId={authConfig.facebookId}
           fields="name,email,picture"
           callback={this.responseFacebook}
+          render={renderProps => (
+            <button className="fb-button" onClick={renderProps.onClick}><i id="fbicon" className="fab fa-facebook-f"></i>Login with Facebook</button>
+          )}
         />
       </div>
     );
