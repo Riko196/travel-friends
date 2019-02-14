@@ -17,6 +17,7 @@
 }
 
 .navbar-link{
+    font-family: 'Montserrat', sans-serif;
     text-decoration: none;
     cursor: pointer;
     color: white !important;

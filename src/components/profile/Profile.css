@@ -1,7 +1,28 @@
-@font-face {
-    font-family: 'Roboto' sans-serif;
-    font-style: normal;
-    src: url('https://fonts.googleapis.com/css?family=Roboto');
+.profile-container{
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #1e5799 0%, #207cca 16%, #2addbc 44%, #a6e27a 73%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #1e5799 0%,#207cca 16%,#2addbc 44%,#a6e27a 73%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #1e5799 0%,#207cca 16%,#2addbc 44%,#a6e27a 73%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#a6e27a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    padding-top: 45px;
+    min-height: 100vh;
+}
+
+.application-container{
+    min-height: 100vh;
+}
+
+body{
+    padding: 0px;
+    margin: 0px;
+}
+
+body, html{
+    min-height: 100vh;
+}
+
+#root{
+    min-height: 100vh;
 }
 
 .profile-photo{
@@ -20,8 +41,7 @@
 }
 
 .profile-div{
-    padding-top: 3em;
-    font-family: 'Roboto' sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .column{
@@ -43,7 +63,8 @@
 
 .profile-div{
     background-color: whitesmoke;
-    margin: 3em;
+    margin-left: 10%;
+    margin-right: 10%;
     border-radius: 7px;
 }
 
@@ -79,14 +100,19 @@
     }
 
     .profile-div{
+        padding-left: 1em;
         padding-top: 0px;
         margin: 10px;
-        border: 2px solid black;
+        margin-bottom: 0px;
     }
 
     .row{
         padding-top: 0px;
         padding-left: 0px;
+    }
+
+    .navbar{
+        padding-right: 1em;
     }
 }
 

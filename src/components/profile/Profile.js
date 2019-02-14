@@ -3,12 +3,15 @@ import { connect } from "react-redux";
 import profile from "../../images/mockup/profile.jpg";
 import ProfileGallery from "../profileGallery/ProfileGallery";
 import ProfileTrips from "../profileTrips/ProfileTrips";
+import NavBar from "../navbar/Navbar";
+import { NavLink } from "react-router-dom";
 import "./Profile.css";
 
 class Profile extends Component {
   render() {
     return (
       <div className="profile-container">
+        <NavBar/>
         <div className="profile-div">
           <div className="row">
             <div className="column" id="photo">
@@ -16,7 +19,7 @@ class Profile extends Component {
               <p className="name-age-country">{this.props.user.name}</p>
             </div>
             <div className="column">
-              <p className="name-age-country-hidden">Ivan</p>
+              <p className="name-age-country-hidden">{this.props.user.name}</p>
               <p className="about-me">About Me: </p>
               <p className="birthday">day/month/year</p>
             </div>
@@ -34,9 +37,9 @@ class Profile extends Component {
               <p className="drinking">Drinking: </p>
               <p className="speaking">Speaking: </p>
               <p>{this.props.user.email}</p>
-              <button className="edit-profile">
+              <NavLink to="/edit-profile" className="edit-profile">
                 Edit profile
-              </button>
+              </NavLink>
             </div>
           </div>
           <div className="travel-plan">
