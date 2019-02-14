@@ -18,18 +18,17 @@ export const setUser = user => ({
 });
 
 export const existsUser = email => {
-  return apiRequest(`getUser/${email}`, { method: "GET" });
+  return apiRequest(`getUser/${email}`, { method: "GET" }).catch(e => {});
 };
 
 export const addNewUser = user => {
   const data = JSON.stringify(omit(user, "profilePhoto"));
-  return apiRequest(`insertUser/${data}`, { method: "POST" });
+  return apiRequest(`insertUser/${data}`, { method: "POST" }).catch(e => {});
 };
 
 export const logIn = user => dispatch => {
   existsUser(user.email)
     .then(data => {
-      console.log(data.exists);
       if (!data.exists) {
         addNewUser(user);
       }
@@ -44,5 +43,7 @@ export const logIn = user => dispatch => {
       );
       dispatch(setLoggedIn(true));
     })
-    .catch(() => {});
+    .catch(e => {
+      dispatch(setLoggedIn(false));
+    });
 };

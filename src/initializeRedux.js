@@ -11,11 +11,13 @@ const getInitialState = () =>
 
 const rootReducer = (state, action) => {
   console.log("Action: ", action.type);
-  console.log("State :", state);
+  console.log("Old state: ", state);
   if (action.reducer === undefined) {
     return state;
   } else {
-    return action.reducer(state, action.payload);
+    const newState = action.reducer(state, action.payload);
+    console.log("New state: ", newState);
+    return newState;
   }
 };
 
