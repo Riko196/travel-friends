@@ -6,6 +6,7 @@ import Profile from "./components/profile/Profile";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router";
 import Home from "./components/home/Home"
+import EditProfile from "./components/editProfile/EditProfile";
 import "./App.css";
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/profile" component={Profile} />
           <Route path="/home" component={Home} />
+          <Route path="/edit-profile" component={EditProfile} />
         </Switch>
       </div>
     );
