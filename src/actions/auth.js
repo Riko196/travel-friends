@@ -1,5 +1,5 @@
 import apiRequest from "./apiRequest";
-import { omit } from "lodash";
+import { setUser } from "./user";
 
 export const setLoggedIn = loggedIn => ({
   type: "Set loggedIn value",
@@ -9,20 +9,12 @@ export const setLoggedIn = loggedIn => ({
   }
 });
 
-export const setUser = user => ({
-  type: "Set user values",
-  payload: user,
-  reducer: (state, userPayload) => {
-    return { ...state, user: userPayload };
-  }
-});
-
 export const existsUser = email => {
   return apiRequest(`getUser/${email}`, { method: "GET" }).catch(e => {});
 };
 
 export const addNewUser = user => {
-  const data = JSON.stringify(omit(user, "profilePhoto"));
+  const data = JSON.stringify(user);
   return apiRequest(`insertUser/${data}`, { method: "POST" }).catch(e => {});
 };
 

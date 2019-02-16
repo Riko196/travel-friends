@@ -9,3 +9,8 @@ export const backendConfig = {
   hostname: "localhost",
   port: 8080
 };
+
+export const profileConfig = {
+  textareaLength: 512,
+  inputLength: 255
+};
