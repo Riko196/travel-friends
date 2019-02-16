@@ -20,12 +20,13 @@ export const addNewUser = user => {
 
 export const logIn = user => dispatch => {
   existsUser(user.email)
-    .then(data => {
+    /*.then(data => {
       if (!data.exists) {
         addNewUser(user);
       }
-    })
+    })*/
     .then(() => {
+      console.log(user);
       dispatch(
         setUser({
           name: user.name,

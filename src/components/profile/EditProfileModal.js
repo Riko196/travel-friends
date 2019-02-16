@@ -4,7 +4,6 @@ import Modal from "react-modal";
 import DateInput from "date-input";
 import moment from "moment";
 import Select from "react-select";
-import { assignIn } from "lodash";
 import { removeAllSpaces } from "../../utils/functions";
 import { gender, relationship, addiction } from "../../utils/constants";
 import { setUser } from "../../actions/user";
@@ -19,8 +18,7 @@ class EditProfileModal extends Component {
     super();
 
     this.state = {
-      modalIsOpen: false,
-      errorText: null
+      modalIsOpen: false
     };
 
     this.aboutMe = React.createRef();
@@ -37,59 +35,17 @@ class EditProfileModal extends Component {
   }
 
   openModal = () => {
-    this.setState({ modalIsOpen: true, errorText: null });
+    this.setState({ modalIsOpen: true });
   };
 
   closeModal = () => {
-    this.setState({ modalIsOpen: false, errorText: null });
+    this.setState({ modalIsOpen: false });
   };
 
-  checkForLimits = () => {
-    if (this.aboutMe.current.value.length > profileConfig.textareaLength) {
-      this.setState({
-        errorText: `About me text can have only ${
-          profileConfig.textareaLength
-        } characters`
-      });
-    } else if (this.country.current.value.length > profileConfig.inputLength) {
-      this.setState({
-        errorText: `Country text can have only ${
-          profileConfig.inputLength
-        } characters`
-      });
-    } else if (this.city.current.value.length > profileConfig.inputLength) {
-      this.setState({
-        errorText: `City text can have only ${
-          profileConfig.inputLength
-        } characters`
-      });
-    } else if (
-      this.occupation.current.value.length > profileConfig.inputLength
-    ) {
-      this.setState({
-        errorText: `Occupation text can have only ${
-          profileConfig.inputLength
-        } characters`
-      });
-    } else if (
-      this.education.current.value.length > profileConfig.inputLength
-    ) {
-      this.setState({
-        errorText: `Education text can have only ${
-          profileConfig.inputLength
-        } characters`
-      });
-    } else if (this.speaking.current.value.length > profileConfig.inputLength) {
-      this.setState({
-        errorText: `Speaking text can have only ${
-          profileConfig.inputLength
-        } characters`
-      });
-    }
-  };
-
-  changeUser = userRedux => {
+  changeUser = () => {
+    const userRedux = this.props.user;
     let user = {};
+    console.log(this.city.current.value);
     user.aboutMe =
       removeAllSpaces(this.aboutMe.current.value) === ""
         ? userRedux.aboutMe
@@ -135,27 +91,28 @@ class EditProfileModal extends Component {
         ? userRedux.speaking
         : this.speaking.current.value;
 
-    return assignIn(user, userRedux);
+    console.log(user, userRedux);
+    return { ...userRedux, ...user };
   };
 
   updateProfile = () => {
-    this.setState({ errorText: null });
-    this.checkForLimits();
-
-    if (this.state.errorText !== null || this.birthday.current.state.error) {
+    if (this.birthday.current.state.error) {
       return;
     }
-    const userRedux = this.props.user;
-    let user = this.changeUser(userRedux);
+
+    let user = this.changeUser();
 
     this.props.setUser(user);
     this.closeModal();
   };
 
   render() {
+    const user = this.props.user;
     return (
       <div className="edit-profile-modal-container">
-        <button className="edit-profile" onClick={this.openModal}>Edit profile</button>
+        <button className="edit-profile" onClick={this.openModal}>
+          Edit profile
+        </button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -169,12 +126,15 @@ class EditProfileModal extends Component {
             onClick={this.closeModal}
             className="x-button"
           />
-
           <h2>Edit profile</h2>
           <label className="modal-label">About me:</label>
-          <textarea type="text" name="aboutMe" ref={this.aboutMe}
-            className="textarea"/>
-
+          <textarea
+            type="text"
+            name="aboutMe"
+            ref={this.aboutMe}
+            className="textarea"
+            defaultValue={user.aboutMe}
+          />
           <label className="modal-label">Birthday:</label>
           <DateInput
             shouldValidate
@@ -182,37 +142,79 @@ class EditProfileModal extends Component {
             maxDateError="Your birthday should be a past date"
             invalidError={"Bad format of birthday"}
             ref={this.birthday}
+            value={user.birthday === null ? "" : user.birthday}
           />
-
           <label className="modal-label">Country:</label>
-          <input className="text-input" type="text" name="country" ref={this.country} />
-
+          <input
+            className="input-text"
+            type="text"
+            name="country"
+            ref={this.country}
+            maxLength={profileConfig.inputLength}
+            defaultValue={user.country}
+          />
           <label className="modal-label">City:</label>
-          <input className="text-input" type="text" name="city" ref={this.city} />
-
+          <input
+            className="input-text"
+            type="text"
+            name="city"
+            ref={this.city}
+            maxLength={profileConfig.inputLength}
+            defaultValue={user.city}
+          />
           <label className="modal-label">Occupation:</label>
-          <input className="text-input" type="text" name="occupation" ref={this.occupation} />
-
+          <input
+            className="input-text"
+            type="text"
+            name="occupation"
+            ref={this.occupation}
+            maxLength={profileConfig.inputLength}
+            defaultValue={user.occupation}
+          />
           <label className="modal-label">Gender:</label>
-          <Select options={gender} ref={this.gender} />
-
+          <Select
+            options={gender}
+            ref={this.gender}
+            defaultInputValue={user.gender === null ? "" : user.gender}
+          />
           <label className="modal-label">Relationship:</label>
-          <Select options={relationship} ref={this.relationship} />
-
+          <Select
+            options={relationship}
+            ref={this.relationship}
+            defaultInputValue={
+              user.relationship === null ? "" : user.relationship
+            }
+          />
           <label className="modal-label">Education:</label>
-          <input className="text-input" type="text" name="education" ref={this.education} />
-
+          <input
+            className="input-text"
+            type="text"
+            name="education"
+            ref={this.education}
+            maxLength={profileConfig.inputLength}
+            defaultValue={user.education}
+          />
           <label className="modal-label">Smoking:</label>
-          <Select options={addiction} ref={this.smoking} />
-
+          <Select
+            options={addiction}
+            ref={this.smoking}
+            defaultInputValue={user.smoking === null ? "" : user.smoking}
+          />
           <label className="modal-label">Drinking:</label>
-          <Select options={addiction} ref={this.drinking} />
-
+          <Select
+            options={addiction}
+            ref={this.drinking}
+            defaultInputValue={user.drinking === null ? "" : user.drinking}
+          />
           <label className="modal-label">Speaking:</label>
-          <input className="text-input" type="text" name="speaking" ref={this.speaking} />
-
-          {this.state.errorText !== null && <p>{this.state.errorText}</p>}
-
+          <input
+            className="input-text"
+            type="text"
+            name="speaking"
+            ref={this.speaking}
+            maxLength={profileConfig.inputLength}
+            defaultValue={user.speaking}
+          />
           <input
             type="button"
             value="Save profile"

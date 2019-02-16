@@ -4,7 +4,7 @@ export const setUser = user => ({
   type: "Set user values",
   payload: user,
   reducer: (state, userPayload) => {
-    return { ...state, user: userPayload };
+    return { ...state, user: { ...user, ...userPayload } };
   }
 });
 
