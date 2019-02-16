@@ -4,48 +4,56 @@ import profile from "../../images/mockup/profile.jpg";
 import ProfileGallery from "../profileGallery/ProfileGallery";
 import ProfileTrips from "../profileTrips/ProfileTrips";
 import NavBar from "../navbar/Navbar";
-import { NavLink } from "react-router-dom";
+import EditProfileModal from "./EditProfileModal";
+
 import "./Profile.css";
 
 class Profile extends Component {
   render() {
     return (
       <div className="profile-container">
-        <NavBar/>
+        <NavBar />
         <div className="profile-div">
           <div className="row">
             <div className="column" id="photo">
-              <img className="profile-photo" src={this.props.user.profilePhoto} alt="Profile"/>
+              <img
+                className="profile-photo"
+                src={this.props.user.profilePhoto}
+                alt="Profile"
+              />
               <p className="name-age-country">{this.props.user.name}</p>
             </div>
             <div className="column">
-              <p className="name-age-country-hidden">{this.props.user.name}</p>
-              <p className="about-me">About Me: </p>
-              <p className="birthday">day/month/year</p>
+              <p className="about-me">About Me: {this.props.user.aboutMe}</p>
+              <p className="birthday">Birthday: {this.props.user.birthday}</p>
             </div>
             <div className="column">
-              <p className="country">Country: </p>
-              <p className="city">City: </p>
-              <p className="occupation">Occupation: </p>
+              <p className="country">Country: {this.props.user.country}</p>
+              <p className="city">City: {this.props.user.city}</p>
+              <p className="occupation">
+                Occupation: {this.props.user.occupation}
+              </p>
               <p className="joined">Joined: </p>
-              <p className="gender">Gender: </p>
-              <p className="relationship">Relationship: </p>
+              <p className="gender">Gender: {this.props.user.gender}</p>
+              <p className="relationship">
+                Relationship: {this.props.user.relationship}
+              </p>
             </div>
-            <div className="column">  
-              <p className="education">Education: </p>
-              <p className="smoking">Smoking: </p>
-              <p className="drinking">Drinking: </p>
-              <p className="speaking">Speaking: </p>
+            <div className="column">
+              <p className="education">
+                Education: {this.props.user.education}
+              </p>
+              <p className="smoking">Smoking: {this.props.user.smoking}</p>
+              <p className="drinking">Drinking: {this.props.user.drinking}</p>
+              <p className="speaking">Speaking: {this.props.user.speaking}</p>
               <p>{this.props.user.email}</p>
-              <NavLink to="/edit-profile" className="edit-profile">
-                Edit profile
-              </NavLink>
             </div>
+            <EditProfileModal />
           </div>
           <div className="travel-plan">
-            <ProfileTrips/>  
+            <ProfileTrips />
           </div>
-          <ProfileGallery/>
+          <ProfileGallery />
         </div>
       </div>
     );
