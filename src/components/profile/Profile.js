@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import profile from "../../images/mockup/profile.jpg";
 import ProfileGallery from "../profileGallery/ProfileGallery";
 import ProfileTrips from "../profileTrips/ProfileTrips";
 import NavBar from "../navbar/Navbar";
@@ -46,9 +45,9 @@ class Profile extends Component {
               <p className="smoking">Smoking: {this.props.user.smoking}</p>
               <p className="drinking">Drinking: {this.props.user.drinking}</p>
               <p className="speaking">Speaking: {this.props.user.speaking}</p>
-              <p>{this.props.user.email}</p>
+              <p>a{this.props.user.email}</p>
+              <EditProfileModal />
             </div>
-            <EditProfileModal />
           </div>
           <div className="travel-plan">
             <ProfileTrips />

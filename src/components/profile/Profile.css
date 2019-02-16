@@ -12,6 +12,22 @@
     min-height: 100vh;
 }
 
+.edit-profile{
+    background-color: cornflowerblue;
+    color: white !important;
+    padding: 0.3em 0.6em;
+    font-weight: 600;
+    border: solid 1px cornflowerblue;
+    cursor: pointer;
+}
+
+.about-me, .birthday,
+.country, .city, .occupation, .joined,
+.gender, .relationship, .education,
+.smoking, .drinking, .speaking{
+    opacity: 0.6;
+}
+
 body{
     padding: 0px;
     margin: 0px;
@@ -42,6 +58,7 @@ body, html{
 
 .profile-div{
     font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
 }
 
 .column{
@@ -71,27 +88,22 @@ body, html{
 @media screen and (max-width: 1000px){
     .column{
         width: calc(50% - 1em);
-        height: calc(50vw - 24px);
+        /*height: calc(50vw - 24px);*/
         padding: 0.5em;
     }
 
-    .name-age-country{
-        display: none;
-    }
-
-    .name-age-country-hidden{
-        display: initial;
-        text-align: center;
-    }
-
     #photo{
-        text-align: left;
-        padding: 0px;
-        width: 50%;
+        text-align: center;
+        padding-top: 15px;
+        width: calc(50% - 1em);
+    }
+
+    .padding-left{
+        padding-left: 2em ;
     }
 
     .profile-photo{
-        width: 100%;
+        width: 200px;
         height: auto;
         border-top-right-radius: 0px;
         border-bottom-left-radius: 0px;
@@ -107,17 +119,22 @@ body, html{
     }
 
     .row{
-        padding-top: 0px;
         padding-left: 0px;
-    }
-
-    .navbar{
-        padding-right: 1em;
     }
 }
 
 @media screen and (max-width: 600px){
     .column{
+        height: auto;
         width: 100%;
+        padding-left: 2em;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    #photo{
+        margin: auto;
+        padding-left: 0px;
+        padding-right: 0px; 
     }
 }

@@ -9,6 +9,8 @@ import { removeAllSpaces } from "../../utils/functions";
 import { gender, relationship, addiction } from "../../utils/constants";
 import { setUser } from "../../actions/user";
 import { profileConfig } from "../../utils/config";
+import { modalStyle } from "./EditProfileModalStyle";
+import "./EditProfileModal.css";
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -153,24 +155,27 @@ class EditProfileModal extends Component {
   render() {
     return (
       <div className="edit-profile-modal-container">
-        <button onClick={this.openModal}>Edit the profile</button>
+        <button className="edit-profile" onClick={this.openModal}>Edit profile</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           contentLabel="Edit the profile"
+          style={modalStyle}
         >
           <input
             type="button"
             name="exit"
             value="X"
             onClick={this.closeModal}
+            className="x-button"
           />
 
-          <h2>Type just what you would like to change</h2>
-          <p>About me:</p>
-          <textarea type="text" name="aboutMe" ref={this.aboutMe} />
+          <h2>Edit profile</h2>
+          <label className="modal-label">About me:</label>
+          <textarea type="text" name="aboutMe" ref={this.aboutMe}
+            className="textarea"/>
 
-          <p>Birthday:</p>
+          <label className="modal-label">Birthday:</label>
           <DateInput
             shouldValidate
             maxDate={moment().format("YYYY-MM-DD")}
@@ -179,39 +184,40 @@ class EditProfileModal extends Component {
             ref={this.birthday}
           />
 
-          <p>Country:</p>
-          <input type="text" name="country" ref={this.country} />
+          <label className="modal-label">Country:</label>
+          <input className="text-input" type="text" name="country" ref={this.country} />
 
-          <p>City:</p>
-          <input type="text" name="city" ref={this.city} />
+          <label className="modal-label">City:</label>
+          <input className="text-input" type="text" name="city" ref={this.city} />
 
-          <p>Occupation:</p>
-          <input type="text" name="occupation" ref={this.occupation} />
+          <label className="modal-label">Occupation:</label>
+          <input className="text-input" type="text" name="occupation" ref={this.occupation} />
 
-          <p>Gender:</p>
+          <label className="modal-label">Gender:</label>
           <Select options={gender} ref={this.gender} />
 
-          <p>Relationship:</p>
+          <label className="modal-label">Relationship:</label>
           <Select options={relationship} ref={this.relationship} />
 
-          <p>Education:</p>
-          <input type="text" name="education" ref={this.education} />
+          <label className="modal-label">Education:</label>
+          <input className="text-input" type="text" name="education" ref={this.education} />
 
-          <p>Smoking:</p>
+          <label className="modal-label">Smoking:</label>
           <Select options={addiction} ref={this.smoking} />
 
-          <p>Drinking:</p>
+          <label className="modal-label">Drinking:</label>
           <Select options={addiction} ref={this.drinking} />
 
-          <p>Speaking:</p>
-          <input type="text" name="speaking" ref={this.speaking} />
+          <label className="modal-label">Speaking:</label>
+          <input className="text-input" type="text" name="speaking" ref={this.speaking} />
 
           {this.state.errorText !== null && <p>{this.state.errorText}</p>}
 
           <input
             type="button"
-            value="Save and exit"
+            value="Save profile"
             onClick={this.updateProfile}
+            className="save-button"
           />
         </Modal>
       </div>
