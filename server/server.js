@@ -1,11 +1,13 @@
 const express = require("express");
 const config = require("../config");
-
+const knex = require("../knex/knex");
+const api = require("./api");
 const cors = require("cors");
+
 const app = express();
 
 app.use(cors());
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
@@ -14,10 +16,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-const api = require("./api");
-
 app.use("/api", api.router);
 
-app.listen(config.port, config.hostname, () => {
-  console.log(`Server is running on http://${config.hostname}:${config.port}`);
+app.listen(config.port, config.host, () => {
+  console.log(`Server is running on http://${config.host}:${config.port}`);
 });

@@ -1,38 +1,28 @@
 const express = require("express");
+const knex = require("../knex/knex");
+const { getUserByEmail, insertUser, updateUser } = require("./queries");
 
-const cors = require("cors");
 const router = express.Router();
-const { db } = require("./database");
 
-router.get("/getUser/:email", (req, res) => {
+router.get("/getUser/:email", (req, res, next) => {
   const { email } = req.params;
-  const sql = `SELECT * FROM Users WHERE Users.email = "${email}"`;
-  let query = db.query(sql, (err, result) => {
-    if (err) {
-      throw err;
-    }
-
-    const data = {
-      exists: result.length !== 0
-    };
-
-    res.json(data);
-  });
+  getUserByEmail(knex, email)
+    .then(result => {
+      res.send(result !== undefined);
+    })
+    .catch(e => next(e));
 });
 
-router.post("/insertUser/:user", (req, res) => {
+router.post("/insertUser/:user", (req, res, next) => {
   const user = JSON.parse(req.params.user);
-
-  const sql = `INSERT INTO Users(accessToken, name, email)
-      VALUES('${user.accessToken}', '${user.name}', '${user.email}')`;
-  let query = db.query(sql, (err, result) => {
-    if (err) {
-      throw err;
-    }
-
-    res.status(201).json({ result: "successful" });
-  });
+  insertUser(knex, user)
+    .then(result => {
+      console.log(result);
+    })
+    .catch(e => next(e));
 });
+
+router.put("/updateUser/:user", (req, res, next) => {});
 
 module.exports = {
   router: router
