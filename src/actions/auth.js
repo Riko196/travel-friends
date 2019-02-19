@@ -13,20 +13,22 @@ export const existsUser = email => {
   return apiRequest(`getUser/${email}`, { method: "GET" }).catch(e => {});
 };
 
-export const addNewUser = user => {
+export const signUp = user => {
   const data = JSON.stringify(user);
+  console.log(data);
   return apiRequest(`insertUser/${data}`, { method: "POST" }).catch(e => {});
 };
 
 export const logIn = user => dispatch => {
-  existsUser(user.email)
-    /*.then(data => {
+  return existsUser(user.email)
+    .then(data => {
       if (!data.exists) {
-        addNewUser(user);
+        signUp(user);
+      } else {
+        return Promise.resolve();
       }
-    })*/
+    })
     .then(() => {
-      console.log(user);
       dispatch(
         setUser({
           name: user.name,

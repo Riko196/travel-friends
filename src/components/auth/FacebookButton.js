@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { compose } from "redux";
+import { has } from "lodash";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { authConfig } from "../../utils/config";
@@ -9,17 +10,21 @@ import "./LoginButton.css";
 
 class FacebookButton extends Component {
   responseFacebook = response => {
-    if (response.accessToken === undefined) {
+    if (!has(response, "accessToken")) {
       return;
     }
 
-    this.props.logIn({
-      accessToken: response.accessToken,
-      name: response.name,
-      email: response.email,
-      profilePhoto: response.picture.data.url
-    });
-    this.props.history.replace("/home");
+    this.props
+      .logIn({
+        name: response.name,
+        email: response.email,
+        profilePhoto: response.picture.data.url
+      })
+      .then(() => {
+        if (has(this.props.user, "email")) {
+          this.props.history.replace("/home");
+        }
+      });
   };
 
   render() {
@@ -31,7 +36,8 @@ class FacebookButton extends Component {
           callback={this.responseFacebook}
           render={renderProps => (
             <button className="fb-button" onClick={renderProps.onClick}>
-              <i id="fbicon" className="fab fa-facebook-f" />Login with Facebook
+              <i id="fbicon" className="fab fa-facebook-f" />
+              Login with Facebook
             </button>
           )}
         />
@@ -43,7 +49,9 @@ class FacebookButton extends Component {
 export default compose(
   withRouter,
   connect(
-    null,
+    state => ({
+      user: state.user
+    }),
     { logIn }
   )
 )(FacebookButton);

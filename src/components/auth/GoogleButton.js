@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { compose } from "redux";
+import { has } from "lodash";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logIn } from "../../actions/auth";
@@ -9,18 +10,22 @@ import "./LoginButton.css";
 
 class GoogleButton extends Component {
   responseGoogle = response => {
-    if (response.accessToken === undefined) {
+    if (!has(response, "accessToken")) {
       return;
     }
 
-    this.props.logIn({
-      accessToken: response.accessToken,
-      name: response.profileObj.name,
-      email: response.profileObj.email,
-      profilePhoto: response.profileObj.imageUrl
-    });
-
-    this.props.history.replace("/home");
+    this.props
+      .logIn({
+        accessToken: response.accessToken,
+        name: response.profileObj.name,
+        email: response.profileObj.email,
+        profilePhoto: response.profileObj.imageUrl
+      })
+      .then(() => {
+        if (has(this.props.user, "email")) {
+          this.props.history.replace("/home");
+        }
+      });
   };
 
   loginFailed = response => {
@@ -37,7 +42,8 @@ class GoogleButton extends Component {
           onFailure={this.loginFailed}
           render={renderProps => (
             <button className="g-button" onClick={renderProps.onClick}>
-              <i id="g-icon" className="fab fa-google" />Login with Google
+              <i id="g-icon" className="fab fa-google" />
+              Login with Google
             </button>
           )}
         />
@@ -49,7 +55,9 @@ class GoogleButton extends Component {
 export default compose(
   withRouter,
   connect(
-    null,
+    state => ({
+      user: state.user
+    }),
     { logIn }
   )
 )(GoogleButton);
