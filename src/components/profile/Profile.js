@@ -23,7 +23,7 @@ class Profile extends Component {
               <p className="name-age-country">{this.props.user.name}</p>
             </div>
             <div className="column">
-              <p className="about-me">About Me: {this.props.user.aboutMe}</p>
+              <p className="about-me">About Me: {this.props.user.aboutme}</p>
               <p className="birthday">Birthday: {this.props.user.birthday}</p>
             </div>
             <div className="column">

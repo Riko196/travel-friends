@@ -7,13 +7,26 @@ const getUserByEmail = (trx, email) => {
     .first();
 };
 
+const getUserIdByEmail = (trx, email) => {
+  return trx("users")
+    .select("id")
+    .where("email", email)
+    .first();
+};
+
 const insertUser = (trx, user) => {
   return trx("users").insert(user);
 };
 
 const updateUser = (trx, user) => {
-  return trx("users").update(user);
+  return trx("users")
+    .where({ id: user.id })
+    .update(user);
 };
+
 module.exports = {
-  getUserByEmail: getUserByEmail
+  getUserByEmail: getUserByEmail,
+  getUserIdByEmail: getUserIdByEmail,
+  insertUser: insertUser,
+  updateUser: updateUser
 };

@@ -16,6 +16,7 @@ class FacebookButton extends Component {
 
     this.props
       .logIn({
+        accessToken: response.accessToken,
         name: response.name,
         email: response.email,
         profilePhoto: response.picture.data.url

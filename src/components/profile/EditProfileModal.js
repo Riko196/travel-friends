@@ -6,8 +6,9 @@ import moment from "moment";
 import Select from "react-select";
 import { removeAllSpaces } from "../../utils/functions";
 import { gender, relationship, addiction } from "../../utils/constants";
-import { setUser } from "../../actions/user";
+import { setUser, updateUser } from "../../actions/user";
 import { profileConfig } from "../../utils/config";
+import { merge } from "lodash";
 import { modalStyle } from "./EditProfileModalStyle";
 import "./EditProfileModal.css";
 
@@ -21,7 +22,7 @@ class EditProfileModal extends Component {
       modalIsOpen: false
     };
 
-    this.aboutMe = React.createRef();
+    this.aboutme = React.createRef();
     this.birthday = React.createRef();
     this.country = React.createRef();
     this.city = React.createRef();
@@ -42,57 +43,12 @@ class EditProfileModal extends Component {
     this.setState({ modalIsOpen: false });
   };
 
-  changeUser = () => {
-    const userRedux = this.props.user;
-    let user = {};
-    console.log(this.city.current.value);
-    user.aboutMe =
-      removeAllSpaces(this.aboutMe.current.value) === ""
-        ? userRedux.aboutMe
-        : this.aboutMe.current.value;
-    user.birthday =
-      this.birthday.current.state.value === ""
-        ? userRedux.birthday
-        : this.birthday.current.state.value;
-    user.country =
-      removeAllSpaces(this.country.current.value) === ""
-        ? userRedux.country
-        : this.country.current.value;
-    user.city =
-      removeAllSpaces(this.city.current.value) === ""
-        ? userRedux.city
-        : this.city.current.value;
-    user.occupation =
-      removeAllSpaces(this.occupation.current.value) === ""
-        ? userRedux.occupation
-        : this.occupation.current.value;
-    user.gender =
-      this.gender.current.state.value === null
-        ? userRedux.gender
-        : this.gender.current.state.value.label;
-    user.relationship =
-      this.relationship.current.state.value === null
-        ? userRedux.relationship
-        : this.relationship.current.state.value.label;
-    user.education =
-      removeAllSpaces(this.education.current.value) === ""
-        ? userRedux.education
-        : this.education.current.value;
-    user.smoking =
-      this.smoking.current.state.value === null
-        ? userRedux.smoking
-        : this.smoking.current.state.value.label;
-    user.drinking =
-      this.drinking.current.state.value === null
-        ? userRedux.drinking
-        : this.drinking.current.state.value.label;
-    user.speaking =
-      removeAllSpaces(this.speaking.current.value) === ""
-        ? userRedux.speaking
-        : this.speaking.current.value;
+  getInputFinalValue = inputValue => {
+    return removeAllSpaces(inputValue) === "" ? null : inputValue;
+  };
 
-    console.log(user, userRedux);
-    return { ...userRedux, ...user };
+  getSelectFinalValue = selectValue => {
+    return selectValue === null ? null : selectValue.label;
   };
 
   updateProfile = () => {
@@ -100,9 +56,46 @@ class EditProfileModal extends Component {
       return;
     }
 
-    let user = this.changeUser();
+    let updatedUserValues = {};
+    const userRedux = this.props.user;
 
-    this.props.setUser(user);
+    updatedUserValues.aboutme = this.getInputFinalValue(
+      this.aboutme.current.value
+    );
+    updatedUserValues.birthday =
+      this.birthday.current.state.value === ""
+        ? null
+        : this.birthday.current.state.value;
+    updatedUserValues.country = this.getInputFinalValue(
+      this.country.current.value
+    );
+    updatedUserValues.city = this.getInputFinalValue(this.city.current.value);
+    updatedUserValues.occupation = this.getInputFinalValue(
+      this.occupation.current.value
+    );
+    updatedUserValues.gender = this.getSelectFinalValue(
+      this.gender.current.state.value
+    );
+    updatedUserValues.relationship = this.getSelectFinalValue(
+      this.relationship.current.state.value
+    );
+    updatedUserValues.education = this.getInputFinalValue(
+      this.education.current.value
+    );
+    updatedUserValues.smoking = this.getSelectFinalValue(
+      this.smoking.current.state.value
+    );
+    updatedUserValues.drinking = this.getSelectFinalValue(
+      this.drinking.current.state.value
+    );
+    updatedUserValues.speaking = this.getInputFinalValue(
+      this.speaking.current.value
+    );
+
+    updateUser(updatedUserValues, userRedux);
+    const updatedUserRedux = merge(userRedux, updatedUserValues);
+    console.log("REDUX :", updatedUserRedux);
+    this.props.setUser(updatedUserRedux);
     this.closeModal();
   };
 
@@ -130,10 +123,10 @@ class EditProfileModal extends Component {
           <label className="modal-label">About me:</label>
           <textarea
             type="text"
-            name="aboutMe"
-            ref={this.aboutMe}
+            name="aboutme"
+            ref={this.aboutme}
             className="textarea"
-            defaultValue={user.aboutMe}
+            defaultValue={user.aboutme}
           />
           <label className="modal-label">Birthday:</label>
           <DateInput
@@ -231,5 +224,5 @@ export default connect(
   state => ({
     user: state.user
   }),
-  { setUser }
+  { setUser, updateUser }
 )(EditProfileModal);

@@ -10,7 +10,7 @@ const solveErrors = response => {
 
   return result.then((parsed: any) => {
     if (response.status >= 200 && response.status < 300) {
-      return parsed;
+      return Promise.resolve(parsed);
     }
 
     const error = {

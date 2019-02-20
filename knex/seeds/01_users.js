@@ -6,7 +6,6 @@ exports.seed = (knex, Promise) => {
       // Inserts seed entries
       return knex("users").insert([
         {
-          id: 1,
           name: "Ivan Agarský",
           email: "ivanuska@grdelicka.com",
           aboutme: "I am magic",

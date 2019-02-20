@@ -3,7 +3,7 @@ const initialState = {
     name: null,
     email: null,
     profilePhoto: null,
-    aboutMe: null,
+    aboutmse: null,
     birthday: null,
     country: null,
     city: null,

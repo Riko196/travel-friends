@@ -1,5 +1,6 @@
 import apiRequest from "./apiRequest";
 import { setUser } from "./user";
+import { isEmpty, merge } from "lodash";
 
 export const setLoggedIn = loggedIn => ({
   type: "Set loggedIn value",
@@ -9,34 +10,31 @@ export const setLoggedIn = loggedIn => ({
   }
 });
 
-export const existsUser = email => {
+export const getUser = email => {
   return apiRequest(`getUser/${email}`, { method: "GET" }).catch(e => {});
 };
 
 export const signUp = user => {
   const data = JSON.stringify(user);
-  console.log(data);
   return apiRequest(`insertUser/${data}`, { method: "POST" }).catch(e => {});
 };
 
 export const logIn = user => dispatch => {
-  return existsUser(user.email)
+  return getUser(user.email)
     .then(data => {
-      if (!data.exists) {
-        signUp(user);
+      const finalReduxUser = merge(user, data);
+      if (isEmpty(data)) {
+        signUp({ name: user.name, email: user.email }).then(userId => {
+          console.log(userId);
+          dispatch(setUser(merge(userId, finalReduxUser)));
+          dispatch(setLoggedIn(true));
+        });
       } else {
-        return Promise.resolve();
+        dispatch(setUser(finalReduxUser));
+        dispatch(setLoggedIn(true));
       }
-    })
-    .then(() => {
-      dispatch(
-        setUser({
-          name: user.name,
-          email: user.email,
-          profilePhoto: user.profilePhoto
-        })
-      );
-      dispatch(setLoggedIn(true));
+
+      return Promise.resolve();
     })
     .catch(e => {
       dispatch(setLoggedIn(false));
