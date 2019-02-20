@@ -4,16 +4,16 @@ export const gender = [
   { value: "other", label: "Other" }
 ];
 export const relationship = [
-  { vale: "single", label: "Single" },
-  { vale: "engaged", label: "Engaged" },
-  { vale: "married", label: "Married" },
-  { vale: "complicated", label: "It is complicated" },
-  { vale: "openRelationship", label: "In an open relationship" },
-  { vale: "widowed", label: "Widowed" },
-  { vale: "separated", label: "Separated" },
-  { vale: "divorced", label: "Divorced" },
-  { vale: "civilUnion", label: "In a civil union" },
-  { vale: "domesticPartnership", label: "In a domestic partnership" }
+  { value: "single", label: "Single" },
+  { value: "engaged", label: "Engaged" },
+  { value: "married", label: "Married" },
+  { value: "complicated", label: "It is complicated" },
+  { value: "openRelationship", label: "In an open relationship" },
+  { value: "widowed", label: "Widowed" },
+  { value: "separated", label: "Separated" },
+  { value: "divorced", label: "Divorced" },
+  { value: "civilUnion", label: "In a civil union" },
+  { value: "domesticPartnership", label: "In a domestic partnership" }
 ];
 export const addiction = [
   { value: "regularly", label: "Regularly" },

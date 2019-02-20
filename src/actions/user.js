@@ -4,12 +4,14 @@ export const setUser = user => ({
   type: "Set user values",
   payload: user,
   reducer: (state, userPayload) => {
-    return { ...state, user: userPayload };
+    return { ...state, user: { ...user, ...userPayload } };
   }
 });
 
-export const updateUser = user => {
-  const data = JSON.stringify(user);
+export const updateUser = (updatedUserValues, userRedux) => {
+  updatedUserValues.id = userRedux.id;
+
+  const data = JSON.stringify(updatedUserValues);
   return apiRequest(`updateUser/${data}`, { method: "PUT" }).catch(e => {
     throw e;
   });

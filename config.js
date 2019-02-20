@@ -1,6 +1,6 @@
+require("dotenv").config({ path: __dirname + "/.env" });
+
 module.exports = {
-  port: 8080,
-  hostname: "localhost",
-  user: "root",
-  database: "travelFriendsDb"
+  host: process.env.SERVER_HOST,
+  port: process.env.SERVER_PORT
 };

@@ -4,11 +4,11 @@ import Modal from "react-modal";
 import DateInput from "date-input";
 import moment from "moment";
 import Select from "react-select";
-import { assignIn } from "lodash";
 import { removeAllSpaces } from "../../utils/functions";
 import { gender, relationship, addiction } from "../../utils/constants";
-import { setUser } from "../../actions/user";
+import { setUser, updateUser } from "../../actions/user";
 import { profileConfig } from "../../utils/config";
+import { merge } from "lodash";
 import { modalStyle } from "./EditProfileModalStyle";
 import "./EditProfileModal.css";
 
@@ -19,11 +19,10 @@ class EditProfileModal extends Component {
     super();
 
     this.state = {
-      modalIsOpen: false,
-      errorText: null
+      modalIsOpen: false
     };
 
-    this.aboutMe = React.createRef();
+    this.aboutme = React.createRef();
     this.birthday = React.createRef();
     this.country = React.createRef();
     this.city = React.createRef();
@@ -37,125 +36,76 @@ class EditProfileModal extends Component {
   }
 
   openModal = () => {
-    this.setState({ modalIsOpen: true, errorText: null });
+    this.setState({ modalIsOpen: true });
   };
 
   closeModal = () => {
-    this.setState({ modalIsOpen: false, errorText: null });
+    this.setState({ modalIsOpen: false });
   };
 
-  checkForLimits = () => {
-    if (this.aboutMe.current.value.length > profileConfig.textareaLength) {
-      this.setState({
-        errorText: `About me text can have only ${
-          profileConfig.textareaLength
-        } characters`
-      });
-    } else if (this.country.current.value.length > profileConfig.inputLength) {
-      this.setState({
-        errorText: `Country text can have only ${
-          profileConfig.inputLength
-        } characters`
-      });
-    } else if (this.city.current.value.length > profileConfig.inputLength) {
-      this.setState({
-        errorText: `City text can have only ${
-          profileConfig.inputLength
-        } characters`
-      });
-    } else if (
-      this.occupation.current.value.length > profileConfig.inputLength
-    ) {
-      this.setState({
-        errorText: `Occupation text can have only ${
-          profileConfig.inputLength
-        } characters`
-      });
-    } else if (
-      this.education.current.value.length > profileConfig.inputLength
-    ) {
-      this.setState({
-        errorText: `Education text can have only ${
-          profileConfig.inputLength
-        } characters`
-      });
-    } else if (this.speaking.current.value.length > profileConfig.inputLength) {
-      this.setState({
-        errorText: `Speaking text can have only ${
-          profileConfig.inputLength
-        } characters`
-      });
-    }
+  getInputFinalValue = inputValue => {
+    return removeAllSpaces(inputValue) === "" ? null : inputValue;
   };
 
-  changeUser = userRedux => {
-    let user = {};
-    user.aboutMe =
-      removeAllSpaces(this.aboutMe.current.value) === ""
-        ? userRedux.aboutMe
-        : this.aboutMe.current.value;
-    user.birthday =
-      this.birthday.current.state.value === ""
-        ? userRedux.birthday
-        : this.birthday.current.state.value;
-    user.country =
-      removeAllSpaces(this.country.current.value) === ""
-        ? userRedux.country
-        : this.country.current.value;
-    user.city =
-      removeAllSpaces(this.city.current.value) === ""
-        ? userRedux.city
-        : this.city.current.value;
-    user.occupation =
-      removeAllSpaces(this.occupation.current.value) === ""
-        ? userRedux.occupation
-        : this.occupation.current.value;
-    user.gender =
-      this.gender.current.state.value === null
-        ? userRedux.gender
-        : this.gender.current.state.value.label;
-    user.relationship =
-      this.relationship.current.state.value === null
-        ? userRedux.relationship
-        : this.relationship.current.state.value.label;
-    user.education =
-      removeAllSpaces(this.education.current.value) === ""
-        ? userRedux.education
-        : this.education.current.value;
-    user.smoking =
-      this.smoking.current.state.value === null
-        ? userRedux.smoking
-        : this.smoking.current.state.value.label;
-    user.drinking =
-      this.drinking.current.state.value === null
-        ? userRedux.drinking
-        : this.drinking.current.state.value.label;
-    user.speaking =
-      removeAllSpaces(this.speaking.current.value) === ""
-        ? userRedux.speaking
-        : this.speaking.current.value;
-
-    return assignIn(user, userRedux);
+  getSelectFinalValue = selectValue => {
+    return selectValue === null ? null : selectValue.label;
   };
 
   updateProfile = () => {
-    this.setState({ errorText: null });
-    this.checkForLimits();
-
-    if (this.state.errorText !== null || this.birthday.current.state.error) {
+    if (this.birthday.current.state.error) {
       return;
     }
-    const userRedux = this.props.user;
-    let user = this.changeUser(userRedux);
 
-    this.props.setUser(user);
+    let updatedUserValues = {};
+    const userRedux = this.props.user;
+
+    updatedUserValues.aboutme = this.getInputFinalValue(
+      this.aboutme.current.value
+    );
+    updatedUserValues.birthday =
+      this.birthday.current.state.value === ""
+        ? null
+        : this.birthday.current.state.value;
+    updatedUserValues.country = this.getInputFinalValue(
+      this.country.current.value
+    );
+    updatedUserValues.city = this.getInputFinalValue(this.city.current.value);
+    updatedUserValues.occupation = this.getInputFinalValue(
+      this.occupation.current.value
+    );
+    updatedUserValues.gender = this.getSelectFinalValue(
+      this.gender.current.state.value
+    );
+    updatedUserValues.relationship = this.getSelectFinalValue(
+      this.relationship.current.state.value
+    );
+    updatedUserValues.education = this.getInputFinalValue(
+      this.education.current.value
+    );
+    updatedUserValues.smoking = this.getSelectFinalValue(
+      this.smoking.current.state.value
+    );
+    updatedUserValues.drinking = this.getSelectFinalValue(
+      this.drinking.current.state.value
+    );
+    updatedUserValues.speaking = this.getInputFinalValue(
+      this.speaking.current.value
+    );
+
+    updateUser(updatedUserValues, userRedux);
+    const updatedUserRedux = merge(userRedux, updatedUserValues);
+    console.log("REDUX :", updatedUserRedux);
+    this.props.setUser(updatedUserRedux);
     this.closeModal();
   };
 
   render() {
+    const user = this.props.user;
     return (
       <div className="edit-profile-modal-container">
-        <button className="edit-profile" onClick={this.openModal}>Edit profile</button>
+        <button className="edit-profile" onClick={this.openModal}>
+          Edit profile
+        </button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -169,12 +119,15 @@ class EditProfileModal extends Component {
             onClick={this.closeModal}
             className="x-button"
           />
-
           <h2>Edit profile</h2>
           <label className="modal-label">About me:</label>
-          <textarea type="text" name="aboutMe" ref={this.aboutMe}
-            className="textarea"/>
-
+          <textarea
+            type="text"
+            name="aboutme"
+            ref={this.aboutme}
+            className="textarea"
+            defaultValue={user.aboutme}
+          />
           <label className="modal-label">Birthday:</label>
           <DateInput
             shouldValidate
@@ -182,37 +135,79 @@ class EditProfileModal extends Component {
             maxDateError="Your birthday should be a past date"
             invalidError={"Bad format of birthday"}
             ref={this.birthday}
+            value={user.birthday === null ? "" : user.birthday}
           />
-
           <label className="modal-label">Country:</label>
-          <input className="text-input" type="text" name="country" ref={this.country} />
-
+          <input
+            className="input-text"
+            type="text"
+            name="country"
+            ref={this.country}
+            maxLength={profileConfig.inputLength}
+            defaultValue={user.country}
+          />
           <label className="modal-label">City:</label>
-          <input className="text-input" type="text" name="city" ref={this.city} />
-
+          <input
+            className="input-text"
+            type="text"
+            name="city"
+            ref={this.city}
+            maxLength={profileConfig.inputLength}
+            defaultValue={user.city}
+          />
           <label className="modal-label">Occupation:</label>
-          <input className="text-input" type="text" name="occupation" ref={this.occupation} />
-
+          <input
+            className="input-text"
+            type="text"
+            name="occupation"
+            ref={this.occupation}
+            maxLength={profileConfig.inputLength}
+            defaultValue={user.occupation}
+          />
           <label className="modal-label">Gender:</label>
-          <Select options={gender} ref={this.gender} />
-
+          <Select
+            options={gender}
+            ref={this.gender}
+            defaultInputValue={user.gender === null ? "" : user.gender}
+          />
           <label className="modal-label">Relationship:</label>
-          <Select options={relationship} ref={this.relationship} />
-
+          <Select
+            options={relationship}
+            ref={this.relationship}
+            defaultInputValue={
+              user.relationship === null ? "" : user.relationship
+            }
+          />
           <label className="modal-label">Education:</label>
-          <input className="text-input" type="text" name="education" ref={this.education} />
-
+          <input
+            className="input-text"
+            type="text"
+            name="education"
+            ref={this.education}
+            maxLength={profileConfig.inputLength}
+            defaultValue={user.education}
+          />
           <label className="modal-label">Smoking:</label>
-          <Select options={addiction} ref={this.smoking} />
-
+          <Select
+            options={addiction}
+            ref={this.smoking}
+            defaultInputValue={user.smoking === null ? "" : user.smoking}
+          />
           <label className="modal-label">Drinking:</label>
-          <Select options={addiction} ref={this.drinking} />
-
+          <Select
+            options={addiction}
+            ref={this.drinking}
+            defaultInputValue={user.drinking === null ? "" : user.drinking}
+          />
           <label className="modal-label">Speaking:</label>
-          <input className="text-input" type="text" name="speaking" ref={this.speaking} />
-
-          {this.state.errorText !== null && <p>{this.state.errorText}</p>}
-
+          <input
+            className="input-text"
+            type="text"
+            name="speaking"
+            ref={this.speaking}
+            maxLength={profileConfig.inputLength}
+            defaultValue={user.speaking}
+          />
           <input
             type="button"
             value="Save profile"
@@ -229,5 +224,5 @@ export default connect(
   state => ({
     user: state.user
   }),
-  { setUser }
+  { setUser, updateUser }
 )(EditProfileModal);
