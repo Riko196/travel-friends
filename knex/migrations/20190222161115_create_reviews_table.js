@@ -1,5 +1,5 @@
 
-exports.up = function(knex, Promise) {
+exports.up = (knex, Promise) => {
     return knex.schema.createTable("reviews", table => {
         table.increments("review_id").primary();
         table.string("user_id").notNullable();
@@ -8,6 +8,6 @@ exports.up = function(knex, Promise) {
     });
 };
 
-exports.down = function(knex, Promise) {
+exports.down = (knex, Promise) => {
     return knex.schema.dropTable("reviews");
 };
