@@ -1,7 +1,3 @@
-const initialState = {
+export const initialAuthState = {
   loggedIn: false
-};
-
-export const setInitialAuth = state => {
-  return { ...state, ...initialState };
 };

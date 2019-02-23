@@ -3,23 +3,23 @@ import { compose } from "redux";
 import { has } from "lodash";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { authConfig } from "../../utils/config";
 import { logIn } from "../../actions/auth";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import { Login } from "react-facebook";
 import "./LoginButton.css";
 
 class FacebookButton extends Component {
-  responseFacebook = response => {
-    if (!has(response, "accessToken")) {
+  handleResponse = response => {
+    console.log(response);
+    if (!has(response, "tokenDetail.accessToken")) {
       return;
     }
 
     this.props
       .logIn({
-        accessToken: response.accessToken,
-        name: response.name,
-        email: response.email,
-        profilePhoto: response.picture.data.url
+        accessToken: response.tokenDetail.accessToken,
+        name: response.profile.name,
+        email: response.profile.email,
+        profilePhoto: response.profile.picture.data.url
       })
       .then(() => {
         if (has(this.props.user, "email")) {
@@ -28,20 +28,25 @@ class FacebookButton extends Component {
       });
   };
 
+  handleError = error => {
+    console.log(error);
+  };
+
   render() {
     return (
       <div className="facebook-login">
-        <FacebookLogin
-          appId={authConfig.facebookId}
-          fields="name,email,picture"
-          callback={this.responseFacebook}
-          render={renderProps => (
-            <button className="fb-button" onClick={renderProps.onClick}>
-              <i id="fbicon" className="fab fa-facebook-f" />
-              Login with Facebook
+        <Login
+          scope="email"
+          onCompleted={this.handleResponse}
+          onError={this.handleError}
+        >
+          {({ loading, handleClick, error, data }) => (
+            <button className="fb-button" onClick={handleClick}>
+              {!loading && <span>Login with Facebook</span>}
+              {loading && <span>Loading...</span>}
             </button>
           )}
-        />
+        </Login>
       </div>
     );
   }

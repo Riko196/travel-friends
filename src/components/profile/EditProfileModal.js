@@ -92,11 +92,12 @@ class EditProfileModal extends Component {
       this.speaking.current.value
     );
 
-    updateUser(updatedUserValues, userRedux);
-    const updatedUserRedux = merge(userRedux, updatedUserValues);
-    console.log("REDUX :", updatedUserRedux);
-    this.props.setUser(updatedUserRedux);
-    this.closeModal();
+    updateUser(updatedUserValues, userRedux).then(() => {
+      const updatedUserRedux = merge(userRedux, updatedUserValues);
+      console.log("REDUX :", updatedUserRedux);
+      this.props.setUser(updatedUserRedux);
+      this.closeModal();
+    });
   };
 
   render() {

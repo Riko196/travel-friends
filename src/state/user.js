@@ -1,9 +1,9 @@
-const initialState = {
+export const initialUserState = {
   user: {
     name: null,
     email: null,
     profilePhoto: null,
-    aboutmse: null,
+    aboutme: null,
     birthday: null,
     country: null,
     city: null,
@@ -16,8 +16,4 @@ const initialState = {
     drinking: null,
     speaking: null
   }
-};
-
-export const setInitialUser = state => {
-  return { ...state, ...initialState };
 };
