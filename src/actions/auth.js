@@ -1,5 +1,6 @@
 import apiRequest from "./apiRequest";
 import { setUser } from "./user";
+import { initialUserState } from "../state/user";
 import { isEmpty, merge } from "lodash";
 
 export const setLoggedIn = loggedIn => ({
@@ -19,24 +20,43 @@ export const signUp = user => {
   return apiRequest(`insertUser/${data}`, { method: "POST" }).catch(e => {});
 };
 
+export const setLogging = (user, logging) => dispatch => {
+  dispatch(setUser(user));
+  dispatch(setLoggedIn(logging));
+};
+
 export const logIn = user => dispatch => {
   return getUser(user.email)
     .then(data => {
       const finalReduxUser = merge(user, data);
       if (isEmpty(data)) {
         signUp({ name: user.name, email: user.email }).then(userId => {
-          console.log(userId);
-          dispatch(setUser(merge(userId, finalReduxUser)));
-          dispatch(setLoggedIn(true));
+          const userWithUserId = merge(userId, finalReduxUser);
+          dispatch(setLogging(userWithUserId, true));
         });
       } else {
-        dispatch(setUser(finalReduxUser));
-        dispatch(setLoggedIn(true));
+        dispatch(setLogging(finalReduxUser, true));
       }
-
-      return Promise.resolve();
     })
     .catch(e => {
       dispatch(setLoggedIn(false));
+    });
+};
+
+export const logOut = () => dispatch => {
+  new Promise((resolve, reject) => {
+    window.FB.getLoginStatus(({ status }) => {
+      if (status === "connected") {
+        window.FB.logout(response => {
+          resolve();
+        });
+      }
+    });
+  })
+    .then(() => {
+      dispatch(setLogging(initialUserState, false));
+    })
+    .then(() => {
+      window.location = "/";
     });
 };

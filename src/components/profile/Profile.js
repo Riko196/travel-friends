@@ -45,7 +45,7 @@ class Profile extends Component {
               <p className="smoking">Smoking: {this.props.user.smoking}</p>
               <p className="drinking">Drinking: {this.props.user.drinking}</p>
               <p className="speaking">Speaking: {this.props.user.speaking}</p>
-              <p>a{this.props.user.email}</p>
+              <p>Email: {this.props.user.email}</p>
               <EditProfileModal />
             </div>
           </div>

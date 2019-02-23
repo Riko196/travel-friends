@@ -1,13 +1,11 @@
-import { createStore, compose, applyMiddleware } from "redux";
-import { setInitialAuth } from "./state/auth";
-import { setInitialUser } from "./state/user";
+import { createStore, applyMiddleware } from "redux";
+import { initialAuthState } from "./state/auth";
+import { initialUserState } from "./state/user";
 import thunk from "redux-thunk";
 
-const getInitialState = () =>
-  compose(
-    setInitialAuth,
-    setInitialUser
-  )({});
+const getInitialState = () => {
+  return { ...initialAuthState, ...initialUserState };
+};
 
 const rootReducer = (state, action) => {
   console.log("Action: ", action.type);

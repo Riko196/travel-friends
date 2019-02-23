@@ -6,19 +6,19 @@ exports.seed = (knex, Promise) => {
       // Inserts seed entries
       return knex("users").insert([
         {
-          name: "Ivan Agarský",
-          email: "ivanuska@grdelicka.com",
-          aboutme: "I am magic",
+          name: "Test name",
+          email: "test@mail.com",
+          aboutme: "test about me",
           birthday: "22/02/1999",
-          country: "Serbia",
-          city: "Pazova",
-          occupation: "sleeper",
-          joined: "22/02/1999",
-          gender: "Other",
+          country: "Test country",
+          city: "Test city",
+          occupation: "test",
+          joined: "22/02/2018",
+          gender: "Male",
           relationship: "In an opened relationship",
           education: "Nothing",
-          smoking: "Regularly",
-          drinking: "Addicted",
+          smoking: "Never",
+          drinking: "Never",
           speaking: "Nothing"
         }
       ]);

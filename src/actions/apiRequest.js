@@ -32,7 +32,7 @@ const apiRequest = (apiPath, options) => {
     mode: "cors"
   };
 
-  const requestUrl = `http://${backendConfig.hostname}:${
+  const requestUrl = `http://${backendConfig.host}:${
     backendConfig.port
   }/api/${apiPath}`;
 

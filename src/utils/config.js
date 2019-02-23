@@ -6,7 +6,7 @@ export const authConfig = {
 };
 
 export const backendConfig = {
-  hostname: "localhost",
+  host: "localhost",
   port: 8080
 };
 

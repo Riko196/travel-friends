@@ -2,19 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { FacebookProvider } from "react-facebook";
 import { configuredStore } from "./initializeRedux";
 import { Provider } from "react-redux";
+import { authConfig } from "./utils/config";
 import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
 
 const store = configuredStore();
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
+  <FacebookProvider appId={authConfig.facebookId}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </FacebookProvider>,
   document.getElementById("root")
 );
 
