@@ -1,4 +1,4 @@
-export const modalStyle = {
+export const tripModalStyle = {
     content: {
         overflow: 'auto',
         position: 'absolute',
