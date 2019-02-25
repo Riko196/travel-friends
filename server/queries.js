@@ -9,7 +9,7 @@ const getUserByEmail = (trx, email) => {
 
 const getUserIdByEmail = (trx, email) => {
   return trx("users")
-    .select("id")
+    .select("userId")
     .where("email", email)
     .first();
 };
@@ -20,7 +20,7 @@ const insertUser = (trx, user) => {
 
 const updateUser = (trx, user) => {
   return trx("users")
-    .where({ id: user.id })
+    .where({ userId: user.userId })
     .update(user);
 };
 
