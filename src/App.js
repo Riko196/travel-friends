@@ -5,10 +5,13 @@ import PrivacyPolicy from "./components/privacy/PrivacyPolicy";
 import Profile from "./components/profile/Profile";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router";
+import requireAuth from "./components/auth/AuthComponent";
 import Home from "./components/home/Home";
 import Navbar from "./components/navbar/Navbar";
 import "./App.css";
 
+const authenticatedProfile = requireAuth(Profile);
+const authenticatedHome = requireAuth(Home);
 class App extends Component {
   render() {
     return (
@@ -18,8 +21,8 @@ class App extends Component {
         <Switch>
           <Route path="/terms-conditions" component={TermsConditions} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/home" component={Home} />
+          <Route path="/profile" component={authenticatedProfile} />
+          <Route path="/home" component={authenticatedHome} />
         </Switch>
       </div>
     );

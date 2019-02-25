@@ -20,23 +20,20 @@ export const signUp = user => {
   return apiRequest(`insertUser/${data}`, { method: "POST" }).catch(e => {});
 };
 
-export const setLogging = (user, logging) => dispatch => {
-  dispatch(setUser(user));
-  dispatch(setLoggedIn(logging));
-};
-
 export const logIn = user => dispatch => {
   return getUser(user.email)
     .then(data => {
       const finalReduxUser = merge(user, data);
       if (isEmpty(data)) {
-        signUp({ name: user.name, email: user.email }).then(userId => {
-          const userWithUserId = merge(userId, finalReduxUser);
-          dispatch(setLogging(userWithUserId, true));
-        });
+        const userId = signUp({ name: user.name, email: user.email });
+        return merge(finalReduxUser, userId);
       } else {
-        dispatch(setLogging(finalReduxUser, true));
+        return finalReduxUser;
       }
+    })
+    .then(finalReduxUser => {
+      dispatch(setUser(finalReduxUser));
+      dispatch(setLoggedIn(true));
     })
     .catch(e => {
       dispatch(setLoggedIn(false));
@@ -54,7 +51,8 @@ export const logOut = () => dispatch => {
     });
   })
     .then(() => {
-      dispatch(setLogging(initialUserState, false));
+      dispatch(setUser(initialUserState));
+      dispatch(setLoggedIn(false));
     })
     .then(() => {
       window.location = "/";

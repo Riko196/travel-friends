@@ -9,7 +9,6 @@ import "./LoginButton.css";
 
 class FacebookButton extends Component {
   handleResponse = response => {
-    console.log(response);
     if (!has(response, "tokenDetail.accessToken")) {
       return;
     }
