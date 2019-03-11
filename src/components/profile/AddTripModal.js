@@ -1,85 +1,55 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
-import DateInput from "date-input";
-import moment from "moment";
 import Select from "react-select";
 import { removeAllSpaces } from "../../utils/functions";
-import { setUser, updateUser } from "../../actions/user";
-import { profileConfig } from "../../utils/config";
-import { merge } from "lodash";
+import { insertTrip } from "../../actions/trip";
 import DatePicker from "react-datepicker";
-import styled from "styled-components";
 import { tripModalStyle } from "./AddTripModalStyle";
+import { category } from "../../utils/constants";
 import "./AddTripModal.css";
 
 Modal.setAppElement(document.getElementById("root"));
-
-const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
-  // Hide checkbox visually but remain accessible to screen readers.
-  // Source: https://polished.js.org/docs/#hidevisually
-  border: 0;
-  clip: rect(0 0 0 0);
-  clippath: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-`
-const Icon = styled.svg`
-  fill: none;
-  stroke: blue;
-  stroke-width: 2px;
-`
-
-const StyledCheckbox = styled.div`
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background: ${props => props.checked ? 'white' : 'white'}
-  border-radius: 3px;
-  transition: all 150ms;
-  ${HiddenCheckbox}:focus + & {
-    box-shadow: 0 0 0 1px blue;
-  }
-  ${Icon} {
-    visibility: ${props => props.checked ? 'visible' : 'hidden'}
-  }
-`
-const CheckboxContainer = styled.div`
-  display: inline-block;
-  vertical-align: middle;
-`
-
-const Checkbox = ({ className, checked, ...props }) => (
-  <CheckboxContainer className={className}>
-    <HiddenCheckbox checked={checked} {...props} />
-    <StyledCheckbox checked={checked}>
-      <Icon viewBox="0 0 24 24">
-        <polyline points="20 6 9 17 4 12" />
-      </Icon>
-    </StyledCheckbox>
-  </CheckboxContainer>
-)
 
 class AddTripModal extends Component {
   constructor() {
     super();
 
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      dateFrom: null,
+      dateTo: null
     };
+
+    this.destination = React.createRef();
+    this.planned = React.createRef();
+    this.tripInfo = React.createRef();
+    this.category = React.createRef();
   }
 
   openModal = () => {
-    this.setState({ modalIsOpen: true });
+    this.setState({ modalIsOpen: true, dateFrom: null, dateTo: null });
   };
 
   closeModal = () => {
-    this.setState({ modalIsOpen: false });
+    this.setState({
+      modalIsOpen: false,
+      dateFrom: null,
+      dateTo: null
+    });
+  };
+
+  addTrip = () => {
+    insertTrip({
+      userId: this.props.userId,
+      destination: this.destination.current.value,
+      planned: this.planned.current.value,
+      category: this.category.current.state.value,
+      dateFrom: this.state.dateFrom,
+      dateTo: this.state.dateTo,
+      tripInfo: this.tripInfo.current.value
+    });
+    this.closeModal();
   };
 
   getInputFinalValue = inputValue => {
@@ -90,14 +60,16 @@ class AddTripModal extends Component {
     return selectValue === null ? null : selectValue.label;
   };
 
-  addTrip = () => {
-    
-    /*updateUser(updatedUserValues, userRedux).then(() => {
-      const updatedUserRedux = merge(userRedux, updatedUserValues);
-      console.log("REDUX :", updatedUserRedux);
-      this.props.setUser(updatedUserRedux);
-      this.closeModal();
-    });*/
+  handleChangeDateFrom = date => {
+    this.setState({
+      dateFrom: date
+    });
+  };
+
+  handleChangeDateTo = date => {
+    this.setState({
+      dateTo: date
+    });
   };
 
   render() {
@@ -123,34 +95,42 @@ class AddTripModal extends Component {
 
           <label className="modal-label">Destination:</label>
           <input
-              type="text"
-              className="text-input"
-              id="destination-input"
-              placeholder="&nbsp;"/>
-          
-          <label className="modal-label">Planning:</label>
-            <Checkbox
-              checked={this.state.checked}
-              onChange={this.handleCheckboxChange}
-            />
-        <label className="modal-label">From:</label>
-          <DatePicker/>
-
-        <label className="modal-label">To:</label>
-          <DatePicker/>
-
-        <label className="modal-label">Additional info:</label>
-          <textarea
             type="text"
-            className="textarea"
+            className="text-input"
+            id="destination-input"
+            placeholder="&nbsp;"
+            ref={this.destination}
           />
+
+          <label className="modal-label">Planning:</label>
+          <input type="checkbox" ref={this.planned} />
+
+          <label className="modal-label">From:</label>
+          <DatePicker
+            selected={this.state.dateFrom}
+            onChange={this.handleChangeDateFrom}
+          />
+
+          <label className="modal-label">To:</label>
+          <DatePicker
+            selected={this.state.dateTo}
+            onChange={this.handleChangeDateTo}
+          />
+
+          <label className="modal-label">Additional info:</label>
+          <textarea type="text" className="textarea" ref={this.tripInfo} />
           <label className="modal-label">Category:</label>
-          <Select/>
-          
+          <Select
+            options={category}
+            ref={this.category}
+            defaultInputValue={""}
+          />
+
           <input
             type="button"
             value="Save trip"
             className="save-button"
+            onClick={this.addTrip}
           />
         </Modal>
       </div>
@@ -159,8 +139,8 @@ class AddTripModal extends Component {
 }
 
 export default connect(
-  /*state => ({
-    user: state.user
+  state => ({
+    userId: state.user.userId
   }),
-  { setUser, updateUser }*/
+  {}
 )(AddTripModal);

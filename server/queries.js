@@ -24,9 +24,14 @@ const updateUser = (trx, user) => {
     .update(user);
 };
 
+const insertTrip = (trx, trip) => {
+  return trx("trips").insert(trip);
+};
+
 module.exports = {
   getUserByEmail: getUserByEmail,
   getUserIdByEmail: getUserIdByEmail,
   insertUser: insertUser,
-  updateUser: updateUser
+  updateUser: updateUser,
+  insertTrip: insertTrip
 };

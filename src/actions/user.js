@@ -8,10 +8,11 @@ export const setUser = user => ({
   }
 });
 
-export const updateUser = (updatedUserValues, userRedux) => {
-  updatedUserValues.userId = userRedux.userId;
-
-  const data = JSON.stringify(updatedUserValues);
+export const updateUser = updatedUser => {
+  const userWithoutPhoto = updatedUser;
+  delete userWithoutPhoto.profilePhoto;
+  delete userWithoutPhoto.accessToken;
+  const data = JSON.stringify(userWithoutPhoto);
   return apiRequest(`updateUser/${data}`, { method: "PUT" }).catch(e => {
     throw e;
   });

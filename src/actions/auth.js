@@ -1,7 +1,7 @@
 import apiRequest from "./apiRequest";
 import { setUser } from "./user";
 import { initialUserState } from "../state/user";
-import { isEmpty, merge } from "lodash";
+import { merge } from "lodash";
 
 export const setLoggedIn = loggedIn => ({
   type: "Set loggedIn value",
@@ -15,21 +15,15 @@ export const getUser = email => {
   return apiRequest(`getUser/${email}`, { method: "GET" }).catch(e => {});
 };
 
-export const signUp = user => {
-  const data = JSON.stringify(user);
-  return apiRequest(`insertUser/${data}`, { method: "POST" }).catch(e => {});
-};
-
 export const logIn = user => dispatch => {
-  return getUser(user.email)
-    .then(data => {
-      const finalReduxUser = merge(user, data);
-      if (isEmpty(data)) {
-        const userId = signUp({ name: user.name, email: user.email });
-        return merge(finalReduxUser, userId);
-      } else {
-        return finalReduxUser;
-      }
+  const data = JSON.stringify({ name: user.name, email: user.email });
+
+  return apiRequest(`insertUser/${data}`, { method: "POST" })
+    .then(wholeUser => {
+      return merge(
+        { accessToken: user.accessToken, profilePhoto: user.profilePhoto },
+        wholeUser
+      );
     })
     .then(finalReduxUser => {
       dispatch(setUser(finalReduxUser));

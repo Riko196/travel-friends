@@ -20,3 +20,5 @@ export const addiction = [
   { value: "occasionally", label: "Occasionally" },
   { value: "never", label: "Never" }
 ];
+
+export const category = [{ value: "one", label: "One" }];
