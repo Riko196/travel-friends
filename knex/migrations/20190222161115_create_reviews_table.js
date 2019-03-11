@@ -1,13 +1,12 @@
-
 exports.up = (knex, Promise) => {
-    return knex.schema.createTable("reviews", table => {
-        table.increments("review_id").primary();
-        table.string("user_id").notNullable();
-        table.string("trip_id");
-        table.string("review_text");
-    });
+  return knex.schema.createTable("reviews", table => {
+    table.increments("reviewId").primary();
+    table.string("userId").notNullable();
+    table.string("tripId");
+    table.string("reviewText");
+  });
 };
 
 exports.down = (knex, Promise) => {
-    return knex.schema.dropTable("reviews");
+  return knex.schema.dropTable("reviews");
 };

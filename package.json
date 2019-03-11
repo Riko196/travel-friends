@@ -28,7 +28,7 @@
     "url": "^0.11.0"
   },
   "scripts": {
-    "server": "sudo /opt/lampp/lampp start && node ./server/server.js",
+    "resetDB": "cd knex/ knex migrate:rollback && knex migrate:latest && knex seed:run",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
