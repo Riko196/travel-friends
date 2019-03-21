@@ -8,6 +8,7 @@ exports.seed = (knex, Promise) => {
         {
           name: "Test name",
           email: "test@mail.com",
+          profilePhoto: "profilePhoto",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",

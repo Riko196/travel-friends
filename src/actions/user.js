@@ -1,4 +1,5 @@
 import apiRequest from "./apiRequest";
+import { omit } from "lodash";
 
 export const setUser = user => ({
   type: "Set user values",
@@ -8,12 +9,9 @@ export const setUser = user => ({
   }
 });
 
-export const updateUser = updatedUser => {
-  const userWithoutPhoto = updatedUser;
-  delete userWithoutPhoto.profilePhoto;
-  delete userWithoutPhoto.accessToken;
-  const data = JSON.stringify(userWithoutPhoto);
-  return apiRequest(`updateUser/${data}`, { method: "PUT" }).catch(e => {
+export const updateUser = data => {
+  data = omit(data, ["accessToken"]);
+  return apiRequest(`updateUser`, { method: "PUT", body: data }).catch(e => {
     throw e;
   });
 };

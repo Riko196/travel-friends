@@ -1,5 +1,5 @@
 import { backendConfig } from "../utils/config";
-import { get } from "lodash";
+import { get, merge } from "lodash";
 
 const solveErrors = response => {
   const contentType = response.headers.get("content-type");
@@ -25,18 +25,26 @@ const solveErrors = response => {
 
 const apiRequest = (apiPath, options) => {
   const mainOptions = {
-    method: options.method,
     headers: {
       Accept: "application/json"
     },
     mode: "cors"
   };
 
+  const finalOptions = merge(mainOptions, options);
+
+  if (finalOptions.body) {
+    finalOptions.body = JSON.stringify(finalOptions.body);
+    finalOptions.headers["Content-Type"] = "application/json";
+  }
+
   const requestUrl = `http://${backendConfig.host}:${
     backendConfig.port
   }/api/${apiPath}`;
-
-  return fetch(requestUrl, mainOptions).then(response => solveErrors(response));
+  console.log(JSON.parse(finalOptions.body));
+  return fetch(requestUrl, finalOptions).then(response =>
+    solveErrors(response)
+  );
 };
 
 export default apiRequest;
