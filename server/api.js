@@ -1,5 +1,6 @@
 const express = require("express");
 const knex = require("../knex/knex");
+const bodyParser = require("body-parser");
 const {
   getUserByEmail,
   getUserIdByEmail,
@@ -23,8 +24,8 @@ router.get("/getUser/:email", (req, res, next) => {
     .catch(e => next(e));
 });
 
-router.post("/insertUser/:user", (req, res, next) => {
-  const user = JSON.parse(req.params.user);
+router.post("/logIn", (req, res, next) => {
+  const user = req.body;
   getUserByEmail(knex, user.email)
     .then(result => {
       if (result === undefined) {
@@ -44,8 +45,8 @@ router.post("/insertUser/:user", (req, res, next) => {
     .catch(e => next(e));
 });
 
-router.put("/updateUser/:user", (req, res, next) => {
-  const user = JSON.parse(req.params.user);
+router.put("/updateUser", (req, res, next) => {
+  const user = req.body;
   updateUser(knex, user)
     .then(result => {
       res.send({});
@@ -53,8 +54,9 @@ router.put("/updateUser/:user", (req, res, next) => {
     .catch(e => next(e));
 });
 
-router.post("/insertTrip/:trip", (req, res, next) => {
-  const trip = JSON.parse(req.params.trip);
+router.post("/insertTrip", (req, res, next) => {
+  console.log(req.body);
+  const trip = req.body;
   insertTrip(knex, trip)
     .then(result => {
       res.send(result);

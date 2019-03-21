@@ -16,14 +16,14 @@ export const getUser = email => {
 };
 
 export const logIn = user => dispatch => {
-  const data = JSON.stringify({ name: user.name, email: user.email });
-
-  return apiRequest(`insertUser/${data}`, { method: "POST" })
+  const data = {
+    name: user.name,
+    email: user.email,
+    profilePhoto: user.profilePhoto
+  };
+  return apiRequest(`logIn`, { method: "POST", body: data })
     .then(wholeUser => {
-      return merge(
-        { accessToken: user.accessToken, profilePhoto: user.profilePhoto },
-        wholeUser
-      );
+      return merge({ accessToken: user.accessToken }, wholeUser);
     })
     .then(finalReduxUser => {
       dispatch(setUser(finalReduxUser));

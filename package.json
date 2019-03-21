@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "date-input": "^2.4.4",
     "dotenv": "^6.2.0",
@@ -18,7 +19,7 @@
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.5",
+    "react-scripts": "^2.1.8",
     "react-select": "^2.4.0",
     "reactstrap": "^7.1.0",
     "recompose": "^0.30.0",
