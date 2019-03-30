@@ -24,6 +24,8 @@
     font-weight: 600;
     font-size: 12px;
     text-transform: uppercase;
+    background-color: transparent;
+    border: 1px solid transparent;
 }
 
 .navbar-link:hover{
