@@ -4,7 +4,7 @@ import ProfileGallery from "../profileGallery/ProfileGallery";
 import ProfileTrips from "../profileTrips/ProfileTrips";
 import NavBar from "../navbar/Navbar";
 import EditProfileModal from "./EditProfileModal";
-
+import { ISODateTostringDate } from "../../utils/functions";
 import "./Profile.css";
 
 class Profile extends Component {
@@ -24,7 +24,11 @@ class Profile extends Component {
             </div>
             <div className="column">
               <p className="about-me">About Me: {this.props.user.aboutme}</p>
-              <p className="birthday">Birthday: {this.props.user.birthday}</p>
+              <p className="birthday">
+                Birthday:{" "}
+                {this.props.user.birthday != null &&
+                  ISODateTostringDate(this.props.user.birthday)}
+              </p>
             </div>
             <div className="column">
               <p className="country">Country: {this.props.user.country}</p>
