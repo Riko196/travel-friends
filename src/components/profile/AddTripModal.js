@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import Select from "react-select";
-import { removeAllSpaces } from "../../utils/functions";
+import { removeAllSpaces, stringDateToISODate } from "../../utils/functions";
 import { insertTrip } from "../../actions/trip";
 import DatePicker from "react-datepicker";
 import { tripModalStyle } from "./AddTripModalStyle";
@@ -62,13 +62,13 @@ class AddTripModal extends Component {
 
   handleChangeDateFrom = date => {
     this.setState({
-      dateFrom: date
+      dateFrom: stringDateToISODate(date)
     });
   };
 
   handleChangeDateTo = date => {
     this.setState({
-      dateTo: date
+      dateTo: stringDateToISODate(date)
     });
   };
 

@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import DateInput from "date-input";
 import moment from "moment";
 import Select from "react-select";
-import { removeAllSpaces } from "../../utils/functions";
+import { removeAllSpaces, stringDateToISODate } from "../../utils/functions";
 import { gender, relationship, addiction } from "../../utils/constants";
 import { setUser, updateUser } from "../../actions/user";
 import { profileConfig } from "../../utils/config";
@@ -65,7 +65,7 @@ class EditProfileModal extends Component {
     updatedUserValues.birthday =
       this.birthday.current.state.value === ""
         ? null
-        : this.birthday.current.state.value;
+        : stringDateToISODate(this.birthday.current.state.value);
     updatedUserValues.country = this.getInputFinalValue(
       this.country.current.value
     );
@@ -92,7 +92,8 @@ class EditProfileModal extends Component {
       this.speaking.current.value
     );
     const updatedUser = merge(userRedux, updatedUserValues);
-    updateUser(updatedUser).then((result) => {
+
+    updateUser(updatedUser).then(result => {
       this.props.setUser(updatedUser);
       this.closeModal();
     });
@@ -125,7 +126,6 @@ class EditProfileModal extends Component {
             name="aboutme"
             ref={this.aboutme}
             className="textarea"
-            defaultValue={user.aboutme}
           />
           <label className="modal-label">Birthday:</label>
           <DateInput
@@ -134,7 +134,6 @@ class EditProfileModal extends Component {
             maxDateError="Your birthday should be a past date"
             invalidError={"Bad format of birthday"}
             ref={this.birthday}
-            value={user.birthday === null ? "" : user.birthday}
           />
           <label className="modal-label">Country:</label>
           <input
@@ -143,7 +142,6 @@ class EditProfileModal extends Component {
             name="country"
             ref={this.country}
             maxLength={profileConfig.inputLength}
-            defaultValue={user.country}
           />
           <label className="modal-label">City:</label>
           <input
@@ -152,7 +150,6 @@ class EditProfileModal extends Component {
             name="city"
             ref={this.city}
             maxLength={profileConfig.inputLength}
-            defaultValue={user.city}
           />
           <label className="modal-label">Occupation:</label>
           <input
@@ -161,22 +158,11 @@ class EditProfileModal extends Component {
             name="occupation"
             ref={this.occupation}
             maxLength={profileConfig.inputLength}
-            defaultValue={user.occupation}
           />
           <label className="modal-label">Gender:</label>
-          <Select
-            options={gender}
-            ref={this.gender}
-            defaultInputValue={user.gender === null ? "" : user.gender}
-          />
+          <Select options={gender} ref={this.gender} />
           <label className="modal-label">Relationship:</label>
-          <Select
-            options={relationship}
-            ref={this.relationship}
-            defaultInputValue={
-              user.relationship === null ? "" : user.relationship
-            }
-          />
+          <Select options={relationship} ref={this.relationship} />
           <label className="modal-label">Education:</label>
           <input
             className="input-text"
@@ -184,7 +170,6 @@ class EditProfileModal extends Component {
             name="education"
             ref={this.education}
             maxLength={profileConfig.inputLength}
-            defaultValue={user.education}
           />
           <label className="modal-label">Smoking:</label>
           <Select
@@ -205,7 +190,6 @@ class EditProfileModal extends Component {
             name="speaking"
             ref={this.speaking}
             maxLength={profileConfig.inputLength}
-            defaultValue={user.speaking}
           />
           <input
             type="button"
