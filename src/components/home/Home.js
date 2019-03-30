@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../navbar/Navbar";
 import Destination from "../destination/Destination";
+import FindThemModal from "./FindThemModal";
 import "./Home.css";
 
 class Home extends Component {
@@ -14,7 +15,7 @@ class Home extends Component {
             <p id="travel-friends-home">
               Your travel friends are waiting for you!
             </p>
-            <button id="findthem">Find them!</button>
+            <FindThemModal />
           </div>
         </div>
         <p>TODO</p>
