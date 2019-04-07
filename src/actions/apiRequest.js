@@ -41,7 +41,7 @@ const apiRequest = (apiPath, options) => {
   const requestUrl = `http://${backendConfig.host}:${
     backendConfig.port
   }/api/${apiPath}`;
-  console.log(JSON.parse(finalOptions.body));
+  console.log(finalOptions);
   return fetch(requestUrl, finalOptions).then(response =>
     solveErrors(response)
   );

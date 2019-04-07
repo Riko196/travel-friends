@@ -3,15 +3,15 @@ import LandingPage from "./components/landing/LandingPage";
 import TermsConditions from "./components/terms/TermsConditions";
 import PrivacyPolicy from "./components/privacy/PrivacyPolicy";
 import Profile from "./components/profile/Profile";
+import HomeRouter from "./components/home/index";
 import { Route } from "react-router-dom";
 import { Switch } from "react-router";
 import requireAuth from "./components/auth/AuthComponent";
-import Home from "./components/home/Home";
 import Navbar from "./components/navbar/Navbar";
 import "./App.css";
 
 const authenticatedProfile = requireAuth(Profile);
-const authenticatedHome = requireAuth(Home);
+const authenticatedHomeRouter = requireAuth(HomeRouter);
 class App extends Component {
   render() {
     return (
@@ -19,10 +19,10 @@ class App extends Component {
         <Route path="/:something" component={Navbar} />
         <Route exact path="/" component={LandingPage} />
         <Switch>
+          <Route path="/home" component={authenticatedHomeRouter} />
+          <Route path="/profile" component={authenticatedProfile} />
           <Route path="/terms-conditions" component={TermsConditions} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
-          <Route path="/profile" component={authenticatedProfile} />
-          <Route path="/home" component={authenticatedHome} />
         </Switch>
       </div>
     );

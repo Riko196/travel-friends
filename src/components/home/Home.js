@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Navbar from "../navbar/Navbar";
-import Destination from "../destination/Destination";
 import FindThemModal from "./FindThemModal";
 import "./Home.css";
 
@@ -24,4 +24,9 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default connect(
+  state => ({
+    myFriends: state.myFriends
+  }),
+  {}
+)(Home);

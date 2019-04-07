@@ -1,10 +1,17 @@
 import { createStore, applyMiddleware } from "redux";
 import { initialAuthState } from "./state/auth";
 import { initialUserState } from "./state/user";
+import { initialMyFriendsState } from "./state/myFriends";
+import { initialMyFriendState } from "./state/myFriend";
 import thunk from "redux-thunk";
 
 const getInitialState = () => {
-  return { ...initialAuthState, ...initialUserState };
+  return {
+    ...initialAuthState,
+    ...initialUserState,
+    ...initialMyFriendsState,
+    ...initialMyFriendState
+  };
 };
 
 const rootReducer = (state, action) => {

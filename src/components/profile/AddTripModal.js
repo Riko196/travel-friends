@@ -21,7 +21,7 @@ class AddTripModal extends Component {
       dateTo: null
     };
 
-    this.destination = React.createRef();
+    this.destinationName = React.createRef();
     this.planned = React.createRef();
     this.tripInfo = React.createRef();
     this.category = React.createRef();
@@ -42,11 +42,11 @@ class AddTripModal extends Component {
   addTrip = () => {
     insertTrip({
       userId: this.props.userId,
-      destination: this.destination.current.value,
-      planned: this.planned.current.value,
-      category: this.category.current.state.value,
-      dateFrom: this.state.dateFrom,
-      dateTo: this.state.dateTo,
+      destinationName: this.destinationName.current.value,
+      planned: this.planned.current.value.label,
+      category: this.category.current.state.value.label,
+      dateFrom: stringDateToISODate(this.state.dateFrom),
+      dateTo: stringDateToISODate(this.state.dateTo),
       tripInfo: this.tripInfo.current.value
     });
     this.closeModal();
@@ -61,14 +61,15 @@ class AddTripModal extends Component {
   };
 
   handleChangeDateFrom = date => {
+    console.log(date);
     this.setState({
-      dateFrom: stringDateToISODate(date)
+      dateFrom: date
     });
   };
 
   handleChangeDateTo = date => {
     this.setState({
-      dateTo: stringDateToISODate(date)
+      dateTo: date
     });
   };
 
@@ -99,7 +100,7 @@ class AddTripModal extends Component {
             className="text-input"
             id="destination-input"
             placeholder="&nbsp;"
-            ref={this.destination}
+            ref={this.destinationName}
           />
 
           <label className="modal-label">Planning:</label>
