@@ -4,6 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 import { compose } from "redux";
 import MyFriendsDetail from "./MyFriendsDetail";
 import { setMyFriend } from "../../actions/myFriend";
+import "./MyFriendsList.css";
 
 class MyFriendsList extends Component {
   handleChooseFriend = friend => {
@@ -12,6 +13,9 @@ class MyFriendsList extends Component {
 
   render() {
     return (
+      <div className="friend-list-wrapper">
+
+      <p className="destination-name-list">Bratislava, Slovakia</p>
       <div className="my-friend-list-container">
         {this.props.myFriends !== null &&
           this.props.myFriends.length !== 0 &&
@@ -26,6 +30,7 @@ class MyFriendsList extends Component {
           ))}
         {this.props.myFriends !== null &&
           (this.props.myFriends.length === 0 && <p>No friends found</p>)}
+      </div>
       </div>
     );
   }
