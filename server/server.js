@@ -1,6 +1,5 @@
 const express = require("express");
 const config = require("../config");
-const knex = require("../knex/knex");
 const api = require("./api");
 const cors = require("cors");
 const bodyParser = require("body-parser");

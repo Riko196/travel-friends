@@ -21,4 +21,12 @@ export const addiction = [
   { value: "never", label: "Never" }
 ];
 
+export const destinations = [
+  { value: "Vienna", label: "Vienna" },
+  { value: "Bratislava", label: "Bratislava" },
+  { value: "Prague", label: "Prague" },
+  { value: "Zurich", label: "Zurich" },
+  { value: "Cernobyl", label: "Cernobyl" }
+];
+
 export const category = [{ value: "one", label: "One" }];

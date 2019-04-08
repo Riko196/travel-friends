@@ -5,9 +5,9 @@ import { compose } from "redux";
 import Modal from "react-modal";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
-import { gender } from "../../utils/constants";
+import { gender, destinations } from "../../utils/constants";
 import { getMyFriends } from "../../actions/myFriends";
-import { stringDateToISODate } from "../../utils/functions";
+import { stringDateToISODate, isNull } from "../../utils/functions";
 import { findThemModalStyle } from "./FindThemModalStyle";
 import "./FindThemModal.css";
 
@@ -23,7 +23,7 @@ class FindThemModal extends Component {
       dateTo: null
     };
 
-    this.destination = React.createRef();
+    this.destinationName = React.createRef();
     this.gender = React.createRef();
   }
 
@@ -39,8 +39,24 @@ class FindThemModal extends Component {
     });
   };
 
+  inputIsCorrect = () => {
+    if (
+      isNull(this.state.dateFrom) ||
+      isNull(this.state.dateTo) ||
+      isNull(this.destinationName.current.state.value.value) ||
+      isNull(this.gender.current.state.value.value) ||
+      stringDateToISODate(this.state.dateFrom) >
+        stringDateToISODate(this.state.dateTo)
+    )
+      return false;
+    return true;
+  };
+
   openModal = () => {
     this.setState({ modalIsOpen: true, dateFrom: null, dateTo: null });
+    window.FB.api("/me/picture?width=180&height=180", response => {
+      console.log(response);
+    });
   };
 
   closeModal = () => {
@@ -52,18 +68,20 @@ class FindThemModal extends Component {
   };
 
   findMyFriends = () => {
-    this.props
-      .getMyFriends({
-        destinationName: this.destination.current.value,
-        dateFrom: stringDateToISODate(this.state.dateFrom),
-        dateTo: stringDateToISODate(this.state.dateTo),
-        gender: this.gender.current.state.value.value,
-        userId: this.props.user.userId
-      })
-      .then(() => {
-        this.closeModal();
-        this.props.history.push("/home/my-friends");
-      });
+    if (this.inputIsCorrect()) {
+      this.props
+        .getMyFriends({
+          destinationName: this.destinationName.current.state.value.value,
+          dateFrom: stringDateToISODate(this.state.dateFrom),
+          dateTo: stringDateToISODate(this.state.dateTo),
+          gender: this.gender.current.state.value.value,
+          userId: this.props.user.userId
+        })
+        .then(() => {
+          this.closeModal();
+          this.props.history.push("/home/my-friends");
+        });
+    }
   };
 
   render() {
@@ -89,12 +107,10 @@ class FindThemModal extends Component {
           <h2>Find Travel Friends</h2>
 
           <label className="modal-label">Destination:</label>
-          <input
-            type="text"
-            className="text-input"
-            id="destination-input"
-            placeholder="&nbsp;"
-            ref={this.destination}
+          <Select
+            options={destinations}
+            ref={this.destinationName}
+            defaultInputValue={""}
           />
 
           <label className="modal-label">From:</label>

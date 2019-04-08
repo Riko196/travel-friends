@@ -4,7 +4,7 @@ import ProfileGallery from "../profileGallery/ProfileGallery";
 import NavBar from "../navbar/Navbar";
 
 import { ISODateTostringDate } from "../../utils/functions";
-//import "./MyFriendsProfile.css";
+import "./MyFriendsProfile.css";
 
 class MyFriendsProfile extends Component {
   render() {

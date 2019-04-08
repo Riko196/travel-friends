@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import Select from "react-select";
-import { removeAllSpaces, stringDateToISODate } from "../../utils/functions";
+import {
+  removeAllSpaces,
+  stringDateToISODate,
+  isNull
+} from "../../utils/functions";
 import { insertTrip } from "../../actions/trip";
 import DatePicker from "react-datepicker";
 import { tripModalStyle } from "./AddTripModalStyle";
@@ -39,17 +43,33 @@ class AddTripModal extends Component {
     });
   };
 
+  inputIsCorrect = () => {
+    if (
+      isNull(this.state.dateFrom) ||
+      isNull(this.state.dateTo) ||
+      isNull(this.destinationName.current.value) ||
+      isNull(this.gender.current.state) ||
+      stringDateToISODate(this.state.dateFrom) >
+        stringDateToISODate(this.state.dateTo)
+    )
+      return false;
+    return true;
+  };
+
   addTrip = () => {
-    insertTrip({
-      userId: this.props.userId,
-      destinationName: this.destinationName.current.value,
-      planned: this.planned.current.value.label,
-      category: this.category.current.state.value.label,
-      dateFrom: stringDateToISODate(this.state.dateFrom),
-      dateTo: stringDateToISODate(this.state.dateTo),
-      tripInfo: this.tripInfo.current.value
-    });
-    this.closeModal();
+    if (this.inputIsCorrect()) {
+      insertTrip({
+        userId: this.props.userId,
+        destinationName: this.destinationName.current.value,
+        planned: this.planned.current.value.label,
+        category: this.category.current.state.value.label,
+        dateFrom: stringDateToISODate(this.state.dateFrom),
+        dateTo: stringDateToISODate(this.state.dateTo),
+        tripInfo: this.tripInfo.current.value
+      }).then(() => {
+        this.closeModal();
+      });
+    }
   };
 
   getInputFinalValue = inputValue => {

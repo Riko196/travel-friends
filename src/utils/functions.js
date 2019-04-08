@@ -9,3 +9,7 @@ export const stringDateToISODate = stringDate => {
 export const ISODateTostringDate = isoDate => {
   return new Date(isoDate).toDateString();
 };
+
+export const isNull = object => {
+  return object === null;
+};

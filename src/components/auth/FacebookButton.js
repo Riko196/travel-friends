@@ -5,7 +5,8 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logIn } from "../../actions/auth";
 import { Login } from "react-facebook";
-import "./LoginButton.css";
+import facebookIcon from "../../images/mockup/facebook.svg";
+import "./FacebookButton.css";
 
 class FacebookButton extends Component {
   handleResponse = response => {
@@ -41,6 +42,7 @@ class FacebookButton extends Component {
         >
           {({ loading, handleClick, error, data }) => (
             <button className="fb-button" onClick={handleClick}>
+              <img src={facebookIcon} />
               {!loading && <span>Login with Facebook</span>}
               {loading && <span>Loading...</span>}
             </button>

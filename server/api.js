@@ -1,6 +1,5 @@
 const express = require("express");
 const knex = require("../knex/knex");
-const bodyParser = require("body-parser");
 const {
   getUserByEmail,
   getUserByUserId,
