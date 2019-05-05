@@ -3,6 +3,7 @@ import { initialAuthState } from "./state/auth";
 import { initialUserState } from "./state/user";
 import { initialMyFriendsState } from "./state/myFriends";
 import { initialMyFriendState } from "./state/myFriend";
+import { initialDestinationsState} from "./state/destinations";
 import thunk from "redux-thunk";
 
 const getInitialState = () => {
@@ -10,7 +11,8 @@ const getInitialState = () => {
     ...initialAuthState,
     ...initialUserState,
     ...initialMyFriendsState,
-    ...initialMyFriendState
+    ...initialMyFriendState,
+    ...initialDestinationsState
   };
 };
 

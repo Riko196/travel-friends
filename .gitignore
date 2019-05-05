@@ -9,6 +9,9 @@
 # production
 /build
 
+# photos
+/src/images/cityPhotos
+
 # misc
 .env
 .DS_Store

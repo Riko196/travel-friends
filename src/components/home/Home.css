@@ -1,14 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script');
 
-.home_part-1{
-    width: 100%;
-    min-height: 100vh;
+.home{
     background: #1e5799; /* Old browsers */
     background: -moz-linear-gradient(-45deg, #1e5799 0%, #207cca 16%, #2addbc 44%, #a6e27a 73%); /* FF3.6-15 */
     background: -webkit-linear-gradient(-45deg, #1e5799 0%,#207cca 16%,#2addbc 44%,#a6e27a 73%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(135deg, #1e5799 0%,#207cca 16%,#2addbc 44%,#a6e27a 73%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#a6e27a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.home_part-1{
+    width: 100%;
+    min-height: 100vh;
     padding-top: 180px;
+}
+
+.home-part-popular{
+    margin: auto;
+    width: 90%;
+    text-align: center;
 }
 
 .home-center{
