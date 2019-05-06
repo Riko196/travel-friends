@@ -42,7 +42,7 @@ class FacebookButton extends Component {
         >
           {({ loading, handleClick, error, data }) => (
             <button className="fb-button" onClick={handleClick}>
-              <img src={facebookIcon} />
+              {/* <img src={facebookIcon} /> */}
               {!loading && <span>Login with Facebook</span>}
               {loading && <span>Loading...</span>}
             </button>

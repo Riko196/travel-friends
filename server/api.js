@@ -9,7 +9,8 @@ const {
   insertTrip,
   getTripsByUserId,
   getDestinationIdByName,
-  getUserIdFriends
+  getUserIdFriends,
+  getMostPopularDestinations
 } = require("./queries");
 
 const router = express.Router();
@@ -85,6 +86,19 @@ router.get(
       .catch(e => next(e));
   }
 );
+
+router.get(
+  "/getMostPopularDestinations/:limit",
+  (req, res, next) => {
+    const {limit} = req.params;
+    getMostPopularDestinations(knex, limit)
+      .then(result => {
+        console.log(result);
+        res.send(result);
+      })
+      .catch(e => next(e));
+    
+  })
 
 module.exports = {
   router: router
