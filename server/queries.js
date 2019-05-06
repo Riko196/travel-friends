@@ -69,7 +69,7 @@ const getUserIdFriends = async (knex, query) => {
 const getMostPopularDestinations = (knex, limit) => {
   return knex("destinations")
     .select("destinationId", "destinationName", "destinationPhoto")
-    .limit(10);
+    .limit(limit);
 }
 
 module.exports = {
