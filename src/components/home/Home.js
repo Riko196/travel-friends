@@ -3,21 +3,21 @@ import { connect } from "react-redux";
 import Navbar from "../navbar/Navbar";
 import { compose } from "redux";
 import FindThemModal from "./FindThemModal";
-import {withRouter, Link} from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { getMostPopularDestinations } from "../../actions/destinations";
 import Destination from "../destination/Destination";
+import Messenger from "../messenger/Messenger";
 import "./Home.css";
 
 class Home extends Component {
-  
   handleChooseDestination = destination => {
     return;
   };
 
-  componentWillMount(){
-   this.props.getMostPopularDestinations(10);
+  componentWillMount() {
+    this.props.getMostPopularDestinations(10);
   }
-  
+
   render() {
     return (
       <div className="home">
@@ -29,18 +29,20 @@ class Home extends Component {
               Your travel friends are waiting for you!
             </p>
             <FindThemModal />
+            <Messenger />
           </div>
         </div>
         <div className="home-part-popular">
-        {this.props.destinations !== null &&
-          this.props.destinations.map(destination => (
-            <Link
-              to={"/home/destinations/destination"}
-              onClick={e => this.handleChooseDestination(destination)}
-              key={destination.destinationId}>
-              <Destination destination={destination}/>
-            </Link>
-          ))}
+          {this.props.destinations !== null &&
+            this.props.destinations.map(destination => (
+              <Link
+                to={"/home/destinations/destination"}
+                onClick={e => this.handleChooseDestination(destination)}
+                key={destination.destinationId}
+              >
+                <Destination destination={destination} />
+              </Link>
+            ))}
         </div>
       </div>
     );
@@ -57,4 +59,3 @@ export default compose(
     { getMostPopularDestinations }
   )
 )(Home);
-
