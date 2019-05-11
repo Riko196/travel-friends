@@ -1,21 +1,25 @@
 import apiRequest from "./apiRequest";
 
 export const setDestinations = destinations => ({
-    type: "Set my destinations",
-    payload: destinations,
-    reducer: (state, destinationsPayload) => {
-      return { ...state, destinations: destinationsPayload };
-    }
-  });
+  type: "Set my destinations",
+  payload: destinations,
+  reducer: (state, destinationsPayload) => {
+    return { ...state, destinations: destinationsPayload };
+  }
+});
 
-export const getMostPopularDestinations = limit => dispatch => {
-  console.log(limit);
-  return apiRequest(`getMostPopularDestinations/${limit}`, { method: "GET"})
-  .then(destinations => {
-    console.log(destinations);
-    dispatch(setDestinations(destinations));
-  })
-  .catch(e => {
+export const getAllDestinationsName = () => {
+  return apiRequest(`getAllDestinationsName`, { method: "GET" }).catch(e => {
     throw e;
   });
+};
+
+export const getMostPopularDestinations = limit => dispatch => {
+  return apiRequest(`getMostPopularDestinations/${limit}`, { method: "GET" })
+    .then(destinations => {
+      dispatch(setDestinations(destinations));
+    })
+    .catch(e => {
+      throw e;
+    });
 };

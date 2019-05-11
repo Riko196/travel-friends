@@ -10,6 +10,7 @@ const {
   getTripsByUserId,
   getDestinationIdByName,
   getUserIdFriends,
+  getAllDestinationsName,
   getMostPopularDestinations
 } = require("./queries");
 
@@ -87,18 +88,22 @@ router.get(
   }
 );
 
-router.get(
-  "/getMostPopularDestinations/:limit",
-  (req, res, next) => {
-    const {limit} = req.params;
-    getMostPopularDestinations(knex, limit)
-      .then(result => {
-        console.log(result);
-        res.send(result);
-      })
-      .catch(e => next(e));
-    
-  })
+router.get("/getAllDestinationsName", (req, res, next) => {
+  getAllDestinationsName(knex)
+    .then(result => {
+      res.send(result);
+    })
+    .catch(e => next(e));
+});
+
+router.get("/getMostPopularDestinations/:limit", (req, res, next) => {
+  const { limit } = req.params;
+  getMostPopularDestinations(knex, limit)
+    .then(result => {
+      res.send(result);
+    })
+    .catch(e => next(e));
+});
 
 module.exports = {
   router: router
