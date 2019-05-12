@@ -33,6 +33,8 @@ class EditProfileModal extends Component {
     this.smoking = React.createRef();
     this.drinking = React.createRef();
     this.speaking = React.createRef();
+
+    this.updatedProfile = {};
   }
 
   openModal = () => {
@@ -47,52 +49,55 @@ class EditProfileModal extends Component {
     return removeAllSpaces(inputValue) === "" ? null : inputValue;
   };
 
+  getBirthdayFinalValue = birthdayValue => {
+    return birthdayValue === "" ? null : stringDateToISODate(birthdayValue);
+  };
+
   getSelectFinalValue = selectValue => {
     return selectValue === null ? null : selectValue.label;
   };
-
   updateProfile = () => {
     if (this.birthday.current.state.error) {
       return;
     }
 
-    let updatedUserValues = {};
-    const userRedux = this.props.user;
-
-    updatedUserValues.aboutme = this.getInputFinalValue(
+    this.updatedProfile.aboutme = this.getInputFinalValue(
       this.aboutme.current.value
     );
-    updatedUserValues.birthday =
-      this.birthday.current.state.value === ""
-        ? null
-        : stringDateToISODate(this.birthday.current.state.value);
-    updatedUserValues.country = this.getInputFinalValue(
+    this.updatedProfile.birthday = this.getBirthdayFinalValue(
+      this.birthday.current.state.value
+    );
+
+    this.updatedProfile.country = this.getInputFinalValue(
       this.country.current.value
     );
-    updatedUserValues.city = this.getInputFinalValue(this.city.current.value);
-    updatedUserValues.occupation = this.getInputFinalValue(
+    this.updatedProfile.city = this.getInputFinalValue(this.city.current.value);
+    this.updatedProfile.occupation = this.getInputFinalValue(
       this.occupation.current.value
     );
-    updatedUserValues.gender = this.getSelectFinalValue(
+    this.updatedProfile.gender = this.getSelectFinalValue(
       this.gender.current.state.value
     );
-    updatedUserValues.relationship = this.getSelectFinalValue(
+    this.updatedProfile.relationship = this.getSelectFinalValue(
       this.relationship.current.state.value
     );
-    updatedUserValues.education = this.getInputFinalValue(
+    this.updatedProfile.education = this.getInputFinalValue(
       this.education.current.value
     );
-    updatedUserValues.smoking = this.getSelectFinalValue(
+    this.updatedProfile.smoking = this.getSelectFinalValue(
       this.smoking.current.state.value
     );
-    updatedUserValues.drinking = this.getSelectFinalValue(
+    this.updatedProfile.drinking = this.getSelectFinalValue(
       this.drinking.current.state.value
     );
-    updatedUserValues.speaking = this.getInputFinalValue(
+    this.updatedProfile.speaking = this.getInputFinalValue(
       this.speaking.current.value
     );
-    const updatedUser = merge(userRedux, updatedUserValues);
 
+    Object.keys(this.updatedProfile).forEach(
+      key => this.updatedProfile[key] == null && delete this.updatedProfile[key]
+    );
+    const updatedUser = merge(this.props.user, this.updatedProfile);
     updateUser(updatedUser).then(result => {
       this.props.setUser(updatedUser);
       this.closeModal();

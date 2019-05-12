@@ -52,7 +52,11 @@ router.post("/logIn", (req, res, next) => {
 
 router.put("/updateUser", (req, res, next) => {
   const user = req.body;
-  updateUser(knex, user).catch(e => next(e));
+  updateUser(knex, user)
+    .then(result => {
+      res.send({});
+    })
+    .catch(e => next(e));
 });
 
 router.post("/insertTrip", (req, res, next) => {
