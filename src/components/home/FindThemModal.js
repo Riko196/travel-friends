@@ -5,8 +5,9 @@ import { compose } from "redux";
 import Modal from "react-modal";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
-import { gender, destinations } from "../../utils/constants";
+import { gender } from "../../utils/constants";
 import { getMyFriends } from "../../actions/myFriends";
+import { getAllDestinationsName } from "../../actions/destinations";
 import { stringDateToISODate, isNull } from "../../utils/functions";
 import { findThemModalStyle } from "./FindThemModalStyle";
 import "./FindThemModal.css";
@@ -20,11 +21,18 @@ class FindThemModal extends Component {
     this.state = {
       modalIsOpen: false,
       dateFrom: null,
-      dateTo: null
+      dateTo: null,
+      destinationsName: []
     };
 
     this.destinationName = React.createRef();
     this.gender = React.createRef();
+  }
+
+  componentWillMount() {
+    getAllDestinationsName().then(result => {
+      this.setState({ destinationsName: result });
+    });
   }
 
   handleChangeDateFrom = date => {
@@ -43,8 +51,8 @@ class FindThemModal extends Component {
     if (
       isNull(this.state.dateFrom) ||
       isNull(this.state.dateTo) ||
-      isNull(this.destinationName.current.state.value.value) ||
-      isNull(this.gender.current.state.value.value) ||
+      isNull(this.destinationName.current.state.value) ||
+      isNull(this.gender.current.state.value) ||
       stringDateToISODate(this.state.dateFrom) >
         stringDateToISODate(this.state.dateTo)
     )
@@ -54,9 +62,6 @@ class FindThemModal extends Component {
 
   openModal = () => {
     this.setState({ modalIsOpen: true, dateFrom: null, dateTo: null });
-    window.FB.api("/me/picture?width=180&height=180", response => {
-      console.log(response);
-    });
   };
 
   closeModal = () => {
@@ -85,6 +90,10 @@ class FindThemModal extends Component {
   };
 
   render() {
+    const destinationsName = this.state.destinationsName.map(element => {
+      return { value: element.destinationName, label: element.destinationName };
+    });
+
     return (
       <div className="findthem-modal-container">
         <button id="findthem" onClick={this.openModal}>
@@ -108,7 +117,7 @@ class FindThemModal extends Component {
 
           <label className="modal-label">Destination:</label>
           <Select
-            options={destinations}
+            options={destinationsName}
             ref={this.destinationName}
             defaultInputValue={""}
           />

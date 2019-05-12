@@ -66,11 +66,15 @@ const getUserIdFriends = async (knex, query) => {
   return myFriends;
 };
 
+const getAllDestinationsName = knex => {
+  return knex("destinations").select("destinationName");
+};
+
 const getMostPopularDestinations = (knex, limit) => {
   return knex("destinations")
     .select("destinationId", "destinationName", "destinationPhoto")
     .limit(limit);
-}
+};
 
 module.exports = {
   getUserByEmail: getUserByEmail,
@@ -82,5 +86,6 @@ module.exports = {
   getTripsByUserId: getTripsByUserId,
   getDestinationIdByName: getDestinationIdByName,
   getUserIdFriends: getUserIdFriends,
+  getAllDestinationsName,
   getMostPopularDestinations: getMostPopularDestinations
 };

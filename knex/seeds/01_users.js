@@ -9,7 +9,7 @@ exports.seed = (knex, Promise) => {
           name: "Test name1",
           email: "test1@mail.com",
           profilePhoto:
-            "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2349738421716646&height=50&width=50&ext=1557075698&hash=AeRX-hOpIxqMe30u",
+            "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2349738421716646&height=720&width=720&ext=1560179489&hash=AeRtmYf_KQ2bDeZC",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -27,7 +27,7 @@ exports.seed = (knex, Promise) => {
           name: "Test name2",
           email: "test2@mail.com",
           profilePhoto:
-            "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2349738421716646&height=50&width=50&ext=1557075698&hash=AeRX-hOpIxqMe30u",
+            "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2349738421716646&height=720&width=720&ext=1560179489&hash=AeRtmYf_KQ2bDeZC",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -45,7 +45,7 @@ exports.seed = (knex, Promise) => {
           name: "Test name3",
           email: "test3@mail.com",
           profilePhoto:
-            "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2349738421716646&height=50&width=50&ext=1557075698&hash=AeRX-hOpIxqMe30u",
+            "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2349738421716646&height=720&width=720&ext=1560179489&hash=AeRtmYf_KQ2bDeZC",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -63,7 +63,7 @@ exports.seed = (knex, Promise) => {
           name: "Test name4",
           email: "test4@mail.com",
           profilePhoto:
-            "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2349738421716646&height=50&width=50&ext=1557075698&hash=AeRX-hOpIxqMe30u",
+            "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2349738421716646&height=720&width=720&ext=1560179489&hash=AeRtmYf_KQ2bDeZC",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -81,7 +81,7 @@ exports.seed = (knex, Promise) => {
           name: "Test name5",
           email: "test5@mail.com",
           profilePhoto:
-            "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2349738421716646&height=50&width=50&ext=1557075698&hash=AeRX-hOpIxqMe30u",
+            "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2349738421716646&height=720&width=720&ext=1560179489&hash=AeRtmYf_KQ2bDeZC",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",

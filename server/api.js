@@ -10,6 +10,7 @@ const {
   getTripsByUserId,
   getDestinationIdByName,
   getUserIdFriends,
+  getAllDestinationsName,
   getMostPopularDestinations
 } = require("./queries");
 
@@ -51,7 +52,11 @@ router.post("/logIn", (req, res, next) => {
 
 router.put("/updateUser", (req, res, next) => {
   const user = req.body;
-  updateUser(knex, user).catch(e => next(e));
+  updateUser(knex, user)
+    .then(result => {
+      res.send({});
+    })
+    .catch(e => next(e));
 });
 
 router.post("/insertTrip", (req, res, next) => {
@@ -87,18 +92,22 @@ router.get(
   }
 );
 
-router.get(
-  "/getMostPopularDestinations/:limit",
-  (req, res, next) => {
-    const {limit} = req.params;
-    getMostPopularDestinations(knex, limit)
-      .then(result => {
-        console.log(result);
-        res.send(result);
-      })
-      .catch(e => next(e));
-    
-  })
+router.get("/getAllDestinationsName", (req, res, next) => {
+  getAllDestinationsName(knex)
+    .then(result => {
+      res.send(result);
+    })
+    .catch(e => next(e));
+});
+
+router.get("/getMostPopularDestinations/:limit", (req, res, next) => {
+  const { limit } = req.params;
+  getMostPopularDestinations(knex, limit)
+    .then(result => {
+      res.send(result);
+    })
+    .catch(e => next(e));
+});
 
 module.exports = {
   router: router

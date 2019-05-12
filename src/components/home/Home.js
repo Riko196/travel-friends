@@ -15,7 +15,9 @@ class Home extends Component {
   };
 
   componentWillMount() {
-    this.props.getMostPopularDestinations(10);
+    if (this.props.destinations === null) {
+      this.props.getMostPopularDestinations(10);
+    }
   }
 
   render() {
