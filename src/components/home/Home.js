@@ -4,14 +4,14 @@ import Navbar from "../navbar/Navbar";
 import { compose } from "redux";
 import FindThemModal from "./FindThemModal";
 import { withRouter, Link } from "react-router-dom";
-import { getMostPopularDestinations } from "../../actions/destinations";
+import { getMostPopularDestinations, setSelectedDestination } from "../../actions/destinations";
 import Destination from "../destination/Destination";
 import Messenger from "../messenger/Messenger";
 import "./Home.css";
 
 class Home extends Component {
   handleChooseDestination = destination => {
-    return;
+    this.props.setSelectedDestination(destination);
   };
 
   componentWillMount() {
@@ -34,11 +34,12 @@ class Home extends Component {
             <Messenger />
           </div>
         </div>
+        <p className="most-popular-p">Most popular destinations</p>
         <div className="home-part-popular">
           {this.props.destinations !== null &&
             this.props.destinations.map(destination => (
               <Link
-                to={"/home/destinations/destination"}
+                to={"/destination"}
                 onClick={e => this.handleChooseDestination(destination)}
                 key={destination.destinationId}
               >
@@ -58,6 +59,6 @@ export default compose(
       myFriends: state.myFriends,
       destinations: state.destinations
     }),
-    { getMostPopularDestinations }
+    { getMostPopularDestinations, setSelectedDestination }
   )
 )(Home);

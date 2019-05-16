@@ -1,0 +1,41 @@
+.destination-wrapper{
+    margin: 0px;
+    padding: 0px;
+    padding-top: 45px;
+    text-align: center;
+}
+
+.destination-upper-div{
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.destinationPagePhoto{
+    max-width: 80%;
+    /* max-height: 70vh; */
+    position: relative;
+    z-index: 1;
+}
+
+.destination-page-title{
+    text-align: center;
+    font-weight: 800;
+    font-size: 30pt;
+    color: white; 
+    margin-top: -2em !important; 
+    background-color: rgba(166, 226, 122, 0.5);
+    z-index: 5;
+    position: relative;
+    margin: auto;
+    width: 350px;
+}
+
+.reviews{
+    width: 80%;
+    height: auto;
+    background-color: white;
+    margin: auto;
+    text-align: left;
+    padding: 1em;
+}
