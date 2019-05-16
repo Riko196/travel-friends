@@ -8,10 +8,12 @@ import { Route } from "react-router-dom";
 import { Switch } from "react-router";
 import requireAuth from "./components/auth/AuthComponent";
 import Navbar from "./components/navbar/Navbar";
+import DestinationRouter from "./components/destination";
 import "./App.css";
 
 const authenticatedProfile = requireAuth(Profile);
 const authenticatedHomeRouter = requireAuth(HomeRouter);
+const authenticatedDestinationRouter = requireAuth(DestinationRouter);
 class App extends Component {
   render() {
     return (
@@ -20,6 +22,7 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Switch>
           <Route path="/home" component={authenticatedHomeRouter} />
+          <Route path="/destination" component={authenticatedDestinationRouter} />
           <Route path="/profile" component={authenticatedProfile} />
           <Route path="/terms-conditions" component={TermsConditions} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />

@@ -73,7 +73,15 @@ const getAllDestinationsName = knex => {
 const getMostPopularDestinations = (knex, limit) => {
   return knex("destinations")
     .select("destinationId", "destinationName", "destinationPhoto")
-    .limit(limit);
+    /*.whereIn("destinations.destionationId", () => {
+      this.select("trips.destinationId")
+      .from("trips")
+      .groupBy("trips.destinationId")
+      .orderBy("count(*)", "desc")
+      .limit(limit)
+      } 
+    )*/
+    .limit(limit)
 };
 
 module.exports = {

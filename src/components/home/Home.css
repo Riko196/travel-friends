@@ -10,13 +10,20 @@
 
 .home_part-1{
     width: 100%;
-    min-height: 100vh;
-    padding-top: 180px;
+    min-height: 90vh;
+    padding-top: 150px;
+}
+
+.most-popular-p{
+    text-align: center;
+    color: white;
+    font-weight: 800;
+    font-size: 40pt;
 }
 
 .home-part-popular{
     margin: auto;
-    width: 90%;
+    width: auto;
     text-align: center;
 }
 

@@ -1,4 +1,5 @@
 export const initialDestinationsState = {
-    destinations: null
+    destinations: null,
+    selectedDestination: null
   };
   

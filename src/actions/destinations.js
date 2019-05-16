@@ -8,6 +8,14 @@ export const setDestinations = destinations => ({
   }
 });
 
+export const setSelectedDestination = selectedDestination => ({
+  type: "Selected destination",
+  payload: selectedDestination,
+  reducer: (state, selectedDestinationPayload) => {
+    return { ...state, selectedDestination: selectedDestinationPayload };
+  }
+});
+
 export const getAllDestinationsName = () => {
   return apiRequest(`getAllDestinationsName`, { method: "GET" }).catch(e => {
     throw e;
