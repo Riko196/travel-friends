@@ -22,7 +22,9 @@ const getUserIdByEmail = (knex, email) => {
 };
 
 const insertUser = (knex, user) => {
-  return knex("users").insert(user);
+  return knex("users")
+    .insert(user)
+    .returning("*");
 };
 
 const updateUser = (knex, user) => {
@@ -96,17 +98,19 @@ const getAllDestinationsName = knex => {
 };
 
 const getMostPopularDestinations = (knex, limit) => {
-  return knex("destinations")
-    .select("destinationId", "destinationName", "destinationPhoto")
-    /*.whereIn("destinations.destionationId", () => {
+  return (
+    knex("destinations")
+      .select("destinationId", "destinationName", "destinationPhoto")
+      /*.whereIn("destinations.destionationId", () => {
       this.select("trips.destinationId")
       .from("trips")
       .groupBy("trips.destinationId")
       .orderBy("count(*)", "desc")
       .limit(limit)
-      } 
+      }
     )*/
-    .limit(limit)
+      .limit(limit)
+  );
 };
 
 module.exports = {
