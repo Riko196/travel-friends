@@ -1,60 +1,61 @@
-.navbar{
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 45px;
-    padding-right: 20%;
-    text-align: right;
-    background-color: transparent;
+.navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 45px;
+  padding-right: 20%;
+  text-align: right;
+  background-color: transparent;
+  z-index: 10;
 }
 
-.navbar-item{
+.navbar-item {
+  text-align: center;
+  color: white;
+  display: inline-block;
+  margin-right: 3em;
+  margin-top: 12px;
+}
+
+.navbar-link {
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  color: white !important;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+.navbar-link:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 576px) {
+  .navbar {
     text-align: center;
-    color: white;
-    display: inline-block;
-    margin-right: 3em;
-    margin-top: 12px;
+    padding-right: 0px !important;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .navbar-item {
+    margin-right: 5%;
+    margin-left: 5%;
+  }
 }
 
-.navbar-link{
-    font-family: 'Montserrat', sans-serif;
-    text-decoration: none;
-    cursor: pointer;
-    color: white !important;
-    font-weight: 600;
-    font-size: 12px;
-    text-transform: uppercase;
-    background-color: transparent;
-    border: 1px solid transparent;
+@media (max-width: 1000px) {
+  .navbar {
+    padding-right: 1em;
+  }
 }
 
-.navbar-link:hover{
-    text-decoration: none;
-}
-
-@media (max-width: 576px){
-    .navbar{
-        text-align: center;
-        padding-right: 0px !important;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    .navbar-item{
-        margin-right: 10%;
-        margin-left: 10%;
-    }
-}
-
-@media (max-width: 1000px){
-    .navbar{
-        padding-right: 1em;
-    }
-}
-
-@media (max-width: 403px){
-    .navbar-item{
-        margin-right: 1.5em !important;
-        margin-left: 1.5em !important;
-    }
+@media (max-width: 403px) {
+  .navbar-item {
+    margin-right: 5% !important;
+    margin-left: %% !important;
+  }
 }

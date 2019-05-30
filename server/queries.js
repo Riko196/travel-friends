@@ -98,19 +98,15 @@ const getAllDestinationsName = knex => {
 };
 
 const getMostPopularDestinations = (knex, limit) => {
-  return (
-    knex("destinations")
-      .select("destinationId", "destinationName", "destinationPhoto")
-      /*.whereIn("destinations.destionationId", () => {
-      this.select("trips.destinationId")
-      .from("trips")
-      .groupBy("trips.destinationId")
-      .orderBy("count(*)", "desc")
-      .limit(limit)
-      }
-    )*/
-      .limit(limit)
-  );
+  return knex("destinations")
+    .select("destinations.destinationId", "destinationName", "destinationPhoto")
+    .count({ num: "*" })
+    .join("trips", join => {
+      join.on("trips.destinationId", "destinations.destinationId");
+    })
+    .groupBy("destinations.destinationId")
+    .orderBy("num", "DESC")
+    .limit(limit);
 };
 
 module.exports = {
