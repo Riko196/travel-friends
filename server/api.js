@@ -7,8 +7,11 @@ const {
   insertUser,
   updateUser,
   insertTrip,
+  deleteTrip,
   getTripsByUserId,
+  getDestinationById,
   getDestinationIdByName,
+  getDestinationNameById,
   getUserIdFriends,
   getAllDestinationsName,
   getMostPopularDestinations
@@ -60,13 +63,27 @@ router.put("/updateUser", (req, res, next) => {
 });
 
 router.post("/insertTrip", (req, res, next) => {
-  console.log(req.body);
   const trip = req.body;
   getDestinationIdByName(knex, trip.destinationName)
     .then(result => {
       trip.destinationId = result.destinationId;
       delete trip.destinationName;
-      insertTrip(knex, trip).catch(e => next(e));
+      insertTrip(knex, trip)
+        .then(insertedTrip => {
+          getDestinationById(knex, trip.destinationId).then(destination => {
+            res.send({ ...insertedTrip[0], ...destination });
+          });
+        })
+        .catch(e => next(e));
+    })
+    .catch(e => next(e));
+});
+
+router.delete("/deleteTrip/:tripId", (req, res, next) => {
+  const { tripId } = req.params;
+  deleteTrip(knex, tripId)
+    .then(result => {
+      res.send({});
     })
     .catch(e => next(e));
 });
@@ -75,6 +92,7 @@ router.get("/getTripsByUserId/:userId", (req, res, next) => {
   const { userId } = req.params;
   getTripsByUserId(knex, userId)
     .then(result => {
+      console.log(result);
       res.send(result);
     })
     .catch(e => next(e));

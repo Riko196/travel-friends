@@ -7,6 +7,7 @@ import { withRouter, Link } from "react-router-dom";
 import { getMostPopularDestinations, setSelectedDestination } from "../../actions/destinations";
 import Destination from "../destination/Destination";
 import Messenger from "../messenger/Messenger";
+import { countOfTheMostPopularDestinations } from "../../utils/constants";
 import "./Home.css";
 
 class Home extends Component {
@@ -15,12 +16,13 @@ class Home extends Component {
   };
 
   componentWillMount() {
-    if (this.props.destinations === null) {
-      this.props.getMostPopularDestinations(10);
+    if (this.props.theMostPopularDestinations === null) {
+      this.props.getMostPopularDestinations(countOfTheMostPopularDestinations);
     }
   }
 
   render() {
+    const { theMostPopularDestinations } = this.props;
     return (
       <div className="home">
         <div className="home_part-1">
@@ -36,8 +38,8 @@ class Home extends Component {
         </div>
         <p className="most-popular-p">Most popular destinations</p>
         <div className="home-part-popular">
-          {this.props.destinations !== null &&
-            this.props.destinations.map(destination => (
+          {theMostPopularDestinations !== null &&
+            theMostPopularDestinations.map(destination => (
               <Link
                 to={"/destination"}
                 onClick={e => this.handleChooseDestination(destination)}
@@ -57,7 +59,7 @@ export default compose(
   connect(
     state => ({
       myFriends: state.myFriends,
-      destinations: state.destinations
+      theMostPopularDestinations: state.theMostPopularDestinations
     }),
     { getMostPopularDestinations, setSelectedDestination }
   )

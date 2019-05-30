@@ -30,3 +30,5 @@ export const destinations = [
 ];
 
 export const category = [{ value: "one", label: "One" }];
+
+export const countOfTheMostPopularDestinations = 10;

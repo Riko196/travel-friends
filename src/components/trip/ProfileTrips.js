@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import AddTripModal from "../profile/AddTripModal";
-import Trip from "../trip/Trip";
+import TripsList from "./TripsList";
 import "./ProfileTrips.css";
 
 class ProfileTrips extends Component {
-
   render() {
     return (
       <div>
-        <AddTripModal/>
-        <Trip/>
+        <AddTripModal />
+        <TripsList />
       </div>
     );
   }

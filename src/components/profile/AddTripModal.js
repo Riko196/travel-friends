@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import Select from "react-select";
-import {
-  removeAllSpaces,
-  stringDateToISODate,
-  isNull
-} from "../../utils/functions";
-import { insertTrip } from "../../actions/trip";
+import { stringDateToISODate, isNull } from "../../utils/functions";
+import { insertTrip, getMyTrips } from "../../actions/trips";
+import { getAllDestinationsName } from "../../actions/destinations";
 import DatePicker from "react-datepicker";
 import { tripModalStyle } from "./AddTripModalStyle";
 import { category } from "../../utils/constants";
@@ -31,6 +28,12 @@ class AddTripModal extends Component {
     this.category = React.createRef();
   }
 
+  componentWillMount() {
+    if (this.props.destinationsName.length === 0) {
+      this.props.getAllDestinationsName();
+    }
+  }
+
   openModal = () => {
     this.setState({ modalIsOpen: true, dateFrom: null, dateTo: null });
   };
@@ -47,8 +50,8 @@ class AddTripModal extends Component {
     if (
       isNull(this.state.dateFrom) ||
       isNull(this.state.dateTo) ||
-      isNull(this.destinationName.current.value) ||
-      isNull(this.gender.current.state) ||
+      isNull(this.destinationName.current.state) ||
+      isNull(this.category.current.state) ||
       stringDateToISODate(this.state.dateFrom) >
         stringDateToISODate(this.state.dateTo)
     )
@@ -58,30 +61,22 @@ class AddTripModal extends Component {
 
   addTrip = () => {
     if (this.inputIsCorrect()) {
-      insertTrip({
+      const newTrip = {
         userId: this.props.userId,
-        destinationName: this.destinationName.current.value,
+        destinationName: this.destinationName.current.state.value.label,
         planned: this.planned.current.value.label,
         category: this.category.current.state.value.label,
         dateFrom: stringDateToISODate(this.state.dateFrom),
         dateTo: stringDateToISODate(this.state.dateTo),
         tripInfo: this.tripInfo.current.value
-      }).then(() => {
+      };
+      this.props.insertTrip(newTrip).then(response => {
         this.closeModal();
       });
     }
   };
 
-  getInputFinalValue = inputValue => {
-    return removeAllSpaces(inputValue) === "" ? null : inputValue;
-  };
-
-  getSelectFinalValue = selectValue => {
-    return selectValue === null ? null : selectValue.label;
-  };
-
   handleChangeDateFrom = date => {
-    console.log(date);
     this.setState({
       dateFrom: date
     });
@@ -94,6 +89,10 @@ class AddTripModal extends Component {
   };
 
   render() {
+    const destinationsName = this.props.destinationsName.map(element => {
+      return { value: element.destinationName, label: element.destinationName };
+    });
+
     return (
       <div className="add-trip-modal-container">
         <button className="add-trip" onClick={this.openModal}>
@@ -115,12 +114,13 @@ class AddTripModal extends Component {
           <h2>Add trip</h2>
 
           <label className="modal-label">Destination:</label>
-          <input
-            type="text"
+          <Select
+            options={destinationsName}
             className="text-input"
             id="destination-input"
             placeholder="&nbsp;"
             ref={this.destinationName}
+            defaultInputValue={""}
           />
 
           <label className="modal-label">Planning:</label>
@@ -161,7 +161,9 @@ class AddTripModal extends Component {
 
 export default connect(
   state => ({
-    userId: state.user.userId
+    userId: state.user.userId,
+    destinationsName: state.destinationsName,
+    myTrips: state.myTrips
   }),
-  {}
+  { getAllDestinationsName, insertTrip, getMyTrips }
 )(AddTripModal);

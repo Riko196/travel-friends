@@ -32,19 +32,44 @@ const updateUser = (knex, user) => {
 };
 
 const insertTrip = (knex, trip) => {
-  return knex("trips").insert(trip);
+  return knex("trips")
+    .insert(trip)
+    .returning("*");
+};
+
+const deleteTrip = (knex, tripId) => {
+  return knex("trips")
+    .delete()
+    .where("tripId", tripId);
 };
 
 const getTripsByUserId = (knex, userId) => {
-  return knex("trips")
+  return knex("trips as t")
     .select("*")
-    .where("userId", userId);
+    .where("userId", userId)
+    .leftJoin("destinations as d", join => {
+      join.on("t.destinationId", "d.destinationId");
+    });
+};
+
+const getDestinationById = (knex, destinationId) => {
+  return knex("destinations")
+    .select("*")
+    .where("destinationId", destinationId)
+    .first();
 };
 
 const getDestinationIdByName = (knex, destinationName) => {
   return knex("destinations")
     .select("destinationId")
     .where("destinationName", destinationName)
+    .first();
+};
+
+const getDestinationNameById = (knex, destinationId) => {
+  return knex("destinations")
+    .select("destinationName")
+    .where("destinationId", destinationId)
     .first();
 };
 
@@ -91,9 +116,12 @@ module.exports = {
   insertUser: insertUser,
   updateUser: updateUser,
   insertTrip: insertTrip,
+  deleteTrip: deleteTrip,
   getTripsByUserId: getTripsByUserId,
+  getDestinationById: getDestinationById,
   getDestinationIdByName: getDestinationIdByName,
+  getDestinationNameById: getDestinationNameById,
   getUserIdFriends: getUserIdFriends,
-  getAllDestinationsName,
+  getAllDestinationsName: getAllDestinationsName,
   getMostPopularDestinations: getMostPopularDestinations
 };
