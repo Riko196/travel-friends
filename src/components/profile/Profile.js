@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ProfileGallery from "../profileGallery/ProfileGallery";
-import ProfileTrips from "../profileTrips/ProfileTrips";
+import ProfileTrips from "../trip/ProfileTrips";
 import NavBar from "../navbar/Navbar";
 import EditProfileModal from "./EditProfileModal";
 import { ISODateTostringDate } from "../../utils/functions";

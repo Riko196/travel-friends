@@ -4,7 +4,11 @@ import Modal from "react-modal";
 import DateInput from "date-input";
 import moment from "moment";
 import Select from "react-select";
-import { removeAllSpaces, stringDateToISODate } from "../../utils/functions";
+import {
+  getInputFinalValue,
+  getBirthdayFinalValue,
+  getSelectFinalValue
+} from "../../utils/functions";
 import { gender, relationship, addiction } from "../../utils/constants";
 import { setUser, updateUser } from "../../actions/user";
 import { profileConfig } from "../../utils/config";
@@ -45,52 +49,41 @@ class EditProfileModal extends Component {
     this.setState({ modalIsOpen: false });
   };
 
-  getInputFinalValue = inputValue => {
-    return removeAllSpaces(inputValue) === "" ? null : inputValue;
-  };
-
-  getBirthdayFinalValue = birthdayValue => {
-    return birthdayValue === "" ? null : stringDateToISODate(birthdayValue);
-  };
-
-  getSelectFinalValue = selectValue => {
-    return selectValue === null ? null : selectValue.label;
-  };
   updateProfile = () => {
     if (this.birthday.current.state.error) {
       return;
     }
 
-    this.updatedProfile.aboutme = this.getInputFinalValue(
+    this.updatedProfile.aboutme = getInputFinalValue(
       this.aboutme.current.value
     );
-    this.updatedProfile.birthday = this.getBirthdayFinalValue(
+    this.updatedProfile.birthday = getBirthdayFinalValue(
       this.birthday.current.state.value
     );
 
-    this.updatedProfile.country = this.getInputFinalValue(
+    this.updatedProfile.country = getInputFinalValue(
       this.country.current.value
     );
-    this.updatedProfile.city = this.getInputFinalValue(this.city.current.value);
-    this.updatedProfile.occupation = this.getInputFinalValue(
+    this.updatedProfile.city = getInputFinalValue(this.city.current.value);
+    this.updatedProfile.occupation = getInputFinalValue(
       this.occupation.current.value
     );
-    this.updatedProfile.gender = this.getSelectFinalValue(
+    this.updatedProfile.gender = getSelectFinalValue(
       this.gender.current.state.value
     );
-    this.updatedProfile.relationship = this.getSelectFinalValue(
+    this.updatedProfile.relationship = getSelectFinalValue(
       this.relationship.current.state.value
     );
-    this.updatedProfile.education = this.getInputFinalValue(
+    this.updatedProfile.education = getInputFinalValue(
       this.education.current.value
     );
-    this.updatedProfile.smoking = this.getSelectFinalValue(
+    this.updatedProfile.smoking = getSelectFinalValue(
       this.smoking.current.state.value
     );
-    this.updatedProfile.drinking = this.getSelectFinalValue(
+    this.updatedProfile.drinking = getSelectFinalValue(
       this.drinking.current.state.value
     );
-    this.updatedProfile.speaking = this.getInputFinalValue(
+    this.updatedProfile.speaking = getInputFinalValue(
       this.speaking.current.value
     );
 

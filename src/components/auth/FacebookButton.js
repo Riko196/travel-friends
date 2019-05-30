@@ -14,7 +14,7 @@ class FacebookButton extends Component {
       return;
     }
     let profilePictureUrl = "";
-
+    console.log(response)
     window.FB.api(
       `/${
         response.profile.id

@@ -21,8 +21,7 @@ class FindThemModal extends Component {
     this.state = {
       modalIsOpen: false,
       dateFrom: null,
-      dateTo: null,
-      destinationsName: []
+      dateTo: null
     };
 
     this.destinationName = React.createRef();
@@ -30,9 +29,9 @@ class FindThemModal extends Component {
   }
 
   componentWillMount() {
-    getAllDestinationsName().then(result => {
-      this.setState({ destinationsName: result });
-    });
+    if (this.props.destinationsName.length === 0) {
+      this.props.getAllDestinationsName();
+    }
   }
 
   handleChangeDateFrom = date => {
@@ -90,7 +89,7 @@ class FindThemModal extends Component {
   };
 
   render() {
-    const destinationsName = this.state.destinationsName.map(element => {
+    const destinationsName = this.props.destinationsName.map(element => {
       return { value: element.destinationName, label: element.destinationName };
     });
 
@@ -154,8 +153,9 @@ export default compose(
   connect(
     state => ({
       user: state.user,
-      myFriends: state.myFriends
+      myFriends: state.myFriends,
+      destinationsName: state.destinationsName
     }),
-    { getMyFriends }
+    { getMyFriends, getAllDestinationsName }
   )
 )(FindThemModal);

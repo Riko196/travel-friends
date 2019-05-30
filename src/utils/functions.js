@@ -13,3 +13,15 @@ export const ISODateTostringDate = isoDate => {
 export const isNull = object => {
   return object === null;
 };
+
+export const getInputFinalValue = inputValue => {
+  return removeAllSpaces(inputValue) === "" ? null : inputValue;
+};
+
+export const getBirthdayFinalValue = birthdayValue => {
+  return birthdayValue === "" ? null : stringDateToISODate(birthdayValue);
+};
+
+export const getSelectFinalValue = selectValue => {
+  return selectValue === null ? null : selectValue.label;
+};
