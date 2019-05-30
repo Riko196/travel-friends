@@ -1,46 +1,59 @@
 import React, { Component } from "react";
 import { compose } from "redux";
-import { has } from "lodash";
+import { has, isEmpty, merge } from "lodash";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { logIn } from "../../actions/auth";
+import { logIn, getUser } from "../../actions/auth";
+import { updateUser } from "../../actions/user";
 import { Login } from "react-facebook";
 //import facebookIcon from "../../images/mockup/facebook.svg";
 import "./FacebookButton.css";
 
 class FacebookButton extends Component {
   handleResponse = response => {
-    if (!has(response, "tokenDetail.accessToken")) {
+    if (
+      !has(response, "tokenDetail.accessToken") ||
+      !has(response, "profile.email")
+    ) {
       return;
     }
-    let profilePictureUrl = "";
-    console.log(response)
+    console.log(response);
+
+    this.profilePictureRequest(response);
+  };
+
+  profilePictureRequest = response => {
+    const id = response.profile.id;
+    const user = {
+      accessToken: response.tokenDetail.accessToken,
+      name: response.profile.name,
+      email: response.profile.email
+    };
+
     window.FB.api(
-      `/${
-        response.profile.id
-      }?fields=picture.width(720).height(720)&access_token=${
-        response.tokenDetail.accessToken
+      `/${id}?fields=picture.width(720).height(720)&access_token=${
+        user.accessToken
       }`,
       "GET",
       {},
       profilePicture => {
         if (has(profilePicture, "picture.data.url"))
-          profilePictureUrl = profilePicture.picture.data.url;
-
-        this.props
-          .logIn({
-            accessToken: response.tokenDetail.accessToken,
-            name: response.profile.name,
-            email: response.profile.email,
-            profilePhoto: profilePictureUrl
-          })
-          .then(() => {
-            if (has(this.props.user, "email")) {
-              this.props.history.replace("/home");
-            }
-          });
+          user.profilePhoto = profilePicture.picture.data.url;
+        this.logIn(user);
       }
     );
+  };
+
+  logIn = user => {
+    getUser(user.email).then(response => {
+      if (!isEmpty(response)) {
+        updateUser(merge(response, user));
+      }
+    });
+
+    this.props.logIn(user).then(() => {
+      this.props.history.replace("/home");
+    });
   };
 
   handleError = error => {

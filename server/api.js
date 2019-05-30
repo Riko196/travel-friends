@@ -34,27 +34,16 @@ router.get("/getUser/:email", (req, res, next) => {
 
 router.post("/logIn", (req, res, next) => {
   const user = req.body;
-  getUserByEmail(knex, user.email)
-    .then(result => {
-      if (result === undefined) {
-        insertUser(knex, user)
-          .then(inserted => {
-            getUserByEmail(knex, user.email)
-              .then(userWithId => {
-                res.send(userWithId);
-              })
-              .catch(e => next(e));
-          })
-          .catch(e => next(e));
-      } else {
-        res.send(result);
-      }
+  insertUser(knex, user)
+    .then(inserted => {
+      res.send(inserted[0]);
     })
     .catch(e => next(e));
 });
 
 router.put("/updateUser", (req, res, next) => {
   const user = req.body;
+  console.log(user)
   updateUser(knex, user)
     .then(result => {
       res.send({});
