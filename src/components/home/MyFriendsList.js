@@ -3,34 +3,33 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { compose } from "redux";
 import MyFriendsDetail from "./MyFriendsDetail";
-import { setMyFriend } from "../../actions/myFriend";
+import { setSelectedFriend } from "../../actions/myFriends";
 import "./MyFriendsList.css";
 
 class MyFriendsList extends Component {
   handleChooseFriend = friend => {
-    this.props.setMyFriend(friend);
+    this.props.setSelectedFriend(friend);
   };
 
   render() {
     return (
       <div className="friend-list-wrapper">
-
-      <p className="destination-name-list">Bratislava, Slovakia</p>
-      <div className="my-friend-list-container">
-        {this.props.myFriends !== null &&
-          this.props.myFriends.length !== 0 &&
-          this.props.myFriends.map(friend => (
-            <Link
-              to={"/home/my-friends/profile"}
-              onClick={e => this.handleChooseFriend(friend)}
-              key={friend.userId}
-            >
-              <MyFriendsDetail detail={friend} />
-            </Link>
-          ))}
-        {this.props.myFriends !== null &&
-          (this.props.myFriends.length === 0 && <p>No friends found</p>)}
-      </div>
+        <p className="destination-name-list">Bratislava, Slovakia</p>
+        <div className="my-friend-list-container">
+          {this.props.myFriends !== null &&
+            this.props.myFriends.length !== 0 &&
+            this.props.myFriends.map(friend => (
+              <Link
+                to={"/home/my-friends/profile"}
+                onClick={e => this.handleChooseFriend(friend)}
+                key={friend.userId}
+              >
+                <MyFriendsDetail detail={friend} />
+              </Link>
+            ))}
+          {this.props.myFriends !== null &&
+            (this.props.myFriends.length === 0 && <p>No friends found</p>)}
+        </div>
       </div>
     );
   }
@@ -42,6 +41,6 @@ export default compose(
     state => ({
       myFriends: state.myFriends
     }),
-    { setMyFriend }
+    { setSelectedFriend }
   )
 )(MyFriendsList);

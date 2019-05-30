@@ -1,5 +1,13 @@
 import apiRequest from "./apiRequest";
 
+export const setSelectedFriend = selectedFriend => ({
+  type: "Set selected Friend",
+  payload: selectedFriend,
+  reducer: (state, selectedFriendPayload) => {
+    return { ...state, selectedFriend: selectedFriendPayload };
+  }
+});
+
 export const setMyFriends = myFriends => ({
   type: "Set my friends",
   payload: myFriends,
