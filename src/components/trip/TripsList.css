@@ -1,0 +1,15 @@
+.my-trips-name-list{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.my-trips-list-container{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+@media (max-width: 600px){
+    .my-trips-name-list{
+        margin-left: 5%;
+        margin-right: 0px;
+    }
+}

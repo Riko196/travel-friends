@@ -20,7 +20,7 @@ class TripDetail extends Component {
       <div className="trip-div">
         <div className="half">
           <img
-            className="destination-image"
+            className="destination-image-detail"
             src={require(`../../images/cityPhotos/${
               this.props.detail.destinationPhoto
             }`)}
