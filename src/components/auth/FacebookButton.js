@@ -18,7 +18,6 @@ class FacebookButton extends Component {
       return;
     }
     console.log(response);
-
     this.profilePictureRequest(response);
   };
 
