@@ -7,7 +7,97 @@ exports.seed = (knex, Promise) => {
       return knex("trips").insert([
         {
           userId: 1,
-          destinationId: 1,
+          destinationId: 3,
+          planned: null,
+          category: null,
+          dateFrom: "2019-03-03T23:00:00.000Z",
+          dateTo: "2019-03-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 9,
+          planned: null,
+          category: null,
+          dateFrom: "2019-03-03T23:00:00.000Z",
+          dateTo: "2019-03-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 9,
+          planned: null,
+          category: null,
+          dateFrom: "2019-03-03T23:00:00.000Z",
+          dateTo: "2019-03-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 9,
+          planned: null,
+          category: null,
+          dateFrom: "2019-03-03T23:00:00.000Z",
+          dateTo: "2019-03-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 14,
+          planned: null,
+          category: null,
+          dateFrom: "2019-03-03T23:00:00.000Z",
+          dateTo: "2019-03-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 5,
+          planned: null,
+          category: null,
+          dateFrom: "2019-03-03T23:00:00.000Z",
+          dateTo: "2019-03-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 10,
+          planned: null,
+          category: null,
+          dateFrom: "2019-03-03T23:00:00.000Z",
+          dateTo: "2019-03-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 8,
+          planned: null,
+          category: null,
+          dateFrom: "2019-03-03T23:00:00.000Z",
+          dateTo: "2019-03-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 7,
+          planned: null,
+          category: null,
+          dateFrom: "2019-03-03T23:00:00.000Z",
+          dateTo: "2019-03-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 13,
+          planned: null,
+          category: null,
+          dateFrom: "2019-03-03T23:00:00.000Z",
+          dateTo: "2019-03-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 11,
           planned: null,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",

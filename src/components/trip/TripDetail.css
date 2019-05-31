@@ -1,49 +1,47 @@
 .trip-div{
-    width: 350px;
+    width: 500px;
     height: 50px;
     position: relative;
     border: solid 1px gray;
     margin-left: 1em;
     margin-top: 5px;
     margin-bottom: 5px;
+    position: relative;
 }
 
 .half{
     height: 100%;
-    width: calc(45% - 10px);
+    width: 50%;
     float: left;
-    margin-right: 5px;
+}
+
+.destination-image-detail{
+    max-height: 100%;
+    width: auto !important;
+    float: left;
+    position: relative;
 }
 
 .half-2{
     height: 100%;
-    width: calc(45% - 10px);
+    width: 40%;
     float: left;
-    margin-right: 5px;
     padding-left: 2em;
 }
 
 .trip-place{
-    float: right;
+    position: relative;
+    float: left;
     margin-top: 15px;
     font-weight: 600;
-}
-
-.flag{
-    width: 40px;
-    height: 40px;
-    margin: 5px; 
-    background-image: url("../../images/mockup/usa_flag.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: solid 1px transparent;
+    padding-left: 15px;
 }
 
 .delete-trip-btn{
-    width: 25px;
-    height: 25px;
-    margin-top: 12px;
-    margin-left: 13px;
+    width: 29px !important; 
+    height: 29px !important;
+    margin-top: 8px !important;
+    margin-left: 0px !important;
     background-image: url("../../images/mockup/bin.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -55,4 +53,56 @@
     margin-top: 5px;
     margin-bottom: 3px;
     width: auto;
+}
+
+@media (max-width: 1000px){
+    .trip-div{
+        width: 500px;
+    }
+    .half-2{
+        width: 40%;
+    } 
+    
+    .half{
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px){
+    .trip-div{
+        width: 100%;
+        height: auto;
+        margin-left: 0px;
+    }
+
+    .trip-place{
+        text-align: center;
+        width: 100%;
+        padding: 0px;
+        margin: auto;
+        font-size: 16pt;
+        margin-bottom: 5px;
+    }
+    .half-2{
+        width: 60%;
+        margin-top: -5px;
+        position: relative;
+    } 
+
+    .delete-trip-btn{
+        width: 35px !important;
+        height: 35px !important;
+        margin-top: 5px !important;
+        margin-left: 24% !important;
+        margin-bottom: 10px;
+    }
+
+    .destination-image-detail{
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    .half{
+        width: 100%;
+    }
 }

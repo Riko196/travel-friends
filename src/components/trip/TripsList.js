@@ -29,7 +29,7 @@ class TripsList extends Component {
               );
             })}
           {this.props.myTrips !== null &&
-            (this.props.myTrips.length === 0 && <p>You have no trips</p>)}
+            (this.props.myTrips.length === 0 && <p>No added trips</p>)}
         </div>
       </div>
     );
