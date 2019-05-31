@@ -4,9 +4,11 @@ import Navbar from "../navbar/Navbar";
 import { compose } from "redux";
 import FindThemModal from "./FindThemModal";
 import { withRouter, Link } from "react-router-dom";
-import { getMostPopularDestinations, setSelectedDestination } from "../../actions/destinations";
+import {
+  getMostPopularDestinations,
+  setSelectedDestination
+} from "../../actions/destinations";
 import Destination from "../destination/Destination";
-import Messenger from "../messenger/Messenger";
 import { countOfTheMostPopularDestinations } from "../../utils/constants";
 import "./Home.css";
 
@@ -33,7 +35,6 @@ class Home extends Component {
               Your travel friends are waiting for you!
             </p>
             <FindThemModal />
-            <Messenger />
           </div>
         </div>
         <p className="most-popular-p">Most popular destinations</p>

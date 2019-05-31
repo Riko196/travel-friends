@@ -3,6 +3,7 @@ export const initialUserState = {
     name: null,
     email: null,
     profilePhoto: null,
+    userName: null,
     aboutme: null,
     birthday: null,
     country: null,

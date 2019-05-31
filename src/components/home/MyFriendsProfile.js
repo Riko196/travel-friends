@@ -63,6 +63,15 @@ class MyFriendsProfile extends Component {
                 Speaking: {this.props.selectedFriend.speaking}
               </p>
               <p>Email: {this.props.selectedFriend.email}</p>
+              {this.props.selectedFriend.userName !== null && (
+                <a
+                  href={"https://m.me/" + this.props.selectedFriend.userName}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <button text="Send to messenger">Send to messenger</button>
+                </a>
+              )}
             </div>
           </div>
           <ProfileGallery />
