@@ -1,10 +1,38 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { ISODateTostringDate } from "../../utils/functions";
+import Modal from "react-modal";
+import Rating from "react-rating";
+import { ISODateStringTostringDate } from "../../utils/functions";
 import { deleteTrip } from "../../actions/trips";
+import { editReview } from "../../actions/review";
+import emptyStar from "../../images/mockup/empty-star.png";
+import fullStar from "../../images/mockup/full-star.png";
+
 import "./TripDetail.css";
 
+Modal.setAppElement(document.getElementById("root"));
 class TripDetail extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      modalIsOpen: false,
+      rating: 0
+    };
+
+    this.reviewText = React.createRef();
+  }
+
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  closeModal = () => {
+    this.setState({
+      modalIsOpen: false
+    });
+  };
+
   deleteTrip = e => {
     this.props.deleteTrip(
       this.props.identification.index,
@@ -12,10 +40,25 @@ class TripDetail extends Component {
     );
   };
 
+  editReview = e => {
+    this.props.editReview({
+      userId: this.props.user.userId,
+      tripId: this.props.detail.tripId,
+      reviewText: this.reviewText.current.value,
+      rating: this.state.rating
+    });
+  };
+
+  editRate = rating => {
+    this.setState({
+      rating: rating
+    });
+  };
+
   render() {
-    const dateFrom = ISODateTostringDate(this.props.detail.dateFrom);
-    const dateTo = ISODateTostringDate(this.props.detail.dateTo);
-    console.log("TripDetail ", this.props);
+    const dateFrom = ISODateStringTostringDate(this.props.detail.dateFrom);
+    const dateTo = ISODateStringTostringDate(this.props.detail.dateTo);
+
     return (
       <div className="trip-div">
         <div className="half">
@@ -32,13 +75,59 @@ class TripDetail extends Component {
           <p className="trip-date">from: {dateFrom}</p>
           <p className="trip-date">to: {dateTo}</p>
         </div>
-        <button className="delete-trip-btn" onClick={this.deleteTrip} />
+        {this.props.planned === true && (
+          <button className="delete-trip-btn" onClick={this.deleteTrip} />
+        )}
+        {this.props.planned === false && (
+          <div>
+            <button className="open-modal-btn" onClick={this.openModal}>
+              Edit review
+            </button>
+            <Modal
+              isOpen={this.state.modalIsOpen}
+              onRequestClose={this.closeModal}
+              contentLabel="Edit review"
+            >
+              <input
+                type="button"
+                name="exit"
+                value="X"
+                onClick={this.closeModal}
+                className="x-button"
+              />
+
+              <Rating
+                emptySymbol={
+                  <img alt="emptySymbol" src={emptyStar} className="icon" />
+                }
+                fullSymbol={
+                  <img alt="fullSymbol" src={fullStar} className="icon" />
+                }
+                initialRating={this.state.rating}
+                onChange={rating => this.editRate(rating)}
+              />
+
+              <textarea
+                type="text"
+                className="textarea"
+                ref={this.reviewText}
+              />
+
+              <input
+                type="button"
+                value="Edit review"
+                className="edit-review"
+                onClick={this.editReview}
+              />
+            </Modal>
+          </div>
+        )}
       </div>
     );
   }
 }
 
 export default connect(
-  state => ({}),
-  { deleteTrip }
+  state => ({ user: state.user }),
+  { deleteTrip, editReview }
 )(TripDetail);

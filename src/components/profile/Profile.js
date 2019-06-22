@@ -5,7 +5,7 @@ import ProfileTrips from "../trip/ProfileTrips";
 import NavBar from "../navbar/Navbar";
 import EditProfileModal from "./EditProfileModal";
 import SelectUserName from "./SelectUserName";
-import { ISODateTostringDate } from "../../utils/functions";
+import { ISODateStringTostringDate } from "../../utils/functions";
 import "./Profile.css";
 
 class Profile extends Component {
@@ -28,7 +28,7 @@ class Profile extends Component {
               <p className="birthday">
                 Birthday:{" "}
                 {this.props.user.birthday != null &&
-                  ISODateTostringDate(this.props.user.birthday)}
+                  ISODateStringTostringDate(this.props.user.birthday)}
               </p>
             </div>
             <div className="column">

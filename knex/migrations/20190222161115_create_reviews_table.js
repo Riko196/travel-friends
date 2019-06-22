@@ -1,9 +1,10 @@
 exports.up = (knex, Promise) => {
   return knex.schema.createTable("reviews", table => {
     table.increments("reviewId").primary();
-    table.string("userId").notNullable();
-    table.string("tripId");
-    table.string("reviewText");
+    table.integer("userId").notNullable();
+    table.integer("tripId").notNullable();
+    table.string("reviewText").notNullable();
+    table.integer("rating").notNullable();
   });
 };
 

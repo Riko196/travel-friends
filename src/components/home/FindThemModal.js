@@ -8,7 +8,7 @@ import DatePicker from "react-datepicker";
 import { gender } from "../../utils/constants";
 import { getMyFriends } from "../../actions/myFriends";
 import { getAllDestinationsName } from "../../actions/destinations";
-import { stringDateToISODate, isNull } from "../../utils/functions";
+import { stringDateToISODateString, isNull } from "../../utils/functions";
 import { findThemModalStyle } from "./FindThemModalStyle";
 import "./FindThemModal.css";
 
@@ -29,7 +29,7 @@ class FindThemModal extends Component {
   }
 
   componentWillMount() {
-    if (this.props.destinationsName.length === 0) {
+    if (this.props.destinationsName === null) {
       this.props.getAllDestinationsName();
     }
   }
@@ -52,8 +52,8 @@ class FindThemModal extends Component {
       isNull(this.state.dateTo) ||
       isNull(this.destinationName.current.state.value) ||
       isNull(this.gender.current.state.value) ||
-      stringDateToISODate(this.state.dateFrom) >
-        stringDateToISODate(this.state.dateTo)
+      stringDateToISODateString(this.state.dateFrom) >
+        stringDateToISODateString(this.state.dateTo)
     )
       return false;
     return true;
@@ -76,8 +76,8 @@ class FindThemModal extends Component {
       this.props
         .getMyFriends({
           destinationName: this.destinationName.current.state.value.value,
-          dateFrom: stringDateToISODate(this.state.dateFrom),
-          dateTo: stringDateToISODate(this.state.dateTo),
+          dateFrom: stringDateToISODateString(this.state.dateFrom),
+          dateTo: stringDateToISODateString(this.state.dateTo),
           gender: this.gender.current.state.value.value,
           userId: this.props.user.userId
         })
@@ -89,9 +89,15 @@ class FindThemModal extends Component {
   };
 
   render() {
-    const destinationsName = this.props.destinationsName.map(element => {
-      return { value: element.destinationName, label: element.destinationName };
-    });
+    const destinationsName =
+      this.props.destinationsName === null
+        ? []
+        : this.props.destinationsName.map(element => {
+            return {
+              value: element.destinationName,
+              label: element.destinationName
+            };
+          });
 
     return (
       <div className="findthem-modal-container">

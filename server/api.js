@@ -14,7 +14,10 @@ const {
   getDestinationNameById,
   getUserIdFriends,
   getAllDestinationsName,
-  getMostPopularDestinations
+  getMostPopularDestinations,
+  getDestinationIdByTripId,
+  getReviewsByDestinationId,
+  updateReview
 } = require("./queries");
 
 const router = express.Router();
@@ -43,7 +46,6 @@ router.post("/logIn", (req, res, next) => {
 
 router.put("/updateUser", (req, res, next) => {
   const user = req.body;
-  console.log(user)
   updateUser(knex, user)
     .then(result => {
       res.send({});
@@ -60,6 +62,7 @@ router.post("/insertTrip", (req, res, next) => {
       insertTrip(knex, trip)
         .then(insertedTrip => {
           getDestinationById(knex, trip.destinationId).then(destination => {
+            console.log({ ...insertedTrip[0], ...destination });
             res.send({ ...insertedTrip[0], ...destination });
           });
         })
@@ -81,7 +84,6 @@ router.get("/getTripsByUserId/:userId", (req, res, next) => {
   const { userId } = req.params;
   getTripsByUserId(knex, userId)
     .then(result => {
-      console.log(result);
       res.send(result);
     })
     .catch(e => next(e));
@@ -111,7 +113,42 @@ router.get("/getMostPopularDestinations/:limit", (req, res, next) => {
   const { limit } = req.params;
   getMostPopularDestinations(knex, limit)
     .then(result => {
+      if (result === null || result === undefined) {
+        res.send([]);
+      }
+
+      for (let destination of result) {
+        destination.reviews = [];
+      }
+
       res.send(result);
+    })
+    .catch(e => next(e));
+});
+
+router.get("/getDestinationIdByTripId/:tripId", (req, res, next) => {
+  const { tripId } = req.params;
+  getDestinationIdByTripId(knex, tripId)
+    .then(result => {
+      res.send(result);
+    })
+    .catch(e => next(e));
+});
+
+router.get("/getReviewsByDestinationId/:destinationId", (req, res, next) => {
+  const { destinationId } = req.params;
+  getReviewsByDestinationId(knex, destinationId)
+    .then(result => {
+      res.send(result);
+    })
+    .catch(e => next(e));
+});
+
+router.put("/editReview", (req, res, next) => {
+  const { userId, tripId, reviewText, rating } = req.body;
+  updateReview(knex, userId, tripId, reviewText, rating)
+    .then(statusCode => {
+      res.send({});
     })
     .catch(e => next(e));
 });

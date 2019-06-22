@@ -1,31 +1,47 @@
 import React, { Component } from "react";
+import DestinationReview from "./DestinationReview";
 import { connect } from "react-redux";
+
 import "./DestinationPage.css";
 
 class DestinationPage extends Component {
-
   render() {
-    console.log(this.props.selectedDestination);
-
+    const { selectedDestination } = this.props;
     return (
-    <div className="destination-wrapper">
-      <div className="destination-upper-div">
-        <img className="destinationPagePhoto" 
-        src={require(`../../images/cityPhotos/${this.props.selectedDestination.destinationPhoto}`)}>
-        </img>
-        <p className="destination-page-title">{this.props.selectedDestination.destinationName}</p>
+      <div className="destination-wrapper">
+        <div className="destination-upper-div">
+          <img
+            alt="destinationPhoto"
+            className="destinationPagePhoto"
+            src={require(`../../images/cityPhotos/${
+              selectedDestination.destinationPhoto
+            }`)}
+          />
+          <p className="destination-page-title">
+            {selectedDestination.destinationName}
+          </p>
+        </div>
+        <div className="reviews">
+          {selectedDestination.reviews.length !== 0 &&
+            selectedDestination.reviews.map(review => {
+              return (
+                <DestinationReview
+                  id={review.reviewId}
+                  name={review.name}
+                  rating={review.rating}
+                  reviewText={review.reviewText}
+                />
+              );
+            })}
+        </div>
       </div>
-      <div className="reviews">
-        <p>Reviews</p>
-      </div>
-    </div>
     );
   }
 }
 
 export default connect(
-    state => ({
-      selectedDestination: state.selectedDestination
-    }),
-    {}
-  )(DestinationPage);
+  state => ({
+    selectedDestination: state.selectedDestination
+  }),
+  {}
+)(DestinationPage);
