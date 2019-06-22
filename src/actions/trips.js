@@ -15,9 +15,12 @@ export const setNewTrip = newTrip => ({
   type: "Insert new trip",
   payload: newTrip,
   reducer: (state, newTripPayload) => {
+    let myTrips = state.myTrips === null ? [] : state.myTrips.slice();
+    myTrips.push(newTripPayload);
+
     return {
       ...state,
-      myTrips: [...state.myTrips, newTripPayload]
+      myTrips: myTrips
     };
   }
 });

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import ProfileGallery from "../profileGallery/ProfileGallery";
 import NavBar from "../navbar/Navbar";
 
-import { ISODateTostringDate } from "../../utils/functions";
+import { ISODateStringTostringDate } from "../../utils/functions";
 import "./MyFriendsProfile.css";
 
 class MyFriendsProfile extends Component {
@@ -30,7 +30,7 @@ class MyFriendsProfile extends Component {
               <p className="birthday">
                 Birthday:{" "}
                 {this.props.selectedFriend.birthday != null &&
-                  ISODateTostringDate(this.props.selectedFriend.birthday)}
+                  ISODateStringTostringDate(this.props.selectedFriend.birthday)}
               </p>
             </div>
             <div className="column">

@@ -19,6 +19,17 @@ export const setSelectedDestination = selectedDestination => ({
   }
 });
 
+export const setSelectedDestinationReviews = reviews => ({
+  type: "Set reviews for selected destination",
+  payload: reviews,
+  reducer: (state, reviewsPayload) => {
+    const selectedDestination = state.selectedDestination;
+    selectedDestination.reviews = reviewsPayload;
+
+    return { ...state, selectedDestination: selectedDestination };
+  }
+});
+
 export const setDestinationsName = destinationsName => ({
   type: "Set all destinations name",
   payload: destinationsName,
@@ -41,6 +52,19 @@ export const getMostPopularDestinations = limit => dispatch => {
   return apiRequest(`getMostPopularDestinations/${limit}`, { method: "GET" })
     .then(theMostPopularDestinations => {
       dispatch(setTheMostPopularDestinations(theMostPopularDestinations));
+    })
+    .catch(e => {
+      throw e;
+    });
+};
+
+export const getDestinationReviews = selectedDestination => dispatch => {
+  return apiRequest(
+    `getReviewsByDestinationId/${selectedDestination.destinationId}`,
+    { method: "GET" }
+  )
+    .then(reviews => {
+      dispatch(setSelectedDestinationReviews(reviews));
     })
     .catch(e => {
       throw e;

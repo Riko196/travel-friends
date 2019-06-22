@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import Select from "react-select";
-import { stringDateToISODate, isNull } from "../../utils/functions";
+import { stringDateToISODateString, isNull } from "../../utils/functions";
 import { insertTrip, getMyTrips } from "../../actions/trips";
 import { getAllDestinationsName } from "../../actions/destinations";
 import DatePicker from "react-datepicker";
@@ -52,8 +52,7 @@ class AddTripModal extends Component {
       isNull(this.state.dateTo) ||
       isNull(this.destinationName.current.state) ||
       isNull(this.category.current.state) ||
-      stringDateToISODate(this.state.dateFrom) >
-        stringDateToISODate(this.state.dateTo)
+      this.state.dateFrom >= this.state.dateTo
     )
       return false;
     return true;
@@ -66,8 +65,8 @@ class AddTripModal extends Component {
         destinationName: this.destinationName.current.state.value.label,
         planned: this.planned.current.value.label,
         category: this.category.current.state.value.label,
-        dateFrom: stringDateToISODate(this.state.dateFrom),
-        dateTo: stringDateToISODate(this.state.dateTo),
+        dateFrom: stringDateToISODateString(this.state.dateFrom),
+        dateTo: stringDateToISODateString(this.state.dateTo),
         tripInfo: this.tripInfo.current.value
       };
       this.props.insertTrip(newTrip).then(response => {
@@ -83,6 +82,7 @@ class AddTripModal extends Component {
   };
 
   handleChangeDateTo = date => {
+    console.log(date);
     this.setState({
       dateTo: date
     });

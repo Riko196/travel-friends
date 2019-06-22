@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import TripDetail from "./TripDetail";
 import { getMyTrips } from "../../actions/trips";
+import { getCurrentDate, ISODateStringToISODate } from "../../utils/functions";
+
 import "./TripsList.css";
 
 class TripsList extends Component {
@@ -12,24 +14,38 @@ class TripsList extends Component {
   }
 
   render() {
+    let oldTrips = [];
+    let plannedTrips = [];
+    const currentDate = getCurrentDate();
+
+    if (this.props.myTrips !== null) {
+      for (let trip of this.props.myTrips) {
+        const dateTo = ISODateStringToISODate(trip.dateTo);
+        if (currentDate > dateTo) {
+          oldTrips.push(trip);
+        } else {
+          plannedTrips.push(trip);
+        }
+      }
+    }
+
     return (
       <div className="my-trips-list-wrapper">
-        <p className="my-trips-name-list">My trips:</p>
+        <p className="my-trips-name-list">Old trips:</p>
         <div className="my-trips-list-container">
-          {this.props.myTrips !== null &&
-            this.props.myTrips.length !== 0 &&
-            this.props.myTrips.map((trip, index) => {
-              const identification = { index: index, tripId: trip.tripId };
-              return (
-                <TripDetail
-                  detail={trip}
-                  key={index}
-                  identification={identification}
-                />
-              );
+          {oldTrips.length !== 0 &&
+            oldTrips.map((trip, index) => {
+              return <TripDetail detail={trip} key={index} planned={false} />;
             })}
-          {this.props.myTrips !== null &&
-            (this.props.myTrips.length === 0 && <p>No added trips</p>)}
+          {oldTrips.length === 0 && <p>No old trips</p>}
+        </div>
+        <p className="my-trips-name-list">Planned trips:</p>
+        <div className="my-trips-list-container">
+          {plannedTrips.length !== 0 &&
+            plannedTrips.map((trip, index) => {
+              return <TripDetail detail={trip} key={index} planned={true} />;
+            })}
+          {plannedTrips.length === 0 && <p>No planned trips</p>}
         </div>
       </div>
     );

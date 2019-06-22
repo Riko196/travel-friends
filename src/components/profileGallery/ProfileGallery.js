@@ -3,16 +3,23 @@ import "./ProfileGallery.css";
 
 class ProfileGallery extends Component {
   render() {
-    return (   
+    return (
       <div className="gallery-container">
-          <i className="left i"></i>
-          <button><img className="gallery-photo" src="" onClick={this.galleryImageClick}></img></button>
-          <i className="right i"></i>
+        <i className="left i" />
+        <button>
+          <img
+            alt="galleryPhoto"
+            className="gallery-photo"
+            src=""
+            onClick={this.galleryImageClick}
+          />
+        </button>
+        <i className="right i" />
       </div>
     );
-}
+  }
 
-  galleryImageClick(){
+  galleryImageClick() {
     console.log("Zoomed.");
   }
 }

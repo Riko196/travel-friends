@@ -48,9 +48,12 @@ const deleteTrip = (knex, tripId) => {
 const getTripsByUserId = (knex, userId) => {
   return knex("trips as t")
     .select("*")
-    .where("userId", userId)
-    .leftJoin("destinations as d", join => {
+    .where("t.userId", userId)
+    .join("destinations as d", join => {
       join.on("t.destinationId", "d.destinationId");
+    })
+    .join("reviews as r", join => {
+      join.on("t.tripId", "r.tripId");
     });
 };
 
@@ -109,6 +112,36 @@ const getMostPopularDestinations = (knex, limit) => {
     .limit(limit);
 };
 
+const getDestinationIdByTripId = (knex, tripId) => {
+  return knex("trips")
+    .select("destinationId")
+    .where("tripId", "=", tripId)
+    .first();
+};
+
+const getReviewsByDestinationId = (knex, destinationId) => {
+  return knex("destinations")
+    .where("destinationId", "=", destinationId)
+    .join("trips", join => {
+      join.on("trips.destinationId", "destinations.destinationId");
+    })
+    .join("reviews", join => {
+      join.on("reviews.tripId", "destinations.tripId");
+    })
+    .join("users", join => {
+      join.on("users.userId", "destinations.userId");
+    })
+    .select(
+      "destinationId, destinationName, destinationPhoto, aboutDestination, name"
+    );
+};
+
+const updateReview = (knex, userId, tripId, reviewText, rating) => {
+  return knex("reviews")
+    .update({ reviewText: reviewText })
+    .where("tripId", "=", tripId);
+};
+
 module.exports = {
   getUserByEmail: getUserByEmail,
   getUserByUserId: getUserByUserId,
@@ -123,5 +156,8 @@ module.exports = {
   getDestinationNameById: getDestinationNameById,
   getUserIdFriends: getUserIdFriends,
   getAllDestinationsName: getAllDestinationsName,
-  getMostPopularDestinations: getMostPopularDestinations
+  getMostPopularDestinations: getMostPopularDestinations,
+  getDestinationIdByTripId: getDestinationIdByTripId,
+  getReviewsByDestinationId: getReviewsByDestinationId,
+  updateReview: updateReview
 };
