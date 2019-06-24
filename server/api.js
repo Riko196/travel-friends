@@ -9,10 +9,10 @@ const {
   insertTrip,
   deleteTrip,
   getTripsByUserId,
+  getUserIdFriends,
   getDestinationById,
   getDestinationIdByName,
   getDestinationNameById,
-  getUserIdFriends,
   getAllDestinationsName,
   getMostPopularDestinations,
   getDestinationIdByTripId,
@@ -21,6 +21,8 @@ const {
 } = require("./queries");
 
 const router = express.Router();
+
+/********************** USERS ***********************/
 
 router.get("/getUser/:email", (req, res, next) => {
   const { email } = req.params;
@@ -35,7 +37,7 @@ router.get("/getUser/:email", (req, res, next) => {
     .catch(e => next(e));
 });
 
-router.post("/logIn", (req, res, next) => {
+router.post("/insertUser", (req, res, next) => {
   const user = req.body;
   insertUser(knex, user)
     .then(inserted => {
@@ -52,6 +54,8 @@ router.put("/updateUser", (req, res, next) => {
     })
     .catch(e => next(e));
 });
+
+/********************** TRIPS ***********************/
 
 router.post("/insertTrip", (req, res, next) => {
   const trip = req.body;
@@ -89,6 +93,8 @@ router.get("/getTripsByUserId/:userId", (req, res, next) => {
     .catch(e => next(e));
 });
 
+/********************** FRIENDS ***********************/
+
 router.get(
   "/getMyFriends/:destinationName/:dateFrom/:dateTo/:userId",
   (req, res, next) => {
@@ -100,6 +106,8 @@ router.get(
       .catch(e => next(e));
   }
 );
+
+/********************** DESTINATIONS ***********************/
 
 router.get("/getAllDestinationsName", (req, res, next) => {
   getAllDestinationsName(knex)
@@ -134,6 +142,8 @@ router.get("/getDestinationIdByTripId/:tripId", (req, res, next) => {
     })
     .catch(e => next(e));
 });
+
+/********************** REVIEWS ***********************/
 
 router.get("/getReviewsByDestinationId/:destinationId", (req, res, next) => {
   const { destinationId } = req.params;

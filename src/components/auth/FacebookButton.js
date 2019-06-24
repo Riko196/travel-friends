@@ -3,8 +3,8 @@ import { compose } from "redux";
 import { has, isEmpty, merge } from "lodash";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { logIn, getUser } from "../../actions/auth";
-import { updateUser } from "../../actions/user";
+import { insertUser, getUser, setLoggedIn } from "../../actions/auth";
+import { updateUser, setUser } from "../../actions/user";
 import { Login } from "react-facebook";
 //import facebookIcon from "../../images/mockup/facebook.svg";
 import "./FacebookButton.css";
@@ -17,7 +17,6 @@ class FacebookButton extends Component {
     ) {
       return;
     }
-    console.log(response);
     this.profilePictureRequest(response);
   };
 
@@ -38,20 +37,31 @@ class FacebookButton extends Component {
       profilePicture => {
         if (has(profilePicture, "picture.data.url"))
           user.profilePhoto = profilePicture.picture.data.url;
-        this.logIn(user);
+        this.communicateWithDatabase(user);
       }
     );
   };
 
-  logIn = user => {
+  communicateWithDatabase = user => {
     getUser(user.email).then(response => {
       if (!isEmpty(response)) {
-        updateUser(merge(response, user));
-      }
-    });
+        const updatedUser = merge(response, user);
 
-    this.props.logIn(user).then(() => {
-      this.props.history.replace("/home");
+        updateUser(updatedUser).then(() => {
+          this.props.logIn(updatedUser);
+          this.props.history.replace("/home");
+        });
+      } else {
+        this.props.insertUser(user).then(userWithUserId => {
+          const finalReduxUser = merge(
+            { accessToken: user.accessToken },
+            userWithUserId
+          );
+
+          this.props.logIn(finalReduxUser);
+          this.props.history.replace("/home");
+        });
+      }
     });
   };
 
@@ -86,6 +96,12 @@ export default compose(
     state => ({
       user: state.user
     }),
-    { logIn }
+    dispatch => ({
+      insertUser,
+      logIn: user => {
+        dispatch(setUser(user));
+        dispatch(setLoggedIn(true));
+      }
+    })
   )
 )(FacebookButton);

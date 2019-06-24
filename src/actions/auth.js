@@ -1,7 +1,6 @@
 import apiRequest from "./apiRequest";
 import { setUser } from "./user";
 import { initialUserState } from "../state/user";
-import { merge } from "lodash";
 
 export const setLoggedIn = loggedIn => ({
   type: "Set loggedIn value",
@@ -15,23 +14,19 @@ export const getUser = email => {
   return apiRequest(`getUser/${email}`, { method: "GET" }).catch(e => {});
 };
 
-export const logIn = user => dispatch => {
+export const getUserIdByEmail = email => {
+  return apiRequest(`getUserIdByEmail/${email}`, { method: "GET" }).catch(
+    e => {}
+  );
+};
+
+export const insertUser = user => dispatch => {
   const data = {
     name: user.name,
     email: user.email,
     profilePhoto: user.profilePhoto
   };
-  return apiRequest(`logIn`, { method: "POST", body: data })
-    .then(wholeUser => {
-      return merge({ accessToken: user.accessToken }, wholeUser);
-    })
-    .then(finalReduxUser => {
-      dispatch(setUser(finalReduxUser));
-      dispatch(setLoggedIn(true));
-    })
-    .catch(e => {
-      dispatch(setLoggedIn(false));
-    });
+  return apiRequest(`insertUser`, { method: "POST", body: data });
 };
 
 export const logOut = () => dispatch => {
@@ -43,12 +38,9 @@ export const logOut = () => dispatch => {
         });
       }
     });
-  })
-    .then(() => {
-      dispatch(setUser(initialUserState));
-      dispatch(setLoggedIn(false));
-    })
-    .then(() => {
-      window.location = "/";
-    });
+  }).then(() => {
+    window.location = "/";
+    dispatch(setUser(initialUserState));
+    dispatch(setLoggedIn(false));
+  });
 };

@@ -1,5 +1,7 @@
 const config = require("../config");
 
+/********************** USERS ***********************/
+
 const getUserByEmail = (knex, email) => {
   return knex("users")
     .select("*")
@@ -14,13 +16,6 @@ const getUserByUserId = (knex, userId) => {
     .first();
 };
 
-const getUserIdByEmail = (knex, email) => {
-  return knex("users")
-    .select("userId")
-    .where("email", email)
-    .first();
-};
-
 const insertUser = (knex, user) => {
   return knex("users")
     .insert(user)
@@ -32,6 +27,8 @@ const updateUser = (knex, user) => {
     .where({ userId: user.userId })
     .update(user);
 };
+
+/********************** TRIPS ***********************/
 
 const insertTrip = (knex, trip) => {
   return knex("trips")
@@ -57,6 +54,28 @@ const getTripsByUserId = (knex, userId) => {
     });
 };
 
+/********************** FRIENDS ***********************/
+
+const getUserIdFriends = async (knex, query) => {
+  const { destinationName, dateFrom, dateTo, userId } = query;
+  const { destinationId } = await getDestinationIdByName(knex, destinationName);
+  const friendsId = await knex("trips")
+    .select("userId")
+    .where("destinationId", "=", destinationId)
+    .whereNot("userId", userId)
+    .andWhere("dateFrom", "<=", dateFrom)
+    .orWhere("dateTo", ">=", dateTo);
+
+  let myFriends = [];
+  for (index in friendsId) {
+    const friend = await getUserByUserId(knex, friendsId[index].userId);
+    if (friend !== undefined) myFriends.push(friend);
+  }
+  return myFriends;
+};
+
+/********************** DESTINATIONS ***********************/
+
 const getDestinationById = (knex, destinationId) => {
   return knex("destinations")
     .select("*")
@@ -76,24 +95,6 @@ const getDestinationNameById = (knex, destinationId) => {
     .select("destinationName")
     .where("destinationId", destinationId)
     .first();
-};
-
-const getUserIdFriends = async (knex, query) => {
-  const { destinationName, dateFrom, dateTo, userId } = query;
-  const { destinationId } = await getDestinationIdByName(knex, destinationName);
-  const friendsId = await knex("trips")
-    .select("userId")
-    .where("destinationId", "=", destinationId)
-    .whereNot("userId", userId)
-    .andWhere("dateFrom", "<=", dateFrom)
-    .orWhere("dateTo", ">=", dateTo);
-
-  let myFriends = [];
-  for (index in friendsId) {
-    const friend = await getUserByUserId(knex, friendsId[index].userId);
-    if (friend !== undefined) myFriends.push(friend);
-  }
-  return myFriends;
 };
 
 const getAllDestinationsName = knex => {
@@ -118,6 +119,8 @@ const getDestinationIdByTripId = (knex, tripId) => {
     .where("tripId", "=", tripId)
     .first();
 };
+
+/********************** REVIEWS ***********************/
 
 const getReviewsByDestinationId = (knex, destinationId) => {
   return knex("destinations")
@@ -151,10 +154,10 @@ module.exports = {
   insertTrip: insertTrip,
   deleteTrip: deleteTrip,
   getTripsByUserId: getTripsByUserId,
+  getUserIdFriends: getUserIdFriends,
   getDestinationById: getDestinationById,
   getDestinationIdByName: getDestinationIdByName,
   getDestinationNameById: getDestinationNameById,
-  getUserIdFriends: getUserIdFriends,
   getAllDestinationsName: getAllDestinationsName,
   getMostPopularDestinations: getMostPopularDestinations,
   getDestinationIdByTripId: getDestinationIdByTripId,
