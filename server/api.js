@@ -17,6 +17,8 @@ const {
   getMostPopularDestinations,
   getDestinationIdByTripId,
   getReviewsByDestinationId,
+  insertReview,
+  deleteReview,
   updateReview
 } = require("./queries");
 
@@ -59,15 +61,30 @@ router.put("/updateUser", (req, res, next) => {
 
 router.post("/insertTrip", (req, res, next) => {
   const trip = req.body;
+  console.log(trip);
   getDestinationIdByName(knex, trip.destinationName)
     .then(result => {
       trip.destinationId = result.destinationId;
       delete trip.destinationName;
       insertTrip(knex, trip)
         .then(insertedTrip => {
+          const emptyReview = {
+            userId: insertedTrip[0].userId,
+            tripId: insertedTrip[0].tripId,
+            reviewText: null,
+            rating: null
+          };
+          console.log("Inserted ", insertedTrip);
           getDestinationById(knex, trip.destinationId).then(destination => {
-            console.log({ ...insertedTrip[0], ...destination });
-            res.send({ ...insertedTrip[0], ...destination });
+            insertReview(knex, emptyReview)
+              .then(insertedReview => {
+                res.send({
+                  ...insertedTrip[0],
+                  ...destination,
+                  ...insertedReview[0]
+                });
+              })
+              .catch(e => next(e));
           });
         })
         .catch(e => next(e));
@@ -78,8 +95,12 @@ router.post("/insertTrip", (req, res, next) => {
 router.delete("/deleteTrip/:tripId", (req, res, next) => {
   const { tripId } = req.params;
   deleteTrip(knex, tripId)
-    .then(result => {
-      res.send({});
+    .then(deletedTrip => {
+      deleteReview(knex, tripId)
+        .then(deletedReview => {
+          res.send({});
+        })
+        .catch(e => next(e));
     })
     .catch(e => next(e));
 });
@@ -88,6 +109,7 @@ router.get("/getTripsByUserId/:userId", (req, res, next) => {
   const { userId } = req.params;
   getTripsByUserId(knex, userId)
     .then(result => {
+      console.log(result);
       res.send(result);
     })
     .catch(e => next(e));

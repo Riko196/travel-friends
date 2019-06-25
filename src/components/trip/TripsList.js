@@ -34,16 +34,16 @@ class TripsList extends Component {
         <p className="my-trips-name-list">Old trips:</p>
         <div className="my-trips-list-container">
           {oldTrips.length !== 0 &&
-            oldTrips.map((trip, index) => {
-              return <TripDetail detail={trip} key={index} planned={false} />;
+            oldTrips.map((trip, key) => {
+              return <TripDetail detail={trip} key={key} planned={false} />;
             })}
           {oldTrips.length === 0 && <p className="no-old-trips">No old trips</p>}
         </div>
         <p className="my-trips-name-list">Planned trips:</p>
         <div className="my-trips-list-container">
           {plannedTrips.length !== 0 &&
-            plannedTrips.map((trip, index) => {
-              return <TripDetail detail={trip} key={index} planned={true} />;
+            plannedTrips.map((trip, key) => {
+              return <TripDetail detail={trip} key={key} planned={true} />;
             })}
           {plannedTrips.length === 0 && <p className="no-planned-trips">No planned trips</p>}
         </div>

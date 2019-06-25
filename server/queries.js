@@ -1,5 +1,3 @@
-const config = require("../config");
-
 /********************** USERS ***********************/
 
 const getUserByEmail = (knex, email) => {
@@ -139,6 +137,18 @@ const getReviewsByDestinationId = (knex, destinationId) => {
     );
 };
 
+const insertReview = (knex, review) => {
+  return knex("reviews")
+    .insert(review)
+    .returning("*");
+};
+
+const deleteReview = (knex, tripId) => {
+  return knex("reviews")
+    .delete()
+    .where("tripId", tripId);
+};
+
 const updateReview = (knex, userId, tripId, reviewText, rating) => {
   return knex("reviews")
     .update({ reviewText: reviewText })
@@ -148,7 +158,6 @@ const updateReview = (knex, userId, tripId, reviewText, rating) => {
 module.exports = {
   getUserByEmail: getUserByEmail,
   getUserByUserId: getUserByUserId,
-  getUserIdByEmail: getUserIdByEmail,
   insertUser: insertUser,
   updateUser: updateUser,
   insertTrip: insertTrip,
@@ -162,5 +171,7 @@ module.exports = {
   getMostPopularDestinations: getMostPopularDestinations,
   getDestinationIdByTripId: getDestinationIdByTripId,
   getReviewsByDestinationId: getReviewsByDestinationId,
+  insertReview: insertReview,
+  deleteReview: deleteReview,
   updateReview: updateReview
 };

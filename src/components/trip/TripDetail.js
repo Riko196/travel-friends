@@ -35,10 +35,7 @@ class TripDetail extends Component {
   };
 
   deleteTrip = e => {
-    this.props.deleteTrip(
-      this.props.identification.index,
-      this.props.identification.tripId
-    );
+    this.props.deleteTrip(this.props.detail.tripId);
   };
 
   editReview = e => {
