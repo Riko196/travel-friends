@@ -20,13 +20,15 @@ export const getUserIdByEmail = email => {
   );
 };
 
-export const insertUser = user => dispatch => {
+export const insertUser = user => {
   const data = {
     name: user.name,
     email: user.email,
     profilePhoto: user.profilePhoto
   };
-  return apiRequest(`insertUser`, { method: "POST", body: data });
+  return apiRequest(`insertUser`, { method: "POST", body: data }).catch(
+    e => {}
+  );
 };
 
 export const logOut = () => dispatch => {
