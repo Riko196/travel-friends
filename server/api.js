@@ -14,7 +14,7 @@ const {
   getDestinationIdByName,
   getDestinationNameById,
   getAllDestinationsName,
-  getMostPopularDestinations,
+  getTheMostPopularDestinations,
   getDestinationIdByTripId,
   getReviewsByDestinationId,
   insertReview,
@@ -74,7 +74,6 @@ router.post("/insertTrip", (req, res, next) => {
             reviewText: null,
             rating: null
           };
-          console.log("Inserted ", insertedTrip);
           getDestinationById(knex, trip.destinationId).then(destination => {
             insertReview(knex, emptyReview)
               .then(insertedReview => {
@@ -98,7 +97,7 @@ router.delete("/deleteTrip/:tripId", (req, res, next) => {
     .then(deletedTrip => {
       deleteReview(knex, tripId)
         .then(deletedReview => {
-          res.send({});
+          return res.send({});
         })
         .catch(e => next(e));
     })
@@ -139,21 +138,37 @@ router.get("/getAllDestinationsName", (req, res, next) => {
     .catch(e => next(e));
 });
 
-router.get("/getMostPopularDestinations/:limit", (req, res, next) => {
+router.get("/getTheMostPopularDestinations/:limit", async (req, res, next) => {
   const { limit } = req.params;
-  getMostPopularDestinations(knex, limit)
-    .then(result => {
-      if (result === null || result === undefined) {
-        res.send([]);
-      }
 
-      for (let destination of result) {
+  try {
+    const theMostPopularDestinations = await getTheMostPopularDestinations(
+      knex,
+      limit
+    );
+
+    if (
+      theMostPopularDestinations === null ||
+      theMostPopularDestinations === undefined
+    ) {
+      res.send([]);
+    }
+
+    for (let destination of theMostPopularDestinations) {
+      const reviews = await getReviewsByDestinationId(
+        knex,
+        destination.destinationId
+      );
+      destination.reviews = reviews;
+      if (reviews === null || reviews === undefined) {
         destination.reviews = [];
       }
+    }
 
-      res.send(result);
-    })
-    .catch(e => next(e));
+    res.send(theMostPopularDestinations);
+  } catch (e) {
+    next(e);
+  }
 });
 
 router.get("/getDestinationIdByTripId/:tripId", (req, res, next) => {

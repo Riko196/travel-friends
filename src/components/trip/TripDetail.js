@@ -7,7 +7,7 @@ import { deleteTrip } from "../../actions/trips";
 import { editReview } from "../../actions/review";
 import emptyStar from "../../images/mockup/empty-star.png";
 import fullStar from "../../images/mockup/full-star.png";
-import { editReviewModalStyle} from "./EditReviewModalStyle";
+import { editReviewModalStyle } from "./EditReviewModalStyle";
 
 import "./TripDetail.css";
 
@@ -45,6 +45,7 @@ class TripDetail extends Component {
       reviewText: this.reviewText.current.value,
       rating: this.state.rating
     });
+    this.closeModal();
   };
 
   editRate = rating => {
@@ -95,10 +96,10 @@ class TripDetail extends Component {
 
               <Rating
                 emptySymbol={
-                  <img className="star" alt="emptySymbol" src={emptyStar} className="icon" />
+                  <img alt="emptySymbol" src={emptyStar} className="icon" />
                 }
                 fullSymbol={
-                  <img className="star" alt="fullSymbol" src={fullStar} className="icon" />
+                  <img alt="fullSymbol" src={fullStar} className="icon" />
                 }
                 initialRating={this.state.rating}
                 onChange={rating => this.editRate(rating)}

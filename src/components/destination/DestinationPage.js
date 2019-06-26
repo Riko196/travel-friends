@@ -26,7 +26,7 @@ class DestinationPage extends Component {
             selectedDestination.reviews.map(review => {
               return (
                 <DestinationReview
-                  id={review.reviewId}
+                  key={review.reviewId}
                   name={review.name}
                   rating={review.rating}
                   reviewText={review.reviewText}

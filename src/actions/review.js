@@ -1,12 +1,12 @@
 import apiRequest from "./apiRequest";
 
-export const editTripReview = review => ({
+export const editTripReview = editedReview => ({
   type: "Set trip review",
-  payload: review,
-  reducer: (state, reviewPayload) => {
+  payload: editedReview,
+  reducer: (state, editedReviewPayload) => {
     const newMyTrips = state.myTrips.map(trip => {
-      if (trip.tripId === reviewPayload.tripId) {
-        return { ...trip, review: reviewPayload };
+      if (trip.tripId === editedReviewPayload.tripId) {
+        return { ...trip, review: editedReviewPayload };
       }
       return trip;
     });
@@ -15,41 +15,73 @@ export const editTripReview = review => ({
   }
 });
 
-export const editDestinationReview = review => ({
+export const editDestinationReview = editedReview => ({
   type: "Set destination review",
-  payload: review,
-  reducer: (state, reviewPayload) => {
+  payload: editedReview,
+  reducer: (state, editedReviewPayload) => {
+    if (state.destinations === null || state.destinations === undefined)
+      return state;
     const newDestinations = state.destinations.map(destination => {
-      if (destination.destinationId === reviewPayload.destinationId) {
-        destination.reviews.map(review => {
-          if (review.reviewId === reviewPayload.reviewId) {
-            return { ...review, reviewText: reviewPayload.reviewText };
+      if (destination.destinationId === editedReviewPayload.destinationId) {
+        const editedReviews = destination.reviews.map(review => {
+          if (review.tripId === editedReviewPayload.tripId) {
+            return {
+              ...review,
+              reviewText: editedReviewPayload.reviewText,
+              rating: editedReviewPayload.rating
+            };
           }
 
           return review;
         });
+
+        return { ...destination, reviews: editedReviews };
+      } else {
+        return destination;
       }
-      return destination;
     });
+
+    return {
+      ...state,
+      destinations: newDestinations
+    };
+  }
+});
+
+export const editTheMostPopularDestinationsReview = editedReview => ({
+  type: "Set the most popular destination review",
+  payload: editedReview,
+  reducer: (state, editedReviewPayload) => {
+    if (
+      state.theMostPopularDestinations === null ||
+      state.theMostPopularDestinations === undefined
+    )
+      return state;
 
     const newTheMostPopularDestinations = state.theMostPopularDestinations.map(
       destination => {
-        if (destination.destinationId === reviewPayload.destinationId) {
-          destination.reviews.map(review => {
-            if (review.reviewId === reviewPayload.reviewId) {
-              return { ...review, reviewText: reviewPayload.reviewText };
+        if (destination.destinationId === editedReviewPayload.destinationId) {
+          const editedReviews = destination.reviews.map(review => {
+            if (review.tripId === editedReviewPayload.tripId) {
+              return {
+                ...review,
+                reviewText: editedReviewPayload.reviewText,
+                rating: editedReviewPayload.rating
+              };
             }
 
             return review;
           });
+
+          return { ...destination, reviews: editedReviews };
+        } else {
+          return destination;
         }
-        return destination;
       }
     );
 
     return {
       ...state,
-      destinations: newDestinations,
       theMostPopularDestinations: newTheMostPopularDestinations
     };
   }
@@ -67,9 +99,11 @@ export const editReview = review => dispatch => {
             ...review,
             destinationId: resultDestinationId.destinationId
           };
-
           dispatch(editTripReview(reviewWithDestinationId));
           dispatch(editDestinationReview(reviewWithDestinationId));
+          dispatch(
+            editTheMostPopularDestinationsReview(reviewWithDestinationId)
+          );
         }
       );
     })
