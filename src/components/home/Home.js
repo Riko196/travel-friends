@@ -5,7 +5,7 @@ import { compose } from "redux";
 import FindThemModal from "./FindThemModal";
 import { withRouter, Link } from "react-router-dom";
 import {
-  getMostPopularDestinations,
+  getTheMostPopularDestinations,
   setSelectedDestination
 } from "../../actions/destinations";
 import Destination from "../destination/Destination";
@@ -19,7 +19,9 @@ class Home extends Component {
 
   componentWillMount() {
     if (this.props.theMostPopularDestinations === null) {
-      this.props.getMostPopularDestinations(countOfTheMostPopularDestinations);
+      this.props.getTheMostPopularDestinations(
+        countOfTheMostPopularDestinations
+      );
     }
   }
 
@@ -62,6 +64,6 @@ export default compose(
       myFriends: state.myFriends,
       theMostPopularDestinations: state.theMostPopularDestinations
     }),
-    { getMostPopularDestinations, setSelectedDestination }
+    { getTheMostPopularDestinations, setSelectedDestination }
   )
 )(Home);

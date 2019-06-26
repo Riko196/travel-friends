@@ -1,4 +1,4 @@
-const config = require("../config");
+/********************** USERS ***********************/
 
 const getUserByEmail = (knex, email) => {
   return knex("users")
@@ -14,13 +14,6 @@ const getUserByUserId = (knex, userId) => {
     .first();
 };
 
-const getUserIdByEmail = (knex, email) => {
-  return knex("users")
-    .select("userId")
-    .where("email", email)
-    .first();
-};
-
 const insertUser = (knex, user) => {
   return knex("users")
     .insert(user)
@@ -32,6 +25,8 @@ const updateUser = (knex, user) => {
     .where({ userId: user.userId })
     .update(user);
 };
+
+/********************** TRIPS ***********************/
 
 const insertTrip = (knex, trip) => {
   return knex("trips")
@@ -57,6 +52,28 @@ const getTripsByUserId = (knex, userId) => {
     });
 };
 
+/********************** FRIENDS ***********************/
+
+const getUserIdFriends = async (knex, query) => {
+  const { destinationName, dateFrom, dateTo, userId } = query;
+  const { destinationId } = await getDestinationIdByName(knex, destinationName);
+  const friendsId = await knex("trips")
+    .select("userId")
+    .where("destinationId", "=", destinationId)
+    .whereNot("userId", userId)
+    .andWhere("dateFrom", "<=", dateFrom)
+    .orWhere("dateTo", ">=", dateTo);
+
+  let myFriends = [];
+  for (index in friendsId) {
+    const friend = await getUserByUserId(knex, friendsId[index].userId);
+    if (friend !== undefined) myFriends.push(friend);
+  }
+  return myFriends;
+};
+
+/********************** DESTINATIONS ***********************/
+
 const getDestinationById = (knex, destinationId) => {
   return knex("destinations")
     .select("*")
@@ -78,29 +95,11 @@ const getDestinationNameById = (knex, destinationId) => {
     .first();
 };
 
-const getUserIdFriends = async (knex, query) => {
-  const { destinationName, dateFrom, dateTo, userId } = query;
-  const { destinationId } = await getDestinationIdByName(knex, destinationName);
-  const friendsId = await knex("trips")
-    .select("userId")
-    .where("destinationId", "=", destinationId)
-    .whereNot("userId", userId)
-    .andWhere("dateFrom", "<=", dateFrom)
-    .orWhere("dateTo", ">=", dateTo);
-
-  let myFriends = [];
-  for (index in friendsId) {
-    const friend = await getUserByUserId(knex, friendsId[index].userId);
-    if (friend !== undefined) myFriends.push(friend);
-  }
-  return myFriends;
-};
-
 const getAllDestinationsName = knex => {
   return knex("destinations").select("destinationName");
 };
 
-const getMostPopularDestinations = (knex, limit) => {
+const getTheMostPopularDestinations = (knex, limit) => {
   return knex("destinations")
     .select("destinations.destinationId", "destinationName", "destinationPhoto")
     .count({ num: "*" })
@@ -119,45 +118,58 @@ const getDestinationIdByTripId = (knex, tripId) => {
     .first();
 };
 
+/********************** REVIEWS ***********************/
+
 const getReviewsByDestinationId = (knex, destinationId) => {
   return knex("destinations")
-    .where("destinationId", "=", destinationId)
+    .where("destinations.destinationId", "=", destinationId)
     .join("trips", join => {
       join.on("trips.destinationId", "destinations.destinationId");
     })
     .join("reviews", join => {
-      join.on("reviews.tripId", "destinations.tripId");
+      join.on("reviews.tripId", "trips.tripId");
     })
     .join("users", join => {
-      join.on("users.userId", "destinations.userId");
+      join.on("users.userId", "reviews.userId");
     })
-    .select(
-      "destinationId, destinationName, destinationPhoto, aboutDestination, name"
-    );
+    .select("users.name", "reviews.*");
+};
+
+const insertReview = (knex, review) => {
+  return knex("reviews")
+    .insert(review)
+    .returning("*");
+};
+
+const deleteReview = (knex, tripId) => {
+  return knex("reviews")
+    .delete()
+    .where("tripId", tripId);
 };
 
 const updateReview = (knex, userId, tripId, reviewText, rating) => {
   return knex("reviews")
-    .update({ reviewText: reviewText })
+    .update({ reviewText: reviewText, rating: rating })
     .where("tripId", "=", tripId);
 };
 
 module.exports = {
   getUserByEmail: getUserByEmail,
   getUserByUserId: getUserByUserId,
-  getUserIdByEmail: getUserIdByEmail,
   insertUser: insertUser,
   updateUser: updateUser,
   insertTrip: insertTrip,
   deleteTrip: deleteTrip,
   getTripsByUserId: getTripsByUserId,
+  getUserIdFriends: getUserIdFriends,
   getDestinationById: getDestinationById,
   getDestinationIdByName: getDestinationIdByName,
   getDestinationNameById: getDestinationNameById,
-  getUserIdFriends: getUserIdFriends,
   getAllDestinationsName: getAllDestinationsName,
-  getMostPopularDestinations: getMostPopularDestinations,
+  getTheMostPopularDestinations: getTheMostPopularDestinations,
   getDestinationIdByTripId: getDestinationIdByTripId,
   getReviewsByDestinationId: getReviewsByDestinationId,
+  insertReview: insertReview,
+  deleteReview: deleteReview,
   updateReview: updateReview
 };

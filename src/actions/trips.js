@@ -25,15 +25,23 @@ export const setNewTrip = newTrip => ({
   }
 });
 
-export const deleteFromMyTrips = index => ({
-  type: `Deleted ${index}. index from my trips`,
-  payload: index,
-  reducer: (state, indexPayload) => {
+export const deleteFromMyTrips = tripId => ({
+  type: `Deleted review with trip id ${tripId}`,
+  payload: tripId,
+  reducer: (state, tripIdPayload) => {
+    let index = null;
+    for (let i = 0; i < state.myTrips.length; i += 1)
+      if (state.myTrips[i].tripId === tripIdPayload) {
+        index = i;
+      }
+
+    if (index === null) return state;
+
     return {
       ...state,
       myTrips: [
-        ...state.myTrips.slice(0, indexPayload),
-        ...state.myTrips.slice(indexPayload + 1)
+        ...state.myTrips.slice(0, index),
+        ...state.myTrips.slice(index + 1)
       ]
     };
   }
@@ -59,10 +67,10 @@ export const insertTrip = data => dispatch => {
     });
 };
 
-export const deleteTrip = (index, tripId) => dispatch => {
+export const deleteTrip = tripId => dispatch => {
   return apiRequest(`deleteTrip/${tripId}`, { method: "DELETE" })
     .then(response => {
-      dispatch(deleteFromMyTrips(index));
+      dispatch(deleteFromMyTrips(tripId));
     })
     .catch(e => {
       throw e;

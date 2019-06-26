@@ -3,8 +3,8 @@ exports.up = (knex, Promise) => {
     table.increments("reviewId").primary();
     table.integer("userId").notNullable();
     table.integer("tripId").notNullable();
-    table.string("reviewText").notNullable();
-    table.integer("rating").notNullable();
+    table.string("reviewText");
+    table.integer("rating");
   });
 };
 

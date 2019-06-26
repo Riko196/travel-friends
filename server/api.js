@@ -9,18 +9,22 @@ const {
   insertTrip,
   deleteTrip,
   getTripsByUserId,
+  getUserIdFriends,
   getDestinationById,
   getDestinationIdByName,
   getDestinationNameById,
-  getUserIdFriends,
   getAllDestinationsName,
-  getMostPopularDestinations,
+  getTheMostPopularDestinations,
   getDestinationIdByTripId,
   getReviewsByDestinationId,
+  insertReview,
+  deleteReview,
   updateReview
 } = require("./queries");
 
 const router = express.Router();
+
+/********************** USERS ***********************/
 
 router.get("/getUser/:email", (req, res, next) => {
   const { email } = req.params;
@@ -35,7 +39,7 @@ router.get("/getUser/:email", (req, res, next) => {
     .catch(e => next(e));
 });
 
-router.post("/logIn", (req, res, next) => {
+router.post("/insertUser", (req, res, next) => {
   const user = req.body;
   insertUser(knex, user)
     .then(inserted => {
@@ -53,17 +57,33 @@ router.put("/updateUser", (req, res, next) => {
     .catch(e => next(e));
 });
 
+/********************** TRIPS ***********************/
+
 router.post("/insertTrip", (req, res, next) => {
   const trip = req.body;
+  console.log(trip);
   getDestinationIdByName(knex, trip.destinationName)
     .then(result => {
       trip.destinationId = result.destinationId;
       delete trip.destinationName;
       insertTrip(knex, trip)
         .then(insertedTrip => {
+          const emptyReview = {
+            userId: insertedTrip[0].userId,
+            tripId: insertedTrip[0].tripId,
+            reviewText: null,
+            rating: null
+          };
           getDestinationById(knex, trip.destinationId).then(destination => {
-            console.log({ ...insertedTrip[0], ...destination });
-            res.send({ ...insertedTrip[0], ...destination });
+            insertReview(knex, emptyReview)
+              .then(insertedReview => {
+                res.send({
+                  ...insertedTrip[0],
+                  ...destination,
+                  ...insertedReview[0]
+                });
+              })
+              .catch(e => next(e));
           });
         })
         .catch(e => next(e));
@@ -74,8 +94,12 @@ router.post("/insertTrip", (req, res, next) => {
 router.delete("/deleteTrip/:tripId", (req, res, next) => {
   const { tripId } = req.params;
   deleteTrip(knex, tripId)
-    .then(result => {
-      res.send({});
+    .then(deletedTrip => {
+      deleteReview(knex, tripId)
+        .then(deletedReview => {
+          return res.send({});
+        })
+        .catch(e => next(e));
     })
     .catch(e => next(e));
 });
@@ -84,10 +108,13 @@ router.get("/getTripsByUserId/:userId", (req, res, next) => {
   const { userId } = req.params;
   getTripsByUserId(knex, userId)
     .then(result => {
+      console.log(result);
       res.send(result);
     })
     .catch(e => next(e));
 });
+
+/********************** FRIENDS ***********************/
 
 router.get(
   "/getMyFriends/:destinationName/:dateFrom/:dateTo/:userId",
@@ -101,6 +128,8 @@ router.get(
   }
 );
 
+/********************** DESTINATIONS ***********************/
+
 router.get("/getAllDestinationsName", (req, res, next) => {
   getAllDestinationsName(knex)
     .then(result => {
@@ -109,21 +138,37 @@ router.get("/getAllDestinationsName", (req, res, next) => {
     .catch(e => next(e));
 });
 
-router.get("/getMostPopularDestinations/:limit", (req, res, next) => {
+router.get("/getTheMostPopularDestinations/:limit", async (req, res, next) => {
   const { limit } = req.params;
-  getMostPopularDestinations(knex, limit)
-    .then(result => {
-      if (result === null || result === undefined) {
-        res.send([]);
-      }
 
-      for (let destination of result) {
+  try {
+    const theMostPopularDestinations = await getTheMostPopularDestinations(
+      knex,
+      limit
+    );
+
+    if (
+      theMostPopularDestinations === null ||
+      theMostPopularDestinations === undefined
+    ) {
+      res.send([]);
+    }
+
+    for (let destination of theMostPopularDestinations) {
+      const reviews = await getReviewsByDestinationId(
+        knex,
+        destination.destinationId
+      );
+      destination.reviews = reviews;
+      if (reviews === null || reviews === undefined) {
         destination.reviews = [];
       }
+    }
 
-      res.send(result);
-    })
-    .catch(e => next(e));
+    res.send(theMostPopularDestinations);
+  } catch (e) {
+    next(e);
+  }
 });
 
 router.get("/getDestinationIdByTripId/:tripId", (req, res, next) => {
@@ -134,6 +179,8 @@ router.get("/getDestinationIdByTripId/:tripId", (req, res, next) => {
     })
     .catch(e => next(e));
 });
+
+/********************** REVIEWS ***********************/
 
 router.get("/getReviewsByDestinationId/:destinationId", (req, res, next) => {
   const { destinationId } = req.params;
