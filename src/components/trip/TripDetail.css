@@ -47,6 +47,47 @@
     background-repeat: no-repeat;
     border: solid 1px transparent;
     background-color: transparent;
+    cursor: pointer;
+}
+
+.edit-review{
+    display: block;
+    margin: auto;
+    width: 100px;
+    background-color: limegreen;
+    color: white;
+    font-weight: 600;
+    border: 1px solid limegreen;
+    font-size: 15px;  
+    height: 25px;
+    margin-top: 1em;
+    cursor: pointer;
+}
+
+.icon{
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 40px;
+    cursor: pointer; 
+}
+
+#editReview{
+    margin-left: 25px !important;
+    margin-top: 40px !important;
+}
+
+.open-modal-btn{
+    width: 29px !important; 
+    height: 29px !important;
+    margin-top: 8px !important;
+    margin-left: 0px !important;
+    background-image: url("../../images/mockup/write_review_icon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: solid 1px transparent;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .trip-date{
