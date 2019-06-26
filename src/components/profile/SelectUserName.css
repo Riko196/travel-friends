@@ -1,0 +1,18 @@
+.enter-username{
+  background-color: cornflowerblue;
+  color: white !important;
+  padding: 0.3em 0.6em;
+  font-weight: 600;
+  border: solid 1px cornflowerblue;
+  cursor: pointer;
+  margin-top: 0.5em;
+}
+
+.p-messenger{
+    font-style: italic;
+}
+
+
+.save-button{
+  width: auto !important;
+}

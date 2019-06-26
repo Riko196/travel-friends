@@ -46,7 +46,7 @@ class SelectUserName extends Component {
     return (
       <div className="enter-username-modal-container">
         <button className="enter-username" onClick={this.openModal}>
-          Enter the username:
+          Set Messenger username
         </button>
         <Modal
           isOpen={this.state.modalIsOpen}
@@ -55,9 +55,8 @@ class SelectUserName extends Component {
           style={modalStyle}
         >
           <label className="modal-label">Username:</label>
-          <p>
-            We need your username on Messenger so you can be contacted by other
-            friends.
+          <p className="p-messenger">
+            Your messenger username will be used to enable direct messenger chatting with other users that provided their username. 
           </p>
           <input
             className="input-text"
@@ -71,6 +70,13 @@ class SelectUserName extends Component {
             value="Save the username"
             onClick={this.updateUserName}
             className="save-button"
+          />
+          <input
+            type="button"
+            name="exit"
+            value="X"
+            onClick={this.closeModal}
+            className="x-button"
           />
         </Modal>
       </div>

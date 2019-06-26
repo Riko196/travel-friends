@@ -7,6 +7,18 @@
     margin-right: 5%;
 }
 
+.no-planned-trips{
+    padding-left: 0.5em;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+.no-old-trips{
+    padding-left: 0.5em;
+    opacity: 0.8;
+    font-style: italic;
+}
+
 @media (max-width: 600px){
     .my-trips-name-list{
         margin-left: 5%;

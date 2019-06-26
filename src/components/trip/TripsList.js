@@ -37,7 +37,7 @@ class TripsList extends Component {
             oldTrips.map((trip, index) => {
               return <TripDetail detail={trip} key={index} planned={false} />;
             })}
-          {oldTrips.length === 0 && <p>No old trips</p>}
+          {oldTrips.length === 0 && <p className="no-old-trips">No old trips</p>}
         </div>
         <p className="my-trips-name-list">Planned trips:</p>
         <div className="my-trips-list-container">
@@ -45,7 +45,7 @@ class TripsList extends Component {
             plannedTrips.map((trip, index) => {
               return <TripDetail detail={trip} key={index} planned={true} />;
             })}
-          {plannedTrips.length === 0 && <p>No planned trips</p>}
+          {plannedTrips.length === 0 && <p className="no-planned-trips">No planned trips</p>}
         </div>
       </div>
     );
