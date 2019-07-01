@@ -8,7 +8,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 3,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -17,7 +17,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 9,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -26,7 +26,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 9,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -35,7 +35,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 9,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -44,7 +44,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 14,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -53,7 +53,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 5,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -62,7 +62,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 10,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -71,7 +71,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 8,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -80,7 +80,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 7,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -89,7 +89,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 13,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -98,7 +98,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 1,
           destinationId: 11,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-19T23:00:00.000Z",
@@ -107,7 +107,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 2,
           destinationId: 2,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-12T23:00:00.000Z",
           dateTo: "2019-03-18T23:00:00.000Z",
@@ -116,7 +116,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 3,
           destinationId: 3,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-03T23:00:00.000Z",
           dateTo: "2019-03-29T23:00:00.000Z",
@@ -125,7 +125,7 @@ exports.seed = (knex, Promise) => {
         {
           userId: 4,
           destinationId: 1,
-          planned: null,
+          planned: false,
           category: null,
           dateFrom: "2019-03-09T23:00:00.000Z",
           dateTo: "2019-04-01T23:00:00.000Z",
@@ -134,7 +134,25 @@ exports.seed = (knex, Promise) => {
         {
           userId: 5,
           destinationId: 1,
-          planned: null,
+          planned: false,
+          category: null,
+          dateFrom: "2019-04-03T23:00:00.000Z",
+          dateTo: "2019-04-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 4,
+          destinationId: 1,
+          planned: true,
+          category: null,
+          dateFrom: "2019-04-03T23:00:00.000Z",
+          dateTo: "2019-04-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 1,
+          destinationId: 1,
+          planned: true,
           category: null,
           dateFrom: "2019-04-03T23:00:00.000Z",
           dateTo: "2019-04-19T23:00:00.000Z",

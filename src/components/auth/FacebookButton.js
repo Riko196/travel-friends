@@ -44,6 +44,7 @@ class FacebookButton extends Component {
 
   communicateWithDatabase = user => {
     getUser(user.email).then(response => {
+      console.log(isEmpty(response));
       if (!isEmpty(response)) {
         const updatedUser = merge(response, user);
 

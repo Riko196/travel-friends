@@ -19,11 +19,11 @@ class AddTripModal extends Component {
     this.state = {
       modalIsOpen: false,
       dateFrom: null,
-      dateTo: null
+      dateTo: null,
+      planned: false
     };
 
     this.destinationName = React.createRef();
-    this.planned = React.createRef();
     this.tripInfo = React.createRef();
     this.category = React.createRef();
   }
@@ -35,40 +35,61 @@ class AddTripModal extends Component {
   }
 
   openModal = () => {
-    this.setState({ modalIsOpen: true, dateFrom: null, dateTo: null });
+    this.setState({
+      modalIsOpen: true,
+      dateFrom: null,
+      dateTo: null,
+      planned: false
+    });
   };
 
   closeModal = () => {
     this.setState({
       modalIsOpen: false,
       dateFrom: null,
-      dateTo: null
+      dateTo: null,
+      planned: false
     });
   };
 
   inputIsCorrect = () => {
     if (
-      isNull(this.state.dateFrom) ||
-      isNull(this.state.dateTo) ||
       isNull(this.destinationName.current.state) ||
-      isNull(this.category.current.state) ||
-      this.state.dateFrom >= this.state.dateTo
+      isNull(this.category.current.state)
     )
       return false;
+    if (this.state.planned === false) {
+      if (
+        isNull(this.state.dateFrom) ||
+        isNull(this.state.dateTo) ||
+        this.state.dateFrom >= this.state.dateTo
+      )
+        return false;
+    }
     return true;
   };
 
   addTrip = () => {
     if (this.inputIsCorrect()) {
+      const dateFrom =
+        this.state.planned === true
+          ? null
+          : stringDateToISODateString(this.state.dateFrom);
+      const dateTo =
+        this.state.planned === true
+          ? null
+          : stringDateToISODateString(this.state.dateTo);
+
       const newTrip = {
         userId: this.props.userId,
         destinationName: this.destinationName.current.state.value.label,
-        planned: this.planned.current.value.label,
+        planned: this.state.planned,
         category: this.category.current.state.value.label,
-        dateFrom: stringDateToISODateString(this.state.dateFrom),
-        dateTo: stringDateToISODateString(this.state.dateTo),
+        dateFrom: dateFrom,
+        dateTo: dateTo,
         tripInfo: this.tripInfo.current.value
       };
+
       this.props.insertTrip(newTrip).then(response => {
         this.closeModal();
       });
@@ -82,9 +103,14 @@ class AddTripModal extends Component {
   };
 
   handleChangeDateTo = date => {
-    console.log(date);
     this.setState({
       dateTo: date
+    });
+  };
+
+  handleChangePlanned = event => {
+    this.setState({
+      planned: event.target.checked
     });
   };
 
@@ -124,22 +150,31 @@ class AddTripModal extends Component {
           />
 
           <label className="modal-label">Planning:</label>
-          <input type="checkbox" ref={this.planned} />
-
-          <label className="modal-label">From:</label>
-          <DatePicker
-            selected={this.state.dateFrom}
-            onChange={this.handleChangeDateFrom}
+          <input
+            type="checkbox"
+            onChange={this.handleChangePlanned}
+            defaultChecked={false}
           />
 
-          <label className="modal-label">To:</label>
-          <DatePicker
-            selected={this.state.dateTo}
-            onChange={this.handleChangeDateTo}
-          />
+          {this.state.planned === false && (
+            <div>
+              <label className="modal-label">From:</label>
+              <DatePicker
+                selected={this.state.dateFrom}
+                onChange={this.handleChangeDateFrom}
+              />
+
+              <label className="modal-label">To:</label>
+              <DatePicker
+                selected={this.state.dateTo}
+                onChange={this.handleChangeDateTo}
+              />
+            </div>
+          )}
 
           <label className="modal-label">Additional info:</label>
           <textarea type="text" className="textarea" ref={this.tripInfo} />
+
           <label className="modal-label">Category:</label>
           <Select
             options={category}
