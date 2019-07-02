@@ -62,7 +62,7 @@ class AddTripModal extends Component {
       if (
         isNull(this.state.dateFrom) ||
         isNull(this.state.dateTo) ||
-        this.state.dateFrom >= this.state.dateTo
+        this.state.dateFrom > this.state.dateTo
       )
         return false;
     }

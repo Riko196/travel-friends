@@ -1,0 +1,33 @@
+.delete-trip-btn-planned{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 29px !important; 
+    height: 29px !important;
+    margin: auto;
+    background-image: url("../../images/mockup/bin.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: solid 1px transparent;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.trip-place-planned{
+    min-width: 45px !important;
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+    font-size: 15pt;
+}
+
+@media (max-width: 600px){
+    .delete-trip-btn-planned{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 35px !important;
+        height: 35px !important;
+    }
+}

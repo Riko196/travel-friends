@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { insertUser, getUser, setLoggedIn } from "../../actions/auth";
 import { updateUser, setUser } from "../../actions/user";
 import { Login } from "react-facebook";
-//import facebookIcon from "../../images/mockup/facebook.svg";
+import facebookIcon from "../../images/mockup/fb.png";
 import "./FacebookButton.css";
 
 class FacebookButton extends Component {
@@ -80,7 +80,7 @@ class FacebookButton extends Component {
         >
           {({ loading, handleClick, error, data }) => (
             <button className="fb-button" onClick={handleClick}>
-              {/* <img src={facebookIcon} /> */}
+              { <i className="fab fa-facebook-square space-after"></i> }
               {!loading && <span>Login with Facebook</span>}
               {loading && <span>Loading...</span>}
             </button>

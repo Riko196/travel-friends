@@ -20,10 +20,9 @@ class PlannedTripDetail extends Component {
             }`)}
             alt="TripsPhoto"
           />
-          <p className="trip-place">{this.props.detail.destinationName}</p>
+          <p className="trip-place-planned">{this.props.detail.destinationName}</p>
         </div>
-
-        <button className="delete-trip-btn" onClick={this.deleteTrip} />
+        <button className="delete-trip-btn-planned" onClick={this.deleteTrip} />
       </div>
     );
   }

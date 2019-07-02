@@ -53,6 +53,11 @@
 .speaking,
 .email {
   opacity: 0.6;
+  word-wrap: break-word;
+}
+
+.about-me{
+  padding-right: 10px;
 }
 
 body {
