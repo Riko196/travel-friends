@@ -71,12 +71,14 @@ class TripDetail extends Component {
           <p className="trip-place">{this.props.detail.destinationName}</p>
         </div>
         <div className="half-2">
-          <p className="trip-date">from: {dateFrom}</p>
-          <p className="trip-date">to: {dateTo}</p>
+          <div className="trip-dates">
+            <p className="trip-date">from: {dateFrom}</p>
+            <p className="trip-date">to: {dateTo}</p>
+          </div>
+          {this.props.planned === true && (
+            <button className="delete-trip-btn" onClick={this.deleteTrip} />
+          )}
         </div>
-        {this.props.planned === true && (
-          <button className="delete-trip-btn" onClick={this.deleteTrip} />
-        )}
         {this.props.planned === false && (
           <div>
             <button className="open-modal-btn" onClick={this.openModal} />

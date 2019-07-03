@@ -9,7 +9,8 @@ const {
   insertTrip,
   deleteTrip,
   getTripsByUserId,
-  getUserIdFriends,
+  getUserIdFriendsWithDate,
+  getUserIdFriendsWithPlanned,
   getDestinationById,
   getDestinationIdByName,
   getDestinationNameById,
@@ -117,12 +118,25 @@ router.get("/getTripsByUserId/:userId", (req, res, next) => {
 /********************** FRIENDS ***********************/
 
 router.get(
-  "/getMyFriends/:destinationName/:dateFrom/:dateTo/:userId",
+  "/getMyFriends/:destinationName/:dateFrom/:dateTo/:userId/:gender",
   (req, res, next) => {
-    const { destinationName, dateFrom, dateTo, userId } = req.params;
-    getUserIdFriends(knex, { destinationName, dateFrom, dateTo, userId })
-      .then(result => {
-        res.send(result);
+    const { destinationName, dateFrom, dateTo, userId, gender } = req.params;
+    getUserIdFriendsWithDate(knex, {
+      destinationName,
+      dateFrom,
+      dateTo,
+      userId,
+      gender
+    })
+      .then(friendsWithDate => {
+        getUserIdFriendsWithPlanned(knex, { destinationName, userId }).then(
+          friendsWithPlanned => {
+            res.send({
+              friendsWithPlanned: friendsWithPlanned,
+              friendsWithDate: friendsWithDate
+            });
+          }
+        );
       })
       .catch(e => next(e));
   }

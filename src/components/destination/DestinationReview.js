@@ -10,7 +10,7 @@ class DestinationReview extends Component {
     const { name, rating, reviewText } = this.props;
     return (
       <div className="destination-review">
-        <p>Name: {name}</p>
+        <p className="review-owner">Name: {name}</p>
         <Rating
           emptySymbol={
             <img alt="emptySymbol" src={emptyStar} className="icon" />
@@ -19,7 +19,7 @@ class DestinationReview extends Component {
           initialRating={rating}
           readonly
         />
-        <p>Review: {reviewText}</p>
+        <p className="review-text">{reviewText}</p>
       </div>
     );
   }

@@ -3,7 +3,7 @@ exports.up = (knex, Promise) => {
     table.increments("tripId").primary();
     table.integer("userId").notNullable();
     table.integer("destinationId").notNullable();
-    table.string("planned");
+    table.boolean("planned");
     table.string("category");
     table.string("dateFrom");
     table.string("dateTo");

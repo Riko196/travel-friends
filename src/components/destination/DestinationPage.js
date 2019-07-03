@@ -17,9 +17,14 @@ class DestinationPage extends Component {
               selectedDestination.destinationPhoto
             }`)}
           />
-          <p className="destination-page-title">
+          <div className="destination-page-title">
+            <h1 className="destination-page-title-p">
             {selectedDestination.destinationName}
-          </p>
+            </h1>
+            <h6 className="destination-description">
+              {"There are great varieties of tourist attractions in Bangkok, mostly historical attractions and temples with elaborate architectures and arts. The most famous temples include Wat Phra Kaew, Wat Pho, Wat Arun, Wat Phu Khao Thong, Wat Ratchanadda, Wat Traimit, Wat Benchamabophit, Wat Bowon, and Wat Sutat. There are palaces, museums, parks, and a wide array of shopping centers, from luxury malls to flea markets and street markets such as Chatuchak Weekend Market, Sampeng Market, and Pahurat Textile Market. Bangkok nightlife is another highlight that has attracted many tourists from all over the world. https://www.tourismthailand.org/About-Thailand/Destination/Bangkok"}
+            </h6>
+          </div>
         </div>
         <div className="reviews">
           {selectedDestination.reviews.length !== 0 &&

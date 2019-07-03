@@ -1,6 +1,7 @@
 .trip-div{
-    width: 500px;
-    height: 50px;
+    width: 300px;
+    height: auto;
+    display: inline-block;
     position: relative;
     border: solid 1px gray;
     margin-left: 1em;
@@ -11,36 +12,36 @@
 
 .half{
     height: 100%;
-    width: 50%;
-    float: left;
+    width: 100%;
 }
 
 .destination-image-detail{
     max-height: 100%;
-    width: auto !important;
-    float: left;
+    max-width: 100%;
     position: relative;
 }
 
 .half-2{
-    height: 100%;
-    width: 40%;
-    float: left;
+    width: 100%;
+    height: auto;
     padding-left: 2em;
+    margin-top: 0.5em !important;
 }
 
 .trip-place{
     position: relative;
-    float: left;
+    text-align: center;
     margin-top: 15px;
     font-weight: 600;
-    padding-left: 15px;
+    font-size: 15pt;
 }
 
 .delete-trip-btn{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
     width: 29px !important; 
     height: 29px !important;
-    margin-top: 8px !important;
     margin-left: 0px !important;
     background-image: url("../../images/mockup/bin.png");
     background-size: contain;
@@ -78,10 +79,11 @@
 }
 
 .open-modal-btn{
-    width: 29px !important; 
-    height: 29px !important;
-    margin-top: 8px !important;
-    margin-left: 0px !important;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 25px !important; 
+    height: 25px !important;
     background-image: url("../../images/mockup/write_review_icon.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -91,21 +93,28 @@
 }
 
 .trip-date{
-    margin-top: 5px;
-    margin-bottom: 3px;
-    width: auto;
+    margin-top: 0px !important;
+    margin-bottom: 10px;
+    max-width: 50%;
+    width: 100%;
+}
+
+.trip-dates{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 @media (max-width: 1000px){
     .trip-div{
-        width: 500px;
+        width: 300px;
     }
     .half-2{
-        width: 40%;
+        width: 100%;
     } 
     
     .half{
-        width: 50%;
+        width: 100%;
     }
 }
 
@@ -125,17 +134,17 @@
         margin-bottom: 5px;
     }
     .half-2{
-        width: 60%;
+        width: 100%;
         margin-top: -5px;
         position: relative;
     } 
 
     .delete-trip-btn{
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
         width: 35px !important;
         height: 35px !important;
-        margin-top: 5px !important;
-        margin-left: 24% !important;
-        margin-bottom: 10px;
     }
 
     .destination-image-detail{

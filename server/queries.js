@@ -54,15 +54,46 @@ const getTripsByUserId = (knex, userId) => {
 
 /********************** FRIENDS ***********************/
 
-const getUserIdFriends = async (knex, query) => {
-  const { destinationName, dateFrom, dateTo, userId } = query;
+const getUserIdFriendsWithDate = async (knex, query) => {
+  const { destinationName, dateFrom, dateTo, userId, gender } = query;
   const { destinationId } = await getDestinationIdByName(knex, destinationName);
   const friendsId = await knex("trips")
     .select("userId")
-    .where("destinationId", "=", destinationId)
-    .whereNot("userId", userId)
-    .andWhere("dateFrom", "<=", dateFrom)
-    .orWhere("dateTo", ">=", dateTo);
+    .whereNot("userId", "=", userId)
+    .andWhere("destinationId", "=", destinationId);
+
+  const friendsIdWithDateFrom = await knex("trips")
+    .select("userId")
+    .where("dateTo", "<=", dateFrom)
+    .andWhere("dateFrom", ">=", dateFrom);
+
+  const friendsIdWithDateTo = await knex("trips")
+    .select("userId")
+    .where("dateTo", "<=", dateTo)
+    .andWhere("dateFrom", ">=", dateTo);
+
+  let myFriends = [];
+  for (index in friendsId) {
+    const friend = await getUserByUserId(knex, friendsId[index].userId);
+    if (friend !== undefined) {
+      if (
+        friendsIdWithDateFrom.includes(index) ||
+        friendsIdWithDateTo.includes(index)
+      )
+        myFriends.push(friend);
+    }
+  }
+  return myFriends;
+};
+
+const getUserIdFriendsWithPlanned = async (knex, query) => {
+  const { destinationName, userId } = query;
+  const { destinationId } = await getDestinationIdByName(knex, destinationName);
+  const friendsId = await knex("trips")
+    .select("userId")
+    .whereNot("userId", "=", userId)
+    .andWhere("destinationId", "=", destinationId)
+    .andWhere("planned", "=", true);
 
   let myFriends = [];
   for (index in friendsId) {
@@ -161,7 +192,8 @@ module.exports = {
   insertTrip: insertTrip,
   deleteTrip: deleteTrip,
   getTripsByUserId: getTripsByUserId,
-  getUserIdFriends: getUserIdFriends,
+  getUserIdFriendsWithDate: getUserIdFriendsWithDate,
+  getUserIdFriendsWithPlanned: getUserIdFriendsWithPlanned,
   getDestinationById: getDestinationById,
   getDestinationIdByName: getDestinationIdByName,
   getDestinationNameById: getDestinationNameById,
