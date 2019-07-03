@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { insertUser, getUser, setLoggedIn } from "../../actions/auth";
 import { updateUser, setUser } from "../../actions/user";
 import { Login } from "react-facebook";
-import facebookIcon from "../../images/mockup/fb.png";
+
 import "./FacebookButton.css";
 
 class FacebookButton extends Component {
