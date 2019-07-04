@@ -7,7 +7,7 @@ import { insertTrip, getMyTrips } from "../../actions/trips";
 import { getAllDestinationsName } from "../../actions/destinations";
 import DatePicker from "react-datepicker";
 import { tripModalStyle } from "./AddTripModalStyle";
-import { category } from "../../utils/constants";
+
 import "./AddTripModal.css";
 
 Modal.setAppElement(document.getElementById("root"));
@@ -25,7 +25,6 @@ class AddTripModal extends Component {
 
     this.destinationName = React.createRef();
     this.tripInfo = React.createRef();
-    this.category = React.createRef();
   }
 
   componentWillMount() {
@@ -53,10 +52,7 @@ class AddTripModal extends Component {
   };
 
   inputIsCorrect = () => {
-    if (
-      isNull(this.destinationName.current.state) ||
-      isNull(this.category.current.state)
-    )
+    if (isNull(this.destinationName.current.state))
       return false;
     if (this.state.planned === false) {
       if (
@@ -84,7 +80,6 @@ class AddTripModal extends Component {
         userId: this.props.userId,
         destinationName: this.destinationName.current.state.value.label,
         planned: this.state.planned,
-        category: this.category.current.state.value.label,
         dateFrom: dateFrom,
         dateTo: dateTo,
         tripInfo: this.tripInfo.current.value
@@ -174,13 +169,6 @@ class AddTripModal extends Component {
 
           <label className="modal-label">Additional info:</label>
           <textarea type="text" className="textarea" ref={this.tripInfo} />
-
-          <label className="modal-label">Category:</label>
-          <Select
-            options={category}
-            ref={this.category}
-            defaultInputValue={""}
-          />
 
           <input
             type="button"
