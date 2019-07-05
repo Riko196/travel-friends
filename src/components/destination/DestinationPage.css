@@ -1,7 +1,7 @@
 .destination-wrapper {
   margin: 0px;
   padding: 0px;
-  padding-top: 50px;
+  padding-top: 0px;
   text-align: center;
   position: relative;
 }
@@ -52,6 +52,7 @@
 .reviews {
   width: 100%;
   height: auto;
+  min-height: 50vh;
   background-color: white;
   margin: auto;
   text-align: left;
