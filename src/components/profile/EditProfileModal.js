@@ -7,7 +7,8 @@ import Select from "react-select";
 import {
   getInputFinalValue,
   getBirthdayFinalValue,
-  getSelectFinalValue
+  getSelectFinalValue,
+  getDefaultValue
 } from "../../utils/functions";
 import { gender, relationship, addiction } from "../../utils/constants";
 import { setUser, updateUser } from "../../actions/user";
@@ -124,6 +125,7 @@ class EditProfileModal extends Component {
             name="aboutme"
             ref={this.aboutme}
             className="textarea"
+            defaultValue={getDefaultValue(user.aboutme)}
           />
           <label className="modal-label">Birthday:</label>
           <DateInput
@@ -140,6 +142,7 @@ class EditProfileModal extends Component {
             name="country"
             ref={this.country}
             maxLength={profileConfig.inputLength}
+            defaultValue={getDefaultValue(user.country)}
           />
           <label className="modal-label">City:</label>
           <input
@@ -148,6 +151,7 @@ class EditProfileModal extends Component {
             name="city"
             ref={this.city}
             maxLength={profileConfig.inputLength}
+            defaultValue={getDefaultValue(user.city)}
           />
           <label className="modal-label">Occupation:</label>
           <input
@@ -156,11 +160,20 @@ class EditProfileModal extends Component {
             name="occupation"
             ref={this.occupation}
             maxLength={profileConfig.inputLength}
+            defaultValue={getDefaultValue(user.occupation)}
           />
           <label className="modal-label">Gender:</label>
-          <Select options={gender} ref={this.gender} />
+          <Select
+            options={gender}
+            ref={this.gender}
+            defaultInputValue={getDefaultValue(user.gender)}
+          />
           <label className="modal-label">Relationship:</label>
-          <Select options={relationship} ref={this.relationship} />
+          <Select
+            options={relationship}
+            ref={this.relationship}
+            defaultInputValue={getDefaultValue(user.gender)}
+          />
           <label className="modal-label">Education:</label>
           <input
             className="input-text"
@@ -168,18 +181,19 @@ class EditProfileModal extends Component {
             name="education"
             ref={this.education}
             maxLength={profileConfig.inputLength}
+            defaultValue={getDefaultValue(user.education)}
           />
           <label className="modal-label">Smoking:</label>
           <Select
             options={addiction}
             ref={this.smoking}
-            defaultInputValue={user.smoking === null ? "" : user.smoking}
+            defaultInputValue={getDefaultValue(user.smoking)}
           />
           <label className="modal-label">Drinking:</label>
           <Select
             options={addiction}
             ref={this.drinking}
-            defaultInputValue={user.drinking === null ? "" : user.drinking}
+            defaultInputValue={getDefaultValue(user.drinking)}
           />
           <label className="modal-label">Speaking:</label>
           <input
@@ -188,6 +202,7 @@ class EditProfileModal extends Component {
             name="speaking"
             ref={this.speaking}
             maxLength={profileConfig.inputLength}
+            defaultValue={getDefaultValue(user.speaking)}
           />
           <input
             type="button"

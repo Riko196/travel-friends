@@ -56,13 +56,15 @@ class SelectUserName extends Component {
         >
           <label className="modal-label">Username:</label>
           <p className="p-messenger">
-            Your messenger username will be used to enable direct messenger chatting with other users that provided their username. 
+            Your messenger username will be used to enable direct messenger
+            chatting with other users that provided their username.
           </p>
           <input
             className="input-text"
             type="text"
             name="userName"
             ref={this.userName}
+            defaultValue={this.props.user.userName}
             maxLength={profileConfig.inputLength}
           />
           <input

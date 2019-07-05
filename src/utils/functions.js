@@ -35,3 +35,7 @@ export const getCurrentDate = () => {
   currentDate.setHours(0, 0, 0, 0);
   return currentDate;
 };
+
+export const getDefaultValue = value => {
+  return value === null ? "" : value;
+};
