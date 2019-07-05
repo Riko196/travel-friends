@@ -132,7 +132,7 @@ const getAllDestinationsName = knex => {
 
 const getTheMostPopularDestinations = (knex, limit) => {
   return knex("destinations")
-    .select("destinations.destinationId", "destinationName", "destinationPhoto")
+    .select("destinations.destinationId", "destinationName", "destinationPhoto", "aboutDestination")
     .count({ num: "*" })
     .join("trips", join => {
       join.on("trips.destinationId", "destinations.destinationId");

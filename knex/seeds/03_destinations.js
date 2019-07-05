@@ -41,7 +41,7 @@ exports.seed = function(knex, Promise) {
       {
         destinationName: 'BANGKOK',
         destinationPhoto: 'BANGKOK.jpg',
-        aboutDestination: '',
+        aboutDestination: 'There are great varieties of tourist attractions in Bangkok, mostly historical attractions and temples with elaborate architectures and arts. The most famous temples include Wat Phra Kaew, Wat Pho, Wat Arun, Wat Phu Khao Thong, Wat Ratchanadda, Wat Traimit, Wat Benchamabophit, Wat Bowon, and Wat Sutat. There are palaces, museums, parks, and a wide array of shopping centers, from luxury malls to flea markets and street markets such as Chatuchak Weekend Market, Sampeng Market, and Pahurat Textile Market.{,}Bangkok nightlife is another highlight that has attracted many tourists from all over the world.{,}https://www.tourismthailand.org/About-Thailand/Destination/Bangkok',
       },
       {
         destinationName: 'Barcelona',
@@ -131,7 +131,7 @@ exports.seed = function(knex, Promise) {
       {
         destinationName: 'dubai',
         destinationPhoto: 'dubai.jpg',
-        aboutDestination: '',
+        aboutDestination: 'http://en.macaotourism.gov.mo/index.php',
       },
       {
         destinationName: 'Dublin',
@@ -186,7 +186,7 @@ exports.seed = function(knex, Promise) {
       {
         destinationName: 'Hong kong',
         destinationPhoto: 'Hong kong.jpg',
-        aboutDestination: '',
+        aboutDestination: "Star Ferry{,}Tian Tan Budha{,}Viktoria peak{,}Lantau island{,}Ngong Ping 360{,}Nan Lian garden{,}Hong Kong disneyland{,}Hong Kong museum of history{,}Victoria harbour{,}Dragon´s back{,}You can find more information on{,}http://www.discoverhongkong.com",
       },
       {
         destinationName: 'Honolulu',
@@ -266,7 +266,7 @@ exports.seed = function(knex, Promise) {
       {
         destinationName: 'london',
         destinationPhoto: 'london.jpg',
-        aboutDestination: '',
+        aboutDestination: 'Are you visiting London? We find perfect source of information for you.{,}https://www.visitlondon.com/',
       },
       {
         destinationName: 'Los Angeles',
@@ -431,7 +431,7 @@ exports.seed = function(knex, Promise) {
       {
         destinationName: 'singapore',
         destinationPhoto: 'singapore.jpg',
-        aboutDestination: '',
+        aboutDestination: 'https://www.visitsingapore.com/en/',
       },
       {
         destinationName: 'Snenzen',

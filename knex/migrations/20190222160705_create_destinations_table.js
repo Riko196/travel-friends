@@ -3,7 +3,7 @@ exports.up = (knex, Promise) => {
     table.increments("destinationId").primary();
     table.string("destinationName").notNullable();
     table.string("destinationPhoto");
-    table.string("aboutDestination");
+    table.text("aboutDestination");
   });
 };
 
