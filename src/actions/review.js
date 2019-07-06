@@ -6,45 +6,12 @@ export const editTripReview = editedReview => ({
   reducer: (state, editedReviewPayload) => {
     const newMyTrips = state.myTrips.map(trip => {
       if (trip.tripId === editedReviewPayload.tripId) {
-        return { ...trip, review: editedReviewPayload };
+        return { ...trip, ...editedReviewPayload };
       }
       return trip;
     });
 
     return { ...state, myTrips: newMyTrips };
-  }
-});
-
-export const editDestinationReview = editedReview => ({
-  type: "Set destination review",
-  payload: editedReview,
-  reducer: (state, editedReviewPayload) => {
-    if (state.destinations === null || state.destinations === undefined)
-      return state;
-    const newDestinations = state.destinations.map(destination => {
-      if (destination.destinationId === editedReviewPayload.destinationId) {
-        const editedReviews = destination.reviews.map(review => {
-          if (review.tripId === editedReviewPayload.tripId) {
-            return {
-              ...review,
-              reviewText: editedReviewPayload.reviewText,
-              rating: editedReviewPayload.rating
-            };
-          }
-
-          return review;
-        });
-
-        return { ...destination, reviews: editedReviews };
-      } else {
-        return destination;
-      }
-    });
-
-    return {
-      ...state,
-      destinations: newDestinations
-    };
   }
 });
 
@@ -100,7 +67,6 @@ export const editReview = review => dispatch => {
             destinationId: resultDestinationId.destinationId
           };
           dispatch(editTripReview(reviewWithDestinationId));
-          dispatch(editDestinationReview(reviewWithDestinationId));
           dispatch(
             editTheMostPopularDestinationsReview(reviewWithDestinationId)
           );

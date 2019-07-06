@@ -7,7 +7,7 @@ import { insertTrip, getMyTrips } from "../../actions/trips";
 import { getAllDestinationsName } from "../../actions/destinations";
 import DatePicker from "react-datepicker";
 import { tripModalStyle } from "./AddTripModalStyle";
-import { category } from "../../utils/constants";
+
 import "./AddTripModal.css";
 
 Modal.setAppElement(document.getElementById("root"));
@@ -25,7 +25,6 @@ class AddTripModal extends Component {
 
     this.destinationName = React.createRef();
     this.tripInfo = React.createRef();
-    this.category = React.createRef();
   }
 
   componentWillMount() {
@@ -53,11 +52,7 @@ class AddTripModal extends Component {
   };
 
   inputIsCorrect = () => {
-    if (
-      isNull(this.destinationName.current.state) ||
-      isNull(this.category.current.state)
-    )
-      return false;
+    if (isNull(this.destinationName.current.state)) return false;
     if (this.state.planned === false) {
       if (
         isNull(this.state.dateFrom) ||
@@ -84,13 +79,12 @@ class AddTripModal extends Component {
         userId: this.props.userId,
         destinationName: this.destinationName.current.state.value.label,
         planned: this.state.planned,
-        category: this.category.current.state.value.label,
         dateFrom: dateFrom,
         dateTo: dateTo,
         tripInfo: this.tripInfo.current.value
       };
 
-      this.props.insertTrip(newTrip).then(response => {
+      this.props.insertTrip(newTrip, this.props.name).then(response => {
         this.closeModal();
       });
     }
@@ -175,13 +169,6 @@ class AddTripModal extends Component {
           <label className="modal-label">Additional info:</label>
           <textarea type="text" className="textarea" ref={this.tripInfo} />
 
-          <label className="modal-label">Category:</label>
-          <Select
-            options={category}
-            ref={this.category}
-            defaultInputValue={""}
-          />
-
           <input
             type="button"
             value="Save trip"
@@ -197,6 +184,7 @@ class AddTripModal extends Component {
 export default connect(
   state => ({
     userId: state.user.userId,
+    name: state.user.name,
     destinationsName: state.destinationsName,
     myTrips: state.myTrips
   }),

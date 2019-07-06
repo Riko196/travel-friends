@@ -29,6 +29,4 @@ export const destinations = [
   { value: "Cernobyl", label: "Cernobyl" }
 ];
 
-export const category = [{ value: "one", label: "One" }];
-
 export const countOfTheMostPopularDestinations = 10;

@@ -24,7 +24,6 @@ export const getMyFriends = data => dispatch => {
     { method: "GET" }
   )
     .then(myFriends => {
-      console.log(myFriends);
       dispatch(setMyFriends(myFriends));
     })
     .catch(e => {

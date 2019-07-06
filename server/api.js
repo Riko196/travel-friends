@@ -76,15 +76,21 @@ router.post("/insertTrip", (req, res, next) => {
             rating: null
           };
           getDestinationById(knex, trip.destinationId).then(destination => {
-            insertReview(knex, emptyReview)
-              .then(insertedReview => {
-                res.send({
-                  ...insertedTrip[0],
-                  ...destination,
-                  ...insertedReview[0]
-                });
-              })
-              .catch(e => next(e));
+            if (insertedTrip[0].planned === false) {
+              insertReview(knex, emptyReview)
+                .then(insertedReview => {
+                  res.send({
+                    ...insertedTrip[0],
+                    ...destination,
+                    ...insertedReview[0]
+                  });
+                })
+                .catch(e => next(e));
+            } else
+              res.send({
+                ...insertedTrip[0],
+                ...destination
+              });
           });
         })
         .catch(e => next(e));
