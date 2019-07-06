@@ -52,8 +52,7 @@ class AddTripModal extends Component {
   };
 
   inputIsCorrect = () => {
-    if (isNull(this.destinationName.current.state))
-      return false;
+    if (isNull(this.destinationName.current.state)) return false;
     if (this.state.planned === false) {
       if (
         isNull(this.state.dateFrom) ||
@@ -85,7 +84,7 @@ class AddTripModal extends Component {
         tripInfo: this.tripInfo.current.value
       };
 
-      this.props.insertTrip(newTrip).then(response => {
+      this.props.insertTrip(newTrip, this.props.name).then(response => {
         this.closeModal();
       });
     }
@@ -185,6 +184,7 @@ class AddTripModal extends Component {
 export default connect(
   state => ({
     userId: state.user.userId,
+    name: state.user.name,
     destinationsName: state.destinationsName,
     myTrips: state.myTrips
   }),

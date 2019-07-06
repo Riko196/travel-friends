@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import Rating from "react-rating";
-import { ISODateStringTostringDate } from "../../utils/functions";
+import {
+  ISODateStringTostringDate,
+  getDefaultValue
+} from "../../utils/functions";
 import { deleteTrip } from "../../actions/trips";
 import { editReview } from "../../actions/review";
 import emptyStar from "../../images/mockup/empty-star.png";
@@ -25,7 +28,10 @@ class TripDetail extends Component {
   }
 
   openModal = () => {
-    this.setState({ modalIsOpen: true });
+    this.setState({
+      modalIsOpen: true,
+      rating: this.props.detail.rating === null ? 0 : this.props.detail.rating
+    });
   };
 
   closeModal = () => {
@@ -112,6 +118,7 @@ class TripDetail extends Component {
                 className="textarea"
                 id="editReview"
                 ref={this.reviewText}
+                defaultValue={getDefaultValue(this.props.detail.reviewText)}
               />
 
               <input

@@ -44,7 +44,6 @@ class FacebookButton extends Component {
 
   communicateWithDatabase = user => {
     getUser(user.email).then(response => {
-      console.log(isEmpty(response));
       if (!isEmpty(response)) {
         const updatedUser = merge(response, user);
 
@@ -80,7 +79,7 @@ class FacebookButton extends Component {
         >
           {({ loading, handleClick, error, data }) => (
             <button className="fb-button" onClick={handleClick}>
-              { <i className="fab fa-facebook-square space-after"></i> }
+              {<i className="fab fa-facebook-square space-after" />}
               {!loading && <span>Login with Facebook</span>}
               {loading && <span>Loading...</span>}
             </button>

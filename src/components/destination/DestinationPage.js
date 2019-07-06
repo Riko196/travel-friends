@@ -7,6 +7,10 @@ import "./DestinationPage.css";
 class DestinationPage extends Component {
   render() {
     const { selectedDestination } = this.props;
+    const reviews = selectedDestination.reviews.filter(review => {
+      return review.rating !== null && review.reviewText !== null;
+    });
+
     return (
       <div className="destination-wrapper">
         <div className="destination-upper-div">
@@ -19,26 +23,32 @@ class DestinationPage extends Component {
           />
           <div className="destination-page-title">
             <h1 className="destination-page-title-p">
-            {selectedDestination.destinationName}
+              {selectedDestination.destinationName}
             </h1>
             <h6 className="destination-description">
-              {selectedDestination.aboutDestination.split('{,}', 100).map(line => {
-                if (line.includes("http://") || line.includes("https://")){
-                  return (
-                    <a href={line} target="_blank">{line}</a>
-                  )
-                } else {
-                return (<div>
-                  {line} <br /> 
-                </div>
-                )}
-              })}
+              {selectedDestination.aboutDestination
+                .split("{,}", 100)
+                .map(line => {
+                  if (line.includes("http://") || line.includes("https://")) {
+                    return (
+                      <a href={line} target="_blank">
+                        {line}
+                      </a>
+                    );
+                  } else {
+                    return (
+                      <div>
+                        {line} <br />
+                      </div>
+                    );
+                  }
+                })}
             </h6>
           </div>
         </div>
         <div className="reviews">
-          {selectedDestination.reviews.length !== 0 &&
-            selectedDestination.reviews.map(review => {
+          {reviews.length !== 0 &&
+            reviews.map(review => {
               return (
                 <DestinationReview
                   key={review.reviewId}
