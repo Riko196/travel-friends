@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ProfileGallery from "../profileGallery/ProfileGallery";
 import NavBar from "../navbar/Navbar";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
 import { getMyFriend } from "../../actions/myFriends";
 import Loading from "../helpful/Loading";
 import { ISODateStringTostringDate } from "../../utils/functions";
@@ -17,10 +19,14 @@ class MyFriendsProfile extends Component {
   }
 
   componentDidMount() {
-    const { userId, getMyFriend } = this.props;
+    const { friendsUserId, myUserId, getMyFriend } = this.props;
+    if (friendsUserId === myUserId) {
+      this.props.history.replace("/profile");
+      return;
+    }
 
     this.setState({ myFriendLoaded: false });
-    getMyFriend(userId).then(() => {
+    getMyFriend(friendsUserId).then(() => {
       this.setState({ myFriendLoaded: true });
     });
   }
@@ -103,14 +109,18 @@ class MyFriendsProfile extends Component {
   }
 }
 
-export default connect(
-  (state, props) => {
-    const userId = Number(props.match.params.userId);
+export default compose(
+  withRouter,
+  connect(
+    (state, props) => {
+      const friendsUserId = Number(props.match.params.userId);
 
-    return {
-      userId,
-      selectedFriend: state.selectedFriend
-    };
-  },
-  { getMyFriend }
+      return {
+        friendsUserId,
+        myUserId: state.user.userId,
+        selectedFriend: state.selectedFriend
+      };
+    },
+    { getMyFriend }
+  )
 )(MyFriendsProfile);
