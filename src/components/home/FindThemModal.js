@@ -73,18 +73,15 @@ class FindThemModal extends Component {
 
   findMyFriends = () => {
     if (this.inputIsCorrect()) {
-      this.props
-        .getMyFriends({
-          destinationName: this.destinationName.current.state.value.value,
-          dateFrom: stringDateToISODateString(this.state.dateFrom),
-          dateTo: stringDateToISODateString(this.state.dateTo),
-          gender: this.gender.current.state.value.value,
-          userId: this.props.user.userId
-        })
-        .then(() => {
-          this.closeModal();
-          this.props.history.push("/home/my-friends");
-        });
+      const destinationName = this.destinationName.current.state.value.value;
+      console.log(destinationName);
+      const dateFrom = stringDateToISODateString(this.state.dateFrom);
+      const dateTo = stringDateToISODateString(this.state.dateTo);
+      const gender = this.gender.current.state.value.value;
+      this.closeModal();
+      this.props.history.push(
+        `/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
+      );
     }
   };
 
@@ -158,7 +155,6 @@ export default compose(
   withRouter,
   connect(
     state => ({
-      user: state.user,
       myFriends: state.myFriends,
       destinationsName: state.destinationsName
     }),

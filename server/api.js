@@ -11,7 +11,7 @@ const {
   getTripsByUserId,
   getUserIdFriendsWithDate,
   getUserIdFriendsWithPlanned,
-  getDestinationById,
+  getDestinationByDestinationId,
   getDestinationIdByName,
   getDestinationNameById,
   getAllDestinationsName,
@@ -30,6 +30,19 @@ const router = express.Router();
 router.get("/getUser/:email", (req, res, next) => {
   const { email } = req.params;
   getUserByEmail(knex, email)
+    .then(result => {
+      if (result === undefined) {
+        res.send({});
+      } else {
+        res.send(result);
+      }
+    })
+    .catch(e => next(e));
+});
+
+router.get("/getUserByUserId/:userId", (req, res, next) => {
+  const { userId } = req.params;
+  getUserByUserId(knex, userId)
     .then(result => {
       if (result === undefined) {
         res.send({});
@@ -127,6 +140,7 @@ router.get(
   "/getMyFriends/:destinationName/:dateFrom/:dateTo/:userId/:gender",
   (req, res, next) => {
     const { destinationName, dateFrom, dateTo, userId, gender } = req.params;
+    console.log(destinationName);
     getUserIdFriendsWithDate(knex, {
       destinationName,
       dateFrom,
@@ -199,6 +213,22 @@ router.get("/getDestinationIdByTripId/:tripId", (req, res, next) => {
     })
     .catch(e => next(e));
 });
+
+router.get(
+  "/getDestinationByDestinationId/:destinationId",
+  (req, res, next) => {
+    const { destinationId } = req.params;
+    getDestinationByDestinationId(knex, destinationId)
+      .then(destination => {
+        getReviewsByDestinationId(knex, destinationId)
+          .then(reviews => {
+            res.send({ ...destination, reviews: reviews });
+          })
+          .catch(e => next(e));
+      })
+      .catch(e => next(e));
+  }
+);
 
 /********************** REVIEWS ***********************/
 

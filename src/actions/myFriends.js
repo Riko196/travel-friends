@@ -30,3 +30,13 @@ export const getMyFriends = data => dispatch => {
       throw e;
     });
 };
+
+export const getMyFriend = userId => dispatch => {
+  return apiRequest(`getUserByUserId/${userId}`, { method: "GET" })
+    .then(myFriend => {
+      dispatch(setSelectedFriend(myFriend));
+    })
+    .catch(e => {
+      throw e;
+    });
+};

@@ -46,3 +46,16 @@ export const getTheMostPopularDestinations = limit => dispatch => {
       throw e;
     });
 };
+
+export const getDestinationByDestinationId = destinationId => dispatch => {
+  return apiRequest(`getDestinationByDestinationId/${destinationId}`, {
+    method: "GET"
+  })
+    .then(destination => {
+      console.log(destination);
+      dispatch(setSelectedDestination(destination));
+    })
+    .catch(e => {
+      throw e;
+    });
+};

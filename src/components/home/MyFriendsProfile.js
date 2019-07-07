@@ -2,12 +2,34 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ProfileGallery from "../profileGallery/ProfileGallery";
 import NavBar from "../navbar/Navbar";
-
+import { getMyFriend } from "../../actions/myFriends";
+import Loading from "../helpful/Loading";
 import { ISODateStringTostringDate } from "../../utils/functions";
 import "./MyFriendsProfile.css";
 
 class MyFriendsProfile extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      myFriendLoaded: false
+    };
+  }
+
+  componentDidMount() {
+    const { userId, getMyFriend } = this.props;
+
+    this.setState({ myFriendLoaded: false });
+    getMyFriend(userId).then(() => {
+      this.setState({ myFriendLoaded: true });
+    });
+  }
+
   render() {
+    if (this.state.myFriendLoaded === false) {
+      return <Loading />;
+    }
+
     return (
       <div className="my-friend-profile-container">
         <NavBar />
@@ -82,8 +104,13 @@ class MyFriendsProfile extends Component {
 }
 
 export default connect(
-  state => ({
-    selectedFriend: state.selectedFriend
-  }),
-  {}
+  (state, props) => {
+    const userId = Number(props.match.params.userId);
+
+    return {
+      userId,
+      selectedFriend: state.selectedFriend
+    };
+  },
+  { getMyFriend }
 )(MyFriendsProfile);

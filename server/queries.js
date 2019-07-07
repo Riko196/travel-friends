@@ -105,7 +105,7 @@ const getUserIdFriendsWithPlanned = async (knex, query) => {
 
 /********************** DESTINATIONS ***********************/
 
-const getDestinationById = (knex, destinationId) => {
+const getDestinationByDestinationId = (knex, destinationId) => {
   return knex("destinations")
     .select("*")
     .where("destinationId", destinationId)
@@ -132,7 +132,12 @@ const getAllDestinationsName = knex => {
 
 const getTheMostPopularDestinations = (knex, limit) => {
   return knex("destinations")
-    .select("destinations.destinationId", "destinationName", "destinationPhoto", "aboutDestination")
+    .select(
+      "destinations.destinationId",
+      "destinationName",
+      "destinationPhoto",
+      "aboutDestination"
+    )
     .count({ num: "*" })
     .join("trips", join => {
       join.on("trips.destinationId", "destinations.destinationId");
@@ -194,7 +199,7 @@ module.exports = {
   getTripsByUserId: getTripsByUserId,
   getUserIdFriendsWithDate: getUserIdFriendsWithDate,
   getUserIdFriendsWithPlanned: getUserIdFriendsWithPlanned,
-  getDestinationById: getDestinationById,
+  getDestinationByDestinationId: getDestinationByDestinationId,
   getDestinationIdByName: getDestinationIdByName,
   getDestinationNameById: getDestinationNameById,
   getAllDestinationsName: getAllDestinationsName,

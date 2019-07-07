@@ -9,6 +9,7 @@ import { Switch } from "react-router";
 import requireAuth from "./components/auth/AuthComponent";
 import Navbar from "./components/navbar/Navbar";
 import DestinationRouter from "./components/destination";
+import PageNotFound from "./components/helpful/PageNotFound";
 import "./App.css";
 
 const authenticatedProfile = requireAuth(Profile);
@@ -22,10 +23,14 @@ class App extends Component {
         <Route exact path="/" component={LandingPage} />
         <Switch>
           <Route path="/home" component={authenticatedHomeRouter} />
-          <Route path="/destination" component={authenticatedDestinationRouter} />
+          <Route
+            path="/destination"
+            component={authenticatedDestinationRouter}
+          />
           <Route path="/profile" component={authenticatedProfile} />
           <Route path="/terms-conditions" component={TermsConditions} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route exact path="/page-not-found" component={PageNotFound} />
         </Switch>
       </div>
     );
