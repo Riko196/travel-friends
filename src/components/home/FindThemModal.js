@@ -74,7 +74,6 @@ class FindThemModal extends Component {
   findMyFriends = () => {
     if (this.inputIsCorrect()) {
       const destinationName = this.destinationName.current.state.value.value;
-      console.log(destinationName);
       const dateFrom = stringDateToISODateString(this.state.dateFrom);
       const dateTo = stringDateToISODateString(this.state.dateTo);
       const gender = this.gender.current.state.value.value;

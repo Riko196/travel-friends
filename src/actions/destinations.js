@@ -52,7 +52,6 @@ export const getDestinationByDestinationId = destinationId => dispatch => {
     method: "GET"
   })
     .then(destination => {
-      console.log(destination);
       dispatch(setSelectedDestination(destination));
     })
     .catch(e => {

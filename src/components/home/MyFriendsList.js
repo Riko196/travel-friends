@@ -85,7 +85,7 @@ export default compose(
       const dateFrom = props.match.params.dateFrom;
       const dateTo = props.match.params.dateTo;
       const gender = props.match.params.gender;
-      console.log(destinationName);
+
       return {
         destinationName,
         dateFrom,
