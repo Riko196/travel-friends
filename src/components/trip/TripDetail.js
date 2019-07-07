@@ -6,6 +6,7 @@ import {
   ISODateStringTostringDate,
   getDefaultValue
 } from "../../utils/functions";
+import { Link } from "react-router-dom";
 import { deleteTrip } from "../../actions/trips";
 import { editReview } from "../../actions/review";
 import emptyStar from "../../images/mockup/empty-star.png";
@@ -67,13 +68,15 @@ class TripDetail extends Component {
     return (
       <div className="trip-div">
         <div className="half">
-          <img
-            className="destination-image-detail"
-            src={require(`../../images/cityPhotos/${
-              this.props.detail.destinationPhoto
-            }`)}
-            alt="TripsPhoto"
-          />
+          <Link to={`/destination/${this.props.detail.destinationId}`}>
+            <img
+              className="destination-image-detail"
+              src={require(`../../images/cityPhotos/${
+                this.props.detail.destinationPhoto
+              }`)}
+              alt="TripsPhoto"
+            />
+          </Link>
           <p className="trip-place">{this.props.detail.destinationName}</p>
         </div>
         <div className="half-2">

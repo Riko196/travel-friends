@@ -11,10 +11,14 @@ class HomeRouter extends Component {
       <div className="home-router-container">
         <Switch>
           <Route exact path="/home" component={Home} />
-          <Route exact path="/home/my-friends" component={MyFriendsList} />
           <Route
             exact
-            path="/home/my-friends/profile"
+            path="/home/my-friends/:destinationName/:dateFrom/:dateTo/:gender"
+            component={MyFriendsList}
+          />
+          <Route
+            exact
+            path="/home/my-friends/profile/:userId"
             component={MyFriendsProfile}
           />
         </Switch>

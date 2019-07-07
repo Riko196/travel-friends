@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Rating from "react-rating";
+import { Link } from "react-router-dom";
 import emptyStar from "../../images/mockup/empty-star.png";
 import fullStar from "../../images/mockup/full-star.png";
 
@@ -7,10 +8,12 @@ import "./DestinationReview.css";
 
 class DestinationReview extends Component {
   render() {
-    const { name, rating, reviewText } = this.props;
+    const { name, rating, reviewText, userId } = this.props;
     return (
       <div className="destination-review">
-        <p className="review-owner">Name: {name}</p>
+        <p className="review-owner">
+          Name: <Link to={`/home/my-friends/profile/${userId}`}>{name}</Link>
+        </p>
         <Rating
           emptySymbol={
             <img alt="emptySymbol" src={emptyStar} className="icon" />

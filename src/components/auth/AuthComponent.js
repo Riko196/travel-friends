@@ -6,7 +6,6 @@ import { compose } from "redux";
 export default AuthenticatedComponent => {
   class AuthComponent extends React.Component {
     render() {
-      console.log("Logged in: ", this.props);
       return this.props.loggedIn ? (
         <AuthenticatedComponent {...this.props} />
       ) : (

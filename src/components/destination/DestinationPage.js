@@ -1,15 +1,37 @@
 import React, { Component } from "react";
 import DestinationReview from "./DestinationReview";
+import { getDestinationByDestinationId } from "../../actions/destinations";
 import { connect } from "react-redux";
+import Loading from "../helpful/Loading";
 
 import "./DestinationPage.css";
 
 class DestinationPage extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      destinationLoaded: false
+    };
+  }
+
+  componentDidMount() {
+    const { destinationId, getDestinationByDestinationId } = this.props;
+
+    this.setState({ destinationLoaded: false });
+    getDestinationByDestinationId(destinationId).then(() => {
+      this.setState({ destinationLoaded: true });
+    });
+  }
+
   render() {
     const { selectedDestination } = this.props;
     const reviews = selectedDestination.reviews.filter(review => {
       return review.rating !== null && review.reviewText !== null;
     });
+    if (this.state.destinationLoaded === false) {
+      return <Loading />;
+    }
 
     return (
       <div className="destination-wrapper">
@@ -31,7 +53,7 @@ class DestinationPage extends Component {
                 .map(line => {
                   if (line.includes("http://") || line.includes("https://")) {
                     return (
-                      <a href={line} target="_blank">
+                      <a href={line} rel="noopener noreferrer" target="_blank">
                         {line}
                       </a>
                     );
@@ -52,6 +74,7 @@ class DestinationPage extends Component {
               return (
                 <DestinationReview
                   key={review.reviewId}
+                  userId={review.userId}
                   name={review.name}
                   rating={review.rating}
                   reviewText={review.reviewText}
@@ -65,8 +88,13 @@ class DestinationPage extends Component {
 }
 
 export default connect(
-  state => ({
-    selectedDestination: state.selectedDestination
-  }),
-  {}
+  (state, props) => {
+    const destinationId = Number(props.match.params.destinationId);
+
+    return {
+      destinationId,
+      selectedDestination: state.selectedDestination
+    };
+  },
+  { getDestinationByDestinationId }
 )(DestinationPage);
