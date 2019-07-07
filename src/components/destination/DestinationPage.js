@@ -74,6 +74,7 @@ class DestinationPage extends Component {
               return (
                 <DestinationReview
                   key={review.reviewId}
+                  userId={review.userId}
                   name={review.name}
                   rating={review.rating}
                   reviewText={review.reviewText}
