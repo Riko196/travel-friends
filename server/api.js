@@ -88,7 +88,7 @@ router.post("/insertTrip", (req, res, next) => {
             reviewText: null,
             rating: null
           };
-          getDestinationById(knex, trip.destinationId).then(destination => {
+          getDestinationByDestinationId(knex, trip.destinationId).then(destination => {
             if (insertedTrip[0].planned === false) {
               insertReview(knex, emptyReview)
                 .then(insertedReview => {

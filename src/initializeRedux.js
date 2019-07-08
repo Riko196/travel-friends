@@ -5,8 +5,10 @@ import { initialMyFriendsState } from "./state/myFriends";
 import { initialDestinationsState } from "./state/destinations";
 import { initialTripsState } from "./state/trips";
 import thunk from "redux-thunk";
+import storage from "redux-persist/lib/storage";
+import { persistStore, persistReducer } from "redux-persist";
 
-const getInitialState = () => {
+export const getInitialState = () => {
   return {
     ...initialAuthState,
     ...initialUserState,
@@ -28,6 +30,19 @@ const rootReducer = (state, action) => {
   }
 };
 
+const persistConfig = {
+  key: "root",
+  storage
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const configuredStore = () => {
-  return createStore(rootReducer, getInitialState(), applyMiddleware(thunk));
+  let store = createStore(
+    persistedReducer,
+    getInitialState(),
+    applyMiddleware(thunk)
+  );
+  let persistor = persistStore(store);
+  return { store, persistor };
 };
