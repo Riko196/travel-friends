@@ -1,12 +1,19 @@
 import apiRequest from "./apiRequest";
-import { setUser } from "./user";
-import { initialUserState } from "../state/user";
+import { getInitialState } from "../initializeRedux";
 
 export const setLoggedIn = loggedIn => ({
   type: "Set loggedIn value",
   payload: loggedIn,
   reducer: (state, loggedInPayload) => {
     return { ...state, loggedIn: loggedInPayload };
+  }
+});
+
+export const setInitialState = initialState => ({
+  type: "Set initial state",
+  payload: initialState,
+  reducer: (state, initialStatePayload) => {
+    return { ...initialStatePayload };
   }
 });
 
@@ -40,9 +47,9 @@ export const logOut = () => dispatch => {
         });
       }
     });
+    resolve();
   }).then(() => {
+    dispatch(setInitialState(getInitialState()));
     window.location = "/";
-    dispatch(setUser(initialUserState));
-    dispatch(setLoggedIn(false));
   });
 };

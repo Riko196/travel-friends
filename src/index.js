@@ -7,16 +7,19 @@ import { configuredStore } from "./initializeRedux";
 import { Provider } from "react-redux";
 import { authConfig } from "./utils/config";
 import * as serviceWorker from "./serviceWorker";
+import { PersistGate } from "redux-persist/integration/react";
 
 import "./index.css";
 
-const store = configuredStore();
+const reduxRoot = configuredStore();
 ReactDOM.render(
   <FacebookProvider appId={authConfig.facebookId}>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+    <Provider store={reduxRoot.store}>
+      <PersistGate loading={null} persistor={reduxRoot.persistor}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </FacebookProvider>,
   document.getElementById("root")
