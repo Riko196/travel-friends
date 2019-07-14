@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Navbar from "../navbar/Navbar";
 import { compose } from "redux";
 import FindThemModal from "./FindThemModal";
+import DestinationSearch from "../destination/DestinationSearch";
 import { withRouter, Link } from "react-router-dom";
 import { getTheMostPopularDestinations } from "../../actions/destinations";
 import Destination from "../destination/Destination";
@@ -30,6 +31,7 @@ class Home extends Component {
               Your travel friends are waiting for you!
             </p>
             <FindThemModal />
+            <DestinationSearch />
           </div>
         </div>
         <p className="most-popular-p">Most popular destinations</p>
