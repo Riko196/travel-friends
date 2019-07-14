@@ -27,7 +27,7 @@ class AddTripModal extends Component {
     this.tripInfo = React.createRef();
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.destinationsName.length === 0) {
       this.props.getAllDestinationsName();
     }
