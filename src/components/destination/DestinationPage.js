@@ -50,16 +50,21 @@ class DestinationPage extends Component {
             <h6 className="destination-description">
               {selectedDestination.aboutDestination
                 .split("{,}", 100)
-                .map(line => {
+                .map((line, index) => {
                   if (line.includes("http://") || line.includes("https://")) {
                     return (
-                      <a href={line} rel="noopener noreferrer" target="_blank">
+                      <a
+                        href={line}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        key={index}
+                      >
                         {line}
                       </a>
                     );
                   } else {
                     return (
-                      <div>
+                      <div key={index}>
                         {line} <br />
                       </div>
                     );
