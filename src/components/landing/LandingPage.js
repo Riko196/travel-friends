@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import FacebookButton from "../auth/FacebookButton.js";
+import { cleanState } from "../../actions/auth";
+import { connect } from "react-redux";
 import arrowDown from "../../images/landing/arrow-down.png";
 import taskList from "../../images/landing/task-list.png";
 import magnifier from "../../images/landing/magnifier.png";
@@ -9,6 +11,7 @@ import "./LandingPage.css";
 
 class LandingPage extends Component {
   componentDidMount() {
+    this.props.cleanState();
     var y = document.querySelectorAll(".landing-page__reveal");
     window.onscroll = function() {
       scroll();
@@ -199,4 +202,7 @@ class LandingPage extends Component {
   }
 }
 
-export default LandingPage;
+export default connect(
+  null,
+  { cleanState }
+)(LandingPage);
