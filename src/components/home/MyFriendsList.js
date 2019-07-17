@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link, Redirect } from "react-router-dom";
 import { compose } from "redux";
 import MyFriendsDetail from "./MyFriendsDetail";
 import { getMyFriends } from "../../actions/myFriends";
 import Loading from "../helpful/Loading";
+import {
+  isISODateFormat,
+  isGender,
+  isDestinationName
+} from "../../utils/functions";
 
 import "./MyFriendsList.css";
 
@@ -13,18 +18,37 @@ class MyFriendsList extends Component {
     super();
 
     this.state = {
-      myFriendsLoaded: false
+      myFriendsLoaded: false,
+      error: false
     };
   }
 
   componentDidMount() {
-    const { getMyFriends } = this.props;
+    const {
+      getMyFriends,
+      destinationName,
+      userId,
+      dateFrom,
+      dateTo,
+      gender
+    } = this.props;
+
+    if (
+      !isDestinationName(destinationName) ||
+      !isISODateFormat(dateFrom) ||
+      !isISODateFormat(dateTo) ||
+      !isGender(gender)
+    ) {
+      this.setState({ error: true });
+      return;
+    }
+
     const data = {
-      destinationName: this.props.destinationName,
-      userId: this.props.userId,
-      dateFrom: this.props.dateFrom,
-      dateTo: this.props.dateTo,
-      gender: this.props.gender
+      destinationName: destinationName,
+      userId: userId,
+      dateFrom: dateFrom,
+      dateTo: dateTo,
+      gender: gender
     };
 
     this.setState({ myFriendsLoaded: false });
@@ -33,6 +57,10 @@ class MyFriendsList extends Component {
     });
   }
   render() {
+    if (this.state.error) {
+      return <Redirect to="/page-not-found" />;
+    }
+
     if (this.state.myFriendLoaded === false) {
       return <Loading />;
     }

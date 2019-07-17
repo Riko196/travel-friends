@@ -1,3 +1,6 @@
+import moment from "moment";
+import { ISODateFormat, gender } from "./constants";
+
 export const removeAllSpaces = string => {
   return string.replace(/\s+/g, "");
 };
@@ -12,6 +15,13 @@ export const ISODateStringTostringDate = isoDate => {
 
 export const ISODateStringToISODate = isoDateString => {
   return new Date(isoDateString);
+};
+
+export const isISODateFormat = isoDateString => {
+  return (
+    moment(isoDateString, "YYYY-MM-DDTHH:mm:ss.sssZ").isValid() &&
+    isoDateString.length === ISODateFormat.length
+  );
 };
 
 export const isNull = object => {
@@ -38,4 +48,22 @@ export const getCurrentDate = () => {
 
 export const getDefaultValue = value => {
   return value === null ? "" : value;
+};
+
+export const isGender = genderString => {
+  for (const element of gender) {
+    if (element.value === genderString) {
+      return true;
+    }
+  }
+  return false;
+};
+
+export const isDestinationName = (destinations, destinationName) => {
+  for (const destination of destinations) {
+    if (destination.destinationName === destinationName) {
+      return true;
+    }
+  }
+  return false;
 };
