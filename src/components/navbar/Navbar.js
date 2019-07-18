@@ -19,7 +19,7 @@ class Navbar extends Component {
           </NavLink>
         </div>
         <div className="navbar-item">
-          <NavLink to="/about" className="navbar-link">
+          <NavLink to="/about-us" className="navbar-link">
             About
           </NavLink>
         </div>
