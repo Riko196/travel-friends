@@ -30,3 +30,5 @@ export const destinations = [
 ];
 
 export const countOfTheMostPopularDestinations = 10;
+
+export const ISODateFormat = "YYYY-MM-DDTHH:mm:ss.sssZ";

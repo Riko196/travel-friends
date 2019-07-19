@@ -3,6 +3,8 @@ import DestinationReview from "./DestinationReview";
 import { getDestinationByDestinationId } from "../../actions/destinations";
 import { connect } from "react-redux";
 import Loading from "../helpful/Loading";
+import { Redirect } from "react-router-dom";
+import { isEmpty } from "lodash";
 
 import "./DestinationPage.css";
 
@@ -11,24 +13,39 @@ class DestinationPage extends Component {
     super();
 
     this.state = {
-      destinationLoaded: false
+      destinationLoaded: false,
+      error: false
     };
   }
 
   componentDidMount() {
     const { destinationId, getDestinationByDestinationId } = this.props;
 
+    if (isNaN(destinationId)) {
+      this.setState({ error: true });
+      return;
+    }
+
     this.setState({ destinationLoaded: false });
     getDestinationByDestinationId(destinationId).then(() => {
-      this.setState({ destinationLoaded: true });
+      if (isEmpty(this.props.selectedDestination)) {
+        this.setState({ error: true });
+      } else {
+        this.setState({ destinationLoaded: true, error: false });
+      }
     });
   }
 
   render() {
+    if (this.state.error) {
+      return <Redirect to="/page-not-found" />;
+    }
+
     const { selectedDestination } = this.props;
     const reviews = selectedDestination.reviews.filter(review => {
       return review.rating !== null && review.reviewText !== null;
     });
+
     if (this.state.destinationLoaded === false) {
       return <Loading />;
     }

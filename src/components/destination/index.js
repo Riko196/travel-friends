@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import DestinationPage from "./DestinationPage";
-
 class DestinationRouter extends Component {
   render() {
     return (
@@ -12,6 +11,7 @@ class DestinationRouter extends Component {
             path="/destination/:destinationId"
             component={DestinationPage}
           />
+          <Redirect to="/page-not-found" />
         </Switch>
       </div>
     );

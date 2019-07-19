@@ -28,7 +28,7 @@ class FindThemModal extends Component {
     this.gender = React.createRef();
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.destinationsName === null) {
       this.props.getAllDestinationsName();
     }

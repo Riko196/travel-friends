@@ -7,6 +7,9 @@ import { compose } from "redux";
 import { getMyFriend } from "../../actions/myFriends";
 import Loading from "../helpful/Loading";
 import { ISODateStringTostringDate } from "../../utils/functions";
+import { Redirect } from "react-router-dom";
+import { isEmpty } from "lodash";
+
 import "./MyFriendsProfile.css";
 
 class MyFriendsProfile extends Component {
@@ -14,7 +17,8 @@ class MyFriendsProfile extends Component {
     super();
 
     this.state = {
-      myFriendLoaded: false
+      myFriendLoaded: false,
+      error: false
     };
   }
 
@@ -25,13 +29,27 @@ class MyFriendsProfile extends Component {
       return;
     }
 
+    if (isNaN(friendsUserId)) {
+      this.setState({ error: true });
+      return;
+    }
+
+    console.log("Ahoj");
     this.setState({ myFriendLoaded: false });
     getMyFriend(friendsUserId).then(() => {
-      this.setState({ myFriendLoaded: true });
+      if (isEmpty(this.props.selectedFriend)) {
+        this.setState({ error: true });
+      } else {
+        this.setState({ myFriendLoaded: true, error: false });
+      }
     });
   }
 
   render() {
+    if (this.state.error) {
+      return <Redirect to="/page-not-found" />;
+    }
+
     if (this.state.myFriendLoaded === false) {
       return <Loading />;
     }

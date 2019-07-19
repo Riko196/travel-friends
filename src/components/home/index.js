@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Home from "./Home";
 import MyFriendsList from "./MyFriendsList";
 import MyFriendsProfile from "./MyFriendsProfile";
-
 class HomeRouter extends Component {
   render() {
     return (
@@ -21,6 +20,7 @@ class HomeRouter extends Component {
             path="/home/my-friends/profile/:userId"
             component={MyFriendsProfile}
           />
+          <Redirect to="/page-not-found" />
         </Switch>
       </div>
     );

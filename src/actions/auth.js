@@ -1,5 +1,6 @@
 import apiRequest from "./apiRequest";
 import { getInitialState } from "../initializeRedux";
+import storage from "redux-persist/lib/storage";
 
 export const setLoggedIn = loggedIn => ({
   type: "Set loggedIn value",
@@ -13,9 +14,14 @@ export const setInitialState = initialState => ({
   type: "Set initial state",
   payload: initialState,
   reducer: (state, initialStatePayload) => {
+    storage.removeItem("persist:root");
     return { ...initialStatePayload };
   }
 });
+
+export const cleanState = () => dispatch => {
+  dispatch(setInitialState(getInitialState()));
+};
 
 export const getUser = email => {
   return apiRequest(`getUser/${email}`, { method: "GET" }).catch(e => {});

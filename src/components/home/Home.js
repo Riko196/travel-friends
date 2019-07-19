@@ -11,7 +11,7 @@ import { countOfTheMostPopularDestinations } from "../../utils/constants";
 import "./Home.css";
 
 class Home extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.theMostPopularDestinations === null) {
       this.props.getTheMostPopularDestinations(
         countOfTheMostPopularDestinations

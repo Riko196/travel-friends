@@ -8,7 +8,7 @@ import PlannedTripDetail from "./PlannedTripDetail";
 import "./TripsList.css";
 
 class TripsList extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.myTrips === null) {
       this.props.getMyTrips(this.props.userId);
     }
