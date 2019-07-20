@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ProfileGallery from "../profileGallery/ProfileGallery";
+//import ProfileGallery from "../profileGallery/ProfileGallery";
 import ProfileTrips from "../trip/ProfileTrips";
 import NavBar from "../navbar/Navbar";
 import EditProfileModal from "./EditProfileModal";
@@ -58,7 +58,7 @@ class Profile extends Component {
           <div className="travel-plan">
             <ProfileTrips />
           </div>
-          <ProfileGallery />
+          {/*<ProfileGallery />*/}
         </div>
       </div>
     );
