@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import { setUser, updateUser } from "../../actions/user";
-import { profileConfig } from "../../utils/config";
 import { modalStyle } from "./EditProfileModalStyle";
+import { isInputValid, getDefaultValue } from "../../utils/functions";
+import { inputMaxLength } from "../../utils/constants";
 
 import "./SelectUserName.css";
 
@@ -28,18 +29,31 @@ class SelectUserName extends Component {
     this.setState({ modalIsOpen: false });
   };
 
-  updateUserName = () => {
-    const userName = this.userName.current.value;
+  inputIsCorrect = userName => {
     if (userName === null || userName === "") {
-      return;
+      alert("Input can not be empty!");
+      return false;
     }
 
-    const updatedUser = this.props.user;
-    updatedUser.userName = userName;
-    updateUser(updatedUser).then(result => {
-      this.props.setUser(updatedUser);
-      this.closeModal();
-    });
+    if (!isInputValid(userName)) {
+      alert("Unallowed characters!");
+      return false;
+    }
+
+    return true;
+  };
+
+  updateUserName = () => {
+    const userName = this.userName.current.value;
+
+    if (this.inputIsCorrect(userName)) {
+      const updatedUser = this.props.user;
+      updatedUser.userName = userName;
+      updateUser(updatedUser).then(result => {
+        this.props.setUser(updatedUser);
+        this.closeModal();
+      });
+    }
   };
 
   render() {
@@ -64,8 +78,8 @@ class SelectUserName extends Component {
             type="text"
             name="userName"
             ref={this.userName}
-            defaultValue={this.props.user.userName}
-            maxLength={profileConfig.inputLength}
+            defaultValue={getDefaultValue(this.props.user.userName)}
+            maxLength={inputMaxLength}
           />
           <input
             type="button"
