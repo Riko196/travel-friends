@@ -34,7 +34,6 @@ class MyFriendsProfile extends Component {
       return;
     }
 
-    console.log("Ahoj");
     this.setState({ myFriendLoaded: false });
     getMyFriend(friendsUserId).then(() => {
       if (isEmpty(this.props.selectedFriend)) {

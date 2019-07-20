@@ -75,7 +75,7 @@ router.put("/updateUser", (req, res, next) => {
 
 router.post("/insertTrip", (req, res, next) => {
   const trip = req.body;
-  console.log(trip);
+
   getDestinationIdByName(knex, trip.destinationName)
     .then(result => {
       trip.destinationId = result.destinationId;
@@ -88,23 +88,25 @@ router.post("/insertTrip", (req, res, next) => {
             reviewText: null,
             rating: null
           };
-          getDestinationByDestinationId(knex, trip.destinationId).then(destination => {
-            if (insertedTrip[0].planned === false) {
-              insertReview(knex, emptyReview)
-                .then(insertedReview => {
-                  res.send({
-                    ...insertedTrip[0],
-                    ...destination,
-                    ...insertedReview[0]
-                  });
-                })
-                .catch(e => next(e));
-            } else
-              res.send({
-                ...insertedTrip[0],
-                ...destination
-              });
-          });
+          getDestinationByDestinationId(knex, trip.destinationId).then(
+            destination => {
+              if (insertedTrip[0].planned === false) {
+                insertReview(knex, emptyReview)
+                  .then(insertedReview => {
+                    res.send({
+                      ...insertedTrip[0],
+                      ...destination,
+                      ...insertedReview[0]
+                    });
+                  })
+                  .catch(e => next(e));
+              } else
+                res.send({
+                  ...insertedTrip[0],
+                  ...destination
+                });
+            }
+          );
         })
         .catch(e => next(e));
     })
@@ -128,7 +130,6 @@ router.get("/getTripsByUserId/:userId", (req, res, next) => {
   const { userId } = req.params;
   getTripsByUserId(knex, userId)
     .then(result => {
-      console.log(result);
       res.send(result);
     })
     .catch(e => next(e));
@@ -140,7 +141,7 @@ router.get(
   "/getMyFriends/:destinationName/:dateFrom/:dateTo/:userId/:gender",
   (req, res, next) => {
     const { destinationName, dateFrom, dateTo, userId, gender } = req.params;
-    console.log(destinationName);
+
     getUserIdFriendsWithDate(knex, {
       destinationName,
       dateFrom,

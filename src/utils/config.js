@@ -1,10 +1,8 @@
-require("dotenv").config({ path: __dirname + "/.env" });
-
 export const authConfig = {
-  facebookId: process.env.FACEBOOK_ID
+  facebookId: "2262789030633956"
 };
 
 export const backendConfig = {
-  host: process.env.SERVER_HOST,
-  port: process.env.SERVER_PORT
+  host: "localhost",
+  port: 8000
 };
