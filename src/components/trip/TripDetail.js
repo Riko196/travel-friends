@@ -4,8 +4,10 @@ import Modal from "react-modal";
 import Rating from "react-rating";
 import {
   ISODateStringTostringDate,
-  getDefaultValue
+  getDefaultValue,
+  isInputValid
 } from "../../utils/functions";
+import { textareaMaxLength } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import { deleteTrip } from "../../actions/trips";
 import { editReview } from "../../actions/review";
@@ -45,14 +47,24 @@ class TripDetail extends Component {
     this.props.deleteTrip(this.props.detail.tripId);
   };
 
+  inputIsCorrect = () => {
+    if (!isInputValid(this.reviewText.current.value)) {
+      alert("Unallowed characters!");
+      return false;
+    }
+    return true;
+  };
+
   editReview = e => {
-    this.props.editReview({
-      userId: this.props.user.userId,
-      tripId: this.props.detail.tripId,
-      reviewText: this.reviewText.current.value,
-      rating: this.state.rating
-    });
-    this.closeModal();
+    if (this.inputIsCorrect()) {
+      this.props.editReview({
+        userId: this.props.user.userId,
+        tripId: this.props.detail.tripId,
+        reviewText: this.reviewText.current.value,
+        rating: this.state.rating
+      });
+      this.closeModal();
+    }
   };
 
   editRate = rating => {
@@ -121,6 +133,7 @@ class TripDetail extends Component {
                 className="textarea"
                 id="editReview"
                 ref={this.reviewText}
+                maxLength={textareaMaxLength}
                 defaultValue={getDefaultValue(this.props.detail.reviewText)}
               />
 

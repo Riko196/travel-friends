@@ -8,11 +8,17 @@ import {
   getInputFinalValue,
   getBirthdayFinalValue,
   getSelectFinalValue,
-  getDefaultValue
+  getDefaultValue,
+  isInputValid
 } from "../../utils/functions";
-import { gender, relationship, addiction } from "../../utils/constants";
+import {
+  gender,
+  relationship,
+  addiction,
+  inputMaxLength,
+  textareaMaxLength
+} from "../../utils/constants";
 import { setUser, updateUser } from "../../actions/user";
-import { profileConfig } from "../../utils/config";
 import { merge } from "lodash";
 import { modalStyle } from "./EditProfileModalStyle";
 import "./EditProfileModal.css";
@@ -48,6 +54,21 @@ class EditProfileModal extends Component {
 
   closeModal = () => {
     this.setState({ modalIsOpen: false });
+  };
+
+  inputIsCorrect = () => {
+    if (
+      !isInputValid(this.aboutme.current.value) ||
+      !isInputValid(this.country.current.value) ||
+      !isInputValid(this.city.current.value) ||
+      !isInputValid(this.occupation.current.value) ||
+      !isInputValid(this.education.current.value) ||
+      !isInputValid(this.speaking.current.value)
+    ) {
+      alert("Unallowed characters!");
+      return false;
+    }
+    return true;
   };
 
   updateProfile = () => {
@@ -92,10 +113,12 @@ class EditProfileModal extends Component {
       key => this.updatedProfile[key] == null && delete this.updatedProfile[key]
     );
     const updatedUser = merge(this.props.user, this.updatedProfile);
-    updateUser(updatedUser).then(result => {
-      this.props.setUser(updatedUser);
-      this.closeModal();
-    });
+    if (this.inputIsCorrect(updatedUser)) {
+      updateUser(updatedUser).then(result => {
+        this.props.setUser(updatedUser);
+        this.closeModal();
+      });
+    }
   };
 
   render() {
@@ -125,6 +148,7 @@ class EditProfileModal extends Component {
             name="aboutme"
             ref={this.aboutme}
             className="textarea"
+            maxLength={textareaMaxLength}
             defaultValue={getDefaultValue(user.aboutme)}
           />
           <label className="modal-label">Birthday:</label>
@@ -141,7 +165,7 @@ class EditProfileModal extends Component {
             type="text"
             name="country"
             ref={this.country}
-            maxLength={profileConfig.inputLength}
+            maxLength={inputMaxLength}
             defaultValue={getDefaultValue(user.country)}
           />
           <label className="modal-label">City:</label>
@@ -150,7 +174,7 @@ class EditProfileModal extends Component {
             type="text"
             name="city"
             ref={this.city}
-            maxLength={profileConfig.inputLength}
+            maxLength={inputMaxLength}
             defaultValue={getDefaultValue(user.city)}
           />
           <label className="modal-label">Occupation:</label>
@@ -159,7 +183,7 @@ class EditProfileModal extends Component {
             type="text"
             name="occupation"
             ref={this.occupation}
-            maxLength={profileConfig.inputLength}
+            maxLength={inputMaxLength}
             defaultValue={getDefaultValue(user.occupation)}
           />
           <label className="modal-label">Gender:</label>
@@ -172,7 +196,7 @@ class EditProfileModal extends Component {
           <Select
             options={relationship}
             ref={this.relationship}
-            defaultInputValue={getDefaultValue(user.gender)}
+            defaultInputValue={getDefaultValue(user.relationship)}
           />
           <label className="modal-label">Education:</label>
           <input
@@ -180,7 +204,7 @@ class EditProfileModal extends Component {
             type="text"
             name="education"
             ref={this.education}
-            maxLength={profileConfig.inputLength}
+            maxLength={inputMaxLength}
             defaultValue={getDefaultValue(user.education)}
           />
           <label className="modal-label">Smoking:</label>
@@ -201,7 +225,7 @@ class EditProfileModal extends Component {
             type="text"
             name="speaking"
             ref={this.speaking}
-            maxLength={profileConfig.inputLength}
+            maxLength={inputMaxLength}
             defaultValue={getDefaultValue(user.speaking)}
           />
           <input
