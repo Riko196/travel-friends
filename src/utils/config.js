@@ -8,8 +8,3 @@ export const backendConfig = {
   host: process.env.SERVER_HOST,
   port: process.env.SERVER_PORT
 };
-
-export const profileConfig = {
-  textareaLength: 512,
-  inputLength: 255
-};

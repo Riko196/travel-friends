@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import Select from "react-select";
-import { stringDateToISODateString, isNull } from "../../utils/functions";
+import {
+  stringDateToISODateString,
+  isNull,
+  isInputValid
+} from "../../utils/functions";
+import { textareaMaxLength } from "../../utils/constants";
 import { insertTrip, getMyTrips } from "../../actions/trips";
 import { getAllDestinationsName } from "../../actions/destinations";
 import DatePicker from "react-datepicker";
@@ -52,14 +57,25 @@ class AddTripModal extends Component {
   };
 
   inputIsCorrect = () => {
-    if (isNull(this.destinationName.current.state)) return false;
+    if (isNull(this.destinationName.current.state)) {
+      alert("There can not be empty input!");
+      return false;
+    }
+
     if (this.state.planned === false) {
-      if (
-        isNull(this.state.dateFrom) ||
-        isNull(this.state.dateTo) ||
-        this.state.dateFrom > this.state.dateTo
-      )
+      if (isNull(this.state.dateFrom) || isNull(this.state.dateTo)) {
+        alert("There can not be empty input!");
         return false;
+      }
+      if (this.state.dateFrom > this.state.dateTo) {
+        alert("Date To can not be less than Date From!");
+        return false;
+      }
+    }
+
+    if (!isInputValid(this.tripInfo.current.value)) {
+      alert("Unallowed characters!");
+      return false;
     }
     return true;
   };
@@ -167,7 +183,12 @@ class AddTripModal extends Component {
           )}
 
           <label className="modal-label">Additional info:</label>
-          <textarea type="text" className="textarea" ref={this.tripInfo} />
+          <textarea
+            type="text"
+            className="textarea"
+            ref={this.tripInfo}
+            maxLength={textareaMaxLength}
+          />
 
           <input
             type="button"

@@ -8,7 +8,7 @@ import PageNotFound from "./components/helpful/PageNotFound";
 import HomeRouter from "./components/home/index";
 import DestinationRouter from "./components/destination";
 import ProfileRouter from "./components/profile/index";
-import AboutUsRouter from "./components/about/index";
+import AboutUsRouter from "./components/aboutUs/index";
 import LandingRouter from "./components/landing/index";
 import TermsConditionsRouter from "./components/terms/index";
 import PrivacyPolicyRouter from "./components/privacy/index";

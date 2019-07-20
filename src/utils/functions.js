@@ -1,5 +1,5 @@
 import moment from "moment";
-import { ISODateFormat, gender } from "./constants";
+import { ISODateFormat, gender, inputValidationRegex } from "./constants";
 
 export const removeAllSpaces = string => {
   return string.replace(/\s+/g, "");
@@ -66,4 +66,8 @@ export const isDestinationName = (destinations, destinationName) => {
     }
   }
   return false;
+};
+
+export const isInputValid = inputString => {
+  return inputString.match(inputValidationRegex) === null;
 };
