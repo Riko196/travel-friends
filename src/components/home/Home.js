@@ -8,6 +8,8 @@ import { withRouter, Link } from "react-router-dom";
 import { getTheMostPopularDestinations } from "../../actions/destinations";
 import Destination from "../destination/Destination";
 import { countOfTheMostPopularDestinations } from "../../utils/constants";
+import Loading from "../helpful/Loading";
+
 import "./Home.css";
 
 class Home extends Component {
@@ -21,6 +23,10 @@ class Home extends Component {
 
   render() {
     const { theMostPopularDestinations } = this.props;
+    if (theMostPopularDestinations === null) {
+      return <Loading />;
+    }
+
     return (
       <div className="home">
         <div className="home_part-1">
@@ -55,7 +61,6 @@ export default compose(
   withRouter,
   connect(
     state => ({
-      myFriends: state.myFriends,
       theMostPopularDestinations: state.theMostPopularDestinations
     }),
     { getTheMostPopularDestinations }
