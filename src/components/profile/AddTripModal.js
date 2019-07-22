@@ -8,7 +8,7 @@ import {
   isInputValid
 } from "../../utils/functions";
 import { textareaMaxLength } from "../../utils/constants";
-import { insertTrip, getMyTrips } from "../../actions/trips";
+import { insertTrip } from "../../actions/trips";
 import { getAllDestinationsName } from "../../actions/destinations";
 import DatePicker from "react-datepicker";
 import { tripModalStyle } from "./AddTripModalStyle";
@@ -206,8 +206,7 @@ export default connect(
   state => ({
     userId: state.user.userId,
     name: state.user.name,
-    destinationsName: state.destinationsName,
-    myTrips: state.myTrips
+    destinationsName: state.destinationsName
   }),
-  { getAllDestinationsName, insertTrip, getMyTrips }
+  { getAllDestinationsName, insertTrip }
 )(AddTripModal);

@@ -40,7 +40,17 @@ const deleteTrip = (knex, tripId) => {
     .where("tripId", tripId);
 };
 
-const getTripsByUserId = (knex, userId) => {
+const getPlannedTripsByUserId = (knex, userId) => {
+  return knex("trips as t")
+    .select("*")
+    .where("t.userId", userId)
+    .andWhere("t.planned", true)
+    .join("destinations as d", join => {
+      join.on("t.destinationId", "d.destinationId");
+    });
+};
+
+const getUnplannedTripsByUserId = (knex, userId) => {
   return knex("trips as t")
     .select("*")
     .where("t.userId", userId)
@@ -196,7 +206,8 @@ module.exports = {
   updateUser: updateUser,
   insertTrip: insertTrip,
   deleteTrip: deleteTrip,
-  getTripsByUserId: getTripsByUserId,
+  getPlannedTripsByUserId: getPlannedTripsByUserId,
+  getUnplannedTripsByUserId: getUnplannedTripsByUserId,
   getUserIdFriendsWithDate: getUserIdFriendsWithDate,
   getUserIdFriendsWithPlanned: getUserIdFriendsWithPlanned,
   getDestinationByDestinationId: getDestinationByDestinationId,

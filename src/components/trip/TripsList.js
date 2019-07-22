@@ -4,6 +4,7 @@ import TripDetail from "./TripDetail";
 import { getMyTrips } from "../../actions/trips";
 import { getCurrentDate, ISODateStringToISODate } from "../../utils/functions";
 import PlannedTripDetail from "./PlannedTripDetail";
+import Loading from "../helpful/Loading";
 
 import "./TripsList.css";
 
@@ -15,23 +16,27 @@ class TripsList extends Component {
   }
 
   render() {
+    const myTrips = this.props.myTrips;
+    console.log(myTrips);
+    if (myTrips === null) {
+      return <Loading />;
+    }
+
     let oldTrips = [];
     let newTrips = [];
     let plannedTrips = [];
     const currentDate = getCurrentDate();
 
-    if (this.props.myTrips !== null) {
-      for (let trip of this.props.myTrips) {
-        if (trip.planned === true) {
-          plannedTrips.push(trip);
-          continue;
-        }
-        const dateTo = ISODateStringToISODate(trip.dateTo);
-        if (currentDate > dateTo) {
-          oldTrips.push(trip);
-        } else {
-          newTrips.push(trip);
-        }
+    for (const trip of myTrips) {
+      if (trip.planned === true) {
+        plannedTrips.push(trip);
+        continue;
+      }
+      const dateTo = ISODateStringToISODate(trip.dateTo);
+      if (currentDate > dateTo) {
+        oldTrips.push(trip);
+      } else {
+        newTrips.push(trip);
       }
     }
 
