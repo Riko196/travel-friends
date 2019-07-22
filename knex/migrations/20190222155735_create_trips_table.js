@@ -4,7 +4,6 @@ exports.up = (knex, Promise) => {
     table.integer("userId").notNullable();
     table.integer("destinationId").notNullable();
     table.boolean("planned");
-    table.string("category");
     table.string("dateFrom");
     table.string("dateTo");
     table.string("tripInfo");
