@@ -2,15 +2,19 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.x-button{
+.x-button-trip{
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: salmon;
-    border: 1px solid salmon;
-    color: white;
+    color: gray;
     cursor: pointer;
-    border-radius: 3px;
+    background: transparent;
+    border: none;
+    font-weight: 600;
+}
+
+.modal-title-trip{
+    font-family: 'Dancing script', cursive;
 }
 
 .modal-label{
@@ -36,7 +40,7 @@
     max-height: 200px;
 }
 
-.save-button{
+.save-button-trip{
     display: block;
     margin: auto;
     width: 100px;
@@ -45,6 +49,7 @@
     font-weight: 600;
     border: 1px solid limegreen;
     font-size: 15px;  
-    height: 25px;
-    margin-top: 1em;
+    height: 30px;
+    margin-top: 3em;
+    margin-bottom: 1em;
 }

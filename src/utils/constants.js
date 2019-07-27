@@ -29,11 +29,11 @@ export const destinations = [
   { value: "Cernobyl", label: "Cernobyl" }
 ];
 
-export const countOfTheMostPopularDestinations = 10;
+export const countOfTheMostPopularDestinations = 6; /* 10 */
 
 export const ISODateFormat = "YYYY-MM-DDTHH:mm:ss.sssZ";
 
-export const inputValidationRegex = /[^A-Za-z0-9\s]+/g;
+export const inputValidationRegex = /[^A-Za-z0-9.,\s]+/g;
 
 export const inputMaxLength = 255;
 

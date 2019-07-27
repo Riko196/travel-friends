@@ -1,0 +1,20 @@
+.search-destination-button{
+    width: 270px;
+    height: 40px;
+    color: white;
+    text-transform: uppercase;
+    border: 2px solid royalblue;
+    font-weight: 600;
+    background-color: royalblue; 
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 15px;
+    margin-top: 0.5em;
+}
+
+.destination-search{
+    margin: auto;
+    width: 270px;
+    min-height: 300px;
+    margin-top: 2em; 
+}

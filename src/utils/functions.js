@@ -71,3 +71,25 @@ export const isDestinationName = (destinations, destinationName) => {
 export const isInputValid = inputString => {
   return inputString.match(inputValidationRegex) === null;
 };
+
+export const getAge = dateString => {
+    if (dateString != null){
+      var today = new Date();
+      var birthDate = new Date();
+      if (dateString.includes("/")){
+        birthDate.setDate(dateString.substring(0, 2));
+        birthDate.setMonth(dateString.substring(3, 5));
+        birthDate.setFullYear(dateString.substring(6, 10));
+      } else {
+        birthDate = new Date(dateString);
+      }
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+      }
+      return ", " + age;
+    }
+    else 
+      return ""
+};

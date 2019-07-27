@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { getMyFriend } from "../../actions/myFriends";
 import Loading from "../helpful/Loading";
-import { ISODateStringTostringDate } from "../../utils/functions";
+import { ISODateStringTostringDate, getAge } from "../../utils/functions";
 import { Redirect } from "react-router-dom";
 import { isEmpty } from "lodash";
 
@@ -44,6 +44,14 @@ class MyFriendsProfile extends Component {
     });
   }
 
+  DateFromStringDate(dateString){
+    var birthDate = new Date();
+    birthDate.setDate(dateString.substring(0, 2));
+    birthDate.setMonth(dateString.substring(3, 5));
+    birthDate.setFullYear(dateString.substring(6, 10));
+    return new Date(birthDate).getDate() + " " + new Date(birthDate).toLocaleString('default', { month: 'long' }) + " " + new Date(birthDate).getFullYear();
+  }
+
   render() {
     if (this.state.error) {
       return <Redirect to="/page-not-found" />;
@@ -65,61 +73,61 @@ class MyFriendsProfile extends Component {
                 alt="Profile"
               />
               <p className="name-age-country">
-                {this.props.selectedFriend.name}
+                {this.props.selectedFriend.name}{getAge(this.props.selectedFriend.birthday)}
               </p>
             </div>
-            <div className="column">
+            <div className="column-2">
               <p className="about-me">
-                About Me: {this.props.selectedFriend.aboutme}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>About Me: </span>{this.props.selectedFriend.aboutme}
               </p>
               <p className="birthday">
-                Birthday:{" "}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Birthday: </span>{" "}
                 {this.props.selectedFriend.birthday != null &&
-                  ISODateStringTostringDate(this.props.selectedFriend.birthday)}
+                  this.DateFromStringDate(this.props.selectedFriend.birthday)}
               </p>
             </div>
-            <div className="column">
+            <div className="column-3">
               <p className="country">
-                Country: {this.props.selectedFriend.country}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Country: </span>{this.props.selectedFriend.country}
               </p>
-              <p className="city">City: {this.props.selectedFriend.city}</p>
+              <p className="city"><span style={{fontStyle: "oblique", fontWeight: "700"}}>City: </span>{this.props.selectedFriend.city}</p>
               <p className="occupation">
-                Occupation: {this.props.selectedFriend.occupation}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Occupation: </span>{this.props.selectedFriend.occupation}
               </p>
-              <p className="joined">Joined: </p>
+              {/*<p className="joined">Joined: </p>*/}
               <p className="gender">
-                Gender: {this.props.selectedFriend.gender}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Gender: </span>{this.props.selectedFriend.gender}
               </p>
               <p className="relationship">
-                Relationship: {this.props.selectedFriend.relationship}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Relationship: </span>{this.props.selectedFriend.relationship}
               </p>
             </div>
-            <div className="column">
+            <div className="column-4">
               <p className="education">
-                Education: {this.props.selectedFriend.education}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Education: </span>{this.props.selectedFriend.education}
               </p>
               <p className="smoking">
-                Smoking: {this.props.selectedFriend.smoking}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Smoking: </span>{this.props.selectedFriend.smoking}
               </p>
               <p className="drinking">
-                Drinking: {this.props.selectedFriend.drinking}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Drinking: </span>{this.props.selectedFriend.drinking}
               </p>
               <p className="speaking">
-                Speaking: {this.props.selectedFriend.speaking}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Speaking: </span>{this.props.selectedFriend.speaking}
               </p>
-              <p>Email: {this.props.selectedFriend.email}</p>
+              <p className="email"><span style={{fontStyle: "oblique", fontWeight: "700"}}>Email: </span>{this.props.selectedFriend.email}</p>
               {this.props.selectedFriend.userName !== null && (
                 <a
                   href={"https://m.me/" + this.props.selectedFriend.userName}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <button text="Send to messenger">Send to messenger</button>
+                  <button className="send-message" text="Send to messenger">Send a message</button>
                 </a>
               )}
             </div>
           </div>
-          <ProfileGallery />
+          {/*<ProfileGallery />*/}
         </div>
       </div>
     );

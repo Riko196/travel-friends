@@ -1,25 +1,39 @@
 .destination-review{
-    max-width: 300px;
-    display: inline-block;
-    background-color: rgba(166, 226, 122, 0.2);
+    width: 300px;
+    background-color: white;
     border-radius: 5px;
-    padding: 1.5em;
+    padding: 10px;
     margin: 0.5em;
-    -webkit-box-shadow: 2px 7px 15px -3px rgba(0,0,0,0.75);
-    -moz-box-shadow: 2px 7px 15px -3px rgba(0,0,0,0.75);
-    box-shadow: 2px 5px 15px -3px rgba(0,0,0,0.75);
     text-align: center;
     min-height: 200px;
+    position: relative;
+    float: left;
+    border: 1px solid royalblue;
+    border-radius: 7px;
+}
+
+.rating-stars{
+    max-width: 50%;
+    text-align: left;
+    margin-top: -5px;
+}
+
+.icon{
+    max-height: 10px;
+    max-width: 10px;
+    margin: 2px !important;
 }
 
 .review-owner{
-    text-align: center;
-    font-style: oblique;
+    text-align: left;
+    font-style: bold;
     cursor: pointer;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .review-text{
-    font-style: italic;
     text-align: left !important;
     word-wrap: break-word;
+    font-size: 10pt;
 }

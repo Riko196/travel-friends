@@ -5,11 +5,19 @@ import ProfileTrips from "../trip/ProfileTrips";
 import NavBar from "../navbar/Navbar";
 import EditProfileModal from "./EditProfileModal";
 import SelectUserName from "./SelectUserName";
-import { ISODateStringTostringDate } from "../../utils/functions";
+import { getAge } from "../../utils/functions";
 import "./Profile.css";
 
 class Profile extends Component {
-  render() {
+
+  componentDidMount() {
+    var elements = document.getElementsByClassName("navbar-item");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.setProperty('background-color', "transparent", 'important');
+    };
+  }
+
+  render() { 
     return (
       <div className="profile-container">
         <NavBar />
@@ -21,36 +29,36 @@ class Profile extends Component {
                 src={this.props.user.profilePhoto}
                 alt="Profile"
               />
-              <p className="name-age-country">{this.props.user.name}</p>
+              <p className="name-age-country">{this.props.user.name}{getAge(this.props.user.birthday)}</p>
             </div>
-            <div className="column">
-              <p className="about-me">About Me: {this.props.user.aboutme}</p>
+            <div className="column-2">
+              <p className="about-me"><span style={{fontStyle: "oblique", fontWeight: "700"}}>About Me: </span>{this.props.user.aboutme}</p>
               <p className="birthday">
-                Birthday:{" "}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Birthday: </span>{" "}
                 {this.props.user.birthday != null &&
-                  ISODateStringTostringDate(this.props.user.birthday)}
+                  new Date(this.props.user.birthday).getDate() + " " + new Date(this.props.user.birthday).toLocaleString('default', { month: 'long' }) + " " + new Date(this.props.user.birthday).getFullYear()}
               </p>
             </div>
-            <div className="column">
-              <p className="country">Country: {this.props.user.country}</p>
-              <p className="city">City: {this.props.user.city}</p>
+            <div className="column-3">
+              <p className="country"><span style={{fontStyle: "oblique", fontWeight: "700"}}>Country: </span> {this.props.user.country}</p>
+              <p className="city"><span style={{fontStyle: "oblique", fontWeight: "700"}}>City: </span> {this.props.user.city}</p>
               <p className="occupation">
-                Occupation: {this.props.user.occupation}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Occupation: </span> {this.props.user.occupation}
               </p>
-              <p className="joined">Joined: </p>
-              <p className="gender">Gender: {this.props.user.gender}</p>
+              {/*<p className="joined"><span style={{fontStyle: "oblique", fontWeight: "700"}}>Joined:</span> </p>*/}
+              <p className="gender"><span style={{fontStyle: "oblique", fontWeight: "700"}}>Gender: </span> {this.props.user.gender}</p>
               <p className="relationship">
-                Relationship: {this.props.user.relationship}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Relationship: </span> {this.props.user.relationship}
               </p>
             </div>
-            <div className="column">
+            <div className="column-4">
               <p className="education">
-                Education: {this.props.user.education}
+              <span style={{fontStyle: "oblique", fontWeight: "700"}}>Education: </span> {this.props.user.education}
               </p>
-              <p className="smoking">Smoking: {this.props.user.smoking}</p>
-              <p className="drinking">Drinking: {this.props.user.drinking}</p>
-              <p className="speaking">Speaking: {this.props.user.speaking}</p>
-              <p className="email">Email: {this.props.user.email}</p>
+              <p className="smoking"><span style={{fontStyle: "oblique", fontWeight: "700"}}>Smoking: </span> {this.props.user.smoking}</p>
+              <p className="drinking"><span style={{fontStyle: "oblique", fontWeight: "700"}}>Drinking: </span> {this.props.user.drinking}</p>
+              <p className="speaking"><span style={{fontStyle: "oblique", fontWeight: "700"}}>Speaking: </span> {this.props.user.speaking}</p>
+              <p className="email"><span style={{fontStyle: "oblique", fontWeight: "700"}}>Email: </span> {this.props.user.email}</p>
               <EditProfileModal />
               <SelectUserName />
             </div>

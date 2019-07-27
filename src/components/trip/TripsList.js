@@ -42,6 +42,16 @@ class TripsList extends Component {
 
     return (
       <div className="my-trips-list-wrapper">
+        <p className="my-trips-name-list">New trips:</p>
+        <div className="my-trips-list-container">
+          {newTrips.length !== 0 &&
+            newTrips.map((trip, key) => {
+              return <TripDetail detail={trip} key={key} planned={true} />;
+            })}
+          {newTrips.length === 0 && (
+            <p className="no-planned-trips">No new trips</p>
+          )}
+        </div>
         <p className="my-trips-name-list">Planned trips:</p>
         <div className="my-trips-list-container">
           {plannedTrips.length !== 0 &&
@@ -60,16 +70,6 @@ class TripsList extends Component {
             })}
           {oldTrips.length === 0 && (
             <p className="no-old-trips">No old trips</p>
-          )}
-        </div>
-        <p className="my-trips-name-list">New trips:</p>
-        <div className="my-trips-list-container">
-          {newTrips.length !== 0 &&
-            newTrips.map((trip, key) => {
-              return <TripDetail detail={trip} key={key} planned={true} />;
-            })}
-          {newTrips.length === 0 && (
-            <p className="no-planned-trips">No planned trips</p>
           )}
         </div>
       </div>

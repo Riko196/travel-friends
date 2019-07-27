@@ -145,9 +145,9 @@ class AddTripModal extends Component {
             name="exit"
             value="X"
             onClick={this.closeModal}
-            className="x-button"
+            className="x-button-trip"
           />
-          <h2>Add trip</h2>
+          <h2 className="modal-title-trip">Add trip</h2>
 
           <label className="modal-label">Destination:</label>
           <Select
@@ -159,7 +159,7 @@ class AddTripModal extends Component {
             defaultInputValue={""}
           />
 
-          <label className="modal-label">Planning:</label>
+          <label className="modal-label">Still planning:</label>
           <input
             type="checkbox"
             onChange={this.handleChangePlanned}
@@ -193,7 +193,7 @@ class AddTripModal extends Component {
           <input
             type="button"
             value="Save trip"
-            className="save-button"
+            className="save-button-trip"
             onClick={this.addTrip}
           />
         </Modal>

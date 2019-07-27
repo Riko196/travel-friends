@@ -11,6 +11,8 @@
     border: solid 1px transparent;
     background-color: transparent;
     cursor: pointer;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
 }
 
 .trip-place-planned{
@@ -19,7 +21,8 @@
     text-align: center;
     margin-top: 15px;
     font-weight: 600;
-    font-size: 15pt;
+    font-size: 19pt;
+    font-family: 'Dancing script', cursive;
 }
 
 @media (max-width: 600px){

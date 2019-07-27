@@ -146,6 +146,11 @@ class TripDetail extends Component {
             </Modal>
           </div>
         )}
+        <div className="trip-info-div">
+          <p className="trip-info-p">
+            {this.props.detail.tripInfo}
+          </p>
+        </div>
       </div>
     );
   }

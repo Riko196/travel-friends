@@ -55,7 +55,15 @@ class MyFriendsList extends Component {
     getMyFriends(data).then(() => {
       this.setState({ myFriendsLoaded: true });
     });
+
+    var elements = document.getElementsByClassName("navbar-item");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.setProperty('background-color', "royalblue", 'important');
+    };
+
   }
+
+
   render() {
     if (this.state.error) {
       return <Redirect to="/page-not-found" />;
@@ -67,7 +75,10 @@ class MyFriendsList extends Component {
     const friends = this.props.myFriends;
 
     return (
+      <div>
+      <div className="background-image-friends"></div>
       <div className="friend-list-wrapper">
+        <p className="people-p">People who want to visit</p>
         <p className="destination-name-list">{this.props.destinationName}</p>
         <div className="my-friend-list-container">
           <p>Friends with exact date trips:</p>
@@ -82,7 +93,7 @@ class MyFriendsList extends Component {
               </Link>
             ))}
           {friends !== null &&
-            (friends.friendsWithDate.length === 0 && <p>No friends found</p>)}
+            (friends.friendsWithDate.length === 0 && <p><span style={{fontStyle: "italic", marginLeft: "15px"}}>No friends found</span></p>)}
 
           <p>Friends with planned trips:</p>
           {friends !== null &&
@@ -97,9 +108,10 @@ class MyFriendsList extends Component {
             ))}
           {friends !== null &&
             (friends.friendsWithPlanned.length === 0 && (
-              <p>No friends found</p>
+              <p><span style={{fontStyle: "italic", marginLeft: "15px"}}>No friends found</span></p>
             ))}
         </div>
+      </div>
       </div>
     );
   }

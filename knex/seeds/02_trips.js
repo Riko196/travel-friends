@@ -140,6 +140,38 @@ exports.seed = (knex, Promise) => {
           dateFrom: "2019-04-03T23:00:00.000Z",
           dateTo: "2019-04-19T23:00:00.000Z",
           tripInfo: "Very good trip"
+        },
+        {
+          userId: 6,
+          destinationId: 1,
+          planned: true,
+          dateFrom: "2019-04-03T23:00:00.000Z",
+          dateTo: "2019-04-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 7,
+          destinationId: 1,
+          planned: false,
+          dateFrom: "2019-04-03T23:00:00.000Z",
+          dateTo: "2019-04-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 8,
+          destinationId: 1,
+          planned: true,
+          dateFrom: "2019-04-03T23:00:00.000Z",
+          dateTo: "2019-04-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
+        },
+        {
+          userId: 9,
+          destinationId: 1,
+          planned: false,
+          dateFrom: "2019-04-03T23:00:00.000Z",
+          dateTo: "2019-04-19T23:00:00.000Z",
+          tripInfo: "Very good trip"
         }
       ]);
     });

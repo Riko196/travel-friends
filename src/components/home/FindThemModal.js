@@ -47,16 +47,16 @@ class FindThemModal extends Component {
   };
 
   inputIsCorrect = () => {
-    if (
-      isNull(this.state.dateFrom) ||
-      isNull(this.state.dateTo) ||
-      isNull(this.destinationName.current.state.value) ||
-      isNull(this.gender.current.state.value) ||
+    if (isNull(this.destinationName.current.state.value))
+      return 1
+    if (isNull(this.gender.current.state.value))
+      return 2
+    if (isNull(this.state.dateFrom) ||
+      isNull(this.state.dateTo)||
       stringDateToISODateString(this.state.dateFrom) >
-        stringDateToISODateString(this.state.dateTo)
-    )
-      return false;
-    return true;
+      stringDateToISODateString(this.state.dateTo))
+      return 3
+    return 0
   };
 
   openModal = () => {
@@ -72,15 +72,32 @@ class FindThemModal extends Component {
   };
 
   findMyFriends = () => {
-    if (this.inputIsCorrect()) {
-      const destinationName = this.destinationName.current.state.value.value;
-      const dateFrom = stringDateToISODateString(this.state.dateFrom);
-      const dateTo = stringDateToISODateString(this.state.dateTo);
-      const gender = this.gender.current.state.value.value;
-      this.closeModal();
-      this.props.history.push(
-        `/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
-      );
+    var correct = this.inputIsCorrect();
+    console.log(correct);
+    switch (correct) {
+      case 0: {
+        const destinationName = this.destinationName.current.state.value.value;
+        const dateFrom = stringDateToISODateString(this.state.dateFrom);
+        const dateTo = stringDateToISODateString(this.state.dateTo);
+        const gender = this.gender.current.state.value.value;
+        this.closeModal();
+        this.props.history.push(
+          `/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
+        );
+        break;
+      }
+      case 2: {
+        document.getElementsByClassName("errors-show")[0].innerHTML = "Invalid gender";
+        break;
+      }
+      case 1: {
+        document.getElementsByClassName("errors-show")[0].innerHTML = "Invalid destination";
+        break;
+      }
+      case 3: {
+        document.getElementsByClassName("errors-show")[0].innerHTML = "Invalid date period";
+        break;
+      }
     }
   };
 
@@ -111,16 +128,17 @@ class FindThemModal extends Component {
             name="exit"
             value="X"
             onClick={this.closeModal}
-            className="x-button"
+            className="x-button-findthem"
           />
 
-          <h2>Find Travel Friends</h2>
+          <h2 className="title-find-modal">Find Travel Friends</h2>
 
-          <label className="modal-label">Destination:</label>
+          {<label className="modal-label">Destination:</label>}
           <Select
             options={destinationsName}
             ref={this.destinationName}
             defaultInputValue={""}
+            placeholder="Destination..."
           />
 
           <label className="modal-label">From:</label>
@@ -135,8 +153,15 @@ class FindThemModal extends Component {
             onChange={this.handleChangeDateTo}
           />
 
-          <label className="modal-label">Gender:</label>
-          <Select options={gender} ref={this.gender} defaultInputValue={""} />
+          {<label className="modal-label">Preferred gender:</label>}
+          <Select 
+            options={gender} 
+            ref={this.gender} 
+            defaultInputValue={""}
+            placeholder="Gender..."
+             />
+
+          <p className="errors-show"></p>
 
           <input
             type="button"

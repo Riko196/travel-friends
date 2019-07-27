@@ -4,6 +4,7 @@ exports.up = (knex, Promise) => {
     table.string("destinationName").notNullable();
     table.string("destinationPhoto");
     table.text("aboutDestination");
+    table.string("destinationLink");
   });
 };
 

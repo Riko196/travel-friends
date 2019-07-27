@@ -1,24 +1,48 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script');
 
 .home{
-    background: #1e5799; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #1e5799 0%, #207cca 16%, #2addbc 44%, #a6e27a 73%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #1e5799 0%,#207cca 16%,#2addbc 44%,#a6e27a 73%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #1e5799 0%,#207cca 16%,#2addbc 44%,#a6e27a 73%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#a6e27a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    /* background: #1e5799;
+    background: -moz-linear-gradient(-45deg, #1e5799 0%, #207cca 16%, #2addbc 44%, #a6e27a 73%); 
+    background: -webkit-linear-gradient(-45deg, #1e5799 0%,#207cca 16%,#2addbc 44%,#a6e27a 73%); 
+    background: linear-gradient(135deg, #1e5799 0%,#207cca 16%,#2addbc 44%,#a6e27a 73%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#a6e27a',GradientType=1 );*/
+    background: white !important; 
 }
 
 .home_part-1{
     width: 100%;
-    min-height: 90vh;
+    min-height: 100vh;
     padding-top: 150px;
+    background-image: url("../../images/home.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .most-popular-p{
     text-align: center;
-    color: white;
+    color: black;
     font-weight: 800;
     font-size: 40pt;
+    font-family: 'Dancing script', cursive;
+    margin-top: 0em;
+    margin-bottom: -0.3em !important;
+}
+
+.most-popular-p-under{
+    text-align: center;
+    color: gray;
+    font-weight: 450;
+    font-size: 12pt;
+    text-transform: uppercase;
+}
+
+.divider{
+    margin: auto;
+    width: 25px;
+    height: 3px;
+    background-color: limegreen;
+    margin-bottom: 1em;
+    border-radius: 2px;
 }
 
 .home-part-popular{
@@ -57,6 +81,10 @@
     padding-left: 30px;
     padding-right: 30px;
     font-size: 15px;
+}
+
+#findthem:hover{
+    cursor: pointer;
 }
 
 @media (max-width: 576px){
