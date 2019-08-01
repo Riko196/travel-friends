@@ -12,7 +12,8 @@ class TermsConditions extends Component {
 
   render() {
     return (
-      <div className="background-image-terms">
+      <div>
+      <div className="background-image-terms"></div>
       <div className="terms-container">
         <p className="terms-p">
           TERMS {"&"} CONDITIONS

@@ -65,29 +65,11 @@ class DestinationPage extends Component {
               {selectedDestination.destinationName}
             </h1>
             <h6 className="destination-description">
-              {selectedDestination.aboutDestination
-                .split("{,}", 100)
-                .map((line, index) => {
-                  if (line.includes("http://") || line.includes("https://")) {
-                    return (
-                      <a
-                        href={line}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        key={index}
-                      >
-                        {line}
-                      </a>
-                    );
-                  } else {
-                    return (
-                      <div key={index}>
-                        {line} <br />
-                      </div>
-                    );
-                  }
-                })}
+              {selectedDestination.aboutDestination}
             </h6>
+            <a href={selectedDestination.destinationLink} target="_blank" className="destination-link">
+              {selectedDestination.destinationLink}
+            </a>
           </div>
         </div>
         <div className="reviews">

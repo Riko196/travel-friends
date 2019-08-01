@@ -11,7 +11,8 @@ class PrivacyPolicy extends Component {
 
   render() {
     return (
-      <div className="background-image-privacy">
+      <div>
+      <div className="background-image-privacy"></div>
       <div className="privacy-container">
         <p className="privacy-p">
           PRIVACY POLICY

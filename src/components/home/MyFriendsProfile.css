@@ -28,6 +28,13 @@
   min-height: 100vh;
 }
 
+.my-friend-profile-photo{
+  width: 145px;
+  height: auto;
+  border-radius: 75px;
+  margin-top: 15px;
+}
+
 .send-message{
   background-color: royalblue;
   color: white !important;
@@ -135,7 +142,7 @@ html {
 }
 
 .my-friend-profile-div {
-  background-color: whitesmoke;
+  background-color: rgba(256, 256, 256, 0.7);;
   margin-left: 10%;
   margin-right: 10%;
   border-radius: 7px;

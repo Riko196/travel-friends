@@ -141,7 +141,7 @@ html {
 } */
 
 .profile-div {
-  background-color: whitesmoke;
+  background-color: rgba(256, 256, 256, 0.7);
   margin-left: 10%;
   margin-right: 10%;
   border-radius: 7px;
@@ -205,6 +205,10 @@ html {
     padding-left: 5% !important;
     padding-top: 0px;
     margin-bottom: 10px;
+  }
+
+  .column-4{
+    margin-bottom: 0px;
   }
 
   #photo {

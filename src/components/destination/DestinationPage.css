@@ -44,6 +44,18 @@ html{
   font-family: 'Dancing script', cursive;
 }
 
+.destination-link{
+  font-weight: 500;
+  margin-top: 1em;
+  color: royalblue;
+  font-size: 12pt;
+}
+
+.destination-link:hover{
+  cursor: pointer;
+  text-decoration: underline !important;
+}
+
 .destination-page-title {
   text-align: center;
   font-weight: 800;

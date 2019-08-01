@@ -6,502 +6,602 @@ exports.seed = function(knex, Promise) {
       {
         destinationName: 'Abu Dhabi',
         destinationPhoto: 'Abu Dhabi.jpg',
-        aboutDestination: '',
+        aboutDestination: "Proudly modern and cosmopolitan, Abu Dhabi is the UAE's forward-thinking cultural heart where nothing stands still – except perhaps the herons in its mangroves.",
+        destinationLink: "https://www.lonelyplanet.com/united-arab-emirates/abu-dhabi"
       },
       {
         destinationName: 'Agra (Taj Mahal)',
         destinationPhoto: 'Agra (Taj Mahal).jpg',
-        aboutDestination: '',
+        aboutDestination: "The magical allure of the Taj Mahal draws tourists to Agra like moths to a wondrous flame. And despite the hype, it’s every bit as good as you’ve heard. But the Taj is not a stand-alone attraction. The legacy of the Mughal empire has left a magnificent fort and a liberal sprinkling of fascinating tombs and mausoleums, and there’s also fun to be had in the bustling chowks (marketplaces). The downside comes in the form of hordes of rickshaw-wallahs, touts, unofficial guides and souvenir vendors, whose persistence can be infuriating at times.",
+        destinationLink: "https://www.lonelyplanet.com/india/uttar-pradesh/agra"
       },
       {
         destinationName: 'Amsterdam',
         destinationPhoto: 'Amsterdam.jpg',
-        aboutDestination: '',
+        aboutDestination: "Golden Age canals lined by tilting gabled buildings are the backdrop for Amsterdam's treasure-packed museums, vintage-filled shops and hyper-creative design, drinking and dining scenes.",
+        destinationLink: "https://www.lonelyplanet.com/the-netherlands/amsterdam"
       },
       {
         destinationName: 'Antalya',
         destinationPhoto: 'Antalya.jpg',
-        aboutDestination: '',
+        aboutDestination: "Once seen simply as the gateway to the Turkish Riviera, Antalya today is very much a destination in its own right. Situated right on the Gulf of Antalya (Antalya Körfezi), the largest city on Turkey's western Mediterranean coastline is both classically beautiful and stylishly modern. At its core is the wonderfully preserved old-city district of Kaleiçi (literally 'within the castle'), which offers atmospheric accommodation in the finely restored Ottoman houses on its winding lanes. The old city wraps around a splendid Roman-era harbour with clifftop views of hazy-blue mountain silhouettes that are worth raising a toast to. Just outside of the central city are two beaches and one of Turkey's finest museums.",
+        destinationLink: "https://www.lonelyplanet.com/turkey/mediterranean-coast/antalya"
       },
       {
         destinationName: 'Artvin',
         destinationPhoto: 'Artvin.jpg',
-        aboutDestination: '',
+        aboutDestination: "Artvin has a spectacular setting on a mountainside climbing up from the Çoruh River, with steep streets zigzagging from the bottom of town to the top. Sadly, the town itself is not in the least pretty, and kilometres of dam and road works have scarred the valley below. However, Artvin is a good jumping-off point for the beautiful mountain country and relics of old Georgian culture to its east, and a possible stopover between Yusufeli or Erzurum and the coast.",
+        destinationLink: "https://www.lonelyplanet.com/turkey/artvin"
       },
       {
         destinationName: 'Athens',
         destinationPhoto: 'Athens.jpg',
-        aboutDestination: '',
+        aboutDestination: "With equal measures of grunge and grace, Athens is a heady mix of ancient history and contemporary cool.",
+        destinationLink: "https://www.lonelyplanet.com/greece/athens"
       },
       {
         destinationName: 'Auckland',
         destinationPhoto: 'Auckland.jpg',
-        aboutDestination: '',
+        aboutDestination: "Paris may be the city of love, but Auckland is the city of many lovers, according to its Māori name, Tāmaki Makaurau. Those lovers so desired this place that they fought over it for centuries.",
+        destinationLink: "https://www.lonelyplanet.com/new-zealand/auckland-1341384"
       },
       {
-        destinationName: 'BANGKOK',
+        destinationName: 'Bangkok',
         destinationPhoto: 'BANGKOK.jpg',
-        aboutDestination: 'There are great varieties of tourist attractions in Bangkok, mostly historical attractions and temples with elaborate architectures and arts. The most famous temples include Wat Phra Kaew, Wat Pho, Wat Arun, Wat Phu Khao Thong, Wat Ratchanadda, Wat Traimit, Wat Benchamabophit, Wat Bowon, and Wat Sutat. There are palaces, museums, parks, and a wide array of shopping centers, from luxury malls to flea markets and street markets such as Chatuchak Weekend Market, Sampeng Market, and Pahurat Textile Market.{,}Bangkok nightlife is another highlight that has attracted many tourists from all over the world.{,}https://www.tourismthailand.org/About-Thailand/Destination/Bangkok',
+        aboutDestination: "Same same, but different. This Thailish T-shirt philosophy sums up Bangkok, a city where the familiar and the exotic collide like the flavours on a plate of pàt tai.",
+        destinationLink: "https://www.lonelyplanet.com/thailand/bangkok"
       },
       {
         destinationName: 'Barcelona',
         destinationPhoto: 'Barcelona.jpg',
-        aboutDestination: '',
+        aboutDestination: "Barcelona is an enchanting seaside city with boundless culture, fabled architecture and a world-class drinking and dining scene.",
+        destinationLink: "https://www.lonelyplanet.com/spain/barcelona"
       },
       {
         destinationName: 'Beijing',
         destinationPhoto: 'Beijing.jpg',
-        aboutDestination: '',
+        aboutDestination: "",
+        destinationLink: "https://www.lonelyplanet.com/china/beijing"
       },
       {
         destinationName: 'Berlin',
         destinationPhoto: 'Berlin.jpg',
-        aboutDestination: '',
+        aboutDestination: "",
+        destinationLink: ""
       },
       {
         destinationName: 'Brussels',
         destinationPhoto: 'Brussels.jpg',
-        aboutDestination: '',
+        aboutDestination: "",
+        destinationLink: ""
       },
       {
         destinationName: 'Budapest',
         destinationPhoto: 'Budapest.jpg',
-        aboutDestination: '',
+        aboutDestination: "",
+        destinationLink: ""
       },
       {
-        destinationName: 'buenos aires',
+        destinationName: 'Buenos Aires',
         destinationPhoto: 'buenos aires.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Cairo',
         destinationPhoto: 'Cairo.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Cancun',
         destinationPhoto: 'Cancun.jpg',
-        aboutDestination: '',
+        aboutDestination: "",
+        destinationLink: ""
       },
       {
         destinationName: 'Chennai',
         destinationPhoto: 'Chennai.jpg',
-        aboutDestination: '',
+        aboutDestination: "",
+        destinationLink: ""
       },
       {
         destinationName: 'Chiang Mai',
         destinationPhoto: 'Chiang Mai.jpg',
-        aboutDestination: '',
+        aboutDestination: "",
+        destinationLink: ""
       },
       {
         destinationName: 'Chiba',
         destinationPhoto: 'Chiba.jpg',
-        aboutDestination: '',
+        aboutDestination: "",
+        destinationLink: ""
       },
       {
         destinationName: 'Colombo',
         destinationPhoto: 'Colombo.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Copenhagen',
         destinationPhoto: 'Copenhagen.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Dammam City',
         destinationPhoto: 'Dammam City.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Delhi',
         destinationPhoto: 'Delhi.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Denpasar',
         destinationPhoto: 'Denpasar.jpg',
-        aboutDestination: '',
+        aboutDestination: "",        
+        destinationLink: ""
       },
       {
         destinationName: 'Doha',
         destinationPhoto: 'Doha.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
-        destinationName: 'dubai',
+        destinationName: 'Dubai',
         destinationPhoto: 'dubai.jpg',
-        aboutDestination: 'http://en.macaotourism.gov.mo/index.php',
+        aboutDestination: "",
+        destinationLink: ""
       },
       {
         destinationName: 'Dublin',
         destinationPhoto: 'Dublin.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Edirne',
         destinationPhoto: 'Edirne.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Florence',
         destinationPhoto: 'Florence.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Frankfurt',
         destinationPhoto: 'Frankfurt.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Guangzhou',
         destinationPhoto: 'Guangzhou.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Guilin',
         destinationPhoto: 'Guilin.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Ha Long',
         destinationPhoto: 'Ha Long.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Ha Noi',
         destinationPhoto: 'Ha Noi.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Heraklion',
         destinationPhoto: 'Heraklion.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Ho Chi Minh City',
         destinationPhoto: 'Ho Chi Minh City.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Hong kong',
         destinationPhoto: 'Hong kong.jpg',
-        aboutDestination: "Star Ferry{,}Tian Tan Budha{,}Viktoria peak{,}Lantau island{,}Ngong Ping 360{,}Nan Lian garden{,}Hong Kong disneyland{,}Hong Kong museum of history{,}Victoria harbour{,}Dragon´s back{,}You can find more information on{,}http://www.discoverhongkong.com",
+        aboutDestination: "",
+        destinationLink: ""
       },
       {
         destinationName: 'Honolulu',
         destinationPhoto: 'Honolulu.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Istanbul',
         destinationPhoto: 'Istanbul.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Jaipur',
         destinationPhoto: 'Jaipur.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Jakarta',
         destinationPhoto: 'Jakarta.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Jeju',
         destinationPhoto: 'Jeju.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Jerusalem',
         destinationPhoto: 'Jerusalem.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Johanesburg',
         destinationPhoto: 'Johanesburg.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Johor Bahru',
         destinationPhoto: 'Johor Bahru.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Kolkata',
         destinationPhoto: 'Kolkata.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
-        destinationName: 'krakow',
+        destinationName: 'Krakow',
         destinationPhoto: 'krakow.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
-        destinationName: 'kuala lumpur',
+        destinationName: 'Kuala Lumpur',
         destinationPhoto: 'kuala lumpur.JPG',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Kyoto',
         destinationPhoto: 'Kyoto.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Las Vegas',
         destinationPhoto: 'Las Vegas.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Lima',
         destinationPhoto: 'Lima.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Lisbon',
         destinationPhoto: 'Lisbon.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
-        destinationName: 'london',
+        destinationName: 'London',
         destinationPhoto: 'london.jpg',
-        aboutDestination: 'Are you visiting London? We find perfect source of information for you.{,}https://www.visitlondon.com/',
+        aboutDestination: "",
+        destinationLink: ""
       },
       {
         destinationName: 'Los Angeles',
         destinationPhoto: 'Los Angeles.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
-        destinationName: 'macau',
+        destinationName: 'Macau',
         destinationPhoto: 'macau.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Madrid',
         destinationPhoto: 'Madrid.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Marrakech',
         destinationPhoto: 'Marrakech.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Mecca',
         destinationPhoto: 'Mecca.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'melbourne',
         destinationPhoto: 'melbourne.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: ""
       },
       {
         destinationName: 'Mexico City',
         destinationPhoto: 'Mexico City.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/mexico/mexico-city"
       },
       {
         destinationName: 'Miami',
         destinationPhoto: 'Miami.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/usa/miami"
       },
       {
         destinationName: 'Milan',
         destinationPhoto: 'Milan.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/italy/milan"
       },
       {
         destinationName: 'Moscow',
         destinationPhoto: 'Moscow.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/russia/moscow"
       },
       {
         destinationName: 'Mumbai',
         destinationPhoto: 'Mumbai.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/india/mumbai-bombay"
       },
       {
         destinationName: 'Munich',
         destinationPhoto: 'Munich.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/germany/munich"
       },
       {
         destinationName: 'New York',
         destinationPhoto: 'New York.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/usa/new-york-city"
       },
       {
         destinationName: 'Nice',
         destinationPhoto: 'Nice.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/france/nice"
       },
       {
         destinationName: 'Orlando',
         destinationPhoto: 'Orlando.jpg',
-        aboutDestination: '',
+        aboutDestination: "",        
+        destinationLink: "https://www.lonelyplanet.com/usa/florida/orlando"
       },
       {
         destinationName: 'Osaka',
         destinationPhoto: 'Osaka.JPG',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/japan/kansai/osaka"
       },
       {
-        destinationName: 'paris',
+        destinationName: 'Paris',
         destinationPhoto: 'paris.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/france/paris"
       },
       {
         destinationName: 'Pattaya',
         destinationPhoto: 'Pattaya.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/thailand/chonburi-province/pattaya"
       },
       {
         destinationName: 'Penang Island',
         destinationPhoto: 'Penang Island.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/malaysia/southeast-penang-island"
       },
       {
         destinationName: 'Phnom Penh',
         destinationPhoto: 'Phnom Penh.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/cambodia/phnom-penh"
       },
       {
         destinationName: 'Phuket',
         destinationPhoto: 'Phuket.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/thailand/phuket-province"
       },
       {
         destinationName: 'Prague',
         destinationPhoto: 'Prague.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/czech-republic/prague"
       },
       {
         destinationName: 'Punta Cana',
         destinationPhoto: 'Punta Cana.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/dominican-republic/the-southeast"
       },
       {
         destinationName: 'Rhodes',
         destinationPhoto: 'Rhodes.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/greece/dodecanese/rhodes"
       },
       {
         destinationName: 'Rio De Janeiro',
         destinationPhoto: 'Rio De Janeiro.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/brazil/rio-de-janeiro"
       },
       {
         destinationName: 'Riyadh',
         destinationPhoto: 'Riyadh.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/saudi-arabia/riyadh"
       },
       {
         destinationName: 'Rome',
         destinationPhoto: 'Rome.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/italy/rome"
       },
       {
         destinationName: 'Saint Petersburg',
         destinationPhoto: 'Saint Petersburg.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/russia/st-petersburg"
       },
       {
         destinationName: 'San Francisco',
         destinationPhoto: 'San Francisco.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/usa/san-francisco"
       },
       {
         destinationName: 'Seoul',
         destinationPhoto: 'Seoul.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/south-korea/seoul"
       },
       {
         destinationName: 'Shanghai',
         destinationPhoto: 'Shanghai.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/china/shanghai"
       },
       {
         destinationName: 'Siem Reap',
         destinationPhoto: 'Siem Reap.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/cambodia/siem-reap"
       },
       {
-        destinationName: 'singapore',
+        destinationName: 'Singapore',
         destinationPhoto: 'singapore.jpg',
-        aboutDestination: 'https://www.visitsingapore.com/en/',
+        aboutDestination: "",
+        destinationLink: "https://www.lonelyplanet.com/singapore"
       },
       {
-        destinationName: 'Snenzen',
+        destinationName: 'Shenzhen',
         destinationPhoto: 'Snenzen.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/china/guangdong/shenzhen"
       },
       {
-        destinationName: 'stockholm',
+        destinationName: 'Stockholm',
         destinationPhoto: 'stockholm.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/sweden/stockholm"
       },
       {
         destinationName: 'Sydney',
         destinationPhoto: 'Sydney.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/australia/sydney"
       },
       {
         destinationName: 'Taichung',
         destinationPhoto: 'Taichung.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/taiwan/western-taiwan/taichung"
       },
       {
         destinationName: 'Taipei',
         destinationPhoto: 'Taipei.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/taiwan/taipei"
       },
       {
         destinationName: 'Tel Aviv',
         destinationPhoto: 'Tel Aviv.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/israel-and-the-palestinian-territories/mediterranean-coast/tel-aviv"
       },
       {
         destinationName: 'Tokyo',
         destinationPhoto: 'Tokyo.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/japan/tokyo"
       },
       {
         destinationName: 'Toronto',
         destinationPhoto: 'Toronto.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/canada/toronto"
       },
       {
         destinationName: 'Vancouver',
         destinationPhoto: 'Vancouver.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/canada/vancouver"
       },
       {
-        destinationName: 'Venic',
+        destinationName: 'Venice',
         destinationPhoto: 'Venic.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/italy/venice"
       },
       {
         destinationName: 'Vienna',
         destinationPhoto: 'Vienna.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/austria/vienna"
       },
       {
-        destinationName: 'warsaw',
+        destinationName: 'Warsaw',
         destinationPhoto: 'warsaw.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/poland/warsaw"
       },
       {
         destinationName: 'Washington DC',
         destinationPhoto: 'Washington DC.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/usa/washington-dc"
       },
       {
         destinationName: 'Zhuhai',
         destinationPhoto: 'Zhuhai.jpg',
-        aboutDestination: '',
+        aboutDestination: "",         
+        destinationLink: "https://www.lonelyplanet.com/china/guangdong/zhuhai"
       },
     ]);
   });

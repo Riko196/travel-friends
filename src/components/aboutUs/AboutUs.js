@@ -13,7 +13,8 @@ class AboutUs extends Component {
   
   render() {
     return (
-      <div className="background-image">
+      <div>
+      <div className="background-image"></div>
       <div className="about-us-container">
         <p className="about-us-p">
           Who are we? We are eager travelers who love meeting new people! We are
