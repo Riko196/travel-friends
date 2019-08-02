@@ -232,7 +232,7 @@ class EditProfileModal extends Component {
             type="button"
             value="Save profile"
             onClick={this.updateProfile}
-            className="save-button"
+            className="save-button-edit"
           />
         </Modal>
       </div>

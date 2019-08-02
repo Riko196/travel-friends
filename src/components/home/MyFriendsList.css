@@ -16,14 +16,6 @@
     padding-bottom: 1em;
 }
 
-body {
-    /*background: #1e5799; 
-    background: -moz-linear-gradient(-45deg, #1e5799 0%, #207cca 16%, #2addbc 44%, #a6e27a 73%);
-    background: -webkit-linear-gradient(-45deg, #1e5799 0%,#207cca 16%,#2addbc 44%,#a6e27a 73%); 
-    background: linear-gradient(135deg, #1e5799 0%,#207cca 16%,#2addbc 44%,#a6e27a 73%); 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#a6e27a',GradientType=1 ); */
-}
-
 .background-image-friends{
     position: fixed;
     top: 0;

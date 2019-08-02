@@ -10,9 +10,31 @@
 
 .p-messenger{
     font-style: italic;
+    font-size: 10pt;
 }
 
+.username-guide{
+  background-image: url("../../images/username.png");
+  width: 100%;
+  height: 150px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
 .save-button{
   width: auto !important;
+  position: absolute;
+  bottom: 30px;
+  right: 25%;
+  display: block;
+  margin: auto;
+  width: 100px;
+  background-color: limegreen;
+  color: white;
+  font-weight: 600;
+  border: 1px solid limegreen;
+  font-size: 15px;  
+  height: 30px;
+  margin-top: 1em;
+  cursor: pointer;
 }

@@ -3,6 +3,6 @@ export const authConfig = {
 };
 
 export const backendConfig = {
-  host: "localhost",
+  host: "nodejs.triphomie.com",
   port: 8000
 };

@@ -26,15 +26,15 @@
 
 .text-input{
     height: 25px;
-    width: 200px;
+    width: 240px;
     padding-left: 3px;
     padding-right: 3px;
 }
 
-.textarea{
-    width: 200px;
-    max-width: 200px;
-    min-width: 200px;
+.textarea-2{
+    width: 240px;
+    max-width: 240px;
+    min-width: 240px;
     height: auto;
     min-height: 100px;
     max-height: 200px;

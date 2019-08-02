@@ -185,7 +185,7 @@ class AddTripModal extends Component {
           <label className="modal-label">Additional info:</label>
           <textarea
             type="text"
-            className="textarea"
+            className="textarea-2"
             ref={this.tripInfo}
             maxLength={textareaMaxLength}
           />

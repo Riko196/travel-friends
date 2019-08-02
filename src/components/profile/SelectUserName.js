@@ -68,11 +68,13 @@ class SelectUserName extends Component {
           contentLabel="Enter the username"
           style={modalStyle}
         >
-          <label className="modal-label">Username:</label>
           <p className="p-messenger">
             Your messenger username will be used to enable direct messenger
             chatting with other users that provided their username.
           </p>
+          <div className="username-guide">
+          </div>
+          <label className="modal-label">Username:</label>
           <input
             className="input-text"
             type="text"

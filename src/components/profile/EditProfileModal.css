@@ -25,23 +25,28 @@
     margin-top: 20px;
 }
 
-.text-input{
+.input-text{
     height: 25px;
-    width: 200px;
+    width: 250px;
     padding-left: 3px;
     padding-right: 3px;
 }
 
 .textarea{
-    width: 200px;
-    max-width: 200px;
-    min-width: 200px;
+    width: 250px;
+    max-width: 250px;
+    min-width: 250px;
     height: auto;
     min-height: 100px;
     max-height: 200px;
 }
 
-.save-button{
+.outline-container{
+    margin: auto;
+    margin-top: 5px;
+}
+
+.save-button-edit{
     display: block;
     margin: auto;
     width: 100px;

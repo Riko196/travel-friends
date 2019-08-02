@@ -67,49 +67,49 @@ exports.seed = function(knex, Promise) {
         destinationName: 'Berlin',
         destinationPhoto: 'Berlin.jpg',
         aboutDestination: "",
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/germany/berlin"
       },
       {
         destinationName: 'Brussels',
         destinationPhoto: 'Brussels.jpg',
         aboutDestination: "",
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/belgium/brussels"
       },
       {
         destinationName: 'Budapest',
         destinationPhoto: 'Budapest.jpg',
         aboutDestination: "",
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/hungary/budapest"
       },
       {
         destinationName: 'Buenos Aires',
         destinationPhoto: 'buenos aires.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/argentina/buenos-aires"
       },
       {
         destinationName: 'Cairo',
         destinationPhoto: 'Cairo.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/egypt/cairo"
       },
       {
         destinationName: 'Cancun',
         destinationPhoto: 'Cancun.jpg',
         aboutDestination: "",
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/mexico/cancun"
       },
       {
         destinationName: 'Chennai',
         destinationPhoto: 'Chennai.jpg',
         aboutDestination: "",
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/india/tamil-nadu/chennai-madras"
       },
       {
         destinationName: 'Chiang Mai',
         destinationPhoto: 'Chiang Mai.jpg',
         aboutDestination: "",
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/thailand/chiang-mai-province/chiang-mai"
       },
       {
         destinationName: 'Chiba',
@@ -121,79 +121,79 @@ exports.seed = function(knex, Promise) {
         destinationName: 'Colombo',
         destinationPhoto: 'Colombo.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/sri-lanka/colombo"
       },
       {
         destinationName: 'Copenhagen',
         destinationPhoto: 'Copenhagen.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/denmark/copenhagen"
       },
       {
         destinationName: 'Dammam City',
         destinationPhoto: 'Dammam City.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/saudi-arabia/dammam"
       },
       {
         destinationName: 'Delhi',
         destinationPhoto: 'Delhi.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/india/delhi"
       },
       {
         destinationName: 'Denpasar',
         destinationPhoto: 'Denpasar.jpg',
         aboutDestination: "",        
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/indonesia/bali/denpasar"
       },
       {
         destinationName: 'Doha',
         destinationPhoto: 'Doha.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/qatar/doha"
       },
       {
         destinationName: 'Dubai',
         destinationPhoto: 'dubai.jpg',
         aboutDestination: "",
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/united-arab-emirates/dubai"
       },
       {
         destinationName: 'Dublin',
         destinationPhoto: 'Dublin.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/ireland/dublin"
       },
       {
         destinationName: 'Edirne',
         destinationPhoto: 'Edirne.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/turkey/edirne"
       },
       {
         destinationName: 'Florence',
         destinationPhoto: 'Florence.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/italy/florence"
       },
       {
         destinationName: 'Frankfurt',
         destinationPhoto: 'Frankfurt.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/germany/frankfurt-am-main"
       },
       {
         destinationName: 'Guangzhou',
         destinationPhoto: 'Guangzhou.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/china/guangdong/guangzhou"
       },
       {
         destinationName: 'Guilin',
         destinationPhoto: 'Guilin.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/china/guangxi/guilin"
       },
       {
         destinationName: 'Ha Long',
@@ -205,157 +205,157 @@ exports.seed = function(knex, Promise) {
         destinationName: 'Ha Noi',
         destinationPhoto: 'Ha Noi.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/vietnam/hanoi"
       },
       {
         destinationName: 'Heraklion',
         destinationPhoto: 'Heraklion.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/greece/crete/iraklio"
       },
       {
         destinationName: 'Ho Chi Minh City',
         destinationPhoto: 'Ho Chi Minh City.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/vietnam/ho-chi-minh-city"
       },
       {
         destinationName: 'Hong kong',
         destinationPhoto: 'Hong kong.jpg',
         aboutDestination: "",
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/china/hong-kong"
       },
       {
         destinationName: 'Honolulu',
         destinationPhoto: 'Honolulu.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/usa/honolulu-and-waikiki"
       },
       {
         destinationName: 'Istanbul',
         destinationPhoto: 'Istanbul.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/turkey/istanbul"
       },
       {
         destinationName: 'Jaipur',
         destinationPhoto: 'Jaipur.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/india/rajasthan/jaipur"
       },
       {
         destinationName: 'Jakarta',
         destinationPhoto: 'Jakarta.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/indonesia/jakarta"
       },
       {
         destinationName: 'Jeju',
         destinationPhoto: 'Jeju.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/south-korea/jejudo/jeju-si"
       },
       {
         destinationName: 'Jerusalem',
         destinationPhoto: 'Jerusalem.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/israel-and-the-palestinian-territories/jerusalem"
       },
       {
         destinationName: 'Johanesburg',
         destinationPhoto: 'Johanesburg.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/south-africa/gauteng/johannesburg"
       },
       {
         destinationName: 'Johor Bahru',
         destinationPhoto: 'Johor Bahru.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/malaysia/peninsular-malaysia-east-coast/johor-bahru"
       },
       {
         destinationName: 'Kolkata',
         destinationPhoto: 'Kolkata.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/india/kolkata-calcutta"
       },
       {
         destinationName: 'Krakow',
         destinationPhoto: 'krakow.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/poland/malopolska/krakow"
       },
       {
         destinationName: 'Kuala Lumpur',
         destinationPhoto: 'kuala lumpur.JPG',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/malaysia/kuala-lumpur"
       },
       {
         destinationName: 'Kyoto',
         destinationPhoto: 'Kyoto.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/japan/kansai/kyoto"
       },
       {
         destinationName: 'Las Vegas',
         destinationPhoto: 'Las Vegas.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/usa/las-vegas"
       },
       {
         destinationName: 'Lima',
         destinationPhoto: 'Lima.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/peru/lima"
       },
       {
         destinationName: 'Lisbon',
         destinationPhoto: 'Lisbon.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/portugal/lisbon"
       },
       {
         destinationName: 'London',
         destinationPhoto: 'london.jpg',
         aboutDestination: "",
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/england/london"
       },
       {
         destinationName: 'Los Angeles',
         destinationPhoto: 'Los Angeles.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/usa/los-angeles"
       },
       {
         destinationName: 'Macau',
         destinationPhoto: 'macau.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/china/macau"
       },
       {
         destinationName: 'Madrid',
         destinationPhoto: 'Madrid.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/spain/madrid"
       },
       {
         destinationName: 'Marrakech',
         destinationPhoto: 'Marrakech.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/morocco/marrakesh"
       },
       {
         destinationName: 'Mecca',
         destinationPhoto: 'Mecca.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/saudi-arabia/mecca"
       },
       {
-        destinationName: 'melbourne',
+        destinationName: 'Melbourne',
         destinationPhoto: 'melbourne.jpg',
         aboutDestination: "",         
-        destinationLink: ""
+        destinationLink: "https://www.lonelyplanet.com/australia/melbourne"
       },
       {
         destinationName: 'Mexico City',
