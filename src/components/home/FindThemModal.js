@@ -47,16 +47,16 @@ class FindThemModal extends Component {
   };
 
   inputIsCorrect = () => {
-    if (isNull(this.destinationName.current.state.value))
-      return 1
-    if (isNull(this.gender.current.state.value))
-      return 2
-    if (isNull(this.state.dateFrom) ||
-      isNull(this.state.dateTo)||
+    if (
+      isNull(this.state.dateFrom) ||
+      isNull(this.state.dateTo) ||
+      isNull(this.destinationName.current.state.value) ||
+      isNull(this.gender.current.state.value) ||
       stringDateToISODateString(this.state.dateFrom) >
-      stringDateToISODateString(this.state.dateTo))
-      return 3
-    return 0
+        stringDateToISODateString(this.state.dateTo)
+    )
+      return false;
+    return true;
   };
 
   openModal = () => {
@@ -72,32 +72,15 @@ class FindThemModal extends Component {
   };
 
   findMyFriends = () => {
-    var correct = this.inputIsCorrect();
-    console.log(correct);
-    switch (correct) {
-      case 0: {
-        const destinationName = this.destinationName.current.state.value.value;
-        const dateFrom = stringDateToISODateString(this.state.dateFrom);
-        const dateTo = stringDateToISODateString(this.state.dateTo);
-        const gender = this.gender.current.state.value.value;
-        this.closeModal();
-        this.props.history.push(
-          `/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
-        );
-        break;
-      }
-      case 2: {
-        document.getElementsByClassName("errors-show")[0].innerHTML = "Invalid gender";
-        break;
-      }
-      case 1: {
-        document.getElementsByClassName("errors-show")[0].innerHTML = "Invalid destination";
-        break;
-      }
-      case 3: {
-        document.getElementsByClassName("errors-show")[0].innerHTML = "Invalid date period";
-        break;
-      }
+    if (this.inputIsCorrect()) {
+      const destinationName = this.destinationName.current.state.value.value;
+      const dateFrom = stringDateToISODateString(this.state.dateFrom);
+      const dateTo = stringDateToISODateString(this.state.dateTo);
+      const gender = this.gender.current.state.value.value;
+      this.closeModal();
+      this.props.history.push(
+        `/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
+      );
     }
   };
 
@@ -154,14 +137,14 @@ class FindThemModal extends Component {
           />
 
           {<label className="modal-label">Preferred gender:</label>}
-          <Select 
-            options={gender} 
-            ref={this.gender} 
+          <Select
+            options={gender}
+            ref={this.gender}
             defaultInputValue={""}
             placeholder="Gender..."
-             />
+          />
 
-          <p className="errors-show"></p>
+          <p className="errors-show" />
 
           <input
             type="button"
