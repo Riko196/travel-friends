@@ -55,12 +55,6 @@ class MyFriendsList extends Component {
     getMyFriends(data).then(() => {
       this.setState({ myFriendsLoaded: true });
     });
-
-    var elements = document.getElementsByClassName("navbar-item");
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.setProperty('background-color', "royalblue", 'important');
-    };
-
   }
 
   render() {
@@ -75,6 +69,7 @@ class MyFriendsList extends Component {
 
     return (
       <div>
+<<<<<<< HEAD
       <div className="background-image-friends">
       <img className="background-image" src={require(`../../images/cityPhotos/${
               this.props.destinationName
@@ -114,6 +109,55 @@ class MyFriendsList extends Component {
       </div>
       </div>
       </div>
+=======
+        <div className="background-image-friends" />
+        <div className="friend-list-wrapper">
+          <p className="people-p">People who want to visit</p>
+          <p className="destination-name-list">{this.props.destinationName}</p>
+          <div className="my-friend-list-container">
+            <p>Friends with exact date trips:</p>
+            {friends !== null &&
+              friends.friendsWithDate.length !== 0 &&
+              friends.friendsWithDate.map(friend => (
+                <Link
+                  to={`/home/my-friends/profile/${friend.userId}`}
+                  key={friend.userId}
+                >
+                  <MyFriendsDetail detail={friend} />
+                </Link>
+              ))}
+            {friends !== null &&
+              (friends.friendsWithDate.length === 0 && (
+                <p>
+                  <span style={{ fontStyle: "italic", marginLeft: "15px" }}>
+                    No friends found
+                  </span>
+                </p>
+              ))}
+
+            <p>Friends with planned trips:</p>
+            {friends !== null &&
+              friends.friendsWithPlanned.length !== 0 &&
+              friends.friendsWithPlanned.map(friend => (
+                <Link
+                  to={`/home/my-friends/profile/${friend.userId}`}
+                  key={friend.userId}
+                >
+                  <MyFriendsDetail detail={friend} />
+                </Link>
+              ))}
+            {friends !== null &&
+              (friends.friendsWithPlanned.length === 0 && (
+                <p>
+                  <span style={{ fontStyle: "italic", marginLeft: "15px" }}>
+                    No friends found
+                  </span>
+                </p>
+              ))}
+          </div>
+        </div>
+      </div>
+>>>>>>> 1a8d98ee4f4da551c5b9950079ce6827ee30bfd8
     );
   }
 }
