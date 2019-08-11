@@ -14,7 +14,8 @@ class AboutUs extends Component {
   render() {
     return (
       <div>
-      <div className="background-image"></div>
+      <div className="background-image">
+        <img></img>
       <div className="about-us-container">
         <p className="about-us-p">
           Who are we? We are eager travelers who love meeting new people! We are
@@ -36,6 +37,7 @@ class AboutUs extends Component {
           least 2 cultures during your trip. (?) One culture at your destination
           and also culture of your new travelfriend.
         </p>
+      </div>
       </div>
       </div>
     );

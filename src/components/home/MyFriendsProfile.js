@@ -115,7 +115,6 @@ class MyFriendsProfile extends Component {
               <p className="speaking">
               <span style={{fontStyle: "oblique", fontWeight: "700"}}>Speaking: </span>{this.props.selectedFriend.speaking}
               </p>
-              <p className="email"><span style={{fontStyle: "oblique", fontWeight: "700"}}>Email: </span>{this.props.selectedFriend.email}</p>
               {this.props.selectedFriend.userName !== null && (
                 <a
                   href={"https://m.me/" + this.props.selectedFriend.userName}

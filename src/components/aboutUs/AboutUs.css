@@ -9,9 +9,10 @@
     border-radius: 15px;
     padding: 1em;
     font-family: "Montserrat", sans-serif;
+    margin-bottom: 1em;
 }
 
-.background-image{
+.background-image img{
     width: 100%;
     height: 100vh;
     position: fixed;
@@ -25,7 +26,6 @@
 .about-us-p{
     margin: 0px;
     color: black;
-    margin-bottom: 1em;
 }
 
 .navbar-item{

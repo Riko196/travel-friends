@@ -63,7 +63,6 @@ class MyFriendsList extends Component {
 
   }
 
-
   render() {
     if (this.state.error) {
       return <Redirect to="/page-not-found" />;
@@ -76,12 +75,16 @@ class MyFriendsList extends Component {
 
     return (
       <div>
-      <div className="background-image-friends"></div>
+      <div className="background-image-friends">
+      <img className="background-image" src={require(`../../images/cityPhotos/${
+              this.props.destinationName
+            }.jpg`)}></img>
       <div className="friend-list-wrapper">
         <p className="people-p">People who want to visit</p>
         <p className="destination-name-list">{this.props.destinationName}</p>
         <div className="my-friend-list-container">
-          <p>Friends with exact date trips:</p>
+          {/*<p>Friends with exact date trips:</p>*/}
+          <div className="planned-exact">
           {friends !== null &&
             friends.friendsWithDate.length !== 0 &&
             friends.friendsWithDate.map(friend => (
@@ -92,25 +95,23 @@ class MyFriendsList extends Component {
                 <MyFriendsDetail detail={friend} />
               </Link>
             ))}
-          {friends !== null &&
-            (friends.friendsWithDate.length === 0 && <p><span style={{fontStyle: "italic", marginLeft: "15px"}}>No friends found</span></p>)}
-
-          <p>Friends with planned trips:</p>
+          {/* {friends !== null &&
+            (friends.friendsWithDate.length === 0 && <p><span style={{fontStyle: "italic", marginLeft: "15px"}}>No friends found</span></p>)} */}
+          </div>
+          <div className="planning">
+          {/*<p>Friends with planned trips:</p>*/}
           {friends !== null &&
             friends.friendsWithPlanned.length !== 0 &&
             friends.friendsWithPlanned.map(friend => (
-              <Link
-                to={`/home/my-friends/profile/${friend.userId}`}
-                key={friend.userId}
-              >
-                <MyFriendsDetail detail={friend} />
-              </Link>
+              <MyFriendsDetail detail={friend} destinationName={this.props.destinationName}/>
             ))}
           {friends !== null &&
-            (friends.friendsWithPlanned.length === 0 && (
+            (friends.friendsWithPlanned.length === 0 && friends.friendsWithDate.length === 0 && (
               <p><span style={{fontStyle: "italic", marginLeft: "15px"}}>No friends found</span></p>
             ))}
+          </div>
         </div>
+      </div>
       </div>
       </div>
     );

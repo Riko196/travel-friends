@@ -80,7 +80,8 @@ class FacebookButton extends Component {
           {({ loading, handleClick, error, data }) => (
             <button className="fb-button" onClick={handleClick}>
               {<i className="fab fa-facebook-square space-after" />}
-              {!loading && <span>Login with Facebook</span>}
+              {!loading && <span className="facebook">Continue with FACEBOOK</span>}
+              {!loading && <p className="annotation">*we will never post to your facebook</p>}
               {loading && <span>Loading...</span>}
             </button>
           )}

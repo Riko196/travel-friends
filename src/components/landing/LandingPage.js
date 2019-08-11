@@ -51,42 +51,44 @@ class LandingPage extends Component {
         <div className="landing-page">
           <div className="landing-page__part landing-page__part--1">
             <div className="container-fluid py-5">
-              <div className="row">
-                <div className="col-md-6 text-center">
+              <div>
+                <div className="text-center">
                   <div className="landing-page__maxw">
                     <div className="text-uppercase text-xlarge font-weight-black text-shadow--1 mb-4">
-                      You are on a right place for finding your travel friends.
+                      You are at a right place to find your travel friends.
                     </div>
                     <p className="text-uppercase font-weight-bold text-medium text-shadow--1 mb-4">
-                      Meet new people with same passion for traveling and share
-                      your experience and costs!
+                      Meet new people with same passion and share
+                      your experience and costs with them!
                     </p>
                     <div className="mb-4 d-flex justify-content-center flex-wrap">
                       {/* <a href="#" className="btn btn--social-login btn--rounded btn--blue m-3 login-facebook cursor-pointer"> */}
                       <FacebookButton />
                       {/* </a> */}
                     </div>
-                    <p className="text-uppercase font-weight-bold text-shadow--1">
-                      By clicking “continue with facebook” you accept the{" "}
-                      <NavLink
-                        to="/terms-conditions"
-                        className="terms-conditions"
-                      >
-                        Terms &amp; Conditions
-                      </NavLink>{" "}
-                      and{" "}
-                      <NavLink to="/privacy-policy" className="privacy-policy">
-                        Privacy Policy
-                      </NavLink>{" "}
-                      of the website.
-                    </p>
                   </div>
                 </div>
               </div>
             </div>
-            <a href="#how-it-works" className="landing-page__arrow scrollTo">
+            <p className="text-shadow--1 text-cond">
+              By clicking “continue with facebook” you accept the{" "}
+              <NavLink
+                to="/terms-conditions"
+                className="terms-conditions"
+              >
+                Terms &amp; Conditions
+              </NavLink>{" "}
+              and{" "}
+              <NavLink to="/privacy-policy" className="privacy-policy">
+                Privacy Policy
+              </NavLink>{" "}
+              of the website.
+            </p>
+            <div className="center-arrow">
+            <a href="#how-it-works" className="scrollTo">
               <i className="fas fa-chevron-down" />
             </a>
+            </div>
           </div>
           <div
             id="how-it-works"

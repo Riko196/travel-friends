@@ -11,8 +11,8 @@
 
 .home_part-1{
     width: 100%;
-    min-height: 100vh;
-    padding-top: 150px;
+    min-height: 79vh;
+    padding-top: 120px;
     background-image: url("../../images/home.jpg");
     background-repeat: no-repeat;
     background-size: cover;

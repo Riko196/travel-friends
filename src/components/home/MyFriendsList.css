@@ -9,50 +9,48 @@
     top: 100px;
     right: 10%;
     height: auto;
-    width: 80%;
+    width: 78%;
     margin: auto;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: transparent;
     margin-bottom: 50px;
     padding-bottom: 1em;
 }
 
-.background-image-friends{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-}
-
-.background-image-friends::after {
-    content: "";
-    background: url("../../images/profile4.jpg");
+.background-image{
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    opacity: 0.5;
+    width: auto !important;
+}
+
+.planning .planned-banner{
+     /* display: none;  */
+}
+
+.background-image-friends{
+    position: absolute;
     top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
-    position: fixed;
-    z-index: -1;   
-  }
+    width: 100%;
+}
 
 .people-p{
     text-transform: uppercase;
     text-align: center;
     margin-bottom: -10px; 
+    font-size: 18pt;
+    color: white;
+    font-weight: 800;
 }
 
 .destination-name-list{
     font-weight: 800;
     font-size: 40pt;
     margin-top: 5px;
-    color: black;
+    color: white;
     text-align: center;
-    font-family: "Dancing script", "cursive";
+    /* font-family: "Dancing script", "cursive"; */
 }
 
 @media (max-width: 600px){
