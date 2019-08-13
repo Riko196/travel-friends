@@ -16,16 +16,25 @@
     padding-bottom: 1em;
 }
 
-.background-image{
+.no-friends-found{
+    background-color: rgba(255,255,255, 0.8);
+    padding: 0.5em;
+    border-radius: 10px;
+}
+
+.background-image-friends .background-image{
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    width: auto !important;
+    min-width: 100vw;
+    min-height: 100vh;
+    max-height: 100vh;
+    position: fixed;
 }
 
 .planning .planned-banner{
-     /* display: none;  */
+      display: none;  
 }
 
 .background-image-friends{

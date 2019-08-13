@@ -70,6 +70,7 @@ class LandingPage extends Component {
                 </div>
               </div>
             </div>
+            <div className="at-bottom">
             <p className="text-shadow--1 text-cond">
               By clicking “continue with facebook” you accept the{" "}
               <NavLink
@@ -88,6 +89,7 @@ class LandingPage extends Component {
             <a href="#how-it-works" className="scrollTo">
               <i className="fas fa-chevron-down" />
             </a>
+            </div>
             </div>
           </div>
           <div

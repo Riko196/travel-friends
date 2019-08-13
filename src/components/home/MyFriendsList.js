@@ -33,6 +33,11 @@ class MyFriendsList extends Component {
       gender
     } = this.props;
 
+    var elements = document.getElementsByClassName("navbar-item");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.setProperty('background-color', "royalblue", 'important');
+    };
+
     if (
       !isDestinationName(destinationName) ||
       !isISODateFormat(dateFrom) ||
@@ -101,7 +106,7 @@ class MyFriendsList extends Component {
             ))}
           {friends !== null &&
             (friends.friendsWithPlanned.length === 0 && friends.friendsWithDate.length === 0 && (
-              <p><span style={{fontStyle: "italic", marginLeft: "15px"}}>No friends found</span></p>
+              <p><span className="no-friends-found" style={{fontStyle: "italic", marginLeft: "15px"}}>No friends found</span></p>
             ))}
           </div>
         </div>

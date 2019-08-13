@@ -128,12 +128,14 @@ class FindThemModal extends Component {
           <DatePicker
             selected={this.state.dateFrom}
             onChange={this.handleChangeDateFrom}
+            className="date-wide"
           />
 
           <label className="modal-label">To:</label>
           <DatePicker
             selected={this.state.dateTo}
             onChange={this.handleChangeDateTo}
+            className="date-wide"
           />
 
           {<label className="modal-label">Preferred gender:</label>}

@@ -19,7 +19,7 @@ class MyFriendsDetail extends Component {
           </div>
         </Link>
         <p className="detailp">Will be in {this.props.destinationName} from [...] to [...]</p>
-        <p className="detailp">About: ...</p>
+        <p className="detailp2">About: {this.props.detail.aboutme}</p>
         <div className="buttons">
         <Link
           to={`/home/my-friends/profile/${this.props.detail.userId}`}
@@ -30,7 +30,13 @@ class MyFriendsDetail extends Component {
           </div>
         </Link>
         <div className="contact-button">
+          <a
+            href={"https://m.me/" + this.props.detail.userName}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
           <p>Contact</p>
+          </a>
         </div>
         </div>
       </div>

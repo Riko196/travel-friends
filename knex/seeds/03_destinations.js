@@ -47,7 +47,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'Bangkok',
-        destinationPhoto: 'BANGKOK.jpg',
+        destinationPhoto: 'Bangkok.jpg',
         aboutDestination: "Same same, but different. This Thailish T-shirt philosophy sums up Bangkok, a city where the familiar and the exotic collide like the flavours on a plate of pàt tai.",
         destinationLink: "https://www.lonelyplanet.com/thailand/bangkok"
       },
@@ -60,55 +60,61 @@ exports.seed = function(knex, Promise) {
       {
         destinationName: 'Beijing',
         destinationPhoto: 'Beijing.jpg',
-        aboutDestination: "",
+        aboutDestination: "Constantly reimagining itself as it races towards the future, yet inextricably linked to its glorious, notorious past, Běijīng is as compelling as it is complex.",
         destinationLink: "https://www.lonelyplanet.com/china/beijing"
       },
       {
         destinationName: 'Berlin',
         destinationPhoto: 'Berlin.jpg',
-        aboutDestination: "",
+        aboutDestination: "Berlin's combo of glamour and grit is bound to mesmerise all those keen to explore its vibrant culture, cutting-edge architecture, fabulous food, intense parties and tangible history.",
         destinationLink: "https://www.lonelyplanet.com/germany/berlin"
+      },
+      {
+        destinationName: 'Bratislava',
+        destinationPhoto: '',
+        aboutDestination: "Slovakia's capital since the country's independence in 1993, Bratislava is a mosaic of illustrious history: a medieval and Gothic old town, baroque palaces commissioned by Hungarian nobles, and the crowning castle, rebuilt to Renaissance finery. Slicing through the city are stark-angled, communist-era blocks and a futurist bridge.",
+        destinationLink: "https://www.lonelyplanet.com/slovakia/bratislava"
       },
       {
         destinationName: 'Brussels',
         destinationPhoto: 'Brussels.jpg',
-        aboutDestination: "",
+        aboutDestination: "Historic yet hip, bureaucratic yet bizarre, self-confident yet unshowy, Brussels is multicultural to its roots.",
         destinationLink: "https://www.lonelyplanet.com/belgium/brussels"
       },
       {
         destinationName: 'Budapest',
         destinationPhoto: 'Budapest.jpg',
-        aboutDestination: "",
+        aboutDestination: "Budapest has something for everyone – from dramatic history and flamboyant architecture to healing thermal waters and a nightlife that is unrivalled in Eastern and Central Europe.",
         destinationLink: "https://www.lonelyplanet.com/hungary/budapest"
       },
       {
         destinationName: 'Buenos Aires',
-        destinationPhoto: 'buenos aires.jpg',
-        aboutDestination: "",         
+        destinationPhoto: 'Buenos Aires.jpg',
+        aboutDestination: "Buenos Aires combines faded European grandeur with Latin passion. Sexy and alive, this beautiful city gets under your skin.",         
         destinationLink: "https://www.lonelyplanet.com/argentina/buenos-aires"
       },
       {
         destinationName: 'Cairo',
         destinationPhoto: 'Cairo.jpg',
-        aboutDestination: "",         
+        aboutDestination: "Cairo is chaos at its most magnificent, infuriating and beautiful. From above, the distorted roar of the muezzins' call to prayer echoes out from duelling minarets. Below, car horns bellow tuneless symphonies amid avenues of faded 19th-century grandeur while donkey carts rattle down dusty lanes lined with colossal Fatimid and Mamluk monuments.",         
         destinationLink: "https://www.lonelyplanet.com/egypt/cairo"
       },
       {
         destinationName: 'Cancun',
         destinationPhoto: 'Cancun.jpg',
-        aboutDestination: "",
+        aboutDestination: "Cancun is a tale of two cities, with the Zona Hotelera offering majestic Caribbean beaches and Maya culture and Cancún Centro providing the local flavor.",
         destinationLink: "https://www.lonelyplanet.com/mexico/cancun"
       },
       {
         destinationName: 'Chennai',
         destinationPhoto: 'Chennai.jpg',
-        aboutDestination: "",
+        aboutDestination: "If you have time to explore Chennai (formerly Madras), this 400-sq-km conglomerate of urban villages and diverse neighbourhoods making up Tamil Nadu's capital will pleasantly surprise you. Its role is as keeper of South Indian artistic, religious and culinary traditions.",
         destinationLink: "https://www.lonelyplanet.com/india/tamil-nadu/chennai-madras"
       },
       {
         destinationName: 'Chiang Mai',
         destinationPhoto: 'Chiang Mai.jpg',
-        aboutDestination: "",
+        aboutDestination: "The former seat of the Lanna kingdom is a blissfully calm and laid-back place to relax and recharge your batteries. Participate in a vast array of activities on offer, or just stroll around the backstreets, and discover a city that is still firmly Thai in its atmosphere and attitude.",
         destinationLink: "https://www.lonelyplanet.com/thailand/chiang-mai-province/chiang-mai"
       },
       {
@@ -120,31 +126,31 @@ exports.seed = function(knex, Promise) {
       {
         destinationName: 'Colombo',
         destinationPhoto: 'Colombo.jpg',
-        aboutDestination: "",         
+        aboutDestination: "Although it's unlikely it will reclaim its 19th-century moniker 'the garden city of the East', Colombo has nevertheless emerged as a must-see stop in Sri Lanka. No longer just the sprawling city you have to endure on your way to the beaches, it has become a worthy destination in its own right and makes an excellent start – or finish – to your Sri Lankan adventures.",         
         destinationLink: "https://www.lonelyplanet.com/sri-lanka/colombo"
       },
       {
         destinationName: 'Copenhagen',
         destinationPhoto: 'Copenhagen.jpg',
-        aboutDestination: "",         
+        aboutDestination: "Copenhagen is the epitome of Scandi cool. Modernist lamps light New Nordic tables, bridges buzz with cycling commuters and eye-candy locals dive into pristine waterways.",         
         destinationLink: "https://www.lonelyplanet.com/denmark/copenhagen"
       },
       {
         destinationName: 'Dammam City',
         destinationPhoto: 'Dammam City.jpg',
-        aboutDestination: "",         
+        aboutDestination: "Dammam is the best place in the region for food and sleeping options. The city's cuisine has a truly international flavour to cater for its huge expat community, most of whom work for the Saudi Arabian Oil Company (Saudi Aramco). It is also where the causeway to Bahrain is located, making it popular with those wanting to hop across to the Kingdom's more liberal neighbour.",         
         destinationLink: "https://www.lonelyplanet.com/saudi-arabia/dammam"
       },
       {
         destinationName: 'Delhi',
         destinationPhoto: 'Delhi.jpg',
-        aboutDestination: "",         
+        aboutDestination: "Steeped in history yet overflowing with modern life, colourful, cacophonous Delhi pulsates with the relentless rhythms of humanity like few other cities on Earth.",         
         destinationLink: "https://www.lonelyplanet.com/india/delhi"
       },
       {
         destinationName: 'Denpasar',
         destinationPhoto: 'Denpasar.jpg',
-        aboutDestination: "",        
+        aboutDestination: "Sprawling, hectic and ever-growing, Bali's capital has been the focus of a lot of the island's growth and wealth over the last five decades. It can seem a daunting and chaotic place, but spend a little time on its tree-lined streets in the relatively affluent government and business district of Renon and you'll discover a more genteel side.",        
         destinationLink: "https://www.lonelyplanet.com/indonesia/bali/denpasar"
       },
       {
@@ -155,7 +161,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'Dubai',
-        destinationPhoto: 'dubai.jpg',
+        destinationPhoto: 'Dubai.jpg',
         aboutDestination: "",
         destinationLink: "https://www.lonelyplanet.com/united-arab-emirates/dubai"
       },
@@ -281,13 +287,13 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'Krakow',
-        destinationPhoto: 'krakow.jpg',
+        destinationPhoto: 'Krakow.jpg',
         aboutDestination: "",         
         destinationLink: "https://www.lonelyplanet.com/poland/malopolska/krakow"
       },
       {
         destinationName: 'Kuala Lumpur',
-        destinationPhoto: 'kuala lumpur.JPG',
+        destinationPhoto: 'Kuala Lumpur.jpg',
         aboutDestination: "",         
         destinationLink: "https://www.lonelyplanet.com/malaysia/kuala-lumpur"
       },
@@ -317,7 +323,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'London',
-        destinationPhoto: 'london.jpg',
+        destinationPhoto: 'London.jpg',
         aboutDestination: "",
         destinationLink: "https://www.lonelyplanet.com/england/london"
       },
@@ -329,7 +335,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'Macau',
-        destinationPhoto: 'macau.jpg',
+        destinationPhoto: 'Macau.jpg',
         aboutDestination: "",         
         destinationLink: "https://www.lonelyplanet.com/china/macau"
       },
@@ -353,7 +359,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'Melbourne',
-        destinationPhoto: 'melbourne.jpg',
+        destinationPhoto: 'Melbourne.jpg',
         aboutDestination: "",         
         destinationLink: "https://www.lonelyplanet.com/australia/melbourne"
       },
@@ -413,13 +419,13 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'Osaka',
-        destinationPhoto: 'Osaka.JPG',
+        destinationPhoto: 'Osaka.jpg',
         aboutDestination: "",         
         destinationLink: "https://www.lonelyplanet.com/japan/kansai/osaka"
       },
       {
         destinationName: 'Paris',
-        destinationPhoto: 'paris.jpg',
+        destinationPhoto: 'Paris.jpg',
         aboutDestination: "",         
         destinationLink: "https://www.lonelyplanet.com/france/paris"
       },
@@ -515,7 +521,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'Singapore',
-        destinationPhoto: 'singapore.jpg',
+        destinationPhoto: 'Singapore.jpg',
         aboutDestination: "",
         destinationLink: "https://www.lonelyplanet.com/singapore"
       },
@@ -527,7 +533,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'Stockholm',
-        destinationPhoto: 'stockholm.jpg',
+        destinationPhoto: 'Stockholm.jpg',
         aboutDestination: "",         
         destinationLink: "https://www.lonelyplanet.com/sweden/stockholm"
       },
@@ -575,7 +581,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'Venice',
-        destinationPhoto: 'Venic.jpg',
+        destinationPhoto: 'Venice.jpg',
         aboutDestination: "",         
         destinationLink: "https://www.lonelyplanet.com/italy/venice"
       },
@@ -587,7 +593,7 @@ exports.seed = function(knex, Promise) {
       },
       {
         destinationName: 'Warsaw',
-        destinationPhoto: 'warsaw.jpg',
+        destinationPhoto: 'Warsaw.jpg',
         aboutDestination: "",         
         destinationLink: "https://www.lonelyplanet.com/poland/warsaw"
       },

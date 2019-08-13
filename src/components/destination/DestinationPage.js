@@ -19,6 +19,12 @@ class DestinationPage extends Component {
   }
 
   componentDidMount() {
+
+    var elements = document.getElementsByClassName("navbar-item");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.setProperty('background-color', "royalblue", 'important');
+    };
+
     const { destinationId, getDestinationByDestinationId } = this.props;
 
     if (isNaN(destinationId)) {
@@ -59,6 +65,7 @@ class DestinationPage extends Component {
             src={require(`../../images/cityPhotos/${
               selectedDestination.destinationPhoto
             }`)}
+            onerror="this.onerror=null;this.src='../../images/friends.jpg';"
           />
           <div className="destination-page-title">
             <h1 className="destination-page-title-p">

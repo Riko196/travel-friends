@@ -116,7 +116,7 @@ class TripDetail extends Component {
                 onClick={this.closeModal}
                 className="x-button"
               />
-
+              <div className="center-rating">
               <Rating
                 emptySymbol={
                   <img alt="emptySymbol" src={emptyStar} className="icon" />
@@ -127,7 +127,7 @@ class TripDetail extends Component {
                 initialRating={this.state.rating}
                 onChange={rating => this.editRate(rating)}
               />
-
+              </div>
               <textarea
                 type="text"
                 className="textarea"

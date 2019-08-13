@@ -162,9 +162,12 @@ class AddTripModal extends Component {
           <label className="modal-label">Still planning:</label>
           <input
             type="checkbox"
+            id="cbx"
+            style={{display: 'none'}}
             onChange={this.handleChangePlanned}
             defaultChecked={false}
           />
+          <label for="cbx" className="toggle"><span></span></label>
 
           {this.state.planned === false && (
             <div>
@@ -172,12 +175,14 @@ class AddTripModal extends Component {
               <DatePicker
                 selected={this.state.dateFrom}
                 onChange={this.handleChangeDateFrom}
+                className="date-wide"
               />
 
               <label className="modal-label">To:</label>
               <DatePicker
                 selected={this.state.dateTo}
                 onChange={this.handleChangeDateTo}
+                className="date-wide"
               />
             </div>
           )}

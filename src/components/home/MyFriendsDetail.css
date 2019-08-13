@@ -52,6 +52,14 @@
     padding-right: 15%;
 }
 
+.detailp2{
+    margin-top: 0px;
+    font-size: 10pt;
+    padding-left: 15%;
+    padding-right: 15%;
+    text-align: left !important;
+}
+
 .planned-banner{
     display: fixed;
     top: 0;
