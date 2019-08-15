@@ -8,6 +8,13 @@
 .my-trips-list-container{
     margin-left: 5%;
     margin-right: 5%;
+    position: relative;
+}
+
+.my-trips-list-container:after{
+  content: "";
+  display: table;
+  clear: both;
 }
 
 .no-planned-trips{

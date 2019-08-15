@@ -1,14 +1,13 @@
 .trip-div{
     width: 300px;
     height: auto;
-    display: inline-block;
     position: relative;
     border: solid 1px gray;
     margin-left: 1em;
     margin-top: 5px;
     margin-bottom: 5px;
-    position: relative;
     background-color: white;
+    float: left;
 }
 
 .half{
@@ -36,6 +35,8 @@
     font-weight: 600;
     font-size: 19pt;
     font-family: 'Dancing script', cursive;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .delete-trip-btn{
@@ -106,16 +107,29 @@
 }
 
 .trip-date{
-    margin-top: 0px !important;
-    margin-bottom: 10px;
     max-width: 50%;
     width: 100%;
+    margin: 0px !important;
 }
 
 .trip-dates{
     width: 100%;
     margin: 0px;
     padding: 0px;
+}
+
+.trip-info-div{
+    width: 100%;
+    padding-left: 24px;
+    padding-right: 40px;
+    font-size: 10px;
+    min-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.trip-info-p{
+    margin: 0px;
 }
 
 @media (max-width: 1000px){
