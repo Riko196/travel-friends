@@ -111,32 +111,42 @@ class FindThemModal extends Component {
             name="exit"
             value="X"
             onClick={this.closeModal}
-            className="x-button"
+            className="x-button-findthem"
           />
 
-          <h2>Find Travel Friends</h2>
+          <h2 className="title-find-modal">Find Travel Friends</h2>
 
-          <label className="modal-label">Destination:</label>
+          {<label className="modal-label">Destination:</label>}
           <Select
             options={destinationsName}
             ref={this.destinationName}
             defaultInputValue={""}
+            placeholder="Destination..."
           />
 
           <label className="modal-label">From:</label>
           <DatePicker
             selected={this.state.dateFrom}
             onChange={this.handleChangeDateFrom}
+            className="date-wide"
           />
 
           <label className="modal-label">To:</label>
           <DatePicker
             selected={this.state.dateTo}
             onChange={this.handleChangeDateTo}
+            className="date-wide"
           />
 
-          <label className="modal-label">Gender:</label>
-          <Select options={gender} ref={this.gender} defaultInputValue={""} />
+          {<label className="modal-label">Preferred gender:</label>}
+          <Select
+            options={gender}
+            ref={this.gender}
+            defaultInputValue={""}
+            placeholder="Gender..."
+          />
+
+          <p className="errors-show" />
 
           <input
             type="button"

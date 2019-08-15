@@ -19,6 +19,15 @@ class DestinationPage extends Component {
   }
 
   componentDidMount() {
+    var elements = document.getElementsByClassName("navbar-item");
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.setProperty(
+        "background-color",
+        "royalblue",
+        "important"
+      );
+    }
+
     const { destinationId, getDestinationByDestinationId } = this.props;
 
     if (isNaN(destinationId)) {
@@ -53,41 +62,30 @@ class DestinationPage extends Component {
     return (
       <div className="destination-wrapper">
         <div className="destination-upper-div">
-          <img
-            alt="destinationPhoto"
-            className="destinationPagePhoto"
-            src={require(`../../images/cityPhotos/${
-              selectedDestination.destinationPhoto
-            }`)}
-          />
+          {selectedDestination.destinationPhoto !== null && (
+            <img
+              alt="destinationPhoto"
+              className="destinationPagePhoto"
+              src={require(`../../images/cityPhotos/${
+                selectedDestination.destinationPhoto
+              }`)}
+            />
+          )}
           <div className="destination-page-title">
             <h1 className="destination-page-title-p">
               {selectedDestination.destinationName}
             </h1>
             <h6 className="destination-description">
-              {selectedDestination.aboutDestination
-                .split("{,}", 100)
-                .map((line, index) => {
-                  if (line.includes("http://") || line.includes("https://")) {
-                    return (
-                      <a
-                        href={line}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        key={index}
-                      >
-                        {line}
-                      </a>
-                    );
-                  } else {
-                    return (
-                      <div key={index}>
-                        {line} <br />
-                      </div>
-                    );
-                  }
-                })}
+              {selectedDestination.aboutDestination}
             </h6>
+            <a
+              href={selectedDestination.destinationLink}
+              target="_blank"
+              className="destination-link"
+              rel="noopener noreferrer"
+            >
+              {selectedDestination.destinationLink}
+            </a>
           </div>
         </div>
         <div className="reviews">

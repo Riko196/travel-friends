@@ -2,15 +2,31 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.x-button{
+.x-button-findthem{
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: salmon;
-    border: 1px solid salmon;
-    color: white;
+    color: gray;
     cursor: pointer;
-    border-radius: 3px;
+    border: none;
+    background: transparent;
+    font-weight: 600;
+}
+
+.title-find-modal{
+    font-family: 'Dancing script', cursive;
+}
+
+.react-datepicker-wrapper{
+    width: 100% !important;
+}
+
+.react-datepicker__input-container{
+    width: 100% !important;
+}
+
+.date-wide{
+    width: 100% !important;
 }
 
 .modal-label{
@@ -31,11 +47,19 @@
     display: block;
     margin: auto;
     width: 150px;
-    background-color: limegreen;
+    background-color: royalblue;
     color: white;
     font-weight: 600;
-    border: 1px solid limegreen;
+    border: 1px solid royalblue;
     font-size: 15px;  
-    height: 25px;
-    margin-top: 1em;
+    height: 30px;
+    margin-top: 5em;
+    margin-bottom: 2em;
+}
+
+.errors-show{
+    color: red;
+    font-size: 10pt;
+    padding-top: 30px;
+    height: 10pt;
 }

@@ -145,9 +145,9 @@ class AddTripModal extends Component {
             name="exit"
             value="X"
             onClick={this.closeModal}
-            className="x-button"
+            className="x-button-trip"
           />
-          <h2>Add trip</h2>
+          <h2 className="modal-title-trip">Add trip</h2>
 
           <label className="modal-label">Destination:</label>
           <Select
@@ -159,12 +159,17 @@ class AddTripModal extends Component {
             defaultInputValue={""}
           />
 
-          <label className="modal-label">Planning:</label>
+          <label className="modal-label">Still planning:</label>
           <input
             type="checkbox"
+            id="cbx"
+            style={{ display: "none" }}
             onChange={this.handleChangePlanned}
             defaultChecked={false}
           />
+          <label htmlFor="cbx" className="toggle">
+            <span />
+          </label>
 
           {this.state.planned === false && (
             <div>
@@ -172,12 +177,14 @@ class AddTripModal extends Component {
               <DatePicker
                 selected={this.state.dateFrom}
                 onChange={this.handleChangeDateFrom}
+                className="date-wide"
               />
 
               <label className="modal-label">To:</label>
               <DatePicker
                 selected={this.state.dateTo}
                 onChange={this.handleChangeDateTo}
+                className="date-wide"
               />
             </div>
           )}
@@ -185,7 +192,7 @@ class AddTripModal extends Component {
           <label className="modal-label">Additional info:</label>
           <textarea
             type="text"
-            className="textarea"
+            className="textarea-2"
             ref={this.tripInfo}
             maxLength={textareaMaxLength}
           />
@@ -193,7 +200,7 @@ class AddTripModal extends Component {
           <input
             type="button"
             value="Save trip"
-            className="save-button"
+            className="save-button-trip"
             onClick={this.addTrip}
           />
         </Modal>

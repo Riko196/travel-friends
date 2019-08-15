@@ -1,0 +1,84 @@
+@import url('https://use.fontawesome.com/releases/v5.7.1/css/all.css');
+
+.fa-facebook-f:before {
+    content: "\f39e";
+}
+
+.fa-instagram:before {
+    content: "\f16d";
+}
+
+.fa-youtube:before {
+    content: "\f167";
+}
+
+.ml-1, .mx-1 {
+    margin-left: .25rem!important;
+}
+
+.mr-1, .mx-1 {
+    margin-right: .25rem!important;
+}
+
+.fab {
+    font-family: "Font Awesome 5 Brands";
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.bottom-bar{
+    background-color: white;
+    min-height: 50px;
+}
+
+#divider-bottom{
+    margin-bottom: 0px;
+    width: 80%;
+}
+
+.bottom-links{
+    position: relative;
+    height: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+.follow-us, .terms-cond, .privacy-policy-bar{
+    display: inline;
+}
+
+.privacy-policy-bar, .terms-cond{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.terms-cond{
+    right: 110px;
+}
+
+.bottom-fb-link, .bottom-yt-link, .bottom-ig-link{
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
+    display: inline;
+}
+
+
+@media (max-width: 570px){
+    .follow-us, .terms-cond, .privacy-policy{
+        display: block;
+    }
+    .privacy-policy-bar, .terms-cond{
+        position: relative;
+        right: 0;
+    }
+    .bottom-links{
+        height: 80px;
+    }
+}

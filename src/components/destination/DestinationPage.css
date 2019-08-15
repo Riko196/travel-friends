@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
+
+html{
+  background-color: white;
+}
+
 .destination-wrapper {
   margin: 0px;
   padding: 0px;
@@ -35,6 +41,19 @@
   color: black;
   padding-top: 20px;
   font-size: 32pt;
+  font-family: 'Dancing script', cursive;
+}
+
+.destination-link{
+  font-weight: 500;
+  margin-top: 1em;
+  color: royalblue;
+  font-size: 12pt;
+}
+
+.destination-link:hover{
+  cursor: pointer;
+  text-decoration: underline !important;
 }
 
 .destination-page-title {
@@ -57,6 +76,8 @@
   margin: auto;
   text-align: left;
   padding: 1em;
+  padding-left: 15%;
+  padding-right: 15%;
 }
  
 @media (max-width: 500px) {

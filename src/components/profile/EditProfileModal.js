@@ -141,7 +141,7 @@ class EditProfileModal extends Component {
             onClick={this.closeModal}
             className="x-button"
           />
-          <h2>Edit profile</h2>
+          <h2 className="edit-profile-title">Edit profile</h2>
           <label className="modal-label">About me:</label>
           <textarea
             type="text"
@@ -232,7 +232,7 @@ class EditProfileModal extends Component {
             type="button"
             value="Save profile"
             onClick={this.updateProfile}
-            className="save-button"
+            className="save-button-edit"
           />
         </Modal>
       </div>

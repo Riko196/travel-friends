@@ -1,13 +1,13 @@
 .trip-div{
     width: 300px;
     height: auto;
-    display: inline-block;
     position: relative;
     border: solid 1px gray;
     margin-left: 1em;
     margin-top: 5px;
     margin-bottom: 5px;
-    position: relative;
+    background-color: white;
+    float: left;
 }
 
 .half{
@@ -33,7 +33,10 @@
     text-align: center;
     margin-top: 15px;
     font-weight: 600;
-    font-size: 15pt;
+    font-size: 19pt;
+    font-family: 'Dancing script', cursive;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 .delete-trip-btn{
@@ -49,33 +52,44 @@
     border: solid 1px transparent;
     background-color: transparent;
     cursor: pointer;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
 }
 
 .edit-review{
+    position: absolute;
     display: block;
     margin: auto;
     width: 100px;
-    background-color: limegreen;
+    background-color: royalblue;
     color: white;
     font-weight: 600;
-    border: 1px solid limegreen;
+    border: 1px solid royalblue;
     font-size: 15px;  
     height: 25px;
     margin-top: 1em;
     cursor: pointer;
+    bottom: 30px;
+    left: 50%;
+    margin-left: -50px;
 }
 
-.icon{
-    height: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 40px;
-    cursor: pointer; 
+.center-rating{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.center-rating .icon{
+    max-height: 30px;
+    max-width: 30px;
+    cursor: pointer;
+    margin-top: 25px !important;
 }
 
 #editReview{
-    margin-left: 25px !important;
-    margin-top: 40px !important;
+    max-width: 80%;
 }
 
 .open-modal-btn{
@@ -93,16 +107,29 @@
 }
 
 .trip-date{
-    margin-top: 0px !important;
-    margin-bottom: 10px;
     max-width: 50%;
     width: 100%;
+    margin: 0px !important;
 }
 
 .trip-dates{
     width: 100%;
     margin: 0px;
     padding: 0px;
+}
+
+.trip-info-div{
+    width: 100%;
+    padding-left: 24px;
+    padding-right: 40px;
+    font-size: 10px;
+    min-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.trip-info-p{
+    margin: 0px;
 }
 
 @media (max-width: 1000px){

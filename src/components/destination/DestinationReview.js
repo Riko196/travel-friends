@@ -12,16 +12,18 @@ class DestinationReview extends Component {
     return (
       <div className="destination-review">
         <p className="review-owner">
-          Name: <Link to={`/home/my-friends/profile/${userId}`}>{name}</Link>
+          <Link to={`/home/my-friends/profile/${userId}`}>{name}</Link>
         </p>
-        <Rating
-          emptySymbol={
-            <img alt="emptySymbol" src={emptyStar} className="icon" />
-          }
-          fullSymbol={<img alt="fullSymbol" src={fullStar} className="icon" />}
-          initialRating={rating}
-          readonly
-        />
+        <div className="rating-stars">
+          <Rating
+            emptySymbol={
+              <img alt="emptySymbol" src={emptyStar} className="icon" />
+            }
+            fullSymbol={<img alt="fullSymbol" src={fullStar} className="icon" />}
+            initialRating={rating}
+            readonly
+          />
+        </div>
         <p className="review-text">{reviewText}</p>
       </div>
     );

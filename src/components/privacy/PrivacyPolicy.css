@@ -1,0 +1,28 @@
+.privacy-container {
+  position: absolute;
+  width: 70%;
+  height: auto;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.9);
+  top: 100px;
+  left: 15%;
+  border-radius: 15px;
+  padding: 1em;
+  font-family: "Montserrat", sans-serif;
+}
+
+.background-image-privacy img {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.privacy-p {
+  margin: 0px;
+  color: black;
+  margin-bottom: 1em;
+}

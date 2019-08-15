@@ -32,16 +32,17 @@ class DestinationSearch extends Component {
 
     return (
       <div className="destination-search">
-        <p className="destination-text">Destination search:</p>
+        {/*<p className="destination-text">Destination search:</p>*/}
         <Select
           options={destinationsName}
           ref={this.destinationName}
           defaultInputValue={""}
+          placeholder="Destination..."
         />
 
         <input
           type="button"
-          value="Search the destination!"
+          value="Search destinations!"
           className="search-destination-button"
           onClick={this.getDestination}
         />

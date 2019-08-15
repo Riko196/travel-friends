@@ -1,10 +1,19 @@
 import React, { Component } from "react";
+import "./TermsConditions.css";
 
 class TermsConditions extends Component {
   render() {
     return (
-      <div className="terms">
-        <p>TERMS & CONDITIONS</p>
+      <div>
+        <div className="background-image-terms">
+          <img
+            src={require("../../images/terms.jpg")}
+            alt={"Terms & Conditions"}
+          />
+          <div className="terms-container">
+            <p className="terms-p">TERMS {"&"} CONDITIONS</p>
+          </div>
+        </div>
       </div>
     );
   }

@@ -9,6 +9,7 @@ import { getTheMostPopularDestinations } from "../../actions/destinations";
 import Destination from "../destination/Destination";
 import { countOfTheMostPopularDestinations } from "../../utils/constants";
 import Loading from "../helpful/Loading";
+import BottomBar from "../bottombar/BottomBar";
 
 import "./Home.css";
 
@@ -37,10 +38,11 @@ class Home extends Component {
               Your travel friends are waiting for you!
             </p>
             <FindThemModal />
-            <DestinationSearch />
           </div>
         </div>
         <p className="most-popular-p">Most popular destinations</p>
+        <p className="most-popular-p-under">Most travelers want to visit these destinations</p>
+        <div className="divider"></div>
         <div className="home-part-popular">
           {theMostPopularDestinations !== null &&
             theMostPopularDestinations.map(destination => (
@@ -52,6 +54,8 @@ class Home extends Component {
               </Link>
             ))}
         </div>
+        <DestinationSearch />
+        <BottomBar />
       </div>
     );
   }

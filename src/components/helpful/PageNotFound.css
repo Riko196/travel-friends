@@ -3,9 +3,12 @@
     width: 100%;
     opacity: 0.8;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0px;
     right: 0px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
 }
 
