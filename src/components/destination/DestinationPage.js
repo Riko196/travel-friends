@@ -19,11 +19,14 @@ class DestinationPage extends Component {
   }
 
   componentDidMount() {
-
     var elements = document.getElementsByClassName("navbar-item");
     for (var i = 0; i < elements.length; i++) {
-      elements[i].style.setProperty('background-color', "royalblue", 'important');
-    };
+      elements[i].style.setProperty(
+        "background-color",
+        "royalblue",
+        "important"
+      );
+    }
 
     const { destinationId, getDestinationByDestinationId } = this.props;
 
@@ -59,14 +62,15 @@ class DestinationPage extends Component {
     return (
       <div className="destination-wrapper">
         <div className="destination-upper-div">
-          <img
-            alt="destinationPhoto"
-            className="destinationPagePhoto"
-            src={require(`../../images/cityPhotos/${
-              selectedDestination.destinationPhoto
-            }`)}
-            onerror="this.onerror=null;this.src='../../images/friends.jpg';"
-          />
+          {selectedDestination.destinationPhoto !== null && (
+            <img
+              alt="destinationPhoto"
+              className="destinationPagePhoto"
+              src={require(`../../images/cityPhotos/${
+                selectedDestination.destinationPhoto
+              }`)}
+            />
+          )}
           <div className="destination-page-title">
             <h1 className="destination-page-title-p">
               {selectedDestination.destinationName}

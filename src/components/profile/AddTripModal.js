@@ -163,11 +163,13 @@ class AddTripModal extends Component {
           <input
             type="checkbox"
             id="cbx"
-            style={{display: 'none'}}
+            style={{ display: "none" }}
             onChange={this.handleChangePlanned}
             defaultChecked={false}
           />
-          <label for="cbx" className="toggle"><span></span></label>
+          <label htmlFor="cbx" className="toggle">
+            <span />
+          </label>
 
           {this.state.planned === false && (
             <div>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 //import ProfileGallery from "../profileGallery/ProfileGallery";
 import ProfileTrips from "../trip/ProfileTrips";
-import NavBar from "../navbar/Navbar";
 import EditProfileModal from "./EditProfileModal";
 import SelectUserName from "./SelectUserName";
 import { getAge } from "../../utils/functions";
@@ -17,10 +16,9 @@ class Profile extends Component {
     };
   }
 
-  render() { 
+  render() {
     return (
       <div className="profile-container">
-        <NavBar />
         <div className="profile-div">
           <div className="row">
             <div className="column" id="photo">

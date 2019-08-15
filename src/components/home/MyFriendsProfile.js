@@ -155,23 +155,6 @@ class MyFriendsProfile extends Component {
                 </span>
                 {this.props.selectedFriend.speaking}
               </p>
-              <p className="email">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  Email:{" "}
-                </span>
-                {this.props.selectedFriend.email}
-              </p>
-              {this.props.selectedFriend.userName !== null && (
-                <a
-                  href={"https://m.me/" + this.props.selectedFriend.userName}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <button className="send-message" text="Send to messenger">
-                    Send a message
-                  </button>
-                </a>
-              )}
             </div>
           </div>
           {/*<ProfileGallery />*/}
