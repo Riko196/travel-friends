@@ -76,18 +76,26 @@ class TripDetail extends Component {
   render() {
     const dateFrom = ISODateStringTostringDate(this.props.detail.dateFrom);
     const dateTo = ISODateStringTostringDate(this.props.detail.dateTo);
+    let cityPhotoUrl = null;
+    try {
+      cityPhotoUrl = require(`../../images/cityPhotos/${
+        this.props.detail.destinationPhoto
+      }`);
+    } catch (err) {
+      cityPhotoUrl = null;
+    }
 
     return (
       <div className="trip-div">
         <div className="half">
           <Link to={`/destination/${this.props.detail.destinationId}`}>
-            <img
-              className="destination-image-detail"
-              src={require(`../../images/cityPhotos/${
-                this.props.detail.destinationPhoto
-              }`)}
-              alt="TripsPhoto"
-            />
+            {cityPhotoUrl !== null && (
+              <img
+                className="destination-image-detail"
+                src={cityPhotoUrl}
+                alt="TripsPhoto"
+              />
+            )}
           </Link>
           <p className="trip-place">{this.props.detail.destinationName}</p>
         </div>
@@ -117,16 +125,16 @@ class TripDetail extends Component {
                 className="x-button"
               />
               <div className="center-rating">
-              <Rating
-                emptySymbol={
-                  <img alt="emptySymbol" src={emptyStar} className="icon" />
-                }
-                fullSymbol={
-                  <img alt="fullSymbol" src={fullStar} className="icon" />
-                }
-                initialRating={this.state.rating}
-                onChange={rating => this.editRate(rating)}
-              />
+                <Rating
+                  emptySymbol={
+                    <img alt="emptySymbol" src={emptyStar} className="icon" />
+                  }
+                  fullSymbol={
+                    <img alt="fullSymbol" src={fullStar} className="icon" />
+                  }
+                  initialRating={this.state.rating}
+                  onChange={rating => this.editRate(rating)}
+                />
               </div>
               <textarea
                 type="text"
@@ -147,9 +155,7 @@ class TripDetail extends Component {
           </div>
         )}
         <div className="trip-info-div">
-          <p className="trip-info-p">
-            {this.props.detail.tripInfo}
-          </p>
+          <p className="trip-info-p">{this.props.detail.tripInfo}</p>
         </div>
       </div>
     );

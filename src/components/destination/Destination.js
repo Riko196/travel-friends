@@ -1,15 +1,26 @@
 import React, { Component } from "react";
+
 import "./Destination.css";
 
 class Destination extends Component {
-
   render() {
+    let destinationPhotoUrl = null;
+    try {
+      destinationPhotoUrl = require(`../../images/cityPhotos/${
+        this.props.destination.destinationPhoto
+      }`);
+    } catch (err) {
+      destinationPhotoUrl = null;
+    }
+
     return (
       <div className="destination">
-        <img className="destination-image"
-            src={require(`../../images/cityPhotos/${this.props.destination.destinationPhoto}`)}
-              alt=""></img>
-        <p className="destination-name">{this.props.destination.destinationName}</p>
+        {destinationPhotoUrl !== null && (
+          <img className="destination-image" src={destinationPhotoUrl} alt="" />
+        )}
+        <p className="destination-name">
+          {this.props.destination.destinationName}
+        </p>
       </div>
     );
   }

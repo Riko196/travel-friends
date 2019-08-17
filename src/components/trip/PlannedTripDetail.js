@@ -11,17 +11,26 @@ class PlannedTripDetail extends Component {
   };
 
   render() {
+    let cityPhotoUrl = null;
+    try {
+      cityPhotoUrl = require(`../../images/cityPhotos/${
+        this.props.detail.destinationPhoto
+      }`);
+    } catch (err) {
+      cityPhotoUrl = null;
+    }
+
     return (
       <div className="trip-div">
         <div className="half">
           <Link to={`/destination/${this.props.detail.destinationId}`}>
-            <img
-              className="destination-image-detail"
-              src={require(`../../images/cityPhotos/${
-                this.props.detail.destinationPhoto
-              }`)}
-              alt="TripsPhoto"
-            />
+            {cityPhotoUrl !== null && (
+              <img
+                className="destination-image-detail"
+                src={cityPhotoUrl}
+                alt="TripsPhoto"
+              />
+            )}
           </Link>
           <p className="trip-place-planned">
             {this.props.detail.destinationName}
