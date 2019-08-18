@@ -8,7 +8,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "Test name1",
           email: "test1@mail.com",
-          profilePhoto: "https://image.flaticon.com/icons/svg/158/158420.svg",
           userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
@@ -26,7 +25,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "Test name2",
           email: "test2@mail.com",
-          profilePhoto: "https://image.flaticon.com/icons/svg/158/158420.svg",
           userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
@@ -44,7 +42,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "Test name3",
           email: "test3@mail.com",
-          profilePhoto: "https://image.flaticon.com/icons/svg/158/158420.svg",
           userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
@@ -62,7 +59,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "John Johnson",
           email: "test4@mail.com",
-          profilePhoto: "https://image.flaticon.com/icons/svg/158/158420.svg",
           userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
@@ -80,7 +76,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "Test name5",
           email: "test5@mail.com",
-          profilePhoto: "https://image.flaticon.com/icons/svg/158/158420.svg",
           userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
@@ -98,7 +93,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "John Johnson",
           email: "test4@mail.com",
-          profilePhoto: "https://image.flaticon.com/icons/svg/158/158420.svg",
           userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
@@ -116,7 +110,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "John Johnson",
           email: "test4@mail.com",
-          profilePhoto: "https://image.flaticon.com/icons/svg/158/158420.svg",
           userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
@@ -134,7 +127,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "John Johnson",
           email: "test4@mail.com",
-          profilePhoto: "https://image.flaticon.com/icons/svg/158/158420.svg",
           userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
@@ -152,7 +144,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "John Johnson",
           email: "test4@mail.com",
-          profilePhoto: "https://image.flaticon.com/icons/svg/158/158420.svg",
           userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",

@@ -23,6 +23,7 @@ const {
   deleteReview,
   updateReview
 } = require("./queries");
+const multer = require("multer");
 
 const router = express.Router();
 
@@ -254,6 +255,30 @@ router.put("/editReview", (req, res, next) => {
       res.send({});
     })
     .catch(e => next(e));
+});
+
+/************************* FILE UPLOAD ********************/
+
+router.post("/upload", (req, res) => {
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "../src/images/profilePhotos");
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    }
+  });
+
+  const upload = multer({ storage: storage }).single("blob");
+
+  upload(req, res, err => {
+    if (err instanceof multer.MulterError) {
+      return res.status(500).json(err);
+    } else if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).send(req.file);
+  });
 });
 
 module.exports = {

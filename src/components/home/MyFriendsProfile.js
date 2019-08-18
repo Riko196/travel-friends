@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import NavBar from "../navbar/Navbar";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { getMyFriend } from "../../actions/myFriends";
@@ -66,15 +65,23 @@ class MyFriendsProfile extends Component {
       return <Loading />;
     }
 
+    let profilePhoto = null;
+    try {
+      profilePhoto = require(`../../images/profilePhotos/profile_picture_${
+        this.props.selectedFriend.userId
+      }.jpeg`);
+    } catch (err) {
+      profilePhoto = require("../../images/profilePhotos/profile_picture_default.svg");
+    }
+
     return (
       <div className="my-friend-profile-container">
-        <NavBar />
         <div className="my-friend-profile-div">
           <div className="row">
             <div className="column" id="photo">
               <img
                 className="my-friend-profile-photo"
-                src={this.props.selectedFriend.profilePhoto}
+                src={profilePhoto}
                 alt="Profile"
               />
               <p className="name-age-country">

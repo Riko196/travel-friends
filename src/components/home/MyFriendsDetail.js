@@ -7,7 +7,15 @@ import "./MyFriendsDetail.css";
 class MyFriendsDetail extends Component {
   render() {
     const { detail, destinationName, planned } = this.props;
-    console.log(detail);
+    let profilePhoto = null;
+    try {
+      profilePhoto = require(`../../images/profilePhotos/profile_picture_${
+        detail.userId
+      }.jpeg`);
+    } catch (err) {
+      profilePhoto = require("../../images/profilePhotos/profile_picture_default.svg");
+    }
+
     return (
       <div className="my-friend-detail-container">
         <div className="planned-banner">
@@ -19,7 +27,7 @@ class MyFriendsDetail extends Component {
         >
           <div>
             <img
-              src={detail.profilePhoto}
+              src={profilePhoto}
               alt={"Friend"}
               className="image-profile-friend"
             />

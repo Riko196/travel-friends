@@ -2,7 +2,6 @@ export const initialUserState = {
   user: {
     name: null,
     email: null,
-    profilePhoto: null,
     userName: null,
     aboutme: null,
     birthday: null,

@@ -3,7 +3,6 @@ exports.up = (knex, Promise) => {
     table.increments("userId").primary();
     table.string("name").notNullable();
     table.string("email").notNullable();
-    table.string("profilePhoto", 512).notNullable();
     table.string("userName");
     table.string("aboutme");
     table.string("birthday");
