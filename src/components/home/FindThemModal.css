@@ -63,3 +63,10 @@
     padding-top: 30px;
     height: 10pt;
 }
+
+
+@media (max-width: 800px){
+    .findthem-modal-container{
+        margin-top: -20px !important;
+    }
+}

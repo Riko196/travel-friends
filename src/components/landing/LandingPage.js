@@ -143,7 +143,7 @@ class LandingPage extends Component {
                     <h2 className="font-primary font-weight-black mb-3 landing-page__reveal">
                       CONTACT
                     </h2>
-                    <p className="landing-page__reveal">Your last step. :</p>
+                    <p className="landing-page__reveal">Your last step. :)</p>
                   </div>
                   <div className="landing-page__divider landing-page__reveal" />
                   <h2 className="font-primary font-weight-black mb-3">

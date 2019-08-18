@@ -33,15 +33,6 @@ class MyFriendsList extends Component {
       gender
     } = this.props;
 
-    var elements = document.getElementsByClassName("navbar-item");
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.setProperty(
-        "background-color",
-        "royalblue",
-        "important"
-      );
-    }
-
     if (
       !isDestinationName(destinationName) ||
       !isISODateFormat(dateFrom) ||

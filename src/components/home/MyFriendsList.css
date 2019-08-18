@@ -16,6 +16,12 @@
     padding-bottom: 1em;
 }
 
+.planning:after, .planned-exact:after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+
 .no-friends-found{
     background-color: rgba(255,255,255, 0.8);
     padding: 0.5em;
@@ -66,5 +72,6 @@
     .my-friend-list-container{
         text-align: center;
         float: unset;
+        width: auto;
     }
 }

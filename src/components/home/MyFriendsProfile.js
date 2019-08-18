@@ -71,7 +71,7 @@ class MyFriendsProfile extends Component {
         this.props.selectedFriend.userId
       }.jpeg`);
     } catch (err) {
-      profilePhoto = require("../../images/profilePhotos/profile_picture_default.svg");
+      profilePhoto = require("../../images/profile_picture_default.svg");
     }
 
     return (
