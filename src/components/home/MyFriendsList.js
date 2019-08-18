@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Link, Redirect } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { compose } from "redux";
 import MyFriendsDetail from "./MyFriendsDetail";
 import { getMyFriends } from "../../actions/myFriends";
@@ -101,12 +101,12 @@ class MyFriendsList extends Component {
                 {friends !== null &&
                   friends.friendsWithDate.length !== 0 &&
                   friends.friendsWithDate.map(friend => (
-                    <Link
-                      to={`/home/my-friends/profile/${friend.userId}`}
+                    <MyFriendsDetail
                       key={friend.userId}
-                    >
-                      <MyFriendsDetail detail={friend} />
-                    </Link>
+                      detail={friend}
+                      destinationName={this.props.destinationName}
+                      planned={false}
+                    />
                   ))}
               </div>
               <div className="planning">
@@ -117,6 +117,7 @@ class MyFriendsList extends Component {
                       key={friend.userId}
                       detail={friend}
                       destinationName={this.props.destinationName}
+                      planned={true}
                     />
                   ))}
                 {friends !== null &&
