@@ -11,6 +11,7 @@
 
 # photos
 /src/images/cityPhotos
+/src/images/profilePhotos
 
 # misc
 .env

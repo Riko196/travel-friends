@@ -50,25 +50,32 @@ class DestinationPage extends Component {
       return <Redirect to="/page-not-found" />;
     }
 
+    if (this.state.destinationLoaded === false) {
+      return <Loading />;
+    }
+
     const { selectedDestination } = this.props;
     const reviews = selectedDestination.reviews.filter(review => {
       return review.rating !== null && review.reviewText !== null;
     });
 
-    if (this.state.destinationLoaded === false) {
-      return <Loading />;
+    let destinationPhotoUrl = null;
+    try {
+      destinationPhotoUrl = require(`../../images/cityPhotos/${
+        selectedDestination.destinationPhoto
+      }`);
+    } catch (err) {
+      destinationPhotoUrl = null;
     }
 
     return (
       <div className="destination-wrapper">
         <div className="destination-upper-div">
-          {selectedDestination.destinationPhoto !== null && (
+          {destinationPhotoUrl !== null && (
             <img
               alt="destinationPhoto"
               className="destinationPagePhoto"
-              src={require(`../../images/cityPhotos/${
-                selectedDestination.destinationPhoto
-              }`)}
+              src={destinationPhotoUrl}
             />
           )}
           <div className="destination-page-title">

@@ -36,8 +36,7 @@ export const getUserIdByEmail = email => {
 export const insertUser = user => {
   const data = {
     name: user.name,
-    email: user.email,
-    profilePhoto: user.profilePhoto
+    email: user.email
   };
   return apiRequest(`insertUser`, { method: "POST", body: data }).catch(
     e => {}

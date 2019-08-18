@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter, Link, Redirect } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { compose } from "redux";
 import MyFriendsDetail from "./MyFriendsDetail";
 import { getMyFriends } from "../../actions/myFriends";
@@ -76,39 +76,40 @@ class MyFriendsList extends Component {
     }
     const friends = this.props.myFriends;
 
+    let cityPhotoUrl = null;
+    try {
+      cityPhotoUrl = require(`../../images/cityPhotos/${
+        this.props.destinationName
+      }.jpg`);
+    } catch (err) {
+      cityPhotoUrl = null;
+    }
+
     return (
       <div>
         <div className="background-image-friends">
-          <img
-            className="background-image"
-            src={require(`../../images/cityPhotos/${
-              this.props.destinationName
-            }.jpg`)}
-            alt={""}
-          />
+          {cityPhotoUrl !== null && (
+            <img className="background-image" src={cityPhotoUrl} alt={""} />
+          )}
           <div className="friend-list-wrapper">
             <p className="people-p">People who want to visit</p>
             <p className="destination-name-list">
               {this.props.destinationName}
             </p>
             <div className="my-friend-list-container">
-              {/*<p>Friends with exact date trips:</p>*/}
               <div className="planned-exact">
                 {friends !== null &&
                   friends.friendsWithDate.length !== 0 &&
                   friends.friendsWithDate.map(friend => (
-                    <Link
-                      to={`/home/my-friends/profile/${friend.userId}`}
+                    <MyFriendsDetail
                       key={friend.userId}
-                    >
-                      <MyFriendsDetail detail={friend} />
-                    </Link>
+                      detail={friend}
+                      destinationName={this.props.destinationName}
+                      planned={false}
+                    />
                   ))}
-                {/* {friends !== null &&
-            (friends.friendsWithDate.length === 0 && <p><span style={{fontStyle: "italic", marginLeft: "15px"}}>No friends found</span></p>)} */}
               </div>
               <div className="planning">
-                {/*<p>Friends with planned trips:</p>*/}
                 {friends !== null &&
                   friends.friendsWithPlanned.length !== 0 &&
                   friends.friendsWithPlanned.map(friend => (
@@ -116,6 +117,7 @@ class MyFriendsList extends Component {
                       key={friend.userId}
                       detail={friend}
                       destinationName={this.props.destinationName}
+                      planned={true}
                     />
                   ))}
                 {friends !== null &&

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { insertUser, getUser, setLoggedIn } from "../../actions/auth";
 import { updateUser, setUser } from "../../actions/user";
 import { Login } from "react-facebook";
+import axios from "axios";
 
 import "./FacebookButton.css";
 
@@ -47,6 +48,25 @@ class FacebookButton extends Component {
       if (!isEmpty(response)) {
         const updatedUser = merge(response, user);
 
+        fetch(user.profilePhoto)
+          .then(response => {
+            return response.blob();
+          })
+          .then(file => {
+            const data = new FormData();
+            data.append(
+              "blob",
+              file,
+              `profile_picture_${updatedUser.userId}.jpeg`
+            );
+
+            axios.post("http://localhost:8000/api/upload", data, {
+              headers: {
+                "Content-Type": "multipart/form-data"
+              }
+            });
+          });
+
         updateUser(updatedUser).then(() => {
           this.props.logIn(updatedUser);
           this.props.history.replace("/home");
@@ -80,8 +100,14 @@ class FacebookButton extends Component {
           {({ loading, handleClick, error, data }) => (
             <button className="fb-button" onClick={handleClick}>
               {<i className="fab fa-facebook-square space-after" />}
-              {!loading && <span className="facebook">Continue with FACEBOOK</span>}
-              {!loading && <p className="annotation">*we will never post to your facebook</p>}
+              {!loading && (
+                <span className="facebook">Continue with FACEBOOK</span>
+              )}
+              {!loading && (
+                <p className="annotation">
+                  *we will never post to your facebook
+                </p>
+              )}
               {loading && <span>Loading...</span>}
             </button>
           )}

@@ -68,29 +68,58 @@ const getUserIdFriendsWithDate = async (knex, query) => {
   const { destinationName, dateFrom, dateTo, userId, gender } = query;
   const { destinationId } = await getDestinationIdByName(knex, destinationName);
   const friendsId = await knex("trips")
-    .select("userId")
+    .select("userId", "dateTo", "dateFrom")
     .whereNot("userId", "=", userId)
+    .andWhere("planned", "=", false)
     .andWhere("destinationId", "=", destinationId);
 
   const friendsIdWithDateFrom = await knex("trips")
-    .select("userId")
-    .where("dateTo", "<=", dateFrom)
-    .andWhere("dateFrom", ">=", dateFrom);
+    .select("userId", "dateTo", "dateFrom")
+    .whereNot("userId", "=", userId)
+    .andWhere("planned", "=", false)
+    .andWhere("destinationId", "=", destinationId)
+    .andWhere("dateFrom", ">=", dateFrom)
+    .andWhere("dateFrom", "<=", dateTo);
 
   const friendsIdWithDateTo = await knex("trips")
-    .select("userId")
-    .where("dateTo", "<=", dateTo)
-    .andWhere("dateFrom", ">=", dateTo);
+    .select("userId", "dateTo", "dateFrom")
+    .whereNot("userId", "=", userId)
+    .andWhere("planned", "=", false)
+    .andWhere("destinationId", "=", destinationId)
+    .andWhere("dateTo", ">=", dateFrom)
+    .andWhere("dateTo", "<=", dateTo);
 
   let myFriends = [];
-  for (index in friendsId) {
-    const friend = await getUserByUserId(knex, friendsId[index].userId);
-    if (friend !== undefined) {
-      if (
-        friendsIdWithDateFrom.includes(index) ||
-        friendsIdWithDateTo.includes(index)
-      )
-        myFriends.push(friend);
+  for (const element of friendsId) {
+    const friend = await getUserByUserId(knex, element.userId);
+    if (friend !== undefined && gender === friend.gender) {
+      let friendAdded = false;
+      for (const key of friendsIdWithDateFrom) {
+        if (
+          key.userId === element.userId &&
+          key.dateTo === element.dateTo &&
+          key.dateFrom === element.dateFrom
+        ) {
+          friend.dateFrom = element.dateFrom;
+          friend.dateTo = element.dateTo;
+          myFriends.push(friend);
+          friendAdded = true;
+          break;
+        }
+      }
+      if (friendAdded) continue;
+
+      for (const key of friendsIdWithDateTo) {
+        if (
+          key.userId === element.userId &&
+          key.dateTo === element.dateTo &&
+          key.dateFrom === element.dateFrom
+        ) {
+          friend.dateFrom = element.dateFrom;
+          friend.dateTo = element.dateTo;
+          myFriends.push(friend);
+        }
+      }
     }
   }
   return myFriends;
@@ -106,8 +135,8 @@ const getUserIdFriendsWithPlanned = async (knex, query) => {
     .andWhere("planned", "=", true);
 
   let myFriends = [];
-  for (index in friendsId) {
-    const friend = await getUserByUserId(knex, friendsId[index].userId);
+  for (const element of friendsId) {
+    const friend = await getUserByUserId(knex, element.userId);
     if (friend !== undefined) myFriends.push(friend);
   }
   return myFriends;
