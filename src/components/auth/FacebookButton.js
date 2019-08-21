@@ -47,6 +47,7 @@ class FacebookButton extends Component {
     getUser(user.email).then(response => {
       if (!isEmpty(response)) {
         const updatedUser = merge(response, user);
+        delete updatedUser.profilePhoto;
 
         updateUser(updatedUser).then(() => {
           this.props.logIn(updatedUser);
@@ -60,23 +61,23 @@ class FacebookButton extends Component {
           );
 
           fetch(user.profilePhoto)
-          .then(response => {
-            return response.blob();
-          })
-          .then(file => {
-            const data = new FormData();
-            data.append(
-              "blob",
-              file,
-              `profile_picture_${updatedUser.userId}.jpeg`
-            );
+            .then(response => {
+              return response.blob();
+            })
+            .then(file => {
+              const data = new FormData();
+              data.append(
+                "blob",
+                file,
+                `profile_picture_${finalReduxUser.userId}.jpeg`
+              );
 
-            axios.post("http://localhost:8000/api/upload", data, {
-              headers: {
-                "Content-Type": "multipart/form-data"
-              }
+              axios.post("http://localhost:8000/api/upload", data, {
+                headers: {
+                  "Content-Type": "multipart/form-data"
+                }
+              });
             });
-          });
           this.props.logIn(finalReduxUser);
           this.props.history.replace("/home");
         });

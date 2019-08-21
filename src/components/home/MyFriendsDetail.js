@@ -51,15 +51,17 @@ class MyFriendsDetail extends Component {
               <p>Profile</p>
             </div>
           </Link>
-          <div className="contact-button">
-            <a
-              href={"https://m.me/" + detail.userName}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <p>Contact</p>
-            </a>
-          </div>
+          {detail.userName !== null && (
+            <div className="contact-button">
+              <a
+                href={"https://m.me/" + detail.userName}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <p>Contact</p>
+              </a>
+            </div>
+          )}
         </div>
       </div>
     );
