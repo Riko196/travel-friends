@@ -3,17 +3,6 @@ import React, { Component } from "react";
 import "./AboutUs.css";
 
 class AboutUs extends Component {
-  componentDidMount() {
-    var elements = document.getElementsByClassName("navbar-item");
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.setProperty(
-        "background-color",
-        "royalblue",
-        "important"
-      );
-    }
-  }
-
   render() {
     return (
       <div>

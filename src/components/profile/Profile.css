@@ -170,7 +170,7 @@ html {
   }
 
   #photo {
-    text-align: center;
+    text-align: center !important;
     padding-top: 15px;
     width: calc(50% - 1em);
   }
@@ -215,6 +215,7 @@ html {
     margin: auto;
     padding-left: 0px !important;
     padding-right: 0px;
+    margin-left: calc(50% - 25% + 0.5em);
   }
 
   .row{

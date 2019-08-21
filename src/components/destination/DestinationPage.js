@@ -19,14 +19,6 @@ class DestinationPage extends Component {
   }
 
   componentDidMount() {
-    var elements = document.getElementsByClassName("navbar-item");
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.setProperty(
-        "background-color",
-        "royalblue",
-        "important"
-      );
-    }
 
     const { destinationId, getDestinationByDestinationId } = this.props;
 

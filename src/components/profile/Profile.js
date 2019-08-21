@@ -8,17 +8,6 @@ import { getAge } from "../../utils/functions";
 import "./Profile.css";
 
 class Profile extends Component {
-  componentDidMount() {
-    var elements = document.getElementsByClassName("navbar-item");
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].style.setProperty(
-        "background-color",
-        "transparent",
-        "important"
-      );
-    }
-  }
-
   render() {
     let profilePhoto = null;
     try {
@@ -26,7 +15,7 @@ class Profile extends Component {
         this.props.user.userId
       }.jpeg`);
     } catch (err) {
-      profilePhoto = require("../../images/profilePhotos/profile_picture_default.svg");
+      profilePhoto = require("../../images/profile_picture_default.svg");
     }
 
     return (

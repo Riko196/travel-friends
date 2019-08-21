@@ -87,6 +87,12 @@
     cursor: pointer;
 }
 
+@media (max-width: 800px){
+    .home_part-1{
+        min-height: 85vh;
+    }
+}
+
 @media (max-width: 576px){
     .home-center{
         width: 80%;

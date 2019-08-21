@@ -13,7 +13,7 @@ class MyFriendsDetail extends Component {
         detail.userId
       }.jpeg`);
     } catch (err) {
-      profilePhoto = require("../../images/profilePhotos/profile_picture_default.svg");
+      profilePhoto = require("../../images/profile_picture_default.svg");
     }
 
     return (
@@ -36,9 +36,11 @@ class MyFriendsDetail extends Component {
         </Link>
         {planned === false && (
           <p className="detailp">
-            Will be in {destinationName} from{" "}
-            {ISODateStringTostringDate(detail.dateFrom)} to{" "}
-            {ISODateStringTostringDate(detail.dateTo)}
+            Will be in <span>{destinationName}</span>
+            <br/> 
+            from{" "} <span>{ISODateStringTostringDate(detail.dateFrom)}</span> 
+            <br/>
+            to{" "} <span>{ISODateStringTostringDate(detail.dateTo)}</span>
           </p>
         )}
         <p className="detailp2">About: {detail.aboutme}</p>
