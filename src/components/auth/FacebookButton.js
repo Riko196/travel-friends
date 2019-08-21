@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { insertUser, getUser, setLoggedIn } from "../../actions/auth";
 import { updateUser, setUser } from "../../actions/user";
 import { Login } from "react-facebook";
-import axios from "axios";
+import { uploadProfilePhoto } from "../../utils/functions";
 
 import "./FacebookButton.css";
 
@@ -47,6 +47,13 @@ class FacebookButton extends Component {
     getUser(user.email).then(response => {
       if (!isEmpty(response)) {
         const updatedUser = merge(response, user);
+        try {
+          require(`../../images/profilePhotos/profile_picture_${
+            updatedUser.userId
+          }.jpeg`);
+        } catch (err) {
+          uploadProfilePhoto(updatedUser.profilePhoto, updatedUser.userId);
+        }
         delete updatedUser.profilePhoto;
 
         updateUser(updatedUser).then(() => {
@@ -55,29 +62,12 @@ class FacebookButton extends Component {
         });
       } else {
         this.props.insertUser(user).then(userWithUserId => {
+          uploadProfilePhoto(user.profilePhoto, userWithUserId.userId);
+          delete user.profilePhoto;
           const finalReduxUser = merge(
             { accessToken: user.accessToken },
             userWithUserId
           );
-
-          fetch(user.profilePhoto)
-            .then(response => {
-              return response.blob();
-            })
-            .then(file => {
-              const data = new FormData();
-              data.append(
-                "blob",
-                file,
-                `profile_picture_${finalReduxUser.userId}.jpeg`
-              );
-
-              axios.post("http://localhost:8000/api/upload", data, {
-                headers: {
-                  "Content-Type": "multipart/form-data"
-                }
-              });
-            });
           this.props.logIn(finalReduxUser);
           this.props.history.replace("/home");
         });

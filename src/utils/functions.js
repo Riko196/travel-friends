@@ -1,5 +1,6 @@
 import moment from "moment";
 import { ISODateFormat, gender, inputValidationRegex } from "./constants";
+import axios from "axios";
 
 export const removeAllSpaces = string => {
   return string.replace(/\s+/g, "");
@@ -73,23 +74,38 @@ export const isInputValid = inputString => {
 };
 
 export const getAge = dateString => {
-    if (dateString != null){
-      var today = new Date();
-      var birthDate = new Date();
-      if (dateString.includes("/")){
-        birthDate.setDate(dateString.substring(0, 2));
-        birthDate.setMonth(dateString.substring(3, 5));
-        birthDate.setFullYear(dateString.substring(6, 10));
-      } else {
-        birthDate = new Date(dateString);
-      }
-      var age = today.getFullYear() - birthDate.getFullYear();
-      var m = today.getMonth() - birthDate.getMonth();
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
-      }
-      return ", " + age;
+  if (dateString != null) {
+    var today = new Date();
+    var birthDate = new Date();
+    if (dateString.includes("/")) {
+      birthDate.setDate(dateString.substring(0, 2));
+      birthDate.setMonth(dateString.substring(3, 5));
+      birthDate.setFullYear(dateString.substring(6, 10));
+    } else {
+      birthDate = new Date(dateString);
     }
-    else 
-      return ""
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return ", " + age;
+  } else return "";
+};
+
+export const uploadProfilePhoto = (profilePhotoUrl, userId) => {
+  fetch(profilePhotoUrl)
+    .then(response => {
+      return response.blob();
+    })
+    .then(file => {
+      const data = new FormData();
+      data.append("blob", file, `profile_picture_${userId}.jpeg`);
+
+      axios.post("http://localhost:8000/api/upload", data, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
+    });
 };
