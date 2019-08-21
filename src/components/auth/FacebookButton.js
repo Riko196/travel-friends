@@ -48,7 +48,18 @@ class FacebookButton extends Component {
       if (!isEmpty(response)) {
         const updatedUser = merge(response, user);
 
-        fetch(user.profilePhoto)
+        updateUser(updatedUser).then(() => {
+          this.props.logIn(updatedUser);
+          this.props.history.replace("/home");
+        });
+      } else {
+        this.props.insertUser(user).then(userWithUserId => {
+          const finalReduxUser = merge(
+            { accessToken: user.accessToken },
+            userWithUserId
+          );
+
+          fetch(user.profilePhoto)
           .then(response => {
             return response.blob();
           })
@@ -66,18 +77,6 @@ class FacebookButton extends Component {
               }
             });
           });
-
-        updateUser(updatedUser).then(() => {
-          this.props.logIn(updatedUser);
-          this.props.history.replace("/home");
-        });
-      } else {
-        this.props.insertUser(user).then(userWithUserId => {
-          const finalReduxUser = merge(
-            { accessToken: user.accessToken },
-            userWithUserId
-          );
-
           this.props.logIn(finalReduxUser);
           this.props.history.replace("/home");
         });

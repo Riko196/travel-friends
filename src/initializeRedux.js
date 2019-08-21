@@ -19,13 +19,13 @@ export const getInitialState = () => {
 };
 
 const rootReducer = (state, action) => {
-  console.log("Action: ", action.type);
-  console.log("Old state: ", state);
+  //console.log("Action: ", action.type);
+  //console.log("Old state: ", state);
   if (action.reducer === undefined) {
     return state;
   } else {
     const newState = action.reducer(state, action.payload);
-    console.log("New state: ", newState);
+    //console.log("New state: ", newState);
     return newState;
   }
 };

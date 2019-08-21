@@ -28,7 +28,7 @@ class Profile extends Component {
     } catch (err) {
       profilePhoto = require("../../images/profilePhotos/profile_picture_default.svg");
     }
-    console.log(profilePhoto);
+
     return (
       <div className="profile-container">
         <div className="profile-div">

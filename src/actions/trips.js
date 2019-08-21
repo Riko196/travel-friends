@@ -82,7 +82,6 @@ export const deleteFromMyTrips = tripId => ({
 export const getMyTrips = myUserId => dispatch => {
   return apiRequest(`getTripsByUserId/${myUserId}`, { method: "GET" })
     .then(myTrips => {
-      console.log(myTrips);
       dispatch(setMyTrips(myTrips));
     })
     .catch(e => {

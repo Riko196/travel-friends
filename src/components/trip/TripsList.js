@@ -17,7 +17,7 @@ class TripsList extends Component {
 
   render() {
     const myTrips = this.props.myTrips;
-    console.log(myTrips);
+
     if (myTrips === null) {
       return <Loading />;
     }
