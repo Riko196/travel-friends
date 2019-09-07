@@ -1,5 +1,6 @@
 import moment from "moment";
 import { ISODateFormat, gender, inputValidationRegex } from "./constants";
+import { uploadPhotoURL } from "./config";
 import axios from "axios";
 
 export const removeAllSpaces = string => {
@@ -102,7 +103,7 @@ export const uploadProfilePhoto = (profilePhotoUrl, userId) => {
       const data = new FormData();
       data.append("blob", file, `profile_picture_${userId}.jpeg`);
 
-      axios.post("http://localhost:8000/api/upload", data, {
+      axios.post(uploadPhotoURL, data, {
         headers: {
           "Content-Type": "multipart/form-data"
         }

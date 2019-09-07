@@ -35,6 +35,6 @@ export const ISODateFormat = "YYYY-MM-DDTHH:mm:ss.sssZ";
 
 export const inputValidationRegex = /[^A-Za-z0-9.,'"\s]+/g;
 
-export const inputMaxLength = 255;
+export const inputMaxLength = process.env.REACT_APP_INPUT_LENGTH;
 
-export const textareaMaxLength = 512;
+export const textareaMaxLength = process.env.REACT_APP_TEXTAREA_LENGTH;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { ISODateStringTostringDate } from "../../utils/functions";
+import { facebookMessengerURL } from "../../utils/config";
 
 import "./MyFriendsDetail.css";
 
@@ -9,9 +10,7 @@ class MyFriendsDetail extends Component {
     const { detail, destinationName, planned } = this.props;
     let profilePhoto = null;
     try {
-      profilePhoto = require(`../../images/profilePhotos/profile_picture_${
-        detail.userId
-      }.jpeg`);
+      profilePhoto = require(`../../images/profilePhotos/profile_picture_${detail.userId}.jpeg`);
     } catch (err) {
       profilePhoto = require("../../images/profile_picture_default.svg");
     }
@@ -37,10 +36,10 @@ class MyFriendsDetail extends Component {
         {planned === false && (
           <p className="detailp">
             Will be in <span>{destinationName}</span>
-            <br/> 
-            from{" "} <span>{ISODateStringTostringDate(detail.dateFrom)}</span> 
-            <br/>
-            to{" "} <span>{ISODateStringTostringDate(detail.dateTo)}</span>
+            <br />
+            from <span>{ISODateStringTostringDate(detail.dateFrom)}</span>
+            <br />
+            to <span>{ISODateStringTostringDate(detail.dateTo)}</span>
           </p>
         )}
         <p className="detailp2">About: {detail.aboutme}</p>
@@ -56,7 +55,7 @@ class MyFriendsDetail extends Component {
           {detail.userName !== null && (
             <div className="contact-button">
               <a
-                href={"https://m.me/" + detail.userName}
+                href={facebookMessengerURL + detail.userName}
                 target="_blank"
                 rel="noopener noreferrer"
               >

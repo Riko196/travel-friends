@@ -1,4 +1,4 @@
-import { backendConfig } from "../utils/config";
+import { backendURL } from "../utils/config";
 import { get, merge } from "lodash";
 
 const solveErrors = response => {
@@ -38,9 +38,7 @@ const apiRequest = (apiPath, options) => {
     finalOptions.headers["Content-Type"] = "application/json";
   }
 
-  const requestUrl = `http://${backendConfig.host}:${
-    backendConfig.port
-  }/api/${apiPath}`;
+  const requestUrl = backendURL + apiPath;
 
   return fetch(requestUrl, finalOptions).then(response =>
     solveErrors(response)

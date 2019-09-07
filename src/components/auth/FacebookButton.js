@@ -12,6 +12,9 @@ import "./FacebookButton.css";
 
 class FacebookButton extends Component {
   handleResponse = response => {
+    if (process.env.NODE_ENV === "development") {
+      console.log(response);
+    }
     if (
       !has(response, "tokenDetail.accessToken") ||
       !has(response, "profile.email")
@@ -30,9 +33,7 @@ class FacebookButton extends Component {
     };
 
     window.FB.api(
-      `/${id}?fields=picture.width(720).height(720)&access_token=${
-        user.accessToken
-      }`,
+      `/${id}?fields=picture.width(720).height(720)&access_token=${user.accessToken}`,
       "GET",
       {},
       profilePicture => {
@@ -48,9 +49,7 @@ class FacebookButton extends Component {
       if (!isEmpty(response)) {
         const updatedUser = merge(response, user);
         try {
-          require(`../../images/profilePhotos/profile_picture_${
-            updatedUser.userId
-          }.jpeg`);
+          require(`../../images/profilePhotos/profile_picture_${updatedUser.userId}.jpeg`);
         } catch (err) {
           uploadProfilePhoto(updatedUser.profilePhoto, updatedUser.userId);
         }
@@ -76,7 +75,9 @@ class FacebookButton extends Component {
   };
 
   handleError = error => {
-    console.log(error);
+    if (process.env.NODE_ENV === "development") {
+      console.log(error);
+    }
   };
 
   render() {
