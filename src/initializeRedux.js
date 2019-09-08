@@ -19,8 +19,7 @@ export const getInitialState = () => {
 };
 
 const rootReducer = (state, action) => {
-  console.log(process.env);
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.REACT_APP_NODE_ENV === "development") {
     console.log("Action: ", action.type);
     console.log("Old state: ", state);
   }
@@ -29,7 +28,7 @@ const rootReducer = (state, action) => {
     return state;
   } else {
     const newState = action.reducer(state, action.payload);
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.REACT_APP_NODE_ENV === "development") {
       console.log("New state: ", newState);
     }
     return newState;

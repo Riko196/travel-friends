@@ -1,6 +1,6 @@
 require("dotenv").config({ path: __dirname + "/../.env" });
 
-const environment = process.env.NODE_ENV;
+const environment = process.env.REACT_APP_NODE_ENV;
 const config = require("./knexfile");
 const environmentConfig = config[environment];
 const knex = require("knex");

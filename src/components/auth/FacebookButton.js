@@ -12,7 +12,7 @@ import "./FacebookButton.css";
 
 class FacebookButton extends Component {
   handleResponse = response => {
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.REACT_APP_NODE_ENV === "development") {
       console.log(response);
     }
     if (
@@ -75,7 +75,7 @@ class FacebookButton extends Component {
   };
 
   handleError = error => {
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.REACT_APP_NODE_ENV === "development") {
       console.log(error);
     }
   };
