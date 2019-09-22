@@ -5,7 +5,7 @@ import { compose } from "redux";
 import Modal from "react-modal";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
-import { gender } from "../../utils/constants";
+import { preferredGender } from "../../utils/constants";
 import { getMyFriends } from "../../actions/myFriends";
 import { getAllDestinationsName } from "../../actions/destinations";
 import { stringDateToISODateString, isNull } from "../../utils/functions";
@@ -21,7 +21,8 @@ class FindThemModal extends Component {
     this.state = {
       modalIsOpen: false,
       dateFrom: null,
-      dateTo: null
+      dateTo: null,
+      anytime: false
     };
 
     this.destinationName = React.createRef();
@@ -84,6 +85,12 @@ class FindThemModal extends Component {
     }
   };
 
+  handleChangePlanned = event => {
+    this.setState({
+      anytime: event.target.checked
+    });
+  };
+
   render() {
     const destinationsName =
       this.props.destinationsName === null
@@ -124,6 +131,20 @@ class FindThemModal extends Component {
             placeholder="Destination..."
           />
 
+          <label className="modal-label">Anytime:</label>
+          <input
+            type="checkbox"
+            id="cbx"
+            style={{ display: "none" }}
+            onChange={this.handleChangePlanned}
+            defaultChecked={false}
+          />
+          <label htmlFor="cbx" className="toggle">
+            <span />
+          </label>
+
+          {this.state.anytime === false && (
+            <div>
           <label className="modal-label">From:</label>
           <DatePicker
             selected={this.state.dateFrom}
@@ -137,10 +158,12 @@ class FindThemModal extends Component {
             onChange={this.handleChangeDateTo}
             className="date-wide"
           />
+          </div>
+          )}
 
           {<label className="modal-label">Preferred gender:</label>}
           <Select
-            options={gender}
+            options={preferredGender}
             ref={this.gender}
             defaultInputValue={""}
             placeholder="Gender..."

@@ -39,8 +39,8 @@
 .divider{
     margin: auto;
     width: 25px;
-    height: 3px;
-    background-color: limegreen;
+    height: 2px;
+    background-color: black;
     margin-bottom: 1em;
     border-radius: 2px;
 }

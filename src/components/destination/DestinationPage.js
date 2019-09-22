@@ -83,7 +83,7 @@ class DestinationPage extends Component {
               className="destination-link"
               rel="noopener noreferrer"
             >
-              {selectedDestination.destinationLink}
+              See more...
             </a>
           </div>
         </div>

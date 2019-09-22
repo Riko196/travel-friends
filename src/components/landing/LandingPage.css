@@ -50,12 +50,12 @@ div {
 
 .text-cond{
     max-width: 40%;
-    margin: auto;
+    margin-left: calc(50% - 20%);
     margin-top: 70px;
     text-align: center;
 }
 
-.terms-conditions, .privacy-policy{
+.terms-conditions, .privacy-policy-land{
     color: red !important;
 }
 
@@ -185,9 +185,9 @@ p {
 
 .center-arrow{
     max-width: 100px;
-    margin: auto;
-    font-size: 25px;
+    margin-left: calc(50% - 55px);
     text-align: center;
+    font-size: 25px;
     opacity: 0.7;
     margin-top: 20px;
 }
@@ -269,11 +269,7 @@ a:-webkit-any-link {
 }
 
 .at-bottom{
-    position: absolute;
-    bottom: 20px;
-    width: 100vw;
-    left: 50vw;
-    margin-left: -50vw;
+    position: relative;
 }
 
 @media (max-width: 576px){
@@ -283,9 +279,10 @@ a:-webkit-any-link {
     .text-cond{
         margin-top: 10px;
         max-width: 70%;
+        margin: auto !important;
     }
     .center-arrow{
-        margin-top: 0px;
+        margin-top: 50px;
     }
 }
 
@@ -460,4 +457,15 @@ i{
 
 .arrow-width-2{
     max-width: 40px;
+}
+
+.three-down{
+    width: 50px !important;
+    height: 50px !important;
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+}
+
+footer{
+    text-align: center;
 }

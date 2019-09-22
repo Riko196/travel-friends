@@ -28,6 +28,29 @@ class Navbar extends Component {
             Log Out
           </button>
         </div>
+        <div className="sandwitch">
+          &#9776;
+        <div className="navbar-item-drop">
+          <NavLink to="/home" className="navbar-link">
+            Home
+          </NavLink>
+        </div>
+        <div className="navbar-item-drop">
+          <NavLink to="/profile" className="navbar-link">
+            Profile
+          </NavLink>
+        </div>
+        <div className="navbar-item-drop">
+          <NavLink to="/about-us" className="navbar-link">
+            About
+          </NavLink>
+        </div>
+        <div className="navbar-item-drop">
+          <button onClick={this.props.logOut} className="navbar-link">
+            Log Out
+          </button>
+        </div>
+        </div>
       </div>
     );
   }

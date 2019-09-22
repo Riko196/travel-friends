@@ -11,7 +11,7 @@
 }
 
 .profile-button{
-    background-color: greenyellow;
+    background-color: white;
     float: left;
     padding-left: 1em;
     padding-right: 1em;
@@ -25,13 +25,13 @@
 }
 
 .profile-button p{
-    color: royalblue !important;
+    color: black !important;
     margin: 0px;
     font-weight: 700 !important;
 }
 
 .contact-button{
-    background-color: royalblue;
+    background-color: black;
     float: left;
     padding-left: 1em;
     padding-right: 1em;
@@ -41,7 +41,7 @@
 
 .contact-button p{
     margin: 0px;
-    color: greenyellow !important;
+    color: white !important;
     font-weight: 700 !important;
 }
 
@@ -71,7 +71,7 @@
     left: 0;
     width: 69px;
     height: 50px;
-    background-color: royalblue;
+    background-color: black;
     z-index: 100;
     -ms-transform: rotate(-20deg); /* IE 9 */
     -webkit-transform: rotate(-20deg); /* Safari prior 9.0 */
@@ -81,7 +81,7 @@
 }
 
 .planned-banner p{
-    color: greenyellow !important;
+    color: white !important;
     margin: 0px;
     font-size: 15pt;
     text-emphasis: bold;

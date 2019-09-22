@@ -3,6 +3,11 @@ export const gender = [
   { value: "Female", label: "Female" },
   { value: "Other", label: "Other" }
 ];
+export const preferredGender = [
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+  { value: "I don't mind", label: "I don't mind" }
+];
 export const relationship = [
   { value: "single", label: "Single" },
   { value: "engaged", label: "Engaged" },

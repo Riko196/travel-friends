@@ -1,27 +1,9 @@
 .my-friend-profile-container {
-  background: #1e5799; /* Old browsers */
-  background: -moz-linear-gradient(
-    -180deg,
-    #5F71EB,
-    #7CE8AA
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    -180deg,
-    #5F71EB,
-    #7CE8AA
-  ); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    180deg,
-    #5F71EB,
-    #7CE8AA 
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5F71EB', endColorstr='#7CE8AA',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-  /*background-image: url("../../images/profile4.jpg") !important;
-  background-size: cover;*/
+background-image: url("../../images/profile3long.jpg") !important;
+  background-size: cover;
   padding-top: 45px;
   min-height: 100vh;
   padding-bottom: 45px;
-  /*font-family: 'Lato', sans-serif !important;*/
 }
 
 .application-container {
@@ -53,22 +35,6 @@
   cursor: pointer;
 }
 
-.about-me,
-.birthday,
-.country,
-.city,
-.occupation,
-.joined,
-.gender,
-.relationship,
-.education,
-.smoking,
-.drinking,
-.speaking,
-.email {
-  opacity: 0.6;
-}
-
 body {
   padding: 0px;
   margin: 0px;
@@ -89,11 +55,6 @@ html {
   border-radius: 75px;
 }
 
-#photo {
-  text-align: center;
-  width: 19%;
-}
-
 .name-age-country-hidden {
   display: none;
 }
@@ -103,58 +64,42 @@ html {
   font-size: 12px;
 }
 
-.column {
-  float: left;
-  padding: 0px;
-  height: 300px;
-  width: 20%;
-}
-
-.column-2 {
-  float: left;
-  padding: 0px;
-  height: 300px;
-  width: 30%;
-}
-
-.column-3 {
-  float: left;
-  padding: 0px;
-  height: 300px;
-  width: 25%;
-}
-
-.column-4 {
-  float: left;
-  padding: 0px;
-  height: 300px;
-  width: 25%;
-}
-
 .row {
   width: 100%;
+  text-align: center !important;
 }
 
-.row:after {
+.row:after{
   content: "";
   display: table;
   clear: both;
+}
+
+.right-align{
+  width: 100%;
+  height: 25px;
+}
+
+.right{
+  margin-left: calc(100% - 100px)
+}
+
+#size{
+  height: 25px !important;
+  font-size: 12pt !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
 }
 
 .my-friend-profile-div {
   background-color: rgba(256, 256, 256, 0.7);;
   margin-left: 10%;
   margin-right: 10%;
-  border-radius: 7px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
 }
 
 @media screen and (max-width: 1000px) {
-  .column, .column-2, .column-3, .column-4 {
-    width: calc(50% - 1em);
-    /*height: calc(50vw - 24px);*/
-    padding: 0.5em;
-  }
-
   #photo {
     text-align: center;
     padding-top: 15px;
@@ -187,14 +132,6 @@ html {
 }
 
 @media screen and (max-width: 600px) {
-  .column, .column-2, .column-3, .column-4 {
-    height: auto;
-    width: 100%;
-    padding-left: 2em;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
   #photo {
     margin: auto;
     padding-left: 0px;

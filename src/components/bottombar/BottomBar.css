@@ -2,14 +2,19 @@
 
 .fa-facebook-f:before {
     content: "\f39e";
+    font-size: 20pt;
+    margin-right: 15px !important;
 }
 
 .fa-instagram:before {
     content: "\f16d";
+    font-size: 20pt;
+    margin-right: 15px !important;
 }
 
 .fa-youtube:before {
     content: "\f167";
+    font-size: 20pt;
 }
 
 .ml-1, .mx-1 {
@@ -46,37 +51,35 @@
     height: 20px;
     width: 80%;
     margin: auto;
+    margin-top: 10px;
 }
 
-.follow-us, .terms-cond, .privacy-policy-bar{
-    display: inline;
-}
-
-.privacy-policy-bar, .terms-cond{
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
-.terms-cond{
-    right: 110px;
+.follow-us{
+    margin-left: calc(50% - 62.5px);
+    width: 125px;
 }
 
 .bottom-fb-link, .bottom-yt-link, .bottom-ig-link{
-    width: 15px;
-    height: 15px;
-    margin-left: 10px;
-    display: inline;
+    width: 20px;
+    height: 20px;
+}
+
+.facebook-icon{
+    color: #3C5A99;
+}
+
+.youtube{
+    color: #FF0000;
+}
+
+.instagram{
+    color: #C13584;
 }
 
 
 @media (max-width: 570px){
     .follow-us, .terms-cond, .privacy-policy{
         display: block;
-    }
-    .privacy-policy-bar, .terms-cond{
-        position: relative;
-        right: 0;
     }
     .bottom-links{
         height: 80px;

@@ -168,65 +168,11 @@ class EditProfileModal extends Component {
             maxLength={inputMaxLength}
             defaultValue={getDefaultValue(user.country)}
           />
-          <label className="modal-label">City:</label>
-          <input
-            className="input-text"
-            type="text"
-            name="city"
-            ref={this.city}
-            maxLength={inputMaxLength}
-            defaultValue={getDefaultValue(user.city)}
-          />
-          <label className="modal-label">Occupation:</label>
-          <input
-            className="input-text"
-            type="text"
-            name="occupation"
-            ref={this.occupation}
-            maxLength={inputMaxLength}
-            defaultValue={getDefaultValue(user.occupation)}
-          />
           <label className="modal-label">Gender:</label>
           <Select
             options={gender}
             ref={this.gender}
             defaultInputValue={getDefaultValue(user.gender)}
-          />
-          <label className="modal-label">Relationship:</label>
-          <Select
-            options={relationship}
-            ref={this.relationship}
-            defaultInputValue={getDefaultValue(user.relationship)}
-          />
-          <label className="modal-label">Education:</label>
-          <input
-            className="input-text"
-            type="text"
-            name="education"
-            ref={this.education}
-            maxLength={inputMaxLength}
-            defaultValue={getDefaultValue(user.education)}
-          />
-          <label className="modal-label">Smoking:</label>
-          <Select
-            options={addiction}
-            ref={this.smoking}
-            defaultInputValue={getDefaultValue(user.smoking)}
-          />
-          <label className="modal-label">Drinking:</label>
-          <Select
-            options={addiction}
-            ref={this.drinking}
-            defaultInputValue={getDefaultValue(user.drinking)}
-          />
-          <label className="modal-label">Speaking:</label>
-          <input
-            className="input-text"
-            type="text"
-            name="speaking"
-            ref={this.speaking}
-            maxLength={inputMaxLength}
-            defaultValue={getDefaultValue(user.speaking)}
           />
           <input
             type="button"
