@@ -18,9 +18,7 @@ export const setMyFriends = myFriends => ({
 
 export const getMyFriends = data => dispatch => {
   return apiRequest(
-    `getMyFriends/${data.destinationName}/${data.dateFrom}/${data.dateTo}/${
-      data.userId
-    }/${data.gender}`,
+    `getMyFriends/${data.destinationName}/${data.dateFrom}/${data.dateTo}/${data.userId}/${data.gender}`,
     { method: "GET" }
   )
     .then(myFriends => {

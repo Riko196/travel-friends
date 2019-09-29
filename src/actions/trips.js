@@ -89,19 +89,26 @@ export const getMyTrips = myUserId => dispatch => {
     });
 };
 
-export const insertTrip = (newTrip, name) => dispatch => {
-  return apiRequest(`insertTrip`, { method: "POST", body: newTrip })
+export const insertTrip = (newTrip, user) => dispatch => {
+  return apiRequest(`insertTrip`, {
+    method: "POST",
+    body: newTrip,
+    headers: { token: user.token }
+  })
     .then(response => {
       dispatch(setNewTrip(response));
-      dispatch(setNewReviewIntoTheMostPopular(response, name));
+      dispatch(setNewReviewIntoTheMostPopular(response, user.name));
     })
     .catch(e => {
       throw e;
     });
 };
 
-export const deleteTrip = tripId => dispatch => {
-  return apiRequest(`deleteTrip/${tripId}`, { method: "DELETE" })
+export const deleteTrip = (tripId, user) => dispatch => {
+  return apiRequest(`deleteTrip/${tripId}`, {
+    method: "DELETE",
+    headers: { token: user.token, userId: user.userId }
+  })
     .then(response => {
       dispatch(deleteFromMyTrips(tripId));
     })

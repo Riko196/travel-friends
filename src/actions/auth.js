@@ -23,14 +23,11 @@ export const cleanState = () => dispatch => {
   dispatch(setInitialState(getInitialState()));
 };
 
-export const getUser = email => {
-  return apiRequest(`getUser/${email}`, { method: "GET" }).catch(e => {});
-};
-
-export const getUserIdByEmail = email => {
-  return apiRequest(`getUserIdByEmail/${email}`, { method: "GET" }).catch(
-    e => {}
-  );
+export const getUser = user => {
+  return apiRequest(`getUser/${user.email}`, {
+    method: "GET",
+    headers: { facebookToken: user.accessToken }
+  }).catch(e => {});
 };
 
 export const insertUser = user => {
@@ -38,9 +35,11 @@ export const insertUser = user => {
     name: user.name,
     email: user.email
   };
-  return apiRequest(`insertUser`, { method: "POST", body: data }).catch(
-    e => {}
-  );
+  return apiRequest(`insertUser`, {
+    method: "POST",
+    body: data,
+    headers: { facebookToken: user.accessToken }
+  }).catch(e => {});
 };
 
 export const logOut = () => dispatch => {

@@ -44,7 +44,7 @@ class TripDetail extends Component {
   };
 
   deleteTrip = e => {
-    this.props.deleteTrip(this.props.detail.tripId);
+    this.props.deleteTrip(this.props.detail.tripId, this.props.user);
   };
 
   inputIsCorrect = () => {
@@ -78,9 +78,7 @@ class TripDetail extends Component {
     const dateTo = ISODateStringTostringDate(this.props.detail.dateTo);
     let cityPhotoUrl = null;
     try {
-      cityPhotoUrl = require(`../../images/cityPhotos/${
-        this.props.detail.destinationPhoto
-      }`);
+      cityPhotoUrl = require(`../../images/cityPhotos/${this.props.detail.destinationPhoto}`);
     } catch (err) {
       cityPhotoUrl = null;
     }

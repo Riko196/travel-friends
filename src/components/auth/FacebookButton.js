@@ -45,13 +45,17 @@ class FacebookButton extends Component {
   };
 
   communicateWithDatabase = user => {
-    getUser(user.email).then(response => {
+    getUser(user).then(response => {
       if (!isEmpty(response)) {
         const updatedUser = merge(response, user);
         try {
           require(`../../images/profilePhotos/profile_picture_${updatedUser.userId}.jpeg`);
         } catch (err) {
-          uploadProfilePhoto(updatedUser.profilePhoto, updatedUser.userId);
+          uploadProfilePhoto(
+            updatedUser.profilePhoto,
+            updatedUser.userId,
+            updatedUser.token
+          );
         }
         delete updatedUser.profilePhoto;
 
@@ -61,7 +65,11 @@ class FacebookButton extends Component {
         });
       } else {
         this.props.insertUser(user).then(userWithUserId => {
-          uploadProfilePhoto(user.profilePhoto, userWithUserId.userId);
+          uploadProfilePhoto(
+            user.profilePhoto,
+            userWithUserId.userId,
+            userWithUserId.token
+          );
           delete user.profilePhoto;
           const finalReduxUser = merge(
             { accessToken: user.accessToken },

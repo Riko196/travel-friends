@@ -16,6 +16,7 @@ exports.up = (knex, Promise) => {
     table.string("smoking");
     table.string("drinking");
     table.string("speaking");
+    table.string("token");
   });
 };
 

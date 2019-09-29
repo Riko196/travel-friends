@@ -7,15 +7,13 @@ import "./PlannedTripDetail.css";
 
 class PlannedTripDetail extends Component {
   deleteTrip = e => {
-    this.props.deleteTrip(this.props.detail.tripId);
+    this.props.deleteTrip(this.props.detail.tripId, this.props.user);
   };
 
   render() {
     let cityPhotoUrl = null;
     try {
-      cityPhotoUrl = require(`../../images/cityPhotos/${
-        this.props.detail.destinationPhoto
-      }`);
+      cityPhotoUrl = require(`../../images/cityPhotos/${this.props.detail.destinationPhoto}`);
     } catch (err) {
       cityPhotoUrl = null;
     }
