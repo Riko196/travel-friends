@@ -1,5 +1,9 @@
 import moment from "moment";
-import { ISODateFormat, gender, inputValidationRegex } from "./constants";
+import {
+  ISODateFormat,
+  preferredGender,
+  inputValidationRegex
+} from "./constants";
 import { uploadPhotoURL } from "./config";
 import axios from "axios";
 
@@ -52,8 +56,8 @@ export const getDefaultValue = value => {
   return value === null ? "" : value;
 };
 
-export const isGender = genderString => {
-  for (const element of gender) {
+export const isPreferredGender = genderString => {
+  for (const element of preferredGender) {
     if (element.value === genderString) {
       return true;
     }

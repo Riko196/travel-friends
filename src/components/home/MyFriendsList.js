@@ -7,7 +7,7 @@ import { getMyFriends } from "../../actions/myFriends";
 import Loading from "../helpful/Loading";
 import {
   isISODateFormat,
-  isGender,
+  isPreferredGender,
   isDestinationName
 } from "../../utils/functions";
 
@@ -33,11 +33,14 @@ class MyFriendsList extends Component {
       gender
     } = this.props;
 
+    if (!isDestinationName(destinationName) || !isPreferredGender(gender)) {
+      this.setState({ error: true });
+      return;
+    }
+
     if (
-      !isDestinationName(destinationName) ||
-      !isISODateFormat(dateFrom) ||
-      !isISODateFormat(dateTo) ||
-      !isGender(gender)
+      (!isISODateFormat(dateFrom) || !isISODateFormat(dateTo)) &&
+      (dateFrom !== "null" && dateTo !== "null")
     ) {
       this.setState({ error: true });
       return;
@@ -69,9 +72,7 @@ class MyFriendsList extends Component {
 
     let cityPhotoUrl = null;
     try {
-      cityPhotoUrl = require(`../../images/cityPhotos/${
-        this.props.destinationName
-      }.jpg`);
+      cityPhotoUrl = require(`../../images/cityPhotos/${this.props.destinationName}.jpg`);
     } catch (err) {
       cityPhotoUrl = null;
     }

@@ -13,8 +13,6 @@ import {
 } from "../../utils/functions";
 import {
   gender,
-  relationship,
-  addiction,
   inputMaxLength,
   textareaMaxLength
 } from "../../utils/constants";
@@ -35,15 +33,7 @@ class EditProfileModal extends Component {
 
     this.aboutme = React.createRef();
     this.birthday = React.createRef();
-    this.country = React.createRef();
-    this.city = React.createRef();
-    this.occupation = React.createRef();
     this.gender = React.createRef();
-    this.relationship = React.createRef();
-    this.education = React.createRef();
-    this.smoking = React.createRef();
-    this.drinking = React.createRef();
-    this.speaking = React.createRef();
 
     this.updatedProfile = {};
   }
@@ -59,11 +49,7 @@ class EditProfileModal extends Component {
   inputIsCorrect = () => {
     if (
       !isInputValid(this.aboutme.current.value) ||
-      !isInputValid(this.country.current.value) ||
-      !isInputValid(this.city.current.value) ||
-      !isInputValid(this.occupation.current.value) ||
-      !isInputValid(this.education.current.value) ||
-      !isInputValid(this.speaking.current.value)
+      !isInputValid(this.country.current.value)
     ) {
       alert("Unallowed characters!");
       return false;
@@ -82,31 +68,11 @@ class EditProfileModal extends Component {
     this.updatedProfile.birthday = getBirthdayFinalValue(
       this.birthday.current.state.value
     );
-
     this.updatedProfile.country = getInputFinalValue(
       this.country.current.value
     );
-    this.updatedProfile.city = getInputFinalValue(this.city.current.value);
-    this.updatedProfile.occupation = getInputFinalValue(
-      this.occupation.current.value
-    );
     this.updatedProfile.gender = getSelectFinalValue(
       this.gender.current.state.value
-    );
-    this.updatedProfile.relationship = getSelectFinalValue(
-      this.relationship.current.state.value
-    );
-    this.updatedProfile.education = getInputFinalValue(
-      this.education.current.value
-    );
-    this.updatedProfile.smoking = getSelectFinalValue(
-      this.smoking.current.state.value
-    );
-    this.updatedProfile.drinking = getSelectFinalValue(
-      this.drinking.current.state.value
-    );
-    this.updatedProfile.speaking = getInputFinalValue(
-      this.speaking.current.value
     );
 
     Object.keys(this.updatedProfile).forEach(

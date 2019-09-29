@@ -9,10 +9,18 @@ import "./DestinationReview.css";
 class DestinationReview extends Component {
   render() {
     const { name, rating, reviewText, userId } = this.props;
+    let profilePhoto = null;
+    try {
+      profilePhoto = require(`../../images/profilePhotos/profile_picture_${userId}.jpeg`);
+    } catch (err) {
+      profilePhoto = require("../../images/profile_picture_default.svg");
+    }
+
     return (
       <div className="destination-review">
         <div className="inline-row">
           <div className="review-picture">
+            <img alt="reviewer" src={profilePhoto} />
           </div>
           <div className="name-rating">
             <p className="review-owner">
@@ -23,7 +31,9 @@ class DestinationReview extends Component {
                 emptySymbol={
                   <img alt="emptySymbol" src={emptyStar} className="icon" />
                 }
-                fullSymbol={<img alt="fullSymbol" src={fullStar} className="icon" />}
+                fullSymbol={
+                  <img alt="fullSymbol" src={fullStar} className="icon" />
+                }
                 initialRating={rating}
                 readonly
               />

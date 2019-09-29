@@ -92,7 +92,10 @@ const getUserIdFriendsWithDate = async (knex, query) => {
   let myFriends = [];
   for (const element of friendsId) {
     const friend = await getUserByUserId(knex, element.userId);
-    if (friend !== undefined && gender === friend.gender) {
+    if (
+      friend !== undefined &&
+      (gender === friend.gender || gender === "I don't mind")
+    ) {
       let friendAdded = false;
       for (const key of friendsIdWithDateFrom) {
         if (
@@ -126,7 +129,7 @@ const getUserIdFriendsWithDate = async (knex, query) => {
 };
 
 const getUserIdFriendsWithPlanned = async (knex, query) => {
-  const { destinationName, userId } = query;
+  const { destinationName, userId, gender } = query;
   const { destinationId } = await getDestinationIdByName(knex, destinationName);
   const friendsId = await knex("trips")
     .select("userId")
@@ -137,7 +140,11 @@ const getUserIdFriendsWithPlanned = async (knex, query) => {
   let myFriends = [];
   for (const element of friendsId) {
     const friend = await getUserByUserId(knex, element.userId);
-    if (friend !== undefined) myFriends.push(friend);
+    if (
+      friend !== undefined &&
+      (gender === friend.gender || gender === "I don't mind")
+    )
+      myFriends.push(friend);
   }
   return myFriends;
 };
