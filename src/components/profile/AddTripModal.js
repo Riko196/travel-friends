@@ -92,7 +92,7 @@ class AddTripModal extends Component {
           : stringDateToISODateString(this.state.dateTo);
 
       const newTrip = {
-        userId: this.props.userId,
+        userId: this.props.user.userId,
         destinationName: this.destinationName.current.state.value.label,
         planned: this.state.planned,
         dateFrom: dateFrom,
@@ -100,7 +100,7 @@ class AddTripModal extends Component {
         tripInfo: this.tripInfo.current.value
       };
 
-      this.props.insertTrip(newTrip, this.props.name).then(response => {
+      this.props.insertTrip(newTrip, this.props.user).then(response => {
         this.closeModal();
       });
     }
@@ -211,8 +211,7 @@ class AddTripModal extends Component {
 
 export default connect(
   state => ({
-    userId: state.user.userId,
-    name: state.user.name,
+    user: state.user,
     destinationsName: state.destinationsName
   }),
   { getAllDestinationsName, insertTrip }

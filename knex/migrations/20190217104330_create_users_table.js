@@ -8,6 +8,7 @@ exports.up = (knex, Promise) => {
     table.string("birthday");
     table.string("country");
     table.string("gender");
+    table.string("token");
   });
 };
 

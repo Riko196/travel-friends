@@ -98,7 +98,7 @@ export const getAge = dateString => {
   } else return "";
 };
 
-export const uploadProfilePhoto = (profilePhotoUrl, userId) => {
+export const uploadProfilePhoto = (profilePhotoUrl, userId, token) => {
   fetch(profilePhotoUrl)
     .then(response => {
       return response.blob();
@@ -109,7 +109,9 @@ export const uploadProfilePhoto = (profilePhotoUrl, userId) => {
 
       axios.post(uploadPhotoURL, data, {
         headers: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
+          userId: userId,
+          token: token
         }
       });
     });
