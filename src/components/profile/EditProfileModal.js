@@ -34,6 +34,7 @@ class EditProfileModal extends Component {
     this.aboutme = React.createRef();
     this.birthday = React.createRef();
     this.gender = React.createRef();
+    this.country = React.createRef();
 
     this.updatedProfile = {};
   }

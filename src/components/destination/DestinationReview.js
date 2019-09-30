@@ -20,7 +20,7 @@ class DestinationReview extends Component {
       <div className="destination-review">
         <div className="inline-row">
           <div className="review-picture">
-            <img alt="reviewer" src={profilePhoto} />
+            <img alt="reviewer" className="reviewer" src={profilePhoto} />
           </div>
           <div className="name-rating">
             <p className="review-owner">

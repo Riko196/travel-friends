@@ -31,22 +31,22 @@ class Navbar extends Component {
         <div className="sandwitch">
           &#9776;
         <div className="navbar-item-drop">
-          <NavLink to="/home" className="navbar-link">
+          <NavLink to="/home" className="navbar-link large-text-link">
             Home
           </NavLink>
         </div>
         <div className="navbar-item-drop">
-          <NavLink to="/profile" className="navbar-link">
+          <NavLink to="/profile" className="navbar-link large-text-link">
             Profile
           </NavLink>
         </div>
         <div className="navbar-item-drop">
-          <NavLink to="/about-us" className="navbar-link">
+          <NavLink to="/about-us" className="navbar-link large-text-link">
             About
           </NavLink>
         </div>
         <div className="navbar-item-drop">
-          <button onClick={this.props.logOut} className="navbar-link">
+          <button onClick={this.props.logOut} className="navbar-link large-text-link">
             Log Out
           </button>
         </div>

@@ -8,9 +8,9 @@
 }
 
 .add-trip {
-  background-color: royalblue;
-  border: 1px solid royalblue;
-  color: white;
+  background-color: rgba(211, 211, 211, 0.5);
+  border: none;
+  color: black;
   font-weight: 600;
   padding: 0.3em 0.6em;
   cursor: pointer;

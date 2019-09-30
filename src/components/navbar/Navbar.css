@@ -56,7 +56,7 @@
     font-size: 40px;
     text-align: right;
     padding-right: 5px;
-    text-shadow: 0px 1px lightgray;
+    text-shadow: 0px 1px gray;
   }
 
   .navbar{
@@ -67,12 +67,16 @@
     width: 30%;
   }
 
+  .large-text-link{
+    font-size: 13pt !important;
+  }
+
   .sandwitch:hover > .navbar-item-drop { 
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     display: block !important;
-    height: 30px;
+    height: 50px;
     text-align: center;
-    font-size: 14px !important;
+    font-size: 25px !important;
     padding: 3px;
     margin-right: -5px;
     text-shadow: none;

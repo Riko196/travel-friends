@@ -8,7 +8,7 @@
     min-height: 200px;
     position: relative;
     float: left;
-    border: 1px solid royalblue;
+    border: 1px solid rgba(211, 211, 211, 0.6);
     border-radius: 7px;
 }
 
@@ -33,9 +33,14 @@
     width: 40px;
     height: 40px;
     border-radius: 20px;
-    background-color: aquamarine;
     float: left;
     margin-right: 10px;
+}
+
+.reviewer{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
 }
 
 .name-rating{

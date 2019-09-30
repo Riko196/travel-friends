@@ -9,6 +9,7 @@ import { getTheMostPopularDestinations } from "../../actions/destinations";
 import Destination from "../destination/Destination";
 import { countOfTheMostPopularDestinations } from "../../utils/constants";
 import Loading from "../helpful/Loading";
+import AddTripModal from "../profile/AddTripModal"
 import BottomBar from "../bottombar/BottomBar";
 
 import "./Home.css";
@@ -37,7 +38,10 @@ class Home extends Component {
             <p id="travel-friends-home">
               Your travel friends are waiting for you!
             </p>
-            <FindThemModal />
+            <div className="home-buttons">
+              <FindThemModal />
+              <AddTripModal />
+            </div>
           </div>
         </div>
         <p className="most-popular-p">Most popular destinations</p>

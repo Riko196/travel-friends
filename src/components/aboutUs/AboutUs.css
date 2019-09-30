@@ -26,3 +26,14 @@
   margin: 0px;
   color: black;
 }
+
+@media (max-width: 1000px){
+  .about-us-container{
+    width: 90%;
+    left: 5%;
+  }
+
+  .background-image img{
+    width: 170vw;
+  }
+}

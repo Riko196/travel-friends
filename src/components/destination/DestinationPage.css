@@ -47,8 +47,8 @@ html{
 .destination-link{
   font-weight: 500;
   margin-top: 1em;
-  background-color: royalblue;
-  color: white !important;
+  background-color: rgba(211, 211, 211, 0.4);
+  color: black !important;
   padding: 0.5em;
   font-size: 12pt;
   border-radius: 5px;

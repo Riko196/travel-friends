@@ -18,11 +18,11 @@ background-image: url("../../images/profile3long.jpg") !important;
 }
 
 .send-message{
-  background-color: royalblue;
-  color: white !important;
+  background-color: rgba(211, 211, 211, 0.4);
+  color: black !important;
   padding: 0.3em 0.6em;
   font-weight: 600;
-  border: solid 1px royalblue;
+  border: none;
   cursor: pointer;
 }
 
