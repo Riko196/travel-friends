@@ -19,7 +19,6 @@ class DestinationPage extends Component {
   }
 
   componentDidMount() {
-
     const { destinationId, getDestinationByDestinationId } = this.props;
 
     if (isNaN(destinationId)) {
@@ -53,11 +52,9 @@ class DestinationPage extends Component {
 
     let destinationPhotoUrl = null;
     try {
-      destinationPhotoUrl = require(`../../images/cityPhotos/${
-        selectedDestination.destinationPhoto
-      }`);
+      destinationPhotoUrl = require(`../../images/cityPhotos/${selectedDestination.destinationPhoto}`);
     } catch (err) {
-      destinationPhotoUrl = null;
+      destinationPhotoUrl = require(`../../images/destination_default.jpg`);
     }
 
     return (
