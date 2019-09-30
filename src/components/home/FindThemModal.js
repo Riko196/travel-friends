@@ -30,7 +30,7 @@ class FindThemModal extends Component {
   }
 
   componentDidMount() {
-    if (this.props.destinationsName === null) {
+    if (this.props.destinationsName.length === 0) {
       this.props.getAllDestinationsName();
     }
   }
