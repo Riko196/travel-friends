@@ -9,9 +9,13 @@ export const setUser = user => ({
   }
 });
 
-export const updateUser = data => {
-  data = omit(data, ["accessToken"]);
-  return apiRequest(`updateUser`, { method: "PUT", body: data }).catch(e => {
+export const updateUser = user => {
+  user = omit(user, ["accessToken"]);
+  return apiRequest(`updateUser`, {
+    method: "PUT",
+    body: user,
+    headers: { token: user.token }
+  }).catch(e => {
     throw e;
   });
 };

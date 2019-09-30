@@ -37,9 +37,7 @@ const apiRequest = (apiPath, options) => {
     finalOptions.body = JSON.stringify(finalOptions.body);
     finalOptions.headers["Content-Type"] = "application/json";
   }
-
   const requestUrl = backendURL + apiPath;
-
   return fetch(requestUrl, finalOptions).then(response =>
     solveErrors(response)
   );

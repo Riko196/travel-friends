@@ -7,11 +7,14 @@ const getUserByEmail = (knex, email) => {
     .first();
 };
 
-const getUserByUserId = (knex, userId) => {
-  return knex("users")
+const getUserByUserId = async (knex, userId) => {
+  const user = await knex("users")
     .select("*")
     .where("userId", userId)
     .first();
+  delete user.token;
+  delete user.email;
+  return user;
 };
 
 const insertUser = (knex, user) => {

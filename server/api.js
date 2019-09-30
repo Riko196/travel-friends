@@ -3,7 +3,6 @@ const knex = require("../knex/knex");
 const {
   getUserByEmail,
   getUserByUserId,
-  getUserIdByEmail,
   insertUser,
   updateUser,
   insertTrip,
@@ -24,13 +23,19 @@ const {
   updateReview
 } = require("./queries");
 const multer = require("multer");
+const { authenticated, facebookAuthenticated } = require("./authentication");
 
 const router = express.Router();
 
 /********************** USERS ***********************/
 
-router.get("/getUser/:email", (req, res, next) => {
+router.get("/getUser/:email", async (req, res, next) => {
   const { email } = req.params;
+  const response = await facebookAuthenticated(req, email);
+  if (response.status !== 200) {
+    return res.send(response);
+  }
+
   getUserByEmail(knex, email)
     .then(result => {
       if (result === undefined) {
@@ -55,8 +60,15 @@ router.get("/getUserByUserId/:userId", (req, res, next) => {
     .catch(e => next(e));
 });
 
-router.post("/insertUser", (req, res, next) => {
+router.post("/insertUser", async (req, res, next) => {
   const user = req.body;
+  const response = await facebookAuthenticated(req, user.email);
+
+  if (response.status !== 200) {
+    return res.send(response);
+  }
+
+  user.token = req.headers["facebooktoken"];
   insertUser(knex, user)
     .then(inserted => {
       res.send(inserted[0]);
@@ -66,6 +78,10 @@ router.post("/insertUser", (req, res, next) => {
 
 router.put("/updateUser", (req, res, next) => {
   const user = req.body;
+  const token = req.headers["token"];
+  if (!authenticated(token, user.userId)) {
+    return res.send({ message: "Unauthorized" });
+  }
   updateUser(knex, user)
     .then(result => {
       res.send({});
@@ -77,7 +93,10 @@ router.put("/updateUser", (req, res, next) => {
 
 router.post("/insertTrip", (req, res, next) => {
   const trip = req.body;
-
+  const token = req.headers["token"];
+  if (!authenticated(token, trip.userId)) {
+    return res.send({ message: "Unauthorized" });
+  }
   getDestinationIdByName(knex, trip.destinationName)
     .then(result => {
       trip.destinationId = result.destinationId;
@@ -117,6 +136,11 @@ router.post("/insertTrip", (req, res, next) => {
 
 router.delete("/deleteTrip/:tripId", (req, res, next) => {
   const { tripId } = req.params;
+  const userId = req.headers["userId"];
+  const token = req.headers["token"];
+  if (!authenticated(token, userId)) {
+    return res.send({ message: "Unauthorized" });
+  }
   deleteTrip(knex, tripId)
     .then(deletedTrip => {
       if (deleteTrip.planned === false) {
@@ -250,6 +274,10 @@ router.get("/getReviewsByDestinationId/:destinationId", (req, res, next) => {
 
 router.put("/editReview", (req, res, next) => {
   const { userId, tripId, reviewText, rating } = req.body;
+  const token = req.headers["token"];
+  if (!authenticated(token, userId)) {
+    return res.send({ message: "Unauthorized" });
+  }
   updateReview(knex, userId, tripId, reviewText, rating)
     .then(statusCode => {
       res.send({});
@@ -260,6 +288,11 @@ router.put("/editReview", (req, res, next) => {
 /************************* FILE UPLOAD ********************/
 
 router.post("/upload", (req, res) => {
+  const { userId } = req.body;
+  const token = req.headers["token"];
+  if (!authenticated(token, userId)) {
+    return res.send({ message: "Unauthorized" });
+  }
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, "../src/images/profilePhotos");
