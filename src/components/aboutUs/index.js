@@ -7,8 +7,8 @@ class AboutUsRouter extends Component {
     return (
       <div className="aboutus-router-container">
         <Switch>
-          <Route exact path="/about-us" component={AboutUs} />
-          <Redirect to="/page-not-found" />
+          <Route exact path="/logged-in/about-us" component={AboutUs} />
+          <Redirect to="/logged-in/page-not-found" />
         </Switch>
       </div>
     );

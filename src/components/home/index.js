@@ -9,18 +9,18 @@ class HomeRouter extends Component {
     return (
       <div className="home-router-container">
         <Switch>
-          <Route exact path="/home" component={Home} />
+          <Route exact path="/logged-in/home" component={Home} />
           <Route
             exact
-            path="/home/my-friends/:destinationName/:dateFrom/:dateTo/:gender"
+            path="/logged-in/home/my-friends/:destinationName/:dateFrom/:dateTo/:gender"
             component={MyFriendsList}
           />
           <Route
             exact
-            path="/home/my-friends/profile/:userId"
+            path="/logged-in/home/my-friends/profile/:userId"
             component={MyFriendsProfile}
           />
-          <Redirect to="/page-not-found" />
+          <Redirect to="/logged-in/page-not-found" />
         </Switch>
       </div>
     );

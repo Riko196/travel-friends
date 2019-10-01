@@ -1,9 +1,9 @@
 .enter-username{
-  background-color: royalblue;
-  color: white !important;
+  background-color: rgba(211, 211, 211, 0.5);
+  color: black !important;
   padding: 0.3em 0.6em;
   font-weight: 600;
-  border: solid 1px royalblue;
+  border: none;
   cursor: pointer;
   margin-top: 0.5em;
 }
@@ -29,12 +29,18 @@
   display: block;
   margin: auto;
   width: 100px;
-  background-color: royalblue;
-  color: white;
+  background-color: rgba(211, 211, 211, 0.4);
+  color: black;
   font-weight: 600;
-  border: 1px solid royalblue;
+  border: none;
   font-size: 15px;  
   height: 30px;
   margin-top: 1em;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .enter-username{
+    max-width: 115px;
+  }
 }

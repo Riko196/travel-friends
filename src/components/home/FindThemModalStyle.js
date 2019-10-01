@@ -8,6 +8,7 @@ export const findThemModalStyle = {
         boxShadow: '0px 0px 15px 5px rgba(0,0,0,0.5)',
         width: '300px',
         margin: 'auto',
-        bottom: "none"
+        bottom: "none",
+        top: "70px"
     }
 };

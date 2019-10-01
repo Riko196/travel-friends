@@ -5,7 +5,7 @@ import { compose } from "redux";
 import Modal from "react-modal";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
-import { gender } from "../../utils/constants";
+import { preferredGender, defaultPreferredGender } from "../../utils/constants";
 import { getMyFriends } from "../../actions/myFriends";
 import { getAllDestinationsName } from "../../actions/destinations";
 import { stringDateToISODateString, isNull } from "../../utils/functions";
@@ -21,7 +21,8 @@ class FindThemModal extends Component {
     this.state = {
       modalIsOpen: false,
       dateFrom: null,
-      dateTo: null
+      dateTo: null,
+      anytime: false
     };
 
     this.destinationName = React.createRef();
@@ -29,7 +30,7 @@ class FindThemModal extends Component {
   }
 
   componentDidMount() {
-    if (this.props.destinationsName === null) {
+    if (this.props.destinationsName.length === 0) {
       this.props.getAllDestinationsName();
     }
   }
@@ -47,15 +48,25 @@ class FindThemModal extends Component {
   };
 
   inputIsCorrect = () => {
+    console.log(this.gender.current);
     if (
-      isNull(this.state.dateFrom) ||
-      isNull(this.state.dateTo) ||
       isNull(this.destinationName.current.state.value) ||
-      isNull(this.gender.current.state.value) ||
+      (isNull(this.gender.current.state.value) &&
+        this.gender.current.state.inputValue === "") ||
       stringDateToISODateString(this.state.dateFrom) >
         stringDateToISODateString(this.state.dateTo)
-    )
+    ) {
+      alert("Bad input!");
       return false;
+    }
+
+    if (
+      !this.state.anytime &&
+      (isNull(this.state.dateFrom) || isNull(this.state.dateTo))
+    ) {
+      alert("Bad input!");
+      return false;
+    }
     return true;
   };
 
@@ -74,14 +85,28 @@ class FindThemModal extends Component {
   findMyFriends = () => {
     if (this.inputIsCorrect()) {
       const destinationName = this.destinationName.current.state.value.value;
-      const dateFrom = stringDateToISODateString(this.state.dateFrom);
-      const dateTo = stringDateToISODateString(this.state.dateTo);
-      const gender = this.gender.current.state.value.value;
+      const dateFrom = this.state.anytime
+        ? null
+        : stringDateToISODateString(this.state.dateFrom);
+      const dateTo = this.state.anytime
+        ? null
+        : stringDateToISODateString(this.state.dateTo);
+      const genderState = this.gender.current.state;
+      const gender =
+        genderState.inputValue !== ""
+          ? genderState.inputValue
+          : genderState.value.value;
       this.closeModal();
       this.props.history.push(
-        `/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
+        `/logged-in/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
       );
     }
+  };
+
+  handleChangePlanned = event => {
+    this.setState({
+      anytime: event.target.checked
+    });
   };
 
   render() {
@@ -124,25 +149,41 @@ class FindThemModal extends Component {
             placeholder="Destination..."
           />
 
-          <label className="modal-label">From:</label>
-          <DatePicker
-            selected={this.state.dateFrom}
-            onChange={this.handleChangeDateFrom}
-            className="date-wide"
+          <label className="modal-label">Anytime:</label>
+          <input
+            type="checkbox"
+            id="cbx"
+            style={{ display: "none" }}
+            onChange={this.handleChangePlanned}
+            defaultChecked={false}
           />
+          <label htmlFor="cbx" className="toggle">
+            <span />
+          </label>
 
-          <label className="modal-label">To:</label>
-          <DatePicker
-            selected={this.state.dateTo}
-            onChange={this.handleChangeDateTo}
-            className="date-wide"
-          />
+          {this.state.anytime === false && (
+            <div>
+              <label className="modal-label">From:</label>
+              <DatePicker
+                selected={this.state.dateFrom}
+                onChange={this.handleChangeDateFrom}
+                className="date-wide"
+              />
+
+              <label className="modal-label">To:</label>
+              <DatePicker
+                selected={this.state.dateTo}
+                onChange={this.handleChangeDateTo}
+                className="date-wide"
+              />
+            </div>
+          )}
 
           {<label className="modal-label">Preferred gender:</label>}
           <Select
-            options={gender}
+            options={preferredGender}
             ref={this.gender}
-            defaultInputValue={""}
+            defaultInputValue={defaultPreferredGender}
             placeholder="Gender..."
           />
 

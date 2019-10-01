@@ -8,10 +8,10 @@ class DestinationRouter extends Component {
         <Switch>
           <Route
             exact
-            path="/destination/:destinationId"
+            path="/logged-in/destination/:destinationId"
             component={DestinationPage}
           />
-          <Redirect to="/page-not-found" />
+          <Redirect to="/logged-in/page-not-found" />
         </Switch>
       </div>
     );

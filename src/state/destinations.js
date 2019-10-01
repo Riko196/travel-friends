@@ -1,6 +1,6 @@
 export const initialDestinationsState = {
   theMostPopularDestinations: null,
-  destinationsName: null,
+  destinationsName: [],
   selectedDestination: {
     destinationId: null,
     destinationName: null,

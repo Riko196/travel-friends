@@ -15,7 +15,7 @@ class DestinationSearch extends Component {
   getDestination = () => {
     if (this.destinationName.current.state.value !== null)
       this.props.history.push(
-        `/destination/${this.destinationName.current.state.value.value}`
+        `/logged-in/destination/${this.destinationName.current.state.value.value}`
       );
   };
 

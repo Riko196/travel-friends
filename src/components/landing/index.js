@@ -9,7 +9,7 @@ class LandingRouter extends Component {
       <div className="landing-router-container">
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Redirect to="/page-not-found" />
+          <Redirect to="/logged-in/page-not-found" />
         </Switch>
       </div>
     );

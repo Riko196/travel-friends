@@ -86,7 +86,9 @@ class TripDetail extends Component {
     return (
       <div className="trip-div">
         <div className="half">
-          <Link to={`/destination/${this.props.detail.destinationId}`}>
+          <Link
+            to={`/logged-in/destination/${this.props.detail.destinationId}`}
+          >
             {cityPhotoUrl !== null && (
               <img
                 className="destination-image-detail"

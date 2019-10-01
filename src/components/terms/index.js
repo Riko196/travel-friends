@@ -8,7 +8,7 @@ class TermsConditionsRouter extends Component {
       <div className="terms-and-conditions-router-container">
         <Switch>
           <Route exact path="/terms-conditions" component={TermsConditions} />
-          <Redirect to="/page-not-found" />
+          <Redirect to="/logged-in/page-not-found" />
         </Switch>
       </div>
     );

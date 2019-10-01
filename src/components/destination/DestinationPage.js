@@ -19,7 +19,6 @@ class DestinationPage extends Component {
   }
 
   componentDidMount() {
-
     const { destinationId, getDestinationByDestinationId } = this.props;
 
     if (isNaN(destinationId)) {
@@ -39,7 +38,7 @@ class DestinationPage extends Component {
 
   render() {
     if (this.state.error) {
-      return <Redirect to="/page-not-found" />;
+      return <Redirect to="/logged-in/page-not-found" />;
     }
 
     if (this.state.destinationLoaded === false) {
@@ -53,11 +52,9 @@ class DestinationPage extends Component {
 
     let destinationPhotoUrl = null;
     try {
-      destinationPhotoUrl = require(`../../images/cityPhotos/${
-        selectedDestination.destinationPhoto
-      }`);
+      destinationPhotoUrl = require(`../../images/cityPhotos/${selectedDestination.destinationPhoto}`);
     } catch (err) {
-      destinationPhotoUrl = null;
+      destinationPhotoUrl = require(`../../images/destination_default.jpg`);
     }
 
     return (
@@ -77,14 +74,16 @@ class DestinationPage extends Component {
             <h6 className="destination-description">
               {selectedDestination.aboutDestination}
             </h6>
-            <a
-              href={selectedDestination.destinationLink}
-              target="_blank"
-              className="destination-link"
-              rel="noopener noreferrer"
-            >
-              {selectedDestination.destinationLink}
-            </a>
+            {selectedDestination.destinationLink && (
+              <a
+                href={selectedDestination.destinationLink}
+                target="_blank"
+                className="destination-link"
+                rel="noopener noreferrer"
+              >
+                See more...
+              </a>
+            )}
           </div>
         </div>
         <div className="reviews">

@@ -7,6 +7,7 @@ import Loading from "../helpful/Loading";
 import { getAge } from "../../utils/functions";
 import { Redirect } from "react-router-dom";
 import { isEmpty } from "lodash";
+import { facebookMessengerURL } from "../../utils/config";
 
 import "./MyFriendsProfile.css";
 
@@ -23,7 +24,7 @@ class MyFriendsProfile extends Component {
   componentDidMount() {
     const { friendsUserId, myUserId, getMyFriend } = this.props;
     if (friendsUserId === myUserId) {
-      this.props.history.replace("/profile");
+      this.props.history.replace("/logged-in/profile");
       return;
     }
 
@@ -58,7 +59,7 @@ class MyFriendsProfile extends Component {
 
   render() {
     if (this.state.error) {
-      return <Redirect to="/page-not-found" />;
+      return <Redirect to="/logged-in/page-not-found" />;
     }
 
     if (this.state.myFriendLoaded === false) {
@@ -67,9 +68,7 @@ class MyFriendsProfile extends Component {
 
     let profilePhoto = null;
     try {
-      profilePhoto = require(`../../images/profilePhotos/profile_picture_${
-        this.props.selectedFriend.userId
-      }.jpeg`);
+      profilePhoto = require(`../../images/profilePhotos/profile_picture_${this.props.selectedFriend.userId}.jpeg`);
     } catch (err) {
       profilePhoto = require("../../images/profile_picture_default.svg");
     }
@@ -78,7 +77,7 @@ class MyFriendsProfile extends Component {
       <div className="my-friend-profile-container">
         <div className="my-friend-profile-div">
           <div className="row">
-            <div className="column" id="photo">
+            <div id="photo">
               <img
                 className="my-friend-profile-photo"
                 src={profilePhoto}
@@ -96,75 +95,29 @@ class MyFriendsProfile extends Component {
                 </span>
                 {this.props.selectedFriend.aboutme}
               </p>
-              <p className="birthday">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  Birthday:{" "}
-                </span>{" "}
-                {this.props.selectedFriend.birthday != null &&
-                  this.DateFromStringDate(this.props.selectedFriend.birthday)}
-              </p>
             </div>
-            <div className="column-3">
-              <p className="country">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  Country:{" "}
-                </span>
-                {this.props.selectedFriend.country}
-              </p>
-              <p className="city">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  City:{" "}
-                </span>
-                {this.props.selectedFriend.city}
-              </p>
-              <p className="occupation">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  Occupation:{" "}
-                </span>
-                {this.props.selectedFriend.occupation}
-              </p>
-              {/*<p className="joined">Joined: </p>*/}
-              <p className="gender">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  Gender:{" "}
-                </span>
-                {this.props.selectedFriend.gender}
-              </p>
-              <p className="relationship">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  Relationship:{" "}
-                </span>
-                {this.props.selectedFriend.relationship}
-              </p>
-            </div>
-            <div className="column-4">
-              <p className="education">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  Education:{" "}
-                </span>
-                {this.props.selectedFriend.education}
-              </p>
-              <p className="smoking">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  Smoking:{" "}
-                </span>
-                {this.props.selectedFriend.smoking}
-              </p>
-              <p className="drinking">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  Drinking:{" "}
-                </span>
-                {this.props.selectedFriend.drinking}
-              </p>
-              <p className="speaking">
-                <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
-                  Speaking:{" "}
-                </span>
-                {this.props.selectedFriend.speaking}
-              </p>
+            <p className="country">
+              <span style={{ fontStyle: "oblique", fontWeight: "700" }}>
+                Country:{" "}
+              </span>
+              {this.props.selectedFriend.country}
+            </p>
+            <div className="right-align">
+              {this.props.selectedFriend.userName !== null && (
+                <div className="contact-button right">
+                  <a
+                    href={
+                      facebookMessengerURL + this.props.selectedFriend.userName
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <p id="size">Contact</p>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
-          {/*<ProfileGallery />*/}
         </div>
       </div>
     );

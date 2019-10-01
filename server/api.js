@@ -180,7 +180,7 @@ router.get(
       gender
     })
       .then(friendsWithDate => {
-        getUserIdFriendsWithPlanned(knex, { destinationName, userId })
+        getUserIdFriendsWithPlanned(knex, { destinationName, userId, gender })
           .then(friendsWithPlanned => {
             res.send({
               friendsWithPlanned: friendsWithPlanned,

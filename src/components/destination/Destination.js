@@ -6,11 +6,9 @@ class Destination extends Component {
   render() {
     let destinationPhotoUrl = null;
     try {
-      destinationPhotoUrl = require(`../../images/cityPhotos/${
-        this.props.destination.destinationPhoto
-      }`);
+      destinationPhotoUrl = require(`../../images/cityPhotos/${this.props.destination.destinationPhoto}`);
     } catch (err) {
-      destinationPhotoUrl = null;
+      destinationPhotoUrl = require(`../../images/destination_default.jpg`);
     }
 
     return (

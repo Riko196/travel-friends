@@ -12,15 +12,7 @@ exports.seed = (knex, Promise) => {
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
-          city: "Test city",
-          occupation: "test",
-          joined: "22/02/2018",
-          gender: "Male",
-          relationship: "In an opened relationship",
-          education: "Nothing",
-          smoking: "Never",
-          drinking: "Never",
-          speaking: "Nothing"
+          gender: "Male"
         },
         {
           name: "Test name2",
@@ -29,15 +21,7 @@ exports.seed = (knex, Promise) => {
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
-          city: "Test city",
-          occupation: "test",
-          joined: "22/02/2018",
           gender: "Male",
-          relationship: "In an opened relationship",
-          education: "Nothing",
-          smoking: "Never",
-          drinking: "Never",
-          speaking: "Nothing"
         },
         {
           name: "Test name3",
@@ -46,15 +30,7 @@ exports.seed = (knex, Promise) => {
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
-          city: "Test city",
-          occupation: "test",
-          joined: "22/02/2018",
           gender: "Male",
-          relationship: "In an opened relationship",
-          education: "Nothing",
-          smoking: "Never",
-          drinking: "Never",
-          speaking: "Nothing"
         },
         {
           name: "John Johnson",
@@ -63,15 +39,7 @@ exports.seed = (knex, Promise) => {
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
-          city: "Test city",
-          occupation: "test",
-          joined: "22/02/2018",
           gender: "Male",
-          relationship: "In an opened relationship",
-          education: "Nothing",
-          smoking: "Never",
-          drinking: "Never",
-          speaking: "Nothing"
         },
         {
           name: "Test name5",
@@ -80,15 +48,7 @@ exports.seed = (knex, Promise) => {
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
-          city: "Test city",
-          occupation: "test",
-          joined: "22/02/2018",
           gender: "Male",
-          relationship: "In an opened relationship",
-          education: "Nothing",
-          smoking: "Never",
-          drinking: "Never",
-          speaking: "Nothing"
         },
         {
           name: "John Johnson",
@@ -97,15 +57,7 @@ exports.seed = (knex, Promise) => {
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
-          city: "Test city",
-          occupation: "test",
-          joined: "22/02/2018",
           gender: "Male",
-          relationship: "In an opened relationship",
-          education: "Nothing",
-          smoking: "Never",
-          drinking: "Never",
-          speaking: "Nothing"
         },
         {
           name: "John Johnson",
@@ -114,15 +66,7 @@ exports.seed = (knex, Promise) => {
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
-          city: "Test city",
-          occupation: "test",
-          joined: "22/02/2018",
           gender: "Male",
-          relationship: "In an opened relationship",
-          education: "Nothing",
-          smoking: "Never",
-          drinking: "Never",
-          speaking: "Nothing"
         },
         {
           name: "John Johnson",
@@ -131,15 +75,7 @@ exports.seed = (knex, Promise) => {
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
-          city: "Test city",
-          occupation: "test",
-          joined: "22/02/2018",
           gender: "Male",
-          relationship: "In an opened relationship",
-          education: "Nothing",
-          smoking: "Never",
-          drinking: "Never",
-          speaking: "Nothing"
         },
         {
           name: "John Johnson",
@@ -148,15 +84,7 @@ exports.seed = (knex, Promise) => {
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
-          city: "Test city",
-          occupation: "test",
-          joined: "22/02/2018",
           gender: "Male",
-          relationship: "In an opened relationship",
-          education: "Nothing",
-          smoking: "Never",
-          drinking: "Never",
-          speaking: "Nothing"
         }
       ]);
     });

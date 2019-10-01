@@ -8,8 +8,8 @@ class ProfileRouter extends Component {
     return (
       <div className="profile-router-container">
         <Switch>
-          <Route exact path="/profile" component={Profile} />
-          <Redirect to="/page-not-found" />
+          <Route exact path="/logged-in/profile" component={Profile} />
+          <Redirect to="/logged-in/page-not-found" />
         </Switch>
       </div>
     );

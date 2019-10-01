@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 import "./TermsConditions.css";
 
 class TermsConditions extends Component {
@@ -6,6 +7,9 @@ class TermsConditions extends Component {
     return (
       <div>
         <div className="background-image-terms">
+          <NavLink to="/" className="navbar-link large-text-link">
+            Landing page
+          </NavLink>
           <img
             src={require("../../images/terms.jpg")}
             alt={"Terms & Conditions"}

@@ -57,7 +57,7 @@ class LandingPage extends Component {
                     <div className="text-uppercase text-xlarge font-weight-black text-shadow--1 mb-4">
                       You are at a right place to find your travel friends.
                     </div>
-                    <p className="text-uppercase font-weight-bold text-medium text-shadow--1 mb-4">
+                    <p className="text-medium text-shadow--1 mb-4">
                       Meet new people with same passion and share
                       your experience and costs with them!
                     </p>
@@ -80,7 +80,9 @@ class LandingPage extends Component {
                 Terms &amp; Conditions
               </NavLink>{" "}
               and{" "}
-              <NavLink to="/privacy-policy" className="privacy-policy">
+              <NavLink 
+                to="/privacy-policy" 
+                className="privacy-policy-land">
                 Privacy Policy
               </NavLink>{" "}
               of the website.
@@ -146,11 +148,11 @@ class LandingPage extends Component {
                     <p className="landing-page__reveal">Your last step. :)</p>
                   </div>
                   <div className="landing-page__divider landing-page__reveal" />
-                  <h2 className="font-primary font-weight-black mb-3">
+                  <h2 className="font-primary font-weight-black mb-3 landing-page__reveal">
                     ARE YOU IN?
                   </h2>
-                  <img src={arrowDown} alt="" className="mb-3 arrow-width-2" />
-                  <div className="mb-4 d-flex justify-content-center flex-wrap">
+                  <img src={arrowDown} alt="" className="mb-3 arrow-width-2 landing-page__reveal" />
+                  <div className="mb-4 d-flex justify-content-center flex-wrap landing-page__reveal">
                     {/* <a className="btn btn--social-login btn--rounded btn--blue m-3 login-facebook">
                             <div>
                                <div className="font-weight-bold">Continue with facebook</div>
@@ -159,7 +161,7 @@ class LandingPage extends Component {
                          </a> */}
                     <FacebookButton />
                   </div>
-                  <p>
+                  <p className="landing-page__reveal">
                     By clicking “continue with facebook”{" "}
                     <NavLink
                       to="/terms-conditions"
@@ -168,7 +170,7 @@ class LandingPage extends Component {
                       Terms &amp; Conditions
                     </NavLink>{" "}
                     and{" "}
-                    <NavLink to="/privacy-policy" className="privacy-policy">
+                    <NavLink to="/privacy-policy" className="privacy-policy-land">
                       Privacy Policy
                     </NavLink>{" "}
                     of the website.
@@ -176,16 +178,13 @@ class LandingPage extends Component {
                 </div>
               </div>
             </div>
-            <div className="container">
+            <div className="landing-page__divider landing-page__reveal" />
+            <div className="container landing-page__reveal">
               <footer>
-                <div className="d-flex justify-content-between flex-wrap">
-                  <div>
-                    Follow us:
-                    <i className="fab fa-facebook-f mx-1" />{" "}
-                    <i className="fab fa-instagram mx-1" />{" "}
-                    <i className="fab fa-youtube mx-1" />
-                  </div>
-                  <div>
+                <i className="fab three-down fa-facebook-f mx-1" />{" "}
+                <i className="fab three-down fa-instagram mx-1" />{" "}
+                <i className="fab three-down fa-youtube mx-1" />
+{/*                   <div>
                     <NavLink
                       to="/terms-conditions"
                       className="terms-conditions"
@@ -195,8 +194,7 @@ class LandingPage extends Component {
                     <NavLink to="/privacy-policy" className="privacy-policy">
                       Privacy policy
                     </NavLink>
-                  </div>
-                </div>
+                  </div> */}
               </footer>
             </div>
           </div>

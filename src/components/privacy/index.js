@@ -8,7 +8,7 @@ class PrivacyPolicyRouter extends Component {
       <div className="privacy-policy-router-container">
         <Switch>
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
-          <Redirect to="/page-not-found" />
+          <Redirect to="/logged-in/page-not-found" />
         </Switch>
       </div>
     );
