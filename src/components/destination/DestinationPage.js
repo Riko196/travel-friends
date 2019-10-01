@@ -74,14 +74,16 @@ class DestinationPage extends Component {
             <h6 className="destination-description">
               {selectedDestination.aboutDestination}
             </h6>
-            <a
-              href={selectedDestination.destinationLink}
-              target="_blank"
-              className="destination-link"
-              rel="noopener noreferrer"
-            >
-              See more...
-            </a>
+            {selectedDestination.destinationLink && (
+              <a
+                href={selectedDestination.destinationLink}
+                target="_blank"
+                className="destination-link"
+                rel="noopener noreferrer"
+              >
+                See more...
+              </a>
+            )}
           </div>
         </div>
         <div className="reviews">
