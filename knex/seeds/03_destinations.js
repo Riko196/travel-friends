@@ -609,6 +609,234 @@ exports.seed = function(knex, Promise) {
         aboutDestination: "Zhūhǎi (珠海) is close enough to Macau for a day trip without any maniacal driving. Never too hot or too frosty, Zhūhǎi is the just-right popular Chinese getaway – especially in summer – with plenty of seaside glitz. Yet it remains laid-back, and what helps it really shine is the natural beauty of its gardens and an attractive, relatively clean port.",         
         destinationLink: "https://www.lonelyplanet.com/china/guangdong/zhuhai"
       },
+      {
+        destinationName: 'São Paulo',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Zürich',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Montreal',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Chicago',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Düsseldorf',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Boston',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Chengdu',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Edinburgh',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'San Jose',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Tehran',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Houston',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Hamburg',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Cape Town',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Manila',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Bogota',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Xi\'an',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Beirut',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Geneva',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Xiamen',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Bucharest',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Casablanca',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Beirut',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Atlanta',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Sofia',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Dalian',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Montevideo',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Amman',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Hangzhou',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Pune',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Durban',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Dallas',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Accra',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Quito',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Tianjin',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Bangalore',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Qingdao',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Philadelphia',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
+      {
+        destinationName: 'Lagos',
+        destinationPhoto: '',
+        aboutDestination: "",         
+        destinationLink: ""
+      },
     ]);
   });
 };

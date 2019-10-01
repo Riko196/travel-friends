@@ -176,7 +176,9 @@ const getDestinationNameById = (knex, destinationId) => {
 };
 
 const getAllDestinationsName = knex => {
-  return knex("destinations").select("destinationId", "destinationName");
+  return knex("destinations")
+  .select("destinationId", "destinationName")
+  .orderBy("destinationName", "ASC");
 };
 
 const getTheMostPopularDestinations = (knex, limit) => {
