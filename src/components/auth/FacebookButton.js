@@ -61,7 +61,7 @@ class FacebookButton extends Component {
 
         updateUser(updatedUser).then(() => {
           this.props.logIn(updatedUser);
-          this.props.history.replace("/home");
+          this.props.history.replace("/logged-in/home");
         });
       } else {
         this.props.insertUser(user).then(userWithUserId => {
@@ -76,7 +76,7 @@ class FacebookButton extends Component {
             userWithUserId
           );
           this.props.logIn(finalReduxUser);
-          this.props.history.replace("/home");
+          this.props.history.replace("/logged-in/home");
         });
       }
     });

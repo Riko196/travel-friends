@@ -24,7 +24,9 @@ class DestinationReview extends Component {
           </div>
           <div className="name-rating">
             <p className="review-owner">
-              <Link to={`/home/my-friends/profile/${userId}`}>{name}</Link>
+              <Link to={`/logged-in/home/my-friends/profile/${userId}`}>
+                {name}
+              </Link>
             </p>
             <div className="rating-stars">
               <Rating

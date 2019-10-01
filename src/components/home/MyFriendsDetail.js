@@ -21,7 +21,7 @@ class MyFriendsDetail extends Component {
           <p>Planned trip</p>
         </div>
         <Link
-          to={`/home/my-friends/profile/${detail.userId}`}
+          to={`/logged-in/home/my-friends/profile/${detail.userId}`}
           key={detail.userId}
         >
           <div>
@@ -45,7 +45,7 @@ class MyFriendsDetail extends Component {
         <p className="detailp2">About: {detail.aboutme}</p>
         <div className="buttons">
           <Link
-            to={`/home/my-friends/profile/${detail.userId}`}
+            to={`/logged-in/home/my-friends/profile/${detail.userId}`}
             key={detail.userId}
           >
             <div className="profile-button">

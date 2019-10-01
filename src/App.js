@@ -25,28 +25,34 @@ class App extends Component {
   render() {
     return (
       <div className="application-container">
-        <Route path="/:something" component={Navbar} />
+        <Route path="/logged-in/:something" component={Navbar} />
         <Switch>
           <Route exact path="/" component={LandingRouter} />
+          <Route exact path="/privacy-policy" component={PrivacyPolicyRouter} />
           <Route
             exact
             path="/terms-conditions"
             component={TermsConditionsRouter}
           />
-          <Route exact path="/privacy-policy" component={PrivacyPolicyRouter} />
-          <Route path="/home" component={authenticatedHomeRouter} />
+          <Route path="/logged-in/home" component={authenticatedHomeRouter} />
           <Route
-            path="/destination"
+            path="/logged-in/destination"
             component={authenticatedDestinationRouter}
           />
-          <Route path="/profile" component={authenticatedProfileRouter} />
-          <Route path="/about-us" component={authenticatedAboutUsRouter} />
+          <Route
+            path="/logged-in/profile"
+            component={authenticatedProfileRouter}
+          />
+          <Route
+            path="/logged-in/about-us"
+            component={authenticatedAboutUsRouter}
+          />
           <Route
             exact
-            path="/page-not-found"
+            path="/logged-in/page-not-found"
             component={authenticatedPageNotFound}
           />
-          <Redirect to="/page-not-found" />
+          <Redirect to="/logged-in/page-not-found" />
         </Switch>
       </div>
     );

@@ -24,7 +24,7 @@ class MyFriendsProfile extends Component {
   componentDidMount() {
     const { friendsUserId, myUserId, getMyFriend } = this.props;
     if (friendsUserId === myUserId) {
-      this.props.history.replace("/profile");
+      this.props.history.replace("/logged-in/profile");
       return;
     }
 
@@ -59,7 +59,7 @@ class MyFriendsProfile extends Component {
 
   render() {
     if (this.state.error) {
-      return <Redirect to="/page-not-found" />;
+      return <Redirect to="/logged-in/page-not-found" />;
     }
 
     if (this.state.myFriendLoaded === false) {
@@ -68,9 +68,7 @@ class MyFriendsProfile extends Component {
 
     let profilePhoto = null;
     try {
-      profilePhoto = require(`../../images/profilePhotos/profile_picture_${
-        this.props.selectedFriend.userId
-      }.jpeg`);
+      profilePhoto = require(`../../images/profilePhotos/profile_picture_${this.props.selectedFriend.userId}.jpeg`);
     } catch (err) {
       profilePhoto = require("../../images/profile_picture_default.svg");
     }
@@ -105,19 +103,20 @@ class MyFriendsProfile extends Component {
               {this.props.selectedFriend.country}
             </p>
             <div className="right-align">
-            {this.props.selectedFriend.userName !== null && (
-            <div className="contact-button right">
-              <a
-                href={facebookMessengerURL + this.props.selectedFriend.userName}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <p id="size">Contact</p>
-              </a>
+              {this.props.selectedFriend.userName !== null && (
+                <div className="contact-button right">
+                  <a
+                    href={
+                      facebookMessengerURL + this.props.selectedFriend.userName
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <p id="size">Contact</p>
+                  </a>
+                </div>
+              )}
             </div>
-            
-          )}
-          </div>
           </div>
         </div>
       </div>

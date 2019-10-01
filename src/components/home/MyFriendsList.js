@@ -62,7 +62,7 @@ class MyFriendsList extends Component {
 
   render() {
     if (this.state.error) {
-      return <Redirect to="/page-not-found" />;
+      return <Redirect to="/logged-in/page-not-found" />;
     }
 
     if (this.state.myFriendLoaded === false) {

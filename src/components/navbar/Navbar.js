@@ -9,17 +9,17 @@ class Navbar extends Component {
     return (
       <div className="navbar">
         <div className="navbar-item">
-          <NavLink to="/home" className="navbar-link">
+          <NavLink to="/logged-in/home" className="navbar-link">
             Home
           </NavLink>
         </div>
         <div className="navbar-item">
-          <NavLink to="/profile" className="navbar-link">
+          <NavLink to="/logged-in/profile" className="navbar-link">
             Profile
           </NavLink>
         </div>
         <div className="navbar-item">
-          <NavLink to="/about-us" className="navbar-link">
+          <NavLink to="/logged-in/about-us" className="navbar-link">
             About
           </NavLink>
         </div>
@@ -30,26 +30,38 @@ class Navbar extends Component {
         </div>
         <div className="sandwitch">
           &#9776;
-        <div className="navbar-item-drop">
-          <NavLink to="/home" className="navbar-link large-text-link">
-            Home
-          </NavLink>
-        </div>
-        <div className="navbar-item-drop">
-          <NavLink to="/profile" className="navbar-link large-text-link">
-            Profile
-          </NavLink>
-        </div>
-        <div className="navbar-item-drop">
-          <NavLink to="/about-us" className="navbar-link large-text-link">
-            About
-          </NavLink>
-        </div>
-        <div className="navbar-item-drop">
-          <button onClick={this.props.logOut} className="navbar-link large-text-link">
-            Log Out
-          </button>
-        </div>
+          <div className="navbar-item-drop">
+            <NavLink
+              to="/logged-in/home"
+              className="navbar-link large-text-link"
+            >
+              Home
+            </NavLink>
+          </div>
+          <div className="navbar-item-drop">
+            <NavLink
+              to="/logged-in/profile"
+              className="navbar-link large-text-link"
+            >
+              Profile
+            </NavLink>
+          </div>
+          <div className="navbar-item-drop">
+            <NavLink
+              to="/logged-in/about-us"
+              className="navbar-link large-text-link"
+            >
+              About
+            </NavLink>
+          </div>
+          <div className="navbar-item-drop">
+            <button
+              onClick={this.props.logOut}
+              className="navbar-link large-text-link"
+            >
+              Log Out
+            </button>
+          </div>
         </div>
       </div>
     );

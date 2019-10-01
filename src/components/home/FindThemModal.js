@@ -98,7 +98,7 @@ class FindThemModal extends Component {
           : genderState.value.value;
       this.closeModal();
       this.props.history.push(
-        `/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
+        `/logged-in/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
       );
     }
   };

@@ -9,7 +9,7 @@ import { getTheMostPopularDestinations } from "../../actions/destinations";
 import Destination from "../destination/Destination";
 import { countOfTheMostPopularDestinations } from "../../utils/constants";
 import Loading from "../helpful/Loading";
-import AddTripModal from "../profile/AddTripModal"
+import AddTripModal from "../profile/AddTripModal";
 import BottomBar from "../bottombar/BottomBar";
 
 import "./Home.css";
@@ -45,13 +45,15 @@ class Home extends Component {
           </div>
         </div>
         <p className="most-popular-p">Most popular destinations</p>
-        <p className="most-popular-p-under">Most travelers want to visit these destinations</p>
+        <p className="most-popular-p-under">
+          Most travelers want to visit these destinations
+        </p>
         <div className="divider"></div>
         <div className="home-part-popular">
           {theMostPopularDestinations !== null &&
             theMostPopularDestinations.map(destination => (
               <Link
-                to={`/destination/${destination.destinationId}`}
+                to={`/logged-in/destination/${destination.destinationId}`}
                 key={destination.destinationId}
               >
                 <Destination destination={destination} />
