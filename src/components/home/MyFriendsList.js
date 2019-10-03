@@ -74,7 +74,7 @@ class MyFriendsList extends Component {
     try {
       cityPhotoUrl = require(`../../images/cityPhotos/${this.props.destinationName}.jpg`);
     } catch (err) {
-      cityPhotoUrl = null;
+      cityPhotoUrl = require(`../../images/destination_default.jpg`);
     }
 
     return (

@@ -15,7 +15,7 @@ class PlannedTripDetail extends Component {
     try {
       cityPhotoUrl = require(`../../images/cityPhotos/${this.props.detail.destinationPhoto}`);
     } catch (err) {
-      cityPhotoUrl = null;
+      cityPhotoUrl = require(`../../images/destination_default.jpg`);
     }
 
     return (
