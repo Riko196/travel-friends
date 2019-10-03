@@ -11,6 +11,7 @@ import { countOfTheMostPopularDestinations } from "../../utils/constants";
 import Loading from "../helpful/Loading";
 import AddTripModal from "../profile/AddTripModal";
 import BottomBar from "../bottombar/BottomBar";
+import CookieConsent from "react-cookie-consent";
 
 import "./Home.css";
 
@@ -24,7 +25,7 @@ class Home extends Component {
   }
 
   render() {
-    const { theMostPopularDestinations } = this.props;
+    const { theMostPopularDestinations, firstLogin } = this.props;
     if (theMostPopularDestinations === null) {
       return <Loading />;
     }
@@ -33,6 +34,22 @@ class Home extends Component {
       <div className="home">
         <div className="home_part-1">
           <Navbar />
+          {firstLogin && (
+            <CookieConsent
+              location="bottom"
+              buttonText="Sure man!!"
+              cookieName="myAwesomeCookieName2"
+              style={{ background: "#2B373B" }}
+              buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+              expires={150}
+            >
+              This website uses cookies to enhance the user experience.{" "}
+              <span style={{ fontSize: "10px" }}>
+                This bit of text is smaller :O
+              </span>
+            </CookieConsent>
+          )}
+
           <div className="home-center">
             <p id="its-time">It is time to pack and go! :{")"}</p>
             <p id="travel-friends-home">
@@ -71,7 +88,8 @@ export default compose(
   withRouter,
   connect(
     state => ({
-      theMostPopularDestinations: state.theMostPopularDestinations
+      theMostPopularDestinations: state.theMostPopularDestinations,
+      firstLogin: state.user.firstLogin
     }),
     { getTheMostPopularDestinations }
   )

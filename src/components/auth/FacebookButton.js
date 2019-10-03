@@ -58,6 +58,7 @@ class FacebookButton extends Component {
           );
         }
         delete updatedUser.profilePhoto;
+        updatedUser.firstLogin = false;
 
         updateUser(updatedUser).then(() => {
           this.props.logIn(updatedUser);
@@ -71,6 +72,8 @@ class FacebookButton extends Component {
             userWithUserId.token
           );
           delete user.profilePhoto;
+          userWithUserId.firstLogin = true;
+
           const finalReduxUser = merge(
             { accessToken: user.accessToken },
             userWithUserId

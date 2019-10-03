@@ -10,7 +10,7 @@ export const setUser = user => ({
 });
 
 export const updateUser = user => {
-  user = omit(user, ["accessToken"]);
+  user = omit(user, ["accessToken", "firstLogin"]);
   return apiRequest(`updateUser`, {
     method: "PUT",
     body: user,

@@ -6,14 +6,8 @@ export const initialUserState = {
     aboutme: null,
     birthday: null,
     country: null,
-    city: null,
-    occupation: null,
-    joined: null,
     gender: null,
-    relationship: null,
-    education: null,
-    smoking: null,
-    drinking: null,
-    speaking: null
+    token: null,
+    firstLogin: null
   }
 };
