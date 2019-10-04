@@ -48,11 +48,9 @@ class FindThemModal extends Component {
   };
 
   inputIsCorrect = () => {
-    console.log(this.gender.current);
     if (
       isNull(this.destinationName.current.state.value) ||
-      (isNull(this.gender.current.state.value) &&
-        this.gender.current.state.inputValue === "") ||
+      isNull(this.gender.current.state.value) ||
       stringDateToISODateString(this.state.dateFrom) >
         stringDateToISODateString(this.state.dateTo)
     ) {
@@ -91,11 +89,7 @@ class FindThemModal extends Component {
       const dateTo = this.state.anytime
         ? null
         : stringDateToISODateString(this.state.dateTo);
-      const genderState = this.gender.current.state;
-      const gender =
-        genderState.inputValue !== ""
-          ? genderState.inputValue
-          : genderState.value.value;
+      const gender = this.gender.current.state.value.value;
       this.closeModal();
       this.props.history.push(
         `/logged-in/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
@@ -183,7 +177,7 @@ class FindThemModal extends Component {
           <Select
             options={preferredGender}
             ref={this.gender}
-            defaultInputValue={defaultPreferredGender}
+            defaultValue={defaultPreferredGender}
             placeholder="Gender..."
           />
 
