@@ -6,7 +6,6 @@ import Modal from "react-modal";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import { preferredGender, defaultPreferredGender } from "../../utils/constants";
-import { getMyFriends } from "../../actions/myFriends";
 import { getAllDestinationsName } from "../../actions/destinations";
 import { stringDateToISODateString, isNull } from "../../utils/functions";
 import { findThemModalStyle } from "./FindThemModalStyle";
@@ -202,6 +201,6 @@ export default compose(
       myFriends: state.myFriends,
       destinationsName: state.destinationsName
     }),
-    { getMyFriends, getAllDestinationsName }
+    { getAllDestinationsName }
   )
 )(FindThemModal);

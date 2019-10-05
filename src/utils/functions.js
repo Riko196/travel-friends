@@ -6,6 +6,7 @@ import {
 } from "./constants";
 import { uploadPhotoURL } from "./config";
 import axios from "axios";
+import cookie from "react-cookies";
 
 export const removeAllSpaces = string => {
   return string.replace(/\s+/g, "");
@@ -98,20 +99,21 @@ export const getAge = dateString => {
   } else return "";
 };
 
-export const uploadProfilePhoto = (profilePhotoUrl, userId, token) => {
+export const uploadProfilePhoto = profilePhotoUrl => {
   fetch(profilePhotoUrl)
     .then(response => {
       return response.blob();
     })
     .then(file => {
       const data = new FormData();
+      const userId = cookie.load("userId");
       data.append("blob", file, `profile_picture_${userId}.jpeg`);
 
       axios.post(uploadPhotoURL, data, {
         headers: {
           "Content-Type": "multipart/form-data",
-          userId: userId,
-          token: token
+          token: cookie.load("token"),
+          userId: userId
         }
       });
     });

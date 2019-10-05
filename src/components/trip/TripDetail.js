@@ -44,7 +44,7 @@ class TripDetail extends Component {
   };
 
   deleteTrip = e => {
-    this.props.deleteTrip(this.props.detail.tripId, this.props.user);
+    this.props.deleteTrip(this.props.detail.tripId);
   };
 
   inputIsCorrect = () => {
@@ -58,7 +58,6 @@ class TripDetail extends Component {
   editReview = e => {
     if (this.inputIsCorrect()) {
       this.props.editReview({
-        userId: this.props.user.userId,
         tripId: this.props.detail.tripId,
         reviewText: this.reviewText.current.value,
         rating: this.state.rating
@@ -163,6 +162,6 @@ class TripDetail extends Component {
 }
 
 export default connect(
-  state => ({ user: state.user }),
+  null,
   { deleteTrip, editReview }
 )(TripDetail);

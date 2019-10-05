@@ -7,7 +7,7 @@ import "./PlannedTripDetail.css";
 
 class PlannedTripDetail extends Component {
   deleteTrip = e => {
-    this.props.deleteTrip(this.props.detail.tripId, this.props.user);
+    this.props.deleteTrip(this.props.detail.tripId);
   };
 
   render() {
@@ -43,6 +43,6 @@ class PlannedTripDetail extends Component {
 }
 
 export default connect(
-  state => ({ user: state.user }),
+  null,
   { deleteTrip }
 )(PlannedTripDetail);

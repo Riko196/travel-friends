@@ -79,8 +79,8 @@ export const deleteFromMyTrips = tripId => ({
   }
 });
 
-export const getMyTrips = myUserId => dispatch => {
-  return apiRequest(`getTripsByUserId/${myUserId}`, { method: "GET" })
+export const getMyTrips = () => dispatch => {
+  return apiRequest(`getMyTrips`, { method: "GET" })
     .then(myTrips => {
       dispatch(setMyTrips(myTrips));
     })
@@ -92,8 +92,7 @@ export const getMyTrips = myUserId => dispatch => {
 export const insertTrip = (newTrip, user) => dispatch => {
   return apiRequest(`insertTrip`, {
     method: "POST",
-    body: newTrip,
-    headers: { token: user.token }
+    body: newTrip
   })
     .then(response => {
       dispatch(setNewTrip(response));
@@ -104,10 +103,9 @@ export const insertTrip = (newTrip, user) => dispatch => {
     });
 };
 
-export const deleteTrip = (tripId, user) => dispatch => {
+export const deleteTrip = tripId => dispatch => {
   return apiRequest(`deleteTrip/${tripId}`, {
-    method: "DELETE",
-    headers: { token: user.token, userId: user.userId }
+    method: "DELETE"
   })
     .then(response => {
       dispatch(deleteFromMyTrips(tripId));

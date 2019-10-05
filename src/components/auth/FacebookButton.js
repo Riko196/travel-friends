@@ -7,6 +7,7 @@ import { insertUser, getUser, setLoggedIn } from "../../actions/auth";
 import { updateUser, setUser } from "../../actions/user";
 import { Login } from "react-facebook";
 import { uploadProfilePhoto } from "../../utils/functions";
+import cookie from "react-cookies";
 
 import "./FacebookButton.css";
 
@@ -27,62 +28,68 @@ class FacebookButton extends Component {
   profilePictureRequest = response => {
     const id = response.profile.id;
     const user = {
-      accessToken: response.tokenDetail.accessToken,
       name: response.profile.name,
       email: response.profile.email
     };
 
     window.FB.api(
-      `/${id}?fields=picture.width(720).height(720)&access_token=${user.accessToken}`,
+      `/${id}?fields=picture.width(720).height(720)&access_token=${response.tokenDetail.accessToken}`,
       "GET",
       {},
       profilePicture => {
         if (has(profilePicture, "picture.data.url"))
           user.profilePhoto = profilePicture.picture.data.url;
-        this.communicateWithDatabase(user);
+        this.communicateWithDatabase(user, response.tokenDetail.accessToken);
       }
     );
   };
 
-  communicateWithDatabase = user => {
-    getUser(user).then(response => {
-      if (!isEmpty(response)) {
-        const updatedUser = merge(response, user);
-        try {
-          require(`../../images/profilePhotos/profile_picture_${updatedUser.userId}.jpeg`);
-        } catch (err) {
-          uploadProfilePhoto(
-            updatedUser.profilePhoto,
-            updatedUser.userId,
-            updatedUser.token
-          );
-        }
-        delete updatedUser.profilePhoto;
-        updatedUser.firstLogin = false;
+  communicateWithDatabase = (user, facebookToken) => {
+    cookie.save("facebookToken", facebookToken);
 
-        updateUser(updatedUser).then(() => {
-          this.props.logIn(updatedUser);
-          this.props.history.replace("/logged-in/home");
-        });
-      } else {
-        this.props.insertUser(user).then(userWithUserId => {
-          uploadProfilePhoto(
-            user.profilePhoto,
-            userWithUserId.userId,
-            userWithUserId.token
-          );
+    getUser(user)
+      .then(response => {
+        if (!isEmpty(response)) {
+          const updatedUser = merge(response, user);
+          try {
+            require(`../../images/profilePhotos/profile_picture_${updatedUser.userId}.jpeg`);
+          } catch (err) {
+            uploadProfilePhoto(updatedUser.profilePhoto);
+          }
+
+          delete updatedUser.profilePhoto;
+          cookie.save("userId", updatedUser.userId);
+          updateUser(updatedUser).then(() => {
+            this.logIn(updatedUser);
+          });
+        } else {
+          uploadProfilePhoto(user.profilePhoto);
           delete user.profilePhoto;
-          userWithUserId.firstLogin = true;
+          this.props.insertUser(user).then(userWithUserId => {
+            this.logIn(userWithUserId);
+          });
+        }
+      })
+      .catch(error => {
+        alert("Login failed!");
+        if (process.env.REACT_APP_NODE_ENV === "development") {
+          console.log(error);
+        }
+      });
+  };
 
-          const finalReduxUser = merge(
-            { accessToken: user.accessToken },
-            userWithUserId
-          );
-          this.props.logIn(finalReduxUser);
-          this.props.history.replace("/logged-in/home");
-        });
-      }
-    });
+  logIn = user => {
+    if (!user) {
+      alert("Login failed!");
+      return;
+    }
+    cookie.save("userId", user.userId);
+    cookie.save("token", user.token);
+    if (user.userId) delete user.userId;
+    delete user.token;
+
+    this.props.logIn(user);
+    this.props.history.replace("/logged-in/home");
   };
 
   handleError = error => {

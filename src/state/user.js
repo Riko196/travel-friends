@@ -6,8 +6,6 @@ export const initialUserState = {
     aboutme: null,
     birthday: null,
     country: null,
-    gender: null,
-    token: null,
-    firstLogin: null
+    gender: null
   }
 };
