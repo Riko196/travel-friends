@@ -92,7 +92,6 @@ class AddTripModal extends Component {
           : stringDateToISODateString(this.state.dateTo);
 
       const newTrip = {
-        userId: this.props.user.userId,
         destinationName: this.destinationName.current.state.value.label,
         planned: this.state.planned,
         dateFrom: dateFrom,

@@ -49,6 +49,7 @@ router.get("/getUser/:email", async (req, res, next) => {
 
 router.get("/getUserByUserId/:userId", (req, res, next) => {
   const { userId } = req.params;
+
   getUserByUserId(knex, userId)
     .then(result => {
       if (result === undefined) {
@@ -79,9 +80,13 @@ router.post("/insertUser", async (req, res, next) => {
 router.put("/updateUser", (req, res, next) => {
   const user = req.body;
   const token = req.headers["token"];
-  if (!authenticated(token, user.userId)) {
+  const userId = req.headers["userid"];
+
+  if (!authenticated(token, userId)) {
     return res.send({ message: "Unauthorized" });
   }
+
+  user.userId = userId;
   updateUser(knex, user)
     .then(result => {
       res.send({});
@@ -94,9 +99,13 @@ router.put("/updateUser", (req, res, next) => {
 router.post("/insertTrip", (req, res, next) => {
   const trip = req.body;
   const token = req.headers["token"];
-  if (!authenticated(token, trip.userId)) {
+  const userId = req.headers["userid"];
+
+  if (!authenticated(token, userId)) {
     return res.send({ message: "Unauthorized" });
   }
+
+  trip.userId = userId;
   getDestinationIdByName(knex, trip.destinationName)
     .then(result => {
       trip.destinationId = result.destinationId;
@@ -136,11 +145,13 @@ router.post("/insertTrip", (req, res, next) => {
 
 router.delete("/deleteTrip/:tripId", (req, res, next) => {
   const { tripId } = req.params;
-  const userId = req.headers["userId"];
   const token = req.headers["token"];
+  const userId = req.headers["userid"];
+
   if (!authenticated(token, userId)) {
     return res.send({ message: "Unauthorized" });
   }
+
   deleteTrip(knex, tripId)
     .then(deletedTrip => {
       if (deleteTrip.planned === false) {
@@ -154,8 +165,9 @@ router.delete("/deleteTrip/:tripId", (req, res, next) => {
     .catch(e => next(e));
 });
 
-router.get("/getTripsByUserId/:userId", (req, res, next) => {
-  const { userId } = req.params;
+router.get("/getMyTrips", (req, res, next) => {
+  const userId = req.headers["userid"];
+
   getUnplannedTripsByUserId(knex, userId)
     .then(unplannedTrips => {
       getPlannedTripsByUserId(knex, userId).then(plannedTrips => {
@@ -165,12 +177,24 @@ router.get("/getTripsByUserId/:userId", (req, res, next) => {
     .catch(e => next(e));
 });
 
+router.get("/getTripsByUserId/:userId", (req, res, next) => {
+  const { userId } = req.params;
+
+  getUnplannedTripsByUserId(knex, userId)
+    .then(unplannedTrips => {
+      getPlannedTripsByUserId(knex, userId).then(plannedTrips => {
+        res.send(unplannedTrips.concat(plannedTrips));
+      });
+    })
+    .catch(e => next(e));
+});
 /********************** FRIENDS ***********************/
 
 router.get(
-  "/getMyFriends/:destinationName/:dateFrom/:dateTo/:userId/:gender",
+  "/getMyFriends/:destinationName/:dateFrom/:dateTo/:gender",
   (req, res, next) => {
-    const { destinationName, dateFrom, dateTo, userId, gender } = req.params;
+    const { destinationName, dateFrom, dateTo, gender } = req.params;
+    const userId = req.headers["userid"];
 
     getUserIdFriendsWithDate(knex, {
       destinationName,
@@ -238,6 +262,7 @@ router.get("/getTheMostPopularDestinations/:limit", async (req, res, next) => {
 
 router.get("/getDestinationIdByTripId/:tripId", (req, res, next) => {
   const { tripId } = req.params;
+
   getDestinationIdByTripId(knex, tripId)
     .then(result => {
       res.send(result);
@@ -249,6 +274,7 @@ router.get(
   "/getDestinationByDestinationId/:destinationId",
   (req, res, next) => {
     const { destinationId } = req.params;
+
     getDestinationByDestinationId(knex, destinationId)
       .then(destination => {
         getReviewsByDestinationId(knex, destinationId)
@@ -265,6 +291,7 @@ router.get(
 
 router.get("/getReviewsByDestinationId/:destinationId", (req, res, next) => {
   const { destinationId } = req.params;
+
   getReviewsByDestinationId(knex, destinationId)
     .then(result => {
       res.send(result);
@@ -273,11 +300,14 @@ router.get("/getReviewsByDestinationId/:destinationId", (req, res, next) => {
 });
 
 router.put("/editReview", (req, res, next) => {
-  const { userId, tripId, reviewText, rating } = req.body;
+  const { tripId, reviewText, rating } = req.body;
   const token = req.headers["token"];
+  const userId = req.headers["userid"];
+
   if (!authenticated(token, userId)) {
     return res.send({ message: "Unauthorized" });
   }
+
   updateReview(knex, userId, tripId, reviewText, rating)
     .then(statusCode => {
       res.send({});
@@ -288,11 +318,13 @@ router.put("/editReview", (req, res, next) => {
 /************************* FILE UPLOAD ********************/
 
 router.post("/upload", (req, res) => {
-  const { userId } = req.body;
   const token = req.headers["token"];
+  const userId = req.headers["userid"];
+
   if (!authenticated(token, userId)) {
     return res.send({ message: "Unauthorized" });
   }
+
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
       cb(null, "../src/images/profilePhotos");

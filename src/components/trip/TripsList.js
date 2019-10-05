@@ -5,13 +5,15 @@ import { getMyTrips } from "../../actions/trips";
 import { getCurrentDate, ISODateStringToISODate } from "../../utils/functions";
 import PlannedTripDetail from "./PlannedTripDetail";
 import Loading from "../helpful/Loading";
+import cookie from "react-cookies";
 
 import "./TripsList.css";
 
 class TripsList extends Component {
   componentDidMount() {
     if (this.props.myTrips === null) {
-      this.props.getMyTrips(this.props.userId);
+      const userId = cookie.load("userId");
+      this.props.getMyTrips(userId);
     }
   }
 
@@ -79,8 +81,7 @@ class TripsList extends Component {
 
 export default connect(
   state => ({
-    myTrips: state.myTrips,
-    userId: state.user.userId
+    myTrips: state.myTrips
   }),
   { getMyTrips }
 )(TripsList);

@@ -1,5 +1,4 @@
 import apiRequest from "./apiRequest";
-import { omit } from "lodash";
 
 export const setUser = user => ({
   type: "Set user values",
@@ -10,11 +9,9 @@ export const setUser = user => ({
 });
 
 export const updateUser = user => {
-  user = omit(user, ["accessToken"]);
   return apiRequest(`updateUser`, {
     method: "PUT",
-    body: user,
-    headers: { token: user.token }
+    body: user
   }).catch(e => {
     throw e;
   });

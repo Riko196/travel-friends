@@ -27,7 +27,6 @@ class MyFriendsList extends Component {
     const {
       getMyFriends,
       destinationName,
-      userId,
       dateFrom,
       dateTo,
       gender
@@ -48,7 +47,6 @@ class MyFriendsList extends Component {
 
     const data = {
       destinationName: destinationName,
-      userId: userId,
       dateFrom: dateFrom,
       dateTo: dateTo,
       gender: gender
@@ -74,7 +72,7 @@ class MyFriendsList extends Component {
     try {
       cityPhotoUrl = require(`../../images/cityPhotos/${this.props.destinationName}.jpg`);
     } catch (err) {
-      cityPhotoUrl = null;
+      cityPhotoUrl = require(`../../images/destination_default.jpg`);
     }
 
     return (
@@ -147,7 +145,6 @@ export default compose(
         dateFrom,
         dateTo,
         gender,
-        userId: state.user.userId,
         myFriends: state.myFriends
       };
     },

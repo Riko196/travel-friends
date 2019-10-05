@@ -1,6 +1,7 @@
 import apiRequest from "./apiRequest";
 import { getInitialState } from "../initializeRedux";
 import storage from "redux-persist/lib/storage";
+import cookie from "react-cookies";
 
 export const setLoggedIn = loggedIn => ({
   type: "Set loggedIn value",
@@ -25,8 +26,7 @@ export const cleanState = () => dispatch => {
 
 export const getUser = user => {
   return apiRequest(`getUser/${user.email}`, {
-    method: "GET",
-    headers: { facebookToken: user.accessToken }
+    method: "GET"
   }).catch(e => {});
 };
 
@@ -37,8 +37,7 @@ export const insertUser = user => {
   };
   return apiRequest(`insertUser`, {
     method: "POST",
-    body: data,
-    headers: { facebookToken: user.accessToken }
+    body: data
   }).catch(e => {});
 };
 
@@ -54,6 +53,9 @@ export const logOut = () => dispatch => {
     resolve();
   }).then(() => {
     dispatch(setInitialState(getInitialState()));
+    cookie.remove("facebookToken");
+    cookie.remove("token");
+    cookie.remove("userId");
     window.location = "/";
   });
 };

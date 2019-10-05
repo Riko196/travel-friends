@@ -7,7 +7,7 @@ import "./PlannedTripDetail.css";
 
 class PlannedTripDetail extends Component {
   deleteTrip = e => {
-    this.props.deleteTrip(this.props.detail.tripId, this.props.user);
+    this.props.deleteTrip(this.props.detail.tripId);
   };
 
   render() {
@@ -15,7 +15,7 @@ class PlannedTripDetail extends Component {
     try {
       cityPhotoUrl = require(`../../images/cityPhotos/${this.props.detail.destinationPhoto}`);
     } catch (err) {
-      cityPhotoUrl = null;
+      cityPhotoUrl = require(`../../images/destination_default.jpg`);
     }
 
     return (
@@ -43,6 +43,6 @@ class PlannedTripDetail extends Component {
 }
 
 export default connect(
-  state => ({ user: state.user }),
+  null,
   { deleteTrip }
 )(PlannedTripDetail);

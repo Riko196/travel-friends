@@ -7,13 +7,13 @@ class TermsConditions extends Component {
     return (
       <div>
         <div className="background-image-terms">
-          <NavLink to="/" className="navbar-link large-text-link">
-            Landing page
-          </NavLink>
           <img
             src={require("../../images/terms.jpg")}
             alt={"Terms & Conditions"}
           />
+          <NavLink to="/" className="back-link">
+            Back
+          </NavLink>
           <div className="terms-container">
             <p className="terms-p">TERMS {"&"} CONDITIONS</p>
           </div>

@@ -6,7 +6,6 @@ import Modal from "react-modal";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import { preferredGender, defaultPreferredGender } from "../../utils/constants";
-import { getMyFriends } from "../../actions/myFriends";
 import { getAllDestinationsName } from "../../actions/destinations";
 import { stringDateToISODateString, isNull } from "../../utils/functions";
 import { findThemModalStyle } from "./FindThemModalStyle";
@@ -48,11 +47,9 @@ class FindThemModal extends Component {
   };
 
   inputIsCorrect = () => {
-    console.log(this.gender.current);
     if (
       isNull(this.destinationName.current.state.value) ||
-      (isNull(this.gender.current.state.value) &&
-        this.gender.current.state.inputValue === "") ||
+      isNull(this.gender.current.state.value) ||
       stringDateToISODateString(this.state.dateFrom) >
         stringDateToISODateString(this.state.dateTo)
     ) {
@@ -91,11 +88,7 @@ class FindThemModal extends Component {
       const dateTo = this.state.anytime
         ? null
         : stringDateToISODateString(this.state.dateTo);
-      const genderState = this.gender.current.state;
-      const gender =
-        genderState.inputValue !== ""
-          ? genderState.inputValue
-          : genderState.value.value;
+      const gender = this.gender.current.state.value.value;
       this.closeModal();
       this.props.history.push(
         `/logged-in/home/my-friends/${destinationName}/${dateFrom}/${dateTo}/${gender}`
@@ -183,7 +176,7 @@ class FindThemModal extends Component {
           <Select
             options={preferredGender}
             ref={this.gender}
-            defaultInputValue={defaultPreferredGender}
+            defaultValue={defaultPreferredGender}
             placeholder="Gender..."
           />
 
@@ -208,6 +201,6 @@ export default compose(
       myFriends: state.myFriends,
       destinationsName: state.destinationsName
     }),
-    { getMyFriends, getAllDestinationsName }
+    { getAllDestinationsName }
   )
 )(FindThemModal);

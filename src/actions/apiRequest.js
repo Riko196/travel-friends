@@ -1,5 +1,6 @@
 import { backendURL } from "../utils/config";
 import { get, merge } from "lodash";
+import cookie from "react-cookies";
 
 const solveErrors = response => {
   const contentType = response.headers.get("content-type");
@@ -26,7 +27,10 @@ const solveErrors = response => {
 const apiRequest = (apiPath, options) => {
   const mainOptions = {
     headers: {
-      Accept: "application/json"
+      Accept: "application/json",
+      facebookToken: cookie.load("facebookToken"),
+      token: cookie.load("token"),
+      userId: cookie.load("userId")
     },
     mode: "cors"
   };
@@ -37,7 +41,9 @@ const apiRequest = (apiPath, options) => {
     finalOptions.body = JSON.stringify(finalOptions.body);
     finalOptions.headers["Content-Type"] = "application/json";
   }
+
   const requestUrl = backendURL + apiPath;
+
   return fetch(requestUrl, finalOptions).then(response =>
     solveErrors(response)
   );

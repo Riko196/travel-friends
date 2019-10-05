@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-//import ProfileGallery from "../profileGallery/ProfileGallery";
 import ProfileTrips from "../trip/ProfileTrips";
 import EditProfileModal from "./EditProfileModal";
 import SelectUserName from "./SelectUserName";
 import { getAge } from "../../utils/functions";
+import cookie from "react-cookies";
+
 import "./Profile.css";
 
 class Profile extends Component {
   render() {
+    const userId = cookie.load("userId");
     let profilePhoto = null;
     try {
-      profilePhoto = require(`../../images/profilePhotos/profile_picture_${
-        this.props.user.userId
-      }.jpeg`);
+      profilePhoto = require(`../../images/profilePhotos/profile_picture_${userId}.jpeg`);
     } catch (err) {
       profilePhoto = require("../../images/profile_picture_default.svg");
     }

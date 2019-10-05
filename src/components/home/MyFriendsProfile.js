@@ -8,6 +8,7 @@ import { getAge } from "../../utils/functions";
 import { Redirect } from "react-router-dom";
 import { isEmpty } from "lodash";
 import { facebookMessengerURL } from "../../utils/config";
+import cookie from "react-cookies";
 
 import "./MyFriendsProfile.css";
 
@@ -22,7 +23,9 @@ class MyFriendsProfile extends Component {
   }
 
   componentDidMount() {
-    const { friendsUserId, myUserId, getMyFriend } = this.props;
+    const { friendsUserId, getMyFriend } = this.props;
+    const myUserId = cookie.load("userId");
+
     if (friendsUserId === myUserId) {
       this.props.history.replace("/logged-in/profile");
       return;
@@ -132,7 +135,6 @@ export default compose(
 
       return {
         friendsUserId,
-        myUserId: state.user.userId,
         selectedFriend: state.selectedFriend
       };
     },

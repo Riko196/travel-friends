@@ -9,7 +9,7 @@ export const preferredGender = [
   { value: "I don't mind", label: "I don't mind" }
 ];
 
-export const defaultPreferredGender = "I don't mind";
+export const defaultPreferredGender = { value: "I don't mind", label: "I don't mind" };
 
 export const countOfTheMostPopularDestinations = 6; /* 10 */
 

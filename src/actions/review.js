@@ -57,8 +57,7 @@ export const editTheMostPopularDestinationsReview = editedReview => ({
 export const editReview = data => dispatch => {
   return apiRequest(`editReview`, {
     method: "PUT",
-    body: data,
-    headers: { token: data.token }
+    body: data
   })
     .then(result => {
       apiRequest(`getDestinationIdByTripId/${data.tripId}`).then(
