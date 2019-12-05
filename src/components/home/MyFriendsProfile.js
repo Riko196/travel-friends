@@ -106,19 +106,11 @@ class MyFriendsProfile extends Component {
               {this.props.selectedFriend.country}
             </p>
             <div className="right-align">
-              {this.props.selectedFriend.userName !== null && (
-                <div className="contact-button right">
-                  <a
-                    href={
-                      facebookMessengerURL + this.props.selectedFriend.userName
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <p id="size">Contact</p>
-                  </a>
-                </div>
-              )}
+              <div className="contact-button right">
+                <a href="" target="_blank" rel="noopener noreferrer">
+                  <p id="size">Contact</p>
+                </a>
+              </div>
             </div>
           </div>
         </div>

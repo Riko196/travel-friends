@@ -8,7 +8,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "Test name1",
           email: "test1@mail.com",
-          userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -17,7 +16,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "Test name2",
           email: "test2@mail.com",
-          userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -26,7 +24,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "Test name3",
           email: "test3@mail.com",
-          userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -35,7 +32,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "John Johnson",
           email: "test4@mail.com",
-          userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -44,7 +40,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "Test name5",
           email: "test5@mail.com",
-          userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -53,7 +48,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "John Johnson",
           email: "test4@mail.com",
-          userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -62,7 +56,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "John Johnson",
           email: "test4@mail.com",
-          userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -71,7 +64,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "John Johnson",
           email: "test4@mail.com",
-          userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",
@@ -80,7 +72,6 @@ exports.seed = (knex, Promise) => {
         {
           name: "John Johnson",
           email: "test4@mail.com",
-          userName: "ivan.agarsky",
           aboutme: "test about me",
           birthday: "22/02/1999",
           country: "Test country",

@@ -3,12 +3,10 @@ exports.up = (knex, Promise) => {
     table.increments("userId").primary();
     table.string("name").notNullable();
     table.string("email").notNullable();
-    table.string("userName");
     table.string("aboutme");
     table.string("birthday");
     table.string("country");
     table.string("gender");
-    table.string("token");
   });
 };
 

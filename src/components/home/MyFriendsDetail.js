@@ -52,17 +52,11 @@ class MyFriendsDetail extends Component {
               <p>Profile</p>
             </div>
           </Link>
-          {detail.userName !== null && (
-            <div className="contact-button">
-              <a
-                href={facebookMessengerURL + detail.userName}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <p>Contact</p>
-              </a>
-            </div>
-          )}
+          <div className="contact-button">
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <p>Contact</p>
+            </a>
+          </div>
         </div>
       </div>
     );

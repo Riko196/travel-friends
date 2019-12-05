@@ -19,6 +19,9 @@ const facebookAuthenticated = async (req, email) => {
     const path = `https://graph.facebook.com/me?fields=email&access_token=${facebookToken}`;
     const response = await axios.get(path);
 
+    if(!response || !response.data)
+      return { status: 500, message: "Unauthorized" };
+
     if (!response.data.email || !response.data.id) {
       return { status: 500, message: "Unauthorized" };
     } else {
