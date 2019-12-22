@@ -12,7 +12,7 @@ const getUserByUserId = async (knex, userId) => {
     .select("*")
     .where("userId", userId)
     .first();
-  delete user.token;
+
   delete user.email;
   return user;
 };

@@ -54,8 +54,8 @@ export const logOut = () => dispatch => {
   }).then(() => {
     dispatch(setInitialState(getInitialState()));
     cookie.remove("facebookToken");
-    cookie.remove("token");
     cookie.remove("userId");
+    cookie.remove("email");
     window.location = "/";
   });
 };

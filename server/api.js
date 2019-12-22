@@ -23,7 +23,9 @@ const {
   updateReview
 } = require("./queries");
 const multer = require("multer");
-const { authenticated, facebookAuthenticated } = require("./authentication");
+const {
+  facebookAuthenticated
+} = require("./authentication");
 
 const router = express.Router();
 
@@ -31,17 +33,18 @@ const router = express.Router();
 
 router.get("/getUser/:email", async (req, res, next) => {
   const { email } = req.params;
-  const response = await facebookAuthenticated(req, email);
+  const response = await facebookAuthenticated(req);
+
   if (response.status !== 200) {
     return res.send(response);
   }
 
   getUserByEmail(knex, email)
     .then(result => {
-      if (result === undefined) {
-        res.send({});
+      if (!result) {
+        return res.send({});
       } else {
-        res.send(result);
+        return res.send(result);
       }
     })
     .catch(e => next(e));
@@ -52,10 +55,10 @@ router.get("/getUserByUserId/:userId", (req, res, next) => {
 
   getUserByUserId(knex, userId)
     .then(result => {
-      if (result === undefined) {
-        res.send({});
+      if (!result) {
+        return res.send({});
       } else {
-        res.send(result);
+        return res.send(result);
       }
     })
     .catch(e => next(e));
@@ -63,46 +66,45 @@ router.get("/getUserByUserId/:userId", (req, res, next) => {
 
 router.post("/insertUser", async (req, res, next) => {
   const user = req.body;
-  const response = await facebookAuthenticated(req, user.email);
+  const response = await facebookAuthenticated(req);
 
   if (response.status !== 200) {
     return res.send(response);
   }
 
-  user.token = req.headers["facebooktoken"];
   insertUser(knex, user)
     .then(inserted => {
-      res.send(inserted[0]);
+      return res.send(inserted[0]);
     })
     .catch(e => next(e));
 });
 
-router.put("/updateUser", (req, res, next) => {
+router.put("/updateUser", async (req, res, next) => {
   const user = req.body;
-  const token = req.headers["token"];
   const userId = req.headers["userid"];
+  const response = await facebookAuthenticated(req);
 
-  if (!authenticated(token, userId)) {
-    return res.send({ message: "Unauthorized" });
+  if (response.status !== 200) {
+    return res.send(response);
   }
 
   user.userId = userId;
   updateUser(knex, user)
     .then(result => {
-      res.send({});
+      return res.send({});
     })
     .catch(e => next(e));
 });
 
 /********************** TRIPS ***********************/
 
-router.post("/insertTrip", (req, res, next) => {
+router.post("/insertTrip", async (req, res, next) => {
   const trip = req.body;
-  const token = req.headers["token"];
   const userId = req.headers["userid"];
+  const response = await facebookAuthenticated(req);
 
-  if (!authenticated(token, userId)) {
-    return res.send({ message: "Unauthorized" });
+  if (response.status !== 200) {
+    return res.send(response);
   }
 
   trip.userId = userId;
@@ -123,7 +125,7 @@ router.post("/insertTrip", (req, res, next) => {
               if (insertedTrip[0].planned === false) {
                 insertReview(knex, emptyReview)
                   .then(insertedReview => {
-                    res.send({
+                    return res.send({
                       ...insertedTrip[0],
                       ...destination,
                       ...insertedReview[0]
@@ -131,7 +133,7 @@ router.post("/insertTrip", (req, res, next) => {
                   })
                   .catch(e => next(e));
               } else
-                res.send({
+                return res.send({
                   ...insertedTrip[0],
                   ...destination
                 });
@@ -143,13 +145,13 @@ router.post("/insertTrip", (req, res, next) => {
     .catch(e => next(e));
 });
 
-router.delete("/deleteTrip/:tripId", (req, res, next) => {
+router.delete("/deleteTrip/:tripId", async (req, res, next) => {
   const { tripId } = req.params;
-  const token = req.headers["token"];
   const userId = req.headers["userid"];
+  const response = await facebookAuthenticated(req);
 
-  if (!authenticated(token, userId)) {
-    return res.send({ message: "Unauthorized" });
+  if (response.status !== 200) {
+    return res.send(response);
   }
 
   deleteTrip(knex, tripId)
@@ -171,7 +173,7 @@ router.get("/getMyTrips", (req, res, next) => {
   getUnplannedTripsByUserId(knex, userId)
     .then(unplannedTrips => {
       getPlannedTripsByUserId(knex, userId).then(plannedTrips => {
-        res.send(unplannedTrips.concat(plannedTrips));
+        return res.send(unplannedTrips.concat(plannedTrips));
       });
     })
     .catch(e => next(e));
@@ -183,7 +185,7 @@ router.get("/getTripsByUserId/:userId", (req, res, next) => {
   getUnplannedTripsByUserId(knex, userId)
     .then(unplannedTrips => {
       getPlannedTripsByUserId(knex, userId).then(plannedTrips => {
-        res.send(unplannedTrips.concat(plannedTrips));
+        return res.send(unplannedTrips.concat(plannedTrips));
       });
     })
     .catch(e => next(e));
@@ -206,7 +208,7 @@ router.get(
       .then(friendsWithDate => {
         getUserIdFriendsWithPlanned(knex, { destinationName, userId, gender })
           .then(friendsWithPlanned => {
-            res.send({
+            return res.send({
               friendsWithPlanned: friendsWithPlanned,
               friendsWithDate: friendsWithDate
             });
@@ -222,7 +224,7 @@ router.get(
 router.get("/getAllDestinationsName", (req, res, next) => {
   getAllDestinationsName(knex)
     .then(result => {
-      res.send(result);
+      return res.send(result);
     })
     .catch(e => next(e));
 });
@@ -236,11 +238,8 @@ router.get("/getTheMostPopularDestinations/:limit", async (req, res, next) => {
       limit
     );
 
-    if (
-      theMostPopularDestinations === null ||
-      theMostPopularDestinations === undefined
-    ) {
-      res.send([]);
+    if (!theMostPopularDestinations) {
+      return res.send([]);
     }
 
     for (let destination of theMostPopularDestinations) {
@@ -249,12 +248,12 @@ router.get("/getTheMostPopularDestinations/:limit", async (req, res, next) => {
         destination.destinationId
       );
       destination.reviews = reviews;
-      if (reviews === null || reviews === undefined) {
+      if (!reviews) {
         destination.reviews = [];
       }
     }
 
-    res.send(theMostPopularDestinations);
+    return res.send(theMostPopularDestinations);
   } catch (e) {
     next(e);
   }
@@ -265,7 +264,7 @@ router.get("/getDestinationIdByTripId/:tripId", (req, res, next) => {
 
   getDestinationIdByTripId(knex, tripId)
     .then(result => {
-      res.send(result);
+      return res.send(result);
     })
     .catch(e => next(e));
 });
@@ -279,7 +278,7 @@ router.get(
       .then(destination => {
         getReviewsByDestinationId(knex, destinationId)
           .then(reviews => {
-            res.send({ ...destination, reviews: reviews });
+            return res.send({ ...destination, reviews: reviews });
           })
           .catch(e => next(e));
       })
@@ -294,35 +293,37 @@ router.get("/getReviewsByDestinationId/:destinationId", (req, res, next) => {
 
   getReviewsByDestinationId(knex, destinationId)
     .then(result => {
-      res.send(result);
+      return res.send(result);
     })
     .catch(e => next(e));
 });
 
-router.put("/editReview", (req, res, next) => {
+router.put("/editReview", async (req, res, next) => {
   const { tripId, reviewText, rating } = req.body;
-  const token = req.headers["token"];
+  const facebookToken = req.headers["facebooktoken"];
+  const email = req.headers["email"];
   const userId = req.headers["userid"];
+  const response = await facebookAuthenticated(facebookToken, user.email);
 
-  if (!authenticated(token, userId)) {
-    return res.send({ message: "Unauthorized" });
+  if (response.status !== 200) {
+    return res.send(response);
   }
 
   updateReview(knex, userId, tripId, reviewText, rating)
     .then(statusCode => {
-      res.send({});
+      return res.send({});
     })
     .catch(e => next(e));
 });
 
 /************************* FILE UPLOAD ********************/
 
-router.post("/upload", (req, res) => {
-  const token = req.headers["token"];
+router.post("/upload", async (req, res) => {
   const userId = req.headers["userid"];
+  const response = await facebookAuthenticated(req);
 
-  if (!authenticated(token, userId)) {
-    return res.send({ message: "Unauthorized" });
+  if (response.status !== 200) {
+    return res.send(response);
   }
 
   const storage = multer.diskStorage({

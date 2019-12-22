@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { ISODateStringTostringDate } from "../../utils/functions";
-import { facebookMessengerURL } from "../../utils/config";
 
 import "./MyFriendsDetail.css";
 
@@ -53,9 +52,7 @@ class MyFriendsDetail extends Component {
             </div>
           </Link>
           <div className="contact-button">
-            <a href="" target="_blank" rel="noopener noreferrer">
-              <p>Contact</p>
-            </a>
+            <p>Contact</p>
           </div>
         </div>
       </div>

@@ -7,7 +7,6 @@ import Loading from "../helpful/Loading";
 import { getAge } from "../../utils/functions";
 import { Redirect } from "react-router-dom";
 import { isEmpty } from "lodash";
-import { facebookMessengerURL } from "../../utils/config";
 import cookie from "react-cookies";
 
 import "./MyFriendsProfile.css";
@@ -107,9 +106,7 @@ class MyFriendsProfile extends Component {
             </p>
             <div className="right-align">
               <div className="contact-button right">
-                <a href="" target="_blank" rel="noopener noreferrer">
-                  <p id="size">Contact</p>
-                </a>
+                <p id="size">Contact</p>
               </div>
             </div>
           </div>

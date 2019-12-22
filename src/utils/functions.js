@@ -112,7 +112,7 @@ export const uploadProfilePhoto = profilePhotoUrl => {
       axios.post(uploadPhotoURL, data, {
         headers: {
           "Content-Type": "multipart/form-data",
-          token: cookie.load("token"),
+          facebookToken: cookie.load("facebookToken"),
           userId: userId
         }
       });

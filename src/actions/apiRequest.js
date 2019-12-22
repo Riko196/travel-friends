@@ -29,8 +29,8 @@ const apiRequest = (apiPath, options) => {
     headers: {
       Accept: "application/json",
       facebookToken: cookie.load("facebookToken"),
-      token: cookie.load("token"),
-      userId: cookie.load("userId")
+      userId: cookie.load("userId"),
+      email: cookie.load("email")
     },
     mode: "cors"
   };
