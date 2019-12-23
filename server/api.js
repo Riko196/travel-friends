@@ -34,15 +34,15 @@ router.get("/getUser/:email", async (req, res, next) => {
   const response = await facebookAuthenticated(req);
 
   if (response.status !== 200) {
-    return res.send(response);
+    return res.status(response.status).send(response);
   }
 
   getUserByEmail(knex, email)
     .then(result => {
       if (!result) {
-        return res.send({});
+        return res.status(200).send({});
       } else {
-        return res.send(result);
+        return res.status(200).send(result);
       }
     })
     .catch(e => next(e));
@@ -54,9 +54,9 @@ router.get("/getUserByUserId/:userId", (req, res, next) => {
   getUserByUserId(knex, userId)
     .then(result => {
       if (!result) {
-        return res.send({});
+        return res.status(200).send({});
       } else {
-        return res.send(result);
+        return res.status(200).send(result);
       }
     })
     .catch(e => next(e));
@@ -67,12 +67,12 @@ router.post("/insertUser", async (req, res, next) => {
   const response = await facebookAuthenticated(req);
 
   if (response.status !== 200) {
-    return res.send(response);
+    return res.status(response.status).send(response);
   }
 
   insertUser(knex, user)
     .then(inserted => {
-      return res.send(inserted[0]);
+      return res.status(200).send(inserted[0]);
     })
     .catch(e => next(e));
 });
@@ -83,13 +83,13 @@ router.put("/updateUser", async (req, res, next) => {
   const response = await facebookAuthenticated(req);
 
   if (response.status !== 200) {
-    return res.send(response);
+    return res.status(response.status).send(response);
   }
 
   user.userId = userId;
   updateUser(knex, user)
     .then(result => {
-      return res.send({});
+      return res.status(200).send({});
     })
     .catch(e => next(e));
 });
@@ -102,7 +102,7 @@ router.post("/insertTrip", async (req, res, next) => {
   const response = await facebookAuthenticated(req);
 
   if (response.status !== 200) {
-    return res.send(response);
+    return res.status(response.status).send(response);
   }
 
   trip.userId = userId;
@@ -123,7 +123,7 @@ router.post("/insertTrip", async (req, res, next) => {
               if (insertedTrip[0].planned === true) {
                 insertReview(knex, emptyReview)
                   .then(insertedReview => {
-                    return res.send({
+                    return res.status(200).send({
                       ...insertedTrip[0],
                       ...destination,
                       ...insertedReview[0]
@@ -131,7 +131,7 @@ router.post("/insertTrip", async (req, res, next) => {
                   })
                   .catch(e => next(e));
               } else
-                return res.send({
+                return res.status(200).send({
                   ...insertedTrip[0],
                   ...destination
                 });
@@ -149,7 +149,7 @@ router.delete("/deleteTrip/:tripId", async (req, res, next) => {
   const response = await facebookAuthenticated(req);
 
   if (response.status !== 200) {
-    return res.send(response);
+    return res.status(response.status).send(response);
   }
 
   deleteTrip(knex, tripId)
@@ -157,10 +157,10 @@ router.delete("/deleteTrip/:tripId", async (req, res, next) => {
       if (deleteTrip.planned === true) {
         deleteReview(knex, tripId)
           .then(deletedReview => {
-            return res.send({});
+            return res.status(200).send({});
           })
           .catch(e => next(e));
-      } else return res.send({});
+      } else return res.status(200).send({});
     })
     .catch(e => next(e));
 });
@@ -171,7 +171,7 @@ router.get("/getMyTrips", (req, res, next) => {
   getPlanningTripsByUserId(knex, userId)
     .then(planningTrips => {
       getPlannedTripsByUserId(knex, userId).then(plannedTrips => {
-        return res.send(planningTrips.concat(plannedTrips));
+        return res.status(200).send(planningTrips.concat(plannedTrips));
       });
     })
     .catch(e => next(e));
@@ -183,7 +183,7 @@ router.get("/getTripsByUserId/:userId", (req, res, next) => {
   getPlanningTripsByUserId(knex, userId)
     .then(planningTrips => {
       getPlannedTripsByUserId(knex, userId).then(plannedTrips => {
-        return res.send(planningTrips.concat(plannedTrips));
+        return res.status(200).send(planningTrips.concat(plannedTrips));
       });
     })
     .catch(e => next(e));
@@ -205,7 +205,7 @@ router.get(
         gender
       })
         .then(friendsWithPlanned => {
-          return res.send({
+          return res.status(200).send({
             friendsWithPlanning: [],
             friendsWithPlanned: friendsWithPlanned
           });
@@ -214,7 +214,7 @@ router.get(
     } else {
       getUserIdFriendsWithPlanning(knex, { destinationName, userId, gender })
         .then(friends => {
-          return res.send(friends);
+          return res.status(200).send(friends);
         })
         .catch(e => next(e));
     }
@@ -226,7 +226,7 @@ router.get(
 router.get("/getAllDestinationsName", (req, res, next) => {
   getAllDestinationsName(knex)
     .then(result => {
-      return res.send(result);
+      return res.status(200).send(result);
     })
     .catch(e => next(e));
 });
@@ -241,7 +241,7 @@ router.get("/getTheMostPopularDestinations/:limit", async (req, res, next) => {
     );
 
     if (!theMostPopularDestinations) {
-      return res.send([]);
+      return res.status(200).send([]);
     }
 
     for (let destination of theMostPopularDestinations) {
@@ -255,7 +255,7 @@ router.get("/getTheMostPopularDestinations/:limit", async (req, res, next) => {
       }
     }
 
-    return res.send(theMostPopularDestinations);
+    return res.status(200).send(theMostPopularDestinations);
   } catch (e) {
     next(e);
   }
@@ -266,7 +266,7 @@ router.get("/getDestinationIdByTripId/:tripId", (req, res, next) => {
 
   getDestinationIdByTripId(knex, tripId)
     .then(result => {
-      return res.send(result);
+      return res.status(200).send(result);
     })
     .catch(e => next(e));
 });
@@ -280,7 +280,7 @@ router.get(
       .then(destination => {
         getReviewsByDestinationId(knex, destinationId)
           .then(reviews => {
-            return res.send({ ...destination, reviews: reviews });
+            return res.status(200).send({ ...destination, reviews: reviews });
           })
           .catch(e => next(e));
       })
@@ -295,7 +295,7 @@ router.get("/getReviewsByDestinationId/:destinationId", (req, res, next) => {
 
   getReviewsByDestinationId(knex, destinationId)
     .then(result => {
-      return res.send(result);
+      return res.status(200).send(result);
     })
     .catch(e => next(e));
 });
@@ -308,12 +308,12 @@ router.put("/editReview", async (req, res, next) => {
   const response = await facebookAuthenticated(facebookToken, user.email);
 
   if (response.status !== 200) {
-    return res.send(response);
+    return res.status(response.status).send(response);
   }
 
   updateReview(knex, userId, tripId, reviewText, rating)
     .then(statusCode => {
-      return res.send({});
+      return res.status(200).send({});
     })
     .catch(e => next(e));
 });
@@ -325,7 +325,7 @@ router.post("/upload", async (req, res) => {
   const response = await facebookAuthenticated(req);
 
   if (response.status !== 200) {
-    return res.send(response);
+    return res.status(response.status).send(response);
   }
 
   const storage = multer.diskStorage({

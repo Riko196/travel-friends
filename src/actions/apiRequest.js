@@ -14,6 +14,10 @@ const solveErrors = response => {
       return Promise.resolve(parsed);
     }
 
+    if (response.status === 401) {
+      window.location = "/";
+    }
+
     const error = {
       status: response.status,
       errorCode: get(parsed, "error_code"),
