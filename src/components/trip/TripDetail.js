@@ -103,11 +103,11 @@ class TripDetail extends Component {
             <p className="trip-date">from: {dateFrom}</p>
             <p className="trip-date">to: {dateTo}</p>
           </div>
-          {this.props.planned === true && (
+          {this.props.type !== "old" && (
             <button className="delete-trip-btn" onClick={this.deleteTrip} />
           )}
         </div>
-        {this.props.planned === false && (
+        {this.props.type === "old" && (
           <div>
             <button className="open-modal-btn" onClick={this.openModal} />
             <Modal

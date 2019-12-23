@@ -7,10 +7,10 @@ const {
   updateUser,
   insertTrip,
   deleteTrip,
+  getPlanningTripsByUserId,
   getPlannedTripsByUserId,
-  getUnplannedTripsByUserId,
-  getUserIdFriendsWithDate,
-  getAnytimeUserIdFriends,
+  getUserIdFriendsWithPlanned,
+  getUserIdFriendsWithPlanning,
   getDestinationByDestinationId,
   getDestinationIdByName,
   getDestinationNameById,
@@ -120,7 +120,7 @@ router.post("/insertTrip", async (req, res, next) => {
           };
           getDestinationByDestinationId(knex, trip.destinationId).then(
             destination => {
-              if (insertedTrip[0].planned === false) {
+              if (insertedTrip[0].planned === true) {
                 insertReview(knex, emptyReview)
                   .then(insertedReview => {
                     return res.send({
@@ -154,7 +154,7 @@ router.delete("/deleteTrip/:tripId", async (req, res, next) => {
 
   deleteTrip(knex, tripId)
     .then(deletedTrip => {
-      if (deleteTrip.planned === false) {
+      if (deleteTrip.planned === true) {
         deleteReview(knex, tripId)
           .then(deletedReview => {
             return res.send({});
@@ -168,10 +168,10 @@ router.delete("/deleteTrip/:tripId", async (req, res, next) => {
 router.get("/getMyTrips", (req, res, next) => {
   const userId = req.headers["userid"];
 
-  getUnplannedTripsByUserId(knex, userId)
-    .then(unplannedTrips => {
+  getPlanningTripsByUserId(knex, userId)
+    .then(planningTrips => {
       getPlannedTripsByUserId(knex, userId).then(plannedTrips => {
-        return res.send(unplannedTrips.concat(plannedTrips));
+        return res.send(planningTrips.concat(plannedTrips));
       });
     })
     .catch(e => next(e));
@@ -180,10 +180,10 @@ router.get("/getMyTrips", (req, res, next) => {
 router.get("/getTripsByUserId/:userId", (req, res, next) => {
   const { userId } = req.params;
 
-  getUnplannedTripsByUserId(knex, userId)
-    .then(unplannedTrips => {
+  getPlanningTripsByUserId(knex, userId)
+    .then(planningTrips => {
       getPlannedTripsByUserId(knex, userId).then(plannedTrips => {
-        return res.send(unplannedTrips.concat(plannedTrips));
+        return res.send(planningTrips.concat(plannedTrips));
       });
     })
     .catch(e => next(e));
@@ -197,22 +197,22 @@ router.get(
     const userId = req.headers["userid"];
 
     if (dateFrom != "null" && dateTo != "null") {
-      getUserIdFriendsWithDate(knex, {
+      getUserIdFriendsWithPlanned(knex, {
         destinationName,
         dateFrom,
         dateTo,
         userId,
         gender
       })
-        .then(friendsWithDate => {
+        .then(friendsWithPlanned => {
           return res.send({
-            friendsWithPlanned: [],
-            friendsWithDate: friendsWithDate
+            friendsWithPlanning: [],
+            friendsWithPlanned: friendsWithPlanned
           });
         })
         .catch(e => next(e));
     } else {
-      getAnytimeUserIdFriends(knex, { destinationName, userId, gender })
+      getUserIdFriendsWithPlanning(knex, { destinationName, userId, gender })
         .then(friends => {
           return res.send(friends);
         })

@@ -16,7 +16,7 @@
     padding-bottom: 1em;
 }
 
-.planning:after, .planned-exact:after{
+.planning:after, .planned:after{
     content: "";
     display: table;
     clear: both;
@@ -40,7 +40,7 @@
 }
 
 .planning .planned-banner{
-      display: none;  
+      display: none;
 }
 
 .background-image-friends{
@@ -53,7 +53,7 @@
 .people-p{
     text-transform: uppercase;
     text-align: center;
-    margin-bottom: -10px; 
+    margin-bottom: -10px;
     font-size: 18pt;
     color: white;
     font-weight: 800;

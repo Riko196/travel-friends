@@ -32,7 +32,7 @@ class MyFriendsDetail extends Component {
             <p className="friend-name-detail">{detail.name}</p>
           </div>
         </Link>
-        {planned === false && (
+        {planned === true && (
           <p className="detailp">
             Will be in <span>{destinationName}</span>
             <br />

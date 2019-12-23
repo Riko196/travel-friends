@@ -96,7 +96,7 @@ class FindThemModal extends Component {
     }
   };
 
-  handleChangePlanned = event => {
+  handleChangeAnytime = event => {
     this.setState({
       anytime: event.target.checked
     });
@@ -147,7 +147,7 @@ class FindThemModal extends Component {
             type="checkbox"
             id="cbx"
             style={{ display: "none" }}
-            onChange={this.handleChangePlanned}
+            onChange={this.handleChangeAnytime}
             defaultChecked={false}
           />
           <label htmlFor="cbx" className="toggle">

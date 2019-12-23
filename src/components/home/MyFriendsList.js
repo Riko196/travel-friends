@@ -74,7 +74,7 @@ class MyFriendsList extends Component {
     } catch (err) {
       cityPhotoUrl = require(`../../images/destination_default.jpg`);
     }
-
+    console.log(friends);
     return (
       <div>
         <div className="background-image-friends">
@@ -87,19 +87,7 @@ class MyFriendsList extends Component {
               {this.props.destinationName}
             </p>
             <div className="my-friend-list-container">
-              <div className="planned-exact">
-                {friends !== null &&
-                  friends.friendsWithDate.length !== 0 &&
-                  friends.friendsWithDate.map(friend => (
-                    <MyFriendsDetail
-                      key={friend.tripId}
-                      detail={friend}
-                      destinationName={this.props.destinationName}
-                      planned={false}
-                    />
-                  ))}
-              </div>
-              <div className="planning">
+              <div className="planned">
                 {friends !== null &&
                   friends.friendsWithPlanned.length !== 0 &&
                   friends.friendsWithPlanned.map(friend => (
@@ -110,9 +98,21 @@ class MyFriendsList extends Component {
                       planned={true}
                     />
                   ))}
+              </div>
+              <div className="planning">
                 {friends !== null &&
-                  (friends.friendsWithPlanned.length === 0 &&
-                    friends.friendsWithDate.length === 0 && (
+                  friends.friendsWithPlanning.length !== 0 &&
+                  friends.friendsWithPlanning.map(friend => (
+                    <MyFriendsDetail
+                      key={friend.tripId}
+                      detail={friend}
+                      destinationName={this.props.destinationName}
+                      planned={false}
+                    />
+                  ))}
+                {friends !== null &&
+                  (friends.friendsWithPlanning.length === 0 &&
+                    friends.friendsWithPlanned.length === 0 && (
                       <p>
                         <span
                           className="no-friends-found"

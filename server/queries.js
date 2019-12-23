@@ -43,17 +43,17 @@ const deleteTrip = (knex, tripId) => {
     .where("tripId", tripId);
 };
 
-const getPlannedTripsByUserId = (knex, userId) => {
+const getPlanningTripsByUserId = (knex, userId) => {
   return knex("trips as t")
     .select("*")
     .where("t.userId", userId)
-    .andWhere("t.planned", true)
+    .andWhere("t.planned", false)
     .join("destinations as d", join => {
       join.on("t.destinationId", "d.destinationId");
     });
 };
 
-const getUnplannedTripsByUserId = (knex, userId) => {
+const getPlannedTripsByUserId = (knex, userId) => {
   return knex("trips as t")
     .select("*")
     .where("t.userId", userId)
@@ -85,7 +85,7 @@ const filterFriends = (friends, gender) => {
   });
 };
 
-const getUserIdFriendsWithDate = async (knex, query) => {
+const getUserIdFriendsWithPlanned = async (knex, query) => {
   const { destinationName, dateFrom, dateTo, userId, gender } = query;
   const { destinationId } = await getDestinationIdByName(knex, destinationName);
 
@@ -100,29 +100,28 @@ const getUserIdFriendsWithDate = async (knex, query) => {
   return filterFriends(await getFriends(friendsId, knex), gender);
 };
 
-const getAnytimeUserIdFriends = async (knex, query) => {
+const getUserIdFriendsWithPlanning = async (knex, query) => {
   const { destinationName, userId, gender } = query;
   const { destinationId } = await getDestinationIdByName(knex, destinationName);
-  const friendsIdWithPlanned = await knex("trips")
-    .distinct()
+  const friendsIdWithPlanning = await knex("trips")
     .select("tripId", "userId")
     .whereNot("userId", "=", userId)
     .andWhere("destinationId", "=", destinationId)
     .andWhere("planned", "=", false);
 
-  const friendsIdWithDate = await knex("trips")
+  const friendsIdWithPlanned = await knex("trips")
     .select("tripId", "userId", "dateTo", "dateFrom")
     .whereNot("userId", "=", userId)
     .andWhere("destinationId", "=", destinationId)
     .andWhere("planned", "=", true);
 
   return {
-    friendsWithPlanned: filterFriends(
-      await getFriends(friendsIdWithPlanned, knex),
+    friendsWithPlanning: filterFriends(
+      await getFriends(friendsIdWithPlanning, knex),
       gender
     ),
-    friendsWithDate: filterFriends(
-      await getFriends(friendsIdWithDate, knex),
+    friendsWithPlanned: filterFriends(
+      await getFriends(friendsIdWithPlanned, knex),
       gender
     )
   };
@@ -222,10 +221,10 @@ module.exports = {
   updateUser: updateUser,
   insertTrip: insertTrip,
   deleteTrip: deleteTrip,
+  getPlanningTripsByUserId: getPlanningTripsByUserId,
   getPlannedTripsByUserId: getPlannedTripsByUserId,
-  getUnplannedTripsByUserId: getUnplannedTripsByUserId,
-  getUserIdFriendsWithDate: getUserIdFriendsWithDate,
-  getAnytimeUserIdFriends: getAnytimeUserIdFriends,
+  getUserIdFriendsWithPlanned: getUserIdFriendsWithPlanned,
+  getUserIdFriendsWithPlanning: getUserIdFriendsWithPlanning,
   getDestinationByDestinationId: getDestinationByDestinationId,
   getDestinationIdByName: getDestinationIdByName,
   getDestinationNameById: getDestinationNameById,
