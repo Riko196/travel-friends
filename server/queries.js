@@ -67,91 +67,66 @@ const getUnplannedTripsByUserId = (knex, userId) => {
 
 /********************** FRIENDS ***********************/
 
+const getFriends = async (friendsId, knex) => {
+  return Promise.all(
+    friendsId.map(async element => {
+      const friend = await getUserByUserId(knex, element.userId);
+      if (element.tripId) friend.tripId = element.tripId;
+      if (element.dateTo) friend.dateTo = element.dateTo;
+      if (element.dateFrom) friend.dateFrom = element.dateFrom;
+      return friend;
+    })
+  );
+};
+
+const filterFriends = (friends, gender) => {
+  return friends.filter(friend => {
+    return friend && (gender === friend.gender || gender === "I don't mind");
+  });
+};
+
 const getUserIdFriendsWithDate = async (knex, query) => {
   const { destinationName, dateFrom, dateTo, userId, gender } = query;
   const { destinationId } = await getDestinationIdByName(knex, destinationName);
+
   const friendsId = await knex("trips")
-    .select("userId", "dateTo", "dateFrom")
+    .select("tripId", "userId", "dateTo", "dateFrom")
     .whereNot("userId", "=", userId)
-    .andWhere("planned", "=", false)
-    .andWhere("destinationId", "=", destinationId);
-
-  const friendsIdWithDateFrom = await knex("trips")
-    .select("userId", "dateTo", "dateFrom")
-    .whereNot("userId", "=", userId)
-    .andWhere("planned", "=", false)
+    .andWhere("planned", "=", true)
     .andWhere("destinationId", "=", destinationId)
-    .andWhere("dateFrom", ">=", dateFrom)
-    .andWhere("dateFrom", "<=", dateTo);
+    .andWhere("dateFrom", "<=", dateTo)
+    .andWhere("dateTo", ">=", dateFrom);
 
-  const friendsIdWithDateTo = await knex("trips")
-    .select("userId", "dateTo", "dateFrom")
-    .whereNot("userId", "=", userId)
-    .andWhere("planned", "=", false)
-    .andWhere("destinationId", "=", destinationId)
-    .andWhere("dateTo", ">=", dateFrom)
-    .andWhere("dateTo", "<=", dateTo);
-
-  let myFriends = [];
-  for (const element of friendsId) {
-    const friend = await getUserByUserId(knex, element.userId);
-    if (
-      friend !== undefined &&
-      (gender === friend.gender || gender === "I don't mind")
-    ) {
-      let friendAdded = false;
-      for (const key of friendsIdWithDateFrom) {
-        if (
-          key.userId === element.userId &&
-          key.dateTo === element.dateTo &&
-          key.dateFrom === element.dateFrom
-        ) {
-          friend.dateFrom = element.dateFrom;
-          friend.dateTo = element.dateTo;
-          myFriends.push(friend);
-          friendAdded = true;
-          break;
-        }
-      }
-      if (friendAdded) continue;
-
-      for (const key of friendsIdWithDateTo) {
-        if (
-          key.userId === element.userId &&
-          key.dateTo === element.dateTo &&
-          key.dateFrom === element.dateFrom
-        ) {
-          friend.dateFrom = element.dateFrom;
-          friend.dateTo = element.dateTo;
-          myFriends.push(friend);
-        }
-      }
-    }
-  }
-  return myFriends;
+  return filterFriends(await getFriends(friendsId, knex), gender);
 };
 
-const getUserIdFriendsWithPlanned = async (knex, query) => {
+const getAnytimeUserIdFriends = async (knex, query) => {
   const { destinationName, userId, gender } = query;
   const { destinationId } = await getDestinationIdByName(knex, destinationName);
-  const friendsId = await knex("trips")
-    .select("userId")
+  const friendsIdWithPlanned = await knex("trips")
+    .distinct()
+    .select("tripId", "userId")
+    .whereNot("userId", "=", userId)
+    .andWhere("destinationId", "=", destinationId)
+    .andWhere("planned", "=", false);
+
+  const friendsIdWithDate = await knex("trips")
+    .select("tripId", "userId", "dateTo", "dateFrom")
     .whereNot("userId", "=", userId)
     .andWhere("destinationId", "=", destinationId)
     .andWhere("planned", "=", true);
 
-  let myFriends = [];
-  for (const element of friendsId) {
-    const friend = await getUserByUserId(knex, element.userId);
-    if (
-      friend !== undefined &&
-      (gender === friend.gender || gender === "I don't mind")
+  return {
+    friendsWithPlanned: filterFriends(
+      await getFriends(friendsIdWithPlanned, knex),
+      gender
+    ),
+    friendsWithDate: filterFriends(
+      await getFriends(friendsIdWithDate, knex),
+      gender
     )
-      myFriends.push(friend);
-  }
-  return myFriends;
+  };
 };
-
 /********************** DESTINATIONS ***********************/
 
 const getDestinationByDestinationId = (knex, destinationId) => {
@@ -177,8 +152,8 @@ const getDestinationNameById = (knex, destinationId) => {
 
 const getAllDestinationsName = knex => {
   return knex("destinations")
-  .select("destinationId", "destinationName")
-  .orderBy("destinationName", "ASC");
+    .select("destinationId", "destinationName")
+    .orderBy("destinationName", "ASC");
 };
 
 const getTheMostPopularDestinations = (knex, limit) => {
@@ -250,7 +225,7 @@ module.exports = {
   getPlannedTripsByUserId: getPlannedTripsByUserId,
   getUnplannedTripsByUserId: getUnplannedTripsByUserId,
   getUserIdFriendsWithDate: getUserIdFriendsWithDate,
-  getUserIdFriendsWithPlanned: getUserIdFriendsWithPlanned,
+  getAnytimeUserIdFriends: getAnytimeUserIdFriends,
   getDestinationByDestinationId: getDestinationByDestinationId,
   getDestinationIdByName: getDestinationIdByName,
   getDestinationNameById: getDestinationNameById,

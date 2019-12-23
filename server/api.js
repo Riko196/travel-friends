@@ -10,7 +10,7 @@ const {
   getPlannedTripsByUserId,
   getUnplannedTripsByUserId,
   getUserIdFriendsWithDate,
-  getUserIdFriendsWithPlanned,
+  getAnytimeUserIdFriends,
   getDestinationByDestinationId,
   getDestinationIdByName,
   getDestinationNameById,
@@ -23,9 +23,7 @@ const {
   updateReview
 } = require("./queries");
 const multer = require("multer");
-const {
-  facebookAuthenticated
-} = require("./authentication");
+const { facebookAuthenticated } = require("./authentication");
 
 const router = express.Router();
 
@@ -198,24 +196,28 @@ router.get(
     const { destinationName, dateFrom, dateTo, gender } = req.params;
     const userId = req.headers["userid"];
 
-    getUserIdFriendsWithDate(knex, {
-      destinationName,
-      dateFrom,
-      dateTo,
-      userId,
-      gender
-    })
-      .then(friendsWithDate => {
-        getUserIdFriendsWithPlanned(knex, { destinationName, userId, gender })
-          .then(friendsWithPlanned => {
-            return res.send({
-              friendsWithPlanned: friendsWithPlanned,
-              friendsWithDate: friendsWithDate
-            });
-          })
-          .catch(e => next(e));
+    if (dateFrom != "null" && dateTo != "null") {
+      getUserIdFriendsWithDate(knex, {
+        destinationName,
+        dateFrom,
+        dateTo,
+        userId,
+        gender
       })
-      .catch(e => next(e));
+        .then(friendsWithDate => {
+          return res.send({
+            friendsWithPlanned: [],
+            friendsWithDate: friendsWithDate
+          });
+        })
+        .catch(e => next(e));
+    } else {
+      getAnytimeUserIdFriends(knex, { destinationName, userId, gender })
+        .then(friends => {
+          return res.send(friends);
+        })
+        .catch(e => next(e));
+    }
   }
 );
 

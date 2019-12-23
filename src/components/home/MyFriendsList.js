@@ -92,7 +92,7 @@ class MyFriendsList extends Component {
                   friends.friendsWithDate.length !== 0 &&
                   friends.friendsWithDate.map(friend => (
                     <MyFriendsDetail
-                      key={friend.userId}
+                      key={friend.tripId}
                       detail={friend}
                       destinationName={this.props.destinationName}
                       planned={false}
@@ -104,7 +104,7 @@ class MyFriendsList extends Component {
                   friends.friendsWithPlanned.length !== 0 &&
                   friends.friendsWithPlanned.map(friend => (
                     <MyFriendsDetail
-                      key={friend.userId}
+                      key={friend.tripId}
                       detail={friend}
                       destinationName={this.props.destinationName}
                       planned={true}
