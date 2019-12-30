@@ -14,6 +14,10 @@ const solveErrors = response => {
       return Promise.resolve(parsed);
     }
 
+    if (response.status === 401) {
+      window.location = "/";
+    }
+
     const error = {
       status: response.status,
       errorCode: get(parsed, "error_code"),
@@ -29,8 +33,8 @@ const apiRequest = (apiPath, options) => {
     headers: {
       Accept: "application/json",
       facebookToken: cookie.load("facebookToken"),
-      token: cookie.load("token"),
-      userId: cookie.load("userId")
+      userId: cookie.load("userId"),
+      email: cookie.load("email")
     },
     mode: "cors"
   };

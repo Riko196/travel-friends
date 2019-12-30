@@ -25,7 +25,7 @@ class AddTripModal extends Component {
       modalIsOpen: false,
       dateFrom: null,
       dateTo: null,
-      planned: false
+      planned: true
     };
 
     this.destinationName = React.createRef();
@@ -62,7 +62,7 @@ class AddTripModal extends Component {
       return false;
     }
 
-    if (this.state.planned === false) {
+    if (this.state.planned === true) {
       if (isNull(this.state.dateFrom) || isNull(this.state.dateTo)) {
         alert("There can not be empty input!");
         return false;
@@ -83,11 +83,11 @@ class AddTripModal extends Component {
   addTrip = () => {
     if (this.inputIsCorrect()) {
       const dateFrom =
-        this.state.planned === true
+        this.state.planned === false
           ? null
           : stringDateToISODateString(this.state.dateFrom);
       const dateTo =
-        this.state.planned === true
+        this.state.planned === false
           ? null
           : stringDateToISODateString(this.state.dateTo);
 
@@ -158,7 +158,7 @@ class AddTripModal extends Component {
             defaultInputValue={""}
           />
 
-          <label className="modal-label">Still planning:</label>
+          <label className="modal-label">Planned:</label>
           <input
             type="checkbox"
             id="cbx"
@@ -170,7 +170,7 @@ class AddTripModal extends Component {
             <span />
           </label>
 
-          {this.state.planned === false && (
+          {this.state.planned === true && (
             <div>
               <label className="modal-label">From:</label>
               <DatePicker

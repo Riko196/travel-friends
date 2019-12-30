@@ -46,6 +46,7 @@ class FacebookButton extends Component {
 
   communicateWithDatabase = (user, facebookToken) => {
     cookie.save("facebookToken", facebookToken);
+    cookie.save("email", user.email);
 
     getUser(user)
       .then(response => {
@@ -84,9 +85,7 @@ class FacebookButton extends Component {
       return;
     }
     cookie.save("userId", user.userId);
-    cookie.save("token", user.token);
     if (user.userId) delete user.userId;
-    delete user.token;
 
     this.props.logIn(user);
     this.props.history.replace("/logged-in/home");

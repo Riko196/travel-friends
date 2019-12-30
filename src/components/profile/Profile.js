@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ProfileTrips from "../trip/ProfileTrips";
 import EditProfileModal from "./EditProfileModal";
-import SelectUserName from "./SelectUserName";
 import { getAge } from "../../utils/functions";
 import cookie from "react-cookies";
 
@@ -47,7 +46,6 @@ class Profile extends Component {
             </p>
             <div className="to-right-align">
               <EditProfileModal />
-              <SelectUserName />
             </div>
           </div>
           <div className="travel-plan">

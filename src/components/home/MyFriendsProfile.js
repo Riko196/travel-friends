@@ -7,7 +7,6 @@ import Loading from "../helpful/Loading";
 import { getAge } from "../../utils/functions";
 import { Redirect } from "react-router-dom";
 import { isEmpty } from "lodash";
-import { facebookMessengerURL } from "../../utils/config";
 import cookie from "react-cookies";
 
 import "./MyFriendsProfile.css";
@@ -106,19 +105,9 @@ class MyFriendsProfile extends Component {
               {this.props.selectedFriend.country}
             </p>
             <div className="right-align">
-              {this.props.selectedFriend.userName !== null && (
-                <div className="contact-button right">
-                  <a
-                    href={
-                      facebookMessengerURL + this.props.selectedFriend.userName
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <p id="size">Contact</p>
-                  </a>
-                </div>
-              )}
+              <div className="contact-button right">
+                <p id="size">Contact</p>
+              </div>
             </div>
           </div>
         </div>

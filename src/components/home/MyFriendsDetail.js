@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { ISODateStringTostringDate } from "../../utils/functions";
-import { facebookMessengerURL } from "../../utils/config";
 
 import "./MyFriendsDetail.css";
 
@@ -33,7 +32,7 @@ class MyFriendsDetail extends Component {
             <p className="friend-name-detail">{detail.name}</p>
           </div>
         </Link>
-        {planned === false && (
+        {planned === true && (
           <p className="detailp">
             Will be in <span>{destinationName}</span>
             <br />
@@ -52,17 +51,9 @@ class MyFriendsDetail extends Component {
               <p>Profile</p>
             </div>
           </Link>
-          {detail.userName !== null && (
-            <div className="contact-button">
-              <a
-                href={facebookMessengerURL + detail.userName}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <p>Contact</p>
-              </a>
-            </div>
-          )}
+          <div className="contact-button">
+            <p>Contact</p>
+          </div>
         </div>
       </div>
     );

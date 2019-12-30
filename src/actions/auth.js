@@ -22,6 +22,9 @@ export const setInitialState = initialState => ({
 
 export const cleanState = () => dispatch => {
   dispatch(setInitialState(getInitialState()));
+  cookie.remove("facebookToken");
+  cookie.remove("userId");
+  cookie.remove("email");
 };
 
 export const getUser = user => {
@@ -52,10 +55,6 @@ export const logOut = () => dispatch => {
     });
     resolve();
   }).then(() => {
-    dispatch(setInitialState(getInitialState()));
-    cookie.remove("facebookToken");
-    cookie.remove("token");
-    cookie.remove("userId");
     window.location = "/";
   });
 };

@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { deleteTrip } from "../../actions/trips";
 
-import "./PlannedTripDetail.css";
+import "./PlanningTripDetail.css";
 
-class PlannedTripDetail extends Component {
+class PlanningTripDetail extends Component {
   deleteTrip = e => {
     this.props.deleteTrip(this.props.detail.tripId);
   };
@@ -32,11 +32,11 @@ class PlannedTripDetail extends Component {
               />
             )}
           </Link>
-          <p className="trip-place-planned">
+          <p className="trip-place-planning">
             {this.props.detail.destinationName}
           </p>
         </div>
-        <button className="delete-trip-btn-planned" onClick={this.deleteTrip} />
+        <button className="delete-trip-btn-planning" onClick={this.deleteTrip} />
       </div>
     );
   }
@@ -45,4 +45,4 @@ class PlannedTripDetail extends Component {
 export default connect(
   null,
   { deleteTrip }
-)(PlannedTripDetail);
+)(PlanningTripDetail);
